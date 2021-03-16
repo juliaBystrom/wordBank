@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Switch } from "react-router-dom";
 
 import LoginView from "./views/LoginView";
-import Bank from "./views/Bank";
+import Bank from "./views/BankView";
 
 function App() {
   return (
