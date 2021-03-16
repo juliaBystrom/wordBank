@@ -1,11 +1,15 @@
 import React from "react";
 
-const sidebarView = () => {
-  return (
-    <React.Fragment>
-      <div>Sidebar view</div>
-    </React.Fragment>
-  );
-};
 
-export default sidebarView;
+export default function BoardView(props) {
+
+  return (
+    <div>
+      <text>{props.title}</text>
+      <ul>
+        {props.children}
+      </ul>
+
+    </div>
+  );
+}
