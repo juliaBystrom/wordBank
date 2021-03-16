@@ -1,0 +1,46 @@
+class WordBankModel {
+    constructor() {
+        this.currentBank = null;
+        this.banks = [];
+        this.observers = [];
+        this.userID = null;
+        this.languageFrom = null;
+        this.languageTo = null;
+    }
+
+
+}
+
+class Bank{
+    constructor(){
+        this.bankID = null;
+        this.boards = [];
+        this.reverseTranslate = false;
+    }
+
+    sortBoards(){
+
+    }
+}
+
+class Board{
+    constructor(){
+        this.boardID = null;
+        this.cards = [];
+        
+    }
+
+}
+
+class Card{
+    constructor(){
+        this.cardID = [];
+        this.comment = null;
+        this.tag = null;
+    }
+
+    setComment(){
+        
+    }
+}
+

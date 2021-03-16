@@ -1,11 +1,11 @@
 import React from "react";
 
-const BankView = () => {
+const sidebarView = () => {
   return (
     <React.Fragment>
-      <div>Bank view</div>
+      <div>Sidebar view</div>
     </React.Fragment>
   );
 };
 
-export default BankView;
+export default sidebarView;
