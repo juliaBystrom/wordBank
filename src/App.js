@@ -1,12 +1,17 @@
 import "./App.css";
-
 import { Route, Switch } from "react-router-dom";
+
+import Login from "./views/Login";
+import Bank from "./views/Bank";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">Word Bank</header>
-    </div>
+    <>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route exact path="/bank" component={Bank} />
+      </Switch>
+    </>
   );
 }
 
