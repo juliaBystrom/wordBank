@@ -21,12 +21,18 @@ class Bank{
     sortBoards(){
 
     }
+
+    addBoard(name) {
+        thiis.boards =  [...boards, new Board(name)]
+    }
+
 }
 
 class Board{
-    constructor(){
+    constructor(name){
         this.boardID = null;
         this.cards = [];
+        this.title = name
         
     }
 
@@ -37,6 +43,8 @@ class Card{
         this.cardID = [];
         this.comment = null;
         this.tag = null;
+        this.leftSentence = null
+        this.rightSentence = null
     }
 
     setComment(){
