@@ -1,6 +1,6 @@
 import React from "react";
 
-const Bank = () => {
+const BankView = () => {
   return (
     <React.Fragment>
       <div>Bank view</div>
@@ -8,4 +8,4 @@ const Bank = () => {
   );
 };
 
-export default Bank;
+export default BankView;

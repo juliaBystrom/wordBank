@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const LoginView = () => {
   return (
     <React.Fragment>
       <div>Login view</div>
@@ -9,4 +9,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginView;
