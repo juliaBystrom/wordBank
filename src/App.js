@@ -1,15 +1,15 @@
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
 
-import LoginView from "./views/LoginView";
-import Bank from "./views/Bank";
+import signInView from "./views/signInView";
+import sidebarView from "./views/sidebarView";
 
 function App() {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={LoginView} />
-        <Route exact path="/bank" component={Bank} />
+        <Route exact path="/" component={signInView} />
+        <Route exact path="/bank" component={sidebarView} />
       </Switch>
     </>
   );
