@@ -2,15 +2,15 @@
 
 ### Project description:
 
-WordBank is a translation application that is supposed to help ..
+WordBank was designed and implemented in order to ...
 
 ### Progress made:
 
-...
+These features have been implemented so far ...
 
 ### Planning to do:
 
-...
+Features that are planned to be implemented ...
 
 ### File structure
 
