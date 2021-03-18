@@ -1,27 +1,26 @@
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
 
-import { SignInPresenter } from "./presenters/SignInPresenter";
+import { AuthPresenter } from "./presenters/AuthPresenter";
 import { sidebarView } from "./views/sidebarView";
+
+const TempTranslationView = styled.div`
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e0e0e0;
+`;
 
 function App() {
   return (
     <>
-      <div
-        style={{
-          height: "30%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#e0e0e0",
-        }}
-      >
-        English -- French
-      </div>
-      <Switch>
-        <Route exact path="/" component={SignInPresenter} />
+      <TempTranslationView>English - to - French</TempTranslationView>
+      <Router>
+        <Route exact path="/" component={AuthPresenter} />
         <Route exact path="/bank" component={sidebarView} />
-      </Switch>
+      </Router>
     </>
   );
 }
