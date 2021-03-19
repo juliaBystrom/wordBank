@@ -1,8 +1,8 @@
-function SidebarPresenter(props) {
+import {CardView,BoardView,BankView} from "../views"
+
+export default function BankPresenter(props) {
 
 
-    // const number = useModelProperty(props.model, "numberOfGuests");
-    // const menu = useModelProperty(props.model, "dishes");
 
     var boards = props.model.banks[props.model.currentBank].boards
 
@@ -15,7 +15,7 @@ function SidebarPresenter(props) {
                     leftSentence={card.leftSentence}
                     rightSentence={card.rightSentence}
                     id={card.cardID}
-                    onCardPress={/*TODO*/}
+                // onCardPress={/*TODO*/}
 
 
                 />
@@ -31,8 +31,7 @@ function SidebarPresenter(props) {
 
     return (
         <BankView
-            addBoard={(name) => { props.model.banks[props.model.currentBank].addBoard(name) }}
-            dishChoice={(id) => props.model.setCurrentDish(id)}>
+            addBoard={(name) => { props.model.banks[props.model.currentBank].addBoard(name) }}>
             {boardViews}
         </BankView>
     )

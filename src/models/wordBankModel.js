@@ -1,4 +1,4 @@
-class WordBankModel {
+export class WordBankModel {
     constructor() {
         this.currentBank = null;
         this.banks = [];
@@ -11,7 +11,7 @@ class WordBankModel {
 
 }
 
-class Bank{
+export class Bank{
     constructor(){
         this.bankID = null;
         this.boards = [];
@@ -23,12 +23,12 @@ class Bank{
     }
 
     addBoard(name) {
-        thiis.boards =  [...boards, new Board(name)]
+        this.boards =  [...this.boards, new Board(name)]
     }
 
 }
 
-class Board{
+export class Board{
     constructor(name){
         this.boardID = null;
         this.cards = [];
@@ -38,7 +38,7 @@ class Board{
 
 }
 
-class Card{
+export class Card{
     constructor(){
         this.cardID = [];
         this.comment = null;
