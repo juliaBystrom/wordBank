@@ -1,4 +1,4 @@
-import {CardView,BoardView,BankView} from "../views"
+import { CardView, BoardView, BankView } from "../views"
 
 export default function BankPresenter(props) {
 
@@ -10,22 +10,25 @@ export default function BankPresenter(props) {
 
         var cardViews = board.cards.map(function (card) {
 
-            return <li>
+            return <li key={card.cardID}>
                 <CardView
                     leftSentence={card.leftSentence}
                     rightSentence={card.rightSentence}
                     id={card.cardID}
                 // onCardPress={/*TODO*/}
 
-
                 />
             </li>
         });
 
-        return <BoardView title={board.title}>
-            {cardViews}
-        </BoardView>
+        return (
+            <BoardView title={board.title}>
+                {cardViews}
+            </BoardView>
+        )
     })
+
+
 
 
 
