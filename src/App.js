@@ -7,7 +7,9 @@ import { WordBankModel } from "./models/wordBankModel";
 import BankPresenter from "./presenters/bankPresenter"
 
 function App() {
-  const model = new WordBankModel();
+  const model = new WordBankModel(true);
+  console.log("APP IS STARING HERE")
+  console.log(model)
   return (
     <>
       {/*       <Switch>
