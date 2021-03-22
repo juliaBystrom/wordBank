@@ -33,7 +33,7 @@ export class Bank {
 
         if (testing) {
             this.bankID = id;
-            this.boards = [new Board("Board1", true, 0),new Board("Board2", true, 1), new Board("Board3", true, 2)];
+            this.boards = [new Board("Board1", true, 0), new Board("Board2", true, 1), new Board("Board3", true, 2)];
             this.reverseTranslate = false;
 
         } else {
@@ -50,7 +50,8 @@ export class Bank {
     }
 
     addBoard(name) {
-        this.boards = [...this.boards, new Board(name)]
+        // TODO Networking to add newboard
+        this.boards = [...this.boards, new Board(name, true, Math.random())]
     }
 
 }
@@ -60,7 +61,7 @@ export class Board {
 
         if (testing) {
             this.boardID = id;
-            this.cards = [new Card(true, id*10+0, "Kommentar 0", "Hej", "Hello"), new Card(true, id*10+1, "Kommentar 2", "Dag", "Day"),new Card(true, id*10+2, "Kommentar 3", "Natt", "Night"),new Card(true, id*10+3, "Kommentar 4", "Fest", "Sleep"),new Card(true, id*10+4, "Kommentar 5", "Kul", "Fun"),];
+            this.cards = [new Card(true, id * 10 + 0, "Kommentar 0", "Hej", "Hello"), new Card(true, id * 10 + 1, "Kommentar 2", "Dag", "Day"), new Card(true, id * 10 + 2, "Kommentar 3", "Natt", "Night"), new Card(true, id * 10 + 3, "Kommentar 4", "Fest", "Sleep"), new Card(true, id * 10 + 4, "Kommentar 5", "Kul", "Fun"),];
             this.title = nameOfBoard
         } else {
             this.boardID = null;

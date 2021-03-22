@@ -1,10 +1,12 @@
-import { CardView, BoardView, BankView } from "../views"
+import React from "react";
+import { CardView, BoardView, BankView, AddBoardView } from "../views"
 
 export default function BankPresenter(props) {
 
+    const [newBoardName, setNewBoardName] = React.useState("");
+
 
     var boards = props.model.banks[props.model.currentBank].boards
-
     var boardViews = boards.map(function (board) {
 
         var cardViews = board.cards.map(function (card) {
@@ -29,10 +31,19 @@ export default function BankPresenter(props) {
         )
     })
 
+    boardViews = [...boardViews, <AddBoardView
+        addBoard={() => { props.model.banks[props.model.currentBank].addBoard(newBoardName) }}
+        onBoardnameChange={(name) => {
+            console.log("New name:")
+            console.log(name)
+            setNewBoardName(name);
+        }}
+    />
+    ];
+
 
     return (
-        <BankView
-            addBoard={(name) => { props.model.banks[props.model.currentBank].addBoard(name) }}>
+        <BankView>
             {boardViews}
         </BankView>
     )
