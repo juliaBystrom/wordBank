@@ -1,12 +1,12 @@
 import React from "react";
 import { CardView, BoardView, BankView, AddBoardView } from "../views"
-import useModelProperty from "./useModelProperty"
+import useModelSubclassProperty from "./useModelSubclassProperty"
 
 export default function BankPresenter(props) {
 
     const [newBoardName, setNewBoardName] = React.useState("");
 
-    const boards = useModelProperty(props.model, "banks", props.model.currentBank, "boards");
+    const boards = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "boards");
 
     // var boards = props.model.banks[props.model.currentBank].boards
     var boardViews = boards.map(function (board) {
