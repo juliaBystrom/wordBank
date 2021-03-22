@@ -8,7 +8,6 @@ export default function BankPresenter(props) {
 
     const boards = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "boards");
 
-    // var boards = props.model.banks[props.model.currentBank].boards
     var boardViews = boards.map(function (board) {
         console.log("boards re render")
 
