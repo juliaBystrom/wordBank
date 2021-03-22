@@ -15,13 +15,20 @@ export const BoardNameInput = styled.input`
     text-align: center;
     font-style: italic;
     width: 100%;
+
     
     
     ::placeholder {
        /*  font-size: 1.2em;
         text-align: center; */
-        
+        border: none;
+
     
+    }
+
+    :focus{
+      border: none;
+      outline: none;
     }
 
 `;
