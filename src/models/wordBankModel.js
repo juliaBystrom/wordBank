@@ -14,6 +14,9 @@ export class WordBankModel {
             this.userID = 123;
             this.languageFrom = LANGUAGES.SWE;
             this.languageTo = LANGUAGES.ENG;
+            this.isTesting = true;
+            this.keyCountBoards = 3;
+
 
         } else {
             this.currentBank = null;
@@ -22,6 +25,67 @@ export class WordBankModel {
             this.userID = null;
             this.languageFrom = null;
             this.languageTo = null;
+            this.isTesting = false;
+            this.keyCountBoards = 0;
+
+        }
+
+
+        this.getKeyBoards = this.getKeyBoards.bind(this);
+
+        this.keyCountBanks = 0;
+        this.getKeyBanks = this.getKeyBanks.bind(this);
+
+
+    }
+
+    getKeyBoards() {
+        return this.keyCountBoards++;
+    }
+
+    getKeyBanks() {
+        return this.keyCountBanks++;
+    }
+
+
+    addBoard(name) {
+        // TODO Networking to add newboard
+        this.banks[this.currentBank].boards = [...this.banks[this.currentBank].boards, new Board(name, this.isTesting, this.getKeyBoards())]
+        console.log("Ny board")
+        console.log(this.banks[this.currentBank].boards);
+        this.notifyObservers();
+
+
+    }
+
+    /* 
+        Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
+
+         :) 
+    */
+
+
+    addObserver(callback) {
+        this.observers = [...this.observers, callback];
+    }
+
+    removeObserver(callback) {
+        this.observers = this.observers.filter((cb) => {
+            return cb !== callback
+        });
+    }
+
+    notifyObservers() {
+        if (this.observers) {
+            this.observers.forEach(cb => {
+                try {
+                    cb();
+                }
+                catch (error) {
+                    console.error(error);
+                }
+            }
+            )
         }
     }
 
@@ -52,10 +116,7 @@ export class Bank {
 
     }
 
-    addBoard(name) {
-        // TODO Networking to add newboard
-        this.boards = [...this.boards, new Board(name, this.testingBank, Math.random())]
-    }
+
 
 }
 
