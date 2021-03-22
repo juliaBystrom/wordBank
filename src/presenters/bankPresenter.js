@@ -32,10 +32,9 @@ export default function BankPresenter(props) {
     })
 
     boardViews = [...boardViews, <AddBoardView
+        key={-1}
         addBoard={() => { props.model.banks[props.model.currentBank].addBoard(newBoardName) }}
         onBoardnameChange={(name) => {
-            console.log("New name:")
-            console.log(name)
             setNewBoardName(name);
         }}
     />

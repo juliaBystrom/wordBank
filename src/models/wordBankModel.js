@@ -35,11 +35,14 @@ export class Bank {
             this.bankID = id;
             this.boards = [new Board("Board1", true, 0), new Board("Board2", true, 1), new Board("Board3", true, 2)];
             this.reverseTranslate = false;
+            this.testingBank = true;
 
         } else {
             this.bankID = null;
             this.boards = [];
             this.reverseTranslate = false;
+            this.testingBank = false;
+
 
         }
 
@@ -51,7 +54,7 @@ export class Bank {
 
     addBoard(name) {
         // TODO Networking to add newboard
-        this.boards = [...this.boards, new Board(name, true, Math.random())]
+        this.boards = [...this.boards, new Board(name, this.testingBank, Math.random())]
     }
 
 }
@@ -68,7 +71,6 @@ export class Board {
             this.cards = [];
             this.title = "";
         }
-
 
     }
 
