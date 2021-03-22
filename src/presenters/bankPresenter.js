@@ -9,7 +9,6 @@ export default function BankPresenter(props) {
     const boards = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "boards");
 
     var boardViews = boards.map(function (board) {
-        console.log("boards re render")
 
         var cardViews = board.cards.map(function (card) {
 
@@ -33,14 +32,16 @@ export default function BankPresenter(props) {
         )
     })
 
- 
+
     return (
         <BankView>
 
             {boardViews}
             <AddBoardView
+                value={newBoardName}
                 addBoard={() => {
-                    props.model.addBoard(newBoardName)
+                    props.model.addBoard(newBoardName);
+                    setNewBoardName("");
                 }}
                 onBoardnameChange={(name) => {
                     setNewBoardName(name);
