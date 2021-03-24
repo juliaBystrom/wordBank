@@ -96,14 +96,7 @@ export class Bank {
 
         if (testing) {
             this.bankID = id;
-            this.title = [
-                {
-                    title: 'English -> French'
-                },
-                {
-                    title: 'English -> Spanish'
-                }
-            ];
+            this.title = "English -> French";
             this.boards = [new Board("Board1", true, 0), new Board("Board2", true, 1), new Board("Board3", true, 2)];
             this.reverseTranslate = false;
             this.testingBank = true;
