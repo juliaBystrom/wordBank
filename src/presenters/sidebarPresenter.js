@@ -1,8 +1,11 @@
+import { SidebarView } from "../views"
+import useModelSubclassProperty from "./useModelSubclassProperty"
+
 function SidebarPresenter(props){
-    const user = useModelProperty(props.model, "userID");
-    const currentBank = useModelProperty(props.model, "currentBank");
-    const tags = useModelProperty(props.model, "tags");
-    const banks = useModelProperty(props.model, "banks");
+    const user = useModelSubclassProperty(props.model, "userID");
+    const currentBank = useModelSubclassProperty(props.model, "currentBank");
+    const tags = useModelSubclassProperty(props.model, "tags");
+    const banks = useModelSubclassProperty(props.model, "banks");
     
     return <SidebarView
         user={user}
@@ -14,3 +17,5 @@ function SidebarPresenter(props){
         sortBoards={(x)=>{props.model.sortBoards(x)}}
     />
 }
+
+export default SidebarPresenter

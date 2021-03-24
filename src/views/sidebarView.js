@@ -5,7 +5,7 @@ import 'react-pro-sidebar/dist/css/styles.css';
 
 
 
-function SidebarView(props){
+export default function SidebarView(props){
     return (
         <ProSidebar>
         <Menu iconShape="square">
@@ -13,7 +13,7 @@ function SidebarView(props){
                 Dashboard
                 <Link to="/" />
             </MenuItem>
-            <SubMenu title="Components">
+            <SubMenu title="Settings">
             {props.model.banks.map((bank)=>
                 <MenuItem>{bank.title}</MenuItem>
             )}
@@ -23,7 +23,3 @@ function SidebarView(props){
         </ProSidebar>
         );
 }    
-
-
-export default SidebarView
-      
