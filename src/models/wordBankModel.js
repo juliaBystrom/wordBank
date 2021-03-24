@@ -8,7 +8,7 @@ export class WordBankModel {
         if (testing) {
             console.log(testing)
             console.log("testing is true ...")
-            this.currentBank = 0;
+            this.setCurrentBank(0);
             this.banks = [new Bank(0, true)];
             this.observers = [];
             this.userID = 123;
@@ -37,6 +37,26 @@ export class WordBankModel {
         this.getKeyBanks = this.getKeyBanks.bind(this);
 
 
+    }
+
+    // Will not accept zero, negative or non-integer numbers
+    setCurrentBank(currentBankID) {
+        // if (!Number.isInteger(currentBankID) || currentBankID <= 0) {
+        //     throw new Exception();
+        // }
+        this.prevBank = this.currentBank;
+        this.currentBank = currentBankID;
+
+        if (!(this.prevBank === this.currentBank)) this.notifyObservers()
+    }
+
+    filterBank(tag){
+        // Filtrera bort alla kort som ej innehåller "tag"
+
+    }
+
+    sortBoards(sorting){
+        // Sortera boards enligt "sorting"
     }
 
     getKeyBoards() {

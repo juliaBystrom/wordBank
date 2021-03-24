@@ -1,11 +1,8 @@
 import "./App.css";
-import { Route, Switch } from "react-router-dom";
-
-import signInView from "./views/signInView";
-import SidebarView from "./views/sidebarView";
+//import { Route, Switch } from "react-router-dom";
 import { WordBankModel } from "./models/wordBankModel";
 import BankPresenter from "./presenters/bankPresenter"
-//import SidebarPresenter from "./presenters/sidebarPresenter"
+import SidebarPresenter from "./presenters/sidebarPresenter";
 
 function App() {
   const model = new WordBankModel(true);
@@ -16,6 +13,7 @@ function App() {
         <Route exact path="/bank" component={sidebarView} />
       </Switch> */}
       <BankPresenter model={model}></BankPresenter>
+      <SidebarPresenter model={model}></SidebarPresenter>
 
     </>
   );

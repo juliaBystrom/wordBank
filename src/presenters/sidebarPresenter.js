@@ -1,25 +1,28 @@
+import React from 'react'
 import { SidebarView } from "../views"
 import useModelSubclassProperty from "./useModelSubclassProperty"
+import useModelProperty from "./useModelProperty"
 
-function SidebarPresenter(props){
-    const [sidebar, setSidebar] = React.useState("");
+export default function SidebarPresenter(props){
 
-    const user = useModelProperty(props.model, "userID")
-    const activeBankTitle = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "title");
+    const userID = useModelProperty(props.model, "userID")
+    const currentBank = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "bankID");
     // Iterera över alla titlar?
-    const inactiveBankTitles = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "title");
+    //const inactiveBanks = useModelProperty(props.model, "banks");
     // Hmm ska man ha en subsubclass också...? Måste komma åt taggar?
-    const tags = useModelProperty(props.model, "banks", props.model.currentBank , "cards");
+    //const tags = useModelSubclassProperty(props.model, "banks", props.model.currentBank , "cards");
     
+
     return <SidebarView
-        user={user}
-        activeBankTitle={activeBankTitle}
-        inactiveBankTitles={inactiveBankTitles}
-        tags={tags}
-        setCurrentBank={(x)=>{props.model.setCurrentBank(x)}}
-        filterBank={(x)=>{props.model.filterBank(x)}}
-        sortBoards={(x)=>{props.model.sortBoards(x)}}
+        user={userID}
+        currentBank={currentBank}
+        inactiveBanks={[1, 2, 3]}
+        tags={["Question", "Verb", "Greeting"]}
+        sortings={["Latest Used", "Alphabetically"]}
+        onSelectBank={(bankID) => props.model.setCurrentBank(bankID)}
+        onSortBoards={(sorting)=> props.model.sortBoards(sorting)}
+        
+        onFilterBank={(tag)=>{props.model.filterBank(tag)}}
+        // sortBoards={(sorting)=>{props.model.sortBoards(sorting)}}
     />
 }
-
-export default SidebarPresenter
