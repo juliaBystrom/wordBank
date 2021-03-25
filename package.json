@@ -16,6 +16,7 @@
     "styled-components": "^5.2.1",
 
     "watchpack-chokidar2": "^2.0.1",
+
     "web-vitals": "^1.0.1"
   },
   "scripts": {
