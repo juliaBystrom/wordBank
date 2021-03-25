@@ -2,7 +2,7 @@ import { LANGUAGES } from '../shared';
 
 export class WordBankModel {
 
-    constructor(testing) {
+    constructor(testing, open) {
         // super(props);
 
         if (testing) {
@@ -16,6 +16,7 @@ export class WordBankModel {
             this.languageTo = LANGUAGES.ENG;
             this.isTesting = true;
             this.keyCountBoards = 3;
+            this.setOpen(open);
 
 
         } else {
@@ -27,16 +28,17 @@ export class WordBankModel {
             this.languageTo = null;
             this.isTesting = false;
             this.keyCountBoards = 0;
-
         }
 
-
         this.getKeyBoards = this.getKeyBoards.bind(this);
-
         this.keyCountBanks = 0;
         this.getKeyBanks = this.getKeyBanks.bind(this);
+    }
 
-
+    setOpen(open){
+        this.open = open;
+        console.log("Nu e vi här");
+        this.notifyObservers();
     }
 
     // Will not accept zero, negative or non-integer numbers

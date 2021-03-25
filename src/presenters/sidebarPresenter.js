@@ -6,14 +6,17 @@ import useModelProperty from "./useModelProperty"
 export default function SidebarPresenter(props){
 
     const userID = useModelProperty(props.model, "userID")
+    const open = useModelProperty(props.model, "open")
     const currentBank = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "bankID");
     // Iterera över alla titlar?
     //const inactiveBanks = useModelProperty(props.model, "banks");
     // Hmm ska man ha en subsubclass också...? Måste komma åt taggar?
     //const tags = useModelSubclassProperty(props.model, "banks", props.model.currentBank , "cards");
-    
+
 
     return <SidebarView
+        open={open}
+        onOpen ={(o) => props.model.setOpen(o)}
         user={userID}
         currentBank={currentBank}
         inactiveBanks={[1, 2, 3]}
