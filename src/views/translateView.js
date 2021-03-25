@@ -43,7 +43,7 @@ flex-direction: column;
 
 const TitleBox = styled.div`
 width: 300px;
-border: 1px solid black;
+border: 1px solid grey;
 border-radius: 1px;
 height: 50px;
 text-align: center;
@@ -62,7 +62,7 @@ padding: 10px;
 
 const TextBox = styled.textarea`
 width: 280px;
-border: 1px solid black;
+border: 1px solid grey;
 border-radius: 1px;
 height: 100px;
 padding: 10px;
