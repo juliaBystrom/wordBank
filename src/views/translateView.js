@@ -21,6 +21,8 @@ const Button = styled.button`
   padding: 0.25em 1em;
   background-color: springgreen;
   height: 40px;
+  width: 200px;
+  margin: 2px;
   ${props => props.primary && css`
     background: #7CB9E8;
     color: white;

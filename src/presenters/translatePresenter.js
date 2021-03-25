@@ -11,7 +11,7 @@ const TranslatePresenter = ({model}) =>{
       translate={() => model.translate(text)} 
       fromLanguage = "English" 
       toLanguage="French"
-      createCard={() => model.createCard(text, tag)} //ska vara annat argument sen
+      createCard={() => model.createCard(text, tag)} 
       setTag={(newTag)=>(setTag(newTag))}
       /></div>
           
