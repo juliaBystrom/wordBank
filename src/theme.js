@@ -13,3 +13,4 @@ export const testBorder = "#FFFF00";
 export const fromLanguage = "#FF9B71";
 export const toLanguage = "#1B998B";
 export const showTestBorders= true; // If true will show borders for views within bank presenter
+
