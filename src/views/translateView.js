@@ -73,7 +73,7 @@ const ButtonContainer = styled.div`
 display:flex;
 flex-direction: column;
 justify-content: flex-start;
-width: 100px;
+width: 200px;
 
 border-radius: 1px;
 height: 100px;
