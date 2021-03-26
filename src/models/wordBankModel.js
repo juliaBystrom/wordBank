@@ -1,4 +1,6 @@
+
 import { LANGUAGES } from '../shared';
+
 
 export class WordBankModel {
 
@@ -12,10 +14,12 @@ export class WordBankModel {
             this.banks = [new Bank(0, true)];
             this.observers = [];
             this.userID = 123;
+
             this.languageFrom = LANGUAGES.SWE;
             this.languageTo = LANGUAGES.ENG;
             this.isTesting = true;
             this.keyCountBoards = 3;
+
 
 
         } else {
@@ -25,11 +29,17 @@ export class WordBankModel {
             this.userID = null;
             this.languageFrom = null;
             this.languageTo = null;
+
             this.isTesting = false;
             this.keyCountBoards = 0;
 
         }
+    translate(phrase){
+        console.log("translate: " + phrase);
+    }
 
+    createCard(phrase, tag){
+        console.log("created a card with phrase: " + phrase + " and tag: " + tag);
 
         this.getKeyBoards = this.getKeyBoards.bind(this);
 
@@ -87,6 +97,7 @@ export class WordBankModel {
             }
             )
         }
+
     }
 
 }
@@ -97,15 +108,19 @@ export class Bank {
 
         if (testing) {
             this.bankID = id;
+
             this.boards = [new Board("Board1", true, 0), new Board("Board2", true, 1), new Board("Board3", true, 2)];
             this.reverseTranslate = false;
             this.testingBank = true;
+
 
         } else {
             this.bankID = null;
             this.boards = [];
             this.reverseTranslate = false;
+
             this.testingBank = false;
+
 
 
         }
@@ -115,6 +130,7 @@ export class Bank {
     sortBoards() {
 
     }
+
 
 
 
@@ -132,6 +148,35 @@ export class Board {
             this.cards = [];
             this.title = "";
         }
+
+
+    }
+
+}
+
+
+export class Card {
+    constructor(testing, id, commentOnS, leftS, rightS) {
+        // super(props);
+        if (testing) {
+            this.cardID = id;
+            this.comment = commentOnS;
+            this.tag = null;
+            this.leftSentence = leftS;
+            this.rightSentence = rightS;
+
+        } else {
+            this.cardID = [];
+            this.comment = null;
+            this.tag = null;
+            this.leftSentence = null
+            this.rightSentence = null
+        }
+
+    }
+
+    setComment() {
+
 
     }
 
@@ -161,4 +206,3 @@ export class Card {
 
     }
 }
-

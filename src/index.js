@@ -11,6 +11,7 @@ import * as theme from "./theme";
 
 
 ReactDOM.render(
+  
   <Router>
     <React.StrictMode>
       <ThemeProvider theme={theme}>
@@ -19,6 +20,8 @@ ReactDOM.render(
     </React.StrictMode>
   </Router>,
   document.getElementById("root")
+  
+
 );
 
 reportWebVitals();

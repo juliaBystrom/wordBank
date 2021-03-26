@@ -1,8 +1,11 @@
 import "./App.css";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
+import TranslateView from "./views/translateView.js";
 
+import TranslatePresenter from "./presenters/translatePresenter";
 import signInView from "./views/signInView";
 import sidebarView from "./views/sidebarView";
 import { WordBankModel } from "./models/wordBankModel";
@@ -22,6 +25,7 @@ const TempTranslationView = styled.div`
 function App() {
   const model = new WordBankModel(true);
   return (
+    /*
     <>
        {/*<BankPresenter model={model}></BankPresenter>*/}
   
@@ -33,6 +37,8 @@ function App() {
       </Router>
      */}
     </>
+    */
+   <TranslatePresenter model={model}></TranslatePresenter>
   );
 }
 

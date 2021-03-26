@@ -1,7 +1,9 @@
+/*
 function SidebarPresenter(props){
     // State
 
-    return <SidebarView
-        
+    return (<SidebarView
     />
+    )
 }
+*/
