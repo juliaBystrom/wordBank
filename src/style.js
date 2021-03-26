@@ -9,13 +9,12 @@ export const style = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    align-items: center;
+    align-items: left;
     background: ${props => props.theme.main};
     color: ${props => props.theme.secondary}; 
     display: flex;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: "Helvetica"; 
     height: 100vh;
     justify-content: center;
-    text-rendering: optimizeLegibility;
   }
   `

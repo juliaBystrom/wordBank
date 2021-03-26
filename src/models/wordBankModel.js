@@ -2,7 +2,7 @@ import { LANGUAGES } from '../shared';
 
 export class WordBankModel {
 
-    constructor(testing, open) {
+    constructor(testing, open, drop) {
         // super(props);
 
         if (testing) {
@@ -17,6 +17,7 @@ export class WordBankModel {
             this.isTesting = true;
             this.keyCountBoards = 3;
             this.setOpen(open);
+            this.setDrop(drop)
 
 
         } else {
@@ -38,6 +39,12 @@ export class WordBankModel {
     setOpen(open){
         this.open = open;
         console.log("Nu e vi här");
+        this.notifyObservers();
+    }
+
+    setDrop(drop){
+        this.drop = drop;
+        console.log("Nu droppas det");
         this.notifyObservers();
     }
 

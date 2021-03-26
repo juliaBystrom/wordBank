@@ -5,68 +5,49 @@ import React from "react";
 import { ThemeProvider } from 'styled-components';
 import {style} from '../style';
 import { theme } from '../theme';
-import { Burger, Menu} from './components';
+import { Burger, Menu, Dropdown, DropdownElem} from './components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+
+
 
 export default function SidebarView(props){
 
     return (
         <ThemeProvider theme={theme}>
-            <>
             <style/>
             <div>
-
-                <Burger open={props.open} onClick={e => props.onOpen(!props.open)}>
-                            
-                    <div />
-                    <div />
-                    <div />
-
+                <Burger open={props.open} onClick={e => props.onOpen(!props.open)}>         
+                    <div/><div/><div/>
                 </Burger>
                 <Menu open={props.open}>
-                        <a href="/">
-                        <span role="img" aria-label="Settings"></span>
-                        Settings
-                        </a>
-                        <a href="/">
-                        <span role="img" aria-label="Banks"></span>
-                        Banks
-                        </a>
-                        <a href="/">
-                        <span role="img" aria-label="Filter"></span>
-                        Filter
-                        </a>
-                        <a href="/">
-                        <span role="img" aria-label="Sort boards"></span>
-                        Sort boards
-                        </a>
+                {/* Routing link? */}
+                    <a href="/" >
+                    <Dropdown onClick={e=>props.onDrop(!props.drop)}>
+                        <span aria-label="Settings"></span>
+                        Settings <FontAwesomeIcon icon={faAngleDown} />
+
+                    </Dropdown>
+                    <DropdownElem drop={props.drop}>
+                            Hej
+                    </DropdownElem>
+                    </a> 
+                    <a href="/">
+                        <span aria-label="Banks"></span>
+                        Banks <FontAwesomeIcon icon={faAngleDown} />
+                    </a>
+                    <a href="/">
+                        <span aria-label="Filter"></span>
+                        Filter <FontAwesomeIcon icon={faAngleDown} />
+                    </a>
+                    <a href="/">
+                        <span aria-label="Sort boards"></span>
+                        Sort boards <FontAwesomeIcon icon={faAngleDown} />
+                    </a>
+            
                 </Menu>
-                
             </div>
-            </>
         </ThemeProvider>
 
-                // <ProSidebar>
-        // <Menu iconShape="square">
-        //     <MenuItem>
-        //         Settings
-        //         <Link to="/" />
-        //     </MenuItem>
-        //         <SubMenu title="Banks">
-        //         {props.inactiveBanks.map((bankID)=>
-        //             <MenuItem onClick={e => props.onSelectBank(bankID)}>{bankID}</MenuItem>
-        //         )}
-        //         </SubMenu>
-        //         <SubMenu title="Filter">
-        //             {props.tags.map((tag)=>
-        //                 <MenuItem onClick={e => props.onFilterBank(tag)}>{tag}</MenuItem>
-        //             )}  
-        //         </SubMenu>
-        //         <SubMenu title="Sort Boards">
-        //             {props.sortings.map((sorting)=>
-        //                 <MenuItem onClick={e => props.onSortBoards(sorting)}>{sorting}</MenuItem>
-        //             )}  
-        //         </SubMenu>
-        // </Menu>
-        // </ProSidebar>
     );
 }    

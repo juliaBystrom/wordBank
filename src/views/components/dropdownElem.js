@@ -1,23 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-// Styling/animation of menu principally taken from
-// https://css-tricks.com/hamburger-menu-with-a-side-of-react-hooks-and-styled-components/
-
-const Menu = styled.nav`
+const DropdownElem = styled.nav`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
-  background: ${props => props.theme.main};
-  height: 100vh;
+  background: ${props => props.theme.secondary};
   text-align: left;
-  padding: 2.5rem;
-  position: absolute;
+  padding: 1rem;
   top: 0;
   left: 0;
   transition: transform 0.2s ease-in-out;
-  transform: ${props => !props.open ?  'translateX(0)' : 'translateX(-100%)'};
+  transform: ${props => !props.drop ?  'translateY(0)' : 'translateY(-100%)'};
+  opacity: ${props => (!props.drop ? '0' : '1')};
 
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;
@@ -47,4 +42,4 @@ const Menu = styled.nav`
   }
 `;
 
-export default Menu
+export default DropdownElem
