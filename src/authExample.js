@@ -1,3 +1,4 @@
+/* TEMPORARY FILE - will be removed when AuthPresenter is implemented */
 import React, { useContext, createContext, useState } from "react";
 import {
   BrowserRouter as Router,

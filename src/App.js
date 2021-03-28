@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 import "./App.css";
