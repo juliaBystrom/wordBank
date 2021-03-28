@@ -1,20 +1,20 @@
-import React from 'react'
-import TranslateView from '../views/translateView';
+import React from "react";
+import TranslateView from "../views/translateView";
 
-const TranslatePresenter = ({model}) =>{
+const TranslatePresenter = ({ model }) => {
   const [text, setText] = React.useState("");
   const [tag, setTag] = React.useState("");
   const [error, setError] = React.useState(null);
 
-    return(<div><TranslateView 
-      setText = {(phrase)=>setText(phrase)} 
-      translate={() => model.translate(text)} 
-      fromLanguage = "English" 
+  return (
+    <TranslateView
+      setText={(phrase) => setText(phrase)}
+      translate={() => model.translate(text)}
+      fromLanguage="English"
       toLanguage="French"
-      createCard={() => model.createCard(text, tag)} 
-      setTag={(newTag)=>(setTag(newTag))}
-      /></div>
-          
-      )
+      createCard={() => model.createCard(text, tag)}
+      setTag={(newTag) => setTag(newTag)}
+    />
+  );
 };
 export default TranslatePresenter;
