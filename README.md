@@ -1,5 +1,7 @@
 ## WordBank (Group 7):
 
+<img src="landingPage.png"/>
+
 ### Project description:
 
 WordBank was designed and implemented in order to ...
