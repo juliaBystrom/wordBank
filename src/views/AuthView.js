@@ -86,7 +86,7 @@ export const AuthView = ({
           required
           autoFocus
           placeholder="Email"
-          pattern="^.{10,75}$"
+          pattern="^.{8,75}$"
         />
         <Error>{emailError}</Error>
         <Text>Password:</Text>

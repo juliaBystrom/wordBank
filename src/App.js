@@ -1,9 +1,9 @@
-import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
+import "./App.css";
 import { AuthPresenter } from "./presenters/AuthPresenter";
-import { sidebarView } from "./views/sidebarView";
+import boardView from "./views/boardView";
 
 const TempTranslationView = styled.div`
   height: 30%;
@@ -17,10 +17,8 @@ function App() {
   return (
     <>
       <TempTranslationView>English - to - French</TempTranslationView>
-      <Router>
-        <Route exact path="/" component={AuthPresenter} />
-        <Route exact path="/bank" component={sidebarView} />
-      </Router>
+      <Route exact path="/" component={AuthPresenter} />
+      <Route exact path="/bank" component={boardView} />
     </>
   );
 }

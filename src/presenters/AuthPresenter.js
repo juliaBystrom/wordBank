@@ -1,11 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useContext, createContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
 
+/*
+const authContext = createContext();
+
+const useAuth = () => {
+  return useContext(authContext);
+}
+
+const ProvideAuth = ({ children }) => {
+  const auth = useProvideAuth();
+  return <authContext.Provider value={auth}>{children}</authContext.Provider>;
+}
+
+const useProvideAuth = () => {
+  const [user, setUser] = useState(null);
+
+  const signin = (cb) => {
+    return fakeAuth.signin(() => {
+      setUser("user");
+      cb();
+    });
+  };
+
+  const signout = (cb) => {
+    return fakeAuth.signout(() => {
+      setUser(null);
+      cb();
+    });
+  };
+
+  return {
+    user,
+    signin,
+    signout,
+  };
+}
+
+onClick={() => {
+  auth.signout(() => history.push("/"));
+}}
+*/
+
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
 export const AuthPresenter = () => {
+  let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -16,8 +59,10 @@ export const AuthPresenter = () => {
       .signInWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
         console.log("LogIn successful ", userCredentials.user.email);
+        // console.log("User token: ", userCredentials.user);
         setEmailError("");
         setPasswordError("");
+        history.push("/bank");
       })
       .catch((err) => {
         if (
@@ -39,8 +84,10 @@ export const AuthPresenter = () => {
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
         console.log("Register successful ", userCredentials.user.email);
+        // console.log("User token: ", userCredentials.user);
         setEmailError("");
         setPasswordError("");
+        // history.push("/bank");
       })
       .catch((err) => {
         if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
