@@ -1,11 +1,27 @@
 import React from "react";
+import styled from "styled-components";
+import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper,BoardTitle } from "./components"
 
-const sidebarView = () => {
+
+
+
+
+
+
+export default function BoardView(props) {
+
   return (
-    <React.Fragment>
-      <div>Sidebar view</div>
-    </React.Fragment>
-  );
-};
+    <BoardWrapper>
+      <BoardTitleWrapper>
+        <BoardTitle>{props.title}</BoardTitle>
+      </BoardTitleWrapper>
 
-export default sidebarView;
+      <BoardCardWrapper>
+        {props.children}
+      </BoardCardWrapper>
+
+
+
+    </BoardWrapper>
+  );
+}
