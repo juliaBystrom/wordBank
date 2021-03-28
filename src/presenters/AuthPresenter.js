@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, createContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
@@ -6,6 +7,7 @@ import { AuthView } from "../views/AuthView";
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
 export const AuthPresenter = () => {
+  let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -16,8 +18,10 @@ export const AuthPresenter = () => {
       .signInWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
         console.log("LogIn successful ", userCredentials.user.email);
+        console.log("User id: ", userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
+        history.push("/bank");
       })
       .catch((err) => {
         if (
@@ -39,8 +43,10 @@ export const AuthPresenter = () => {
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
         console.log("Register successful ", userCredentials.user.email);
+        console.log("User id: ", userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
+        history.push("/bank");
       })
       .catch((err) => {
         if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
