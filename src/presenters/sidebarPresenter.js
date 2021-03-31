@@ -1,34 +1,35 @@
-import React from 'react'
+
+import React, { useState } from 'react';
 import { SidebarView } from "../views"
 import useModelSubclassProperty from "./useModelSubclassProperty"
 import useModelProperty from "./useModelProperty"
 
-export default function SidebarPresenter(props){
+export default function SidebarPresenter({model}){
 
-    const userID = useModelProperty(props.model, "userID")
-    const open = useModelProperty(props.model, "open")
-    const drop = useModelProperty(props.model, "drop")
-    const currentBank = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "bankID");
+
+    const [open, setOpen] = useState(0);
+    const [drop, setDrop] = useState(0);
+
+    const userID = useModelProperty(model, "userID")
+    const currentBank = useModelSubclassProperty(model, "banks", model.currentBank, "bankID");
     // Iterera över alla titlar?
-    //const inactiveBanks = useModelProperty(props.model, "banks");
+    //const inactiveBanks = useModelProperty(model, "banks");
     // Hmm ska man ha en subsubclass också...? Måste komma åt taggar?
-    //const tags = useModelSubclassProperty(props.model, "banks", props.model.currentBank , "cards");
+    //const tags = useModelSubclassProperty(model, "banks", model.currentBank , "cards");
 
 
     return <SidebarView
-        open={open}
-        onOpen ={(o) => props.model.setOpen(o)}
-        drop={drop}
-        onDrop={(d) => props.model.setDrop(d)}
+        open={open} setOpen={setOpen}
+        drop={drop} setDrop={setDrop}
         user={userID}
         currentBank={currentBank}
         inactiveBanks={[1, 2, 3]}
         tags={["Question", "Verb", "Greeting"]}
-        sortings={["Latest Used", "Alphabetically"]}
-        onSelectBank={(bankID) => props.model.setCurrentBank(bankID)}
-        onSortBoards={(sorting)=> props.model.sortBoards(sorting)}
+        sorting={["Latest Used", "Alphabetically"]}
+        onSelectBank={(bankID) => model.setCurrentBank(bankID)}
+        onSortBoards={(sorting)=> model.sortBoards(sorting)}
         
-        onFilterBank={(tag)=>{props.model.filterBank(tag)}}
-        // sortBoards={(sorting)=>{props.model.sortBoards(sorting)}}
+        onFilterBank={(tag)=>{model.filterBank(tag)}}
+        // sortBoards={(sorting)=>{model.sortBoards(sorting)}}
     />
 }

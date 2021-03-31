@@ -6,7 +6,7 @@ import SidebarPresenter from "./presenters/sidebarPresenter";
 
 
 function App() {
-  const model = new WordBankModel(true, false);
+  const model = new WordBankModel(true);
   return (
     <>
       {/*       <Switch>

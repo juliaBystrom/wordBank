@@ -1,18 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const DropdownElem = styled.nav`
-  display: flex;
+const DropdownItem = styled.nav`
+  ${'' /* display: flex; */}
   flex-direction: row;
   justify-content: center;
-  background: ${props => props.theme.secondary};
+  background: #FFF;
   text-align: left;
   padding: 1rem;
+  width: 150px;
   top: 0;
   left: 0;
-  transition: transform 0.2s ease-in-out;
-  transform: ${props => !props.drop ?  'translateY(0)' : 'translateY(-100%)'};
-  opacity: ${props => (!props.drop ? '0' : '1')};
+  transition: transform 0.3s ease-in-out;
+  ${'' /* transform: ${props => (!props.drop ?  'translateY(-100%)' : 'translateY(0%)')}; */}
+  ${'' /* opacity: ${props => (!props.drop ? '0' : '1')}; */}
+  display: ${props => (!props.drop ? 'none' : 'flex')};
 
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;
@@ -20,10 +22,8 @@ const DropdownElem = styled.nav`
 
   a {
     font-size: 1rem;
-    padding: 2rem;
     font-weight: regular;
-    letter-spacing: 0.3rem;
-    color: #FFF;
+    color: #000;
     text-decoration: none;
     transition: color 0.3s linear;
     ${'' /* border-radius: 16px;
@@ -42,4 +42,4 @@ const DropdownElem = styled.nav`
   }
 `;
 
-export default DropdownElem
+export default DropdownItem

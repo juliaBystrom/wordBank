@@ -7,13 +7,13 @@ import styled from 'styled-components';
 
 const Burger = styled.button`
   position: absolute;
-  top: 4.5%;
-  left: 2.5rem;
+  top: 2%;
+  left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -26,8 +26,8 @@ const Burger = styled.button`
 
 
   div {
-    width: 2.5rem;
-    height: 0.5rem;
+    width: 1.5rem;
+    height: 0.2rem;
     background: ${props => props.theme.secondary};
     border-radius: 10px;
     transition: all 0.3s linear;

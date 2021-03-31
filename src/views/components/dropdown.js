@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Dropdown = styled.nav`
@@ -8,11 +7,17 @@ const Dropdown = styled.nav`
   background: ${props => props.theme.secondary};
   text-align: left;
   padding: 1rem;
+  width: 150px;
   top: 0;
   left: 0;
   transition: transform 0.2s ease-in-out;
-  transform: ${props => !props.drop ?  'translateY(0)' : 'translateY(-100%)'};
+  ${'' /* transform: ${props => (!props.drop ?  'translateY(-100%)' : 'translateY(0%)')}; */}
   z-index: 10;
+  font-size: 1rem;
+  font-weight: regular;
+  color: #FFF;
+  text-decoration: none;
+  transition: color 0.3s linear;
 
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;
@@ -20,9 +25,7 @@ const Dropdown = styled.nav`
 
   a {
     font-size: 1rem;
-    padding: 2rem;
     font-weight: regular;
-    letter-spacing: 0.3rem;
     color: #FFF;
     text-decoration: none;
     transition: color 0.3s linear;

@@ -12,7 +12,7 @@ const Menu = styled.nav`
   background: ${props => props.theme.main};
   height: 100vh;
   text-align: left;
-  padding: 2.5rem;
+  padding: 1rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -25,9 +25,7 @@ const Menu = styled.nav`
 
   a {
     font-size: 1rem;
-    padding: 2rem;
     font-weight: regular;
-    letter-spacing: 0.3rem;
     color: #FFF;
     text-decoration: none;
     transition: color 0.3s linear;
