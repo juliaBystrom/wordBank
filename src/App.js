@@ -10,6 +10,7 @@ import SidebarPresenter from "./presenters/sidebarPresenter";
 
 function App() {
   const model = new WordBankModel(true);
+  
   return (
     <>
       <TranslatePresenter model={model} />
@@ -17,7 +18,8 @@ function App() {
       <Route exact path="/" component={AuthPresenter} />
       <Route exact path="/test" component={boardView} />
       <Route exact path="/translate" component={TranslatePresenter} model={model} />
-      {/* <Route exact path="/bank" component={BankPresenter} model={model} /> */}
+     {/*  <Route exact path="/bank" component={BankPresenter} model={model} /> */}
+      <BankPresenter model={model}/>
     </>
   );
 }
