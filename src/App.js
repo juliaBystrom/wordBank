@@ -5,15 +5,15 @@ import { WordBankModel } from "./models/wordBankModel";
 import BankPresenter from "./presenters/bankPresenter";
 import { AuthPresenter } from "./presenters/AuthPresenter";
 import TranslatePresenter from "./presenters/translatePresenter";
-import TranslateView from "./views/translateView.js";
-import sidebarView from "./views/sidebarView";
 import boardView from "./views/boardView";
+import SidebarPresenter from "./presenters/sidebarPresenter";
 
 function App() {
   const model = new WordBankModel(true);
   return (
     <>
       <TranslatePresenter model={model} />
+      <SidebarPresenter model={model} />
       <Route exact path="/" component={AuthPresenter} />
       <Route exact path="/test" component={boardView} />
       <Route exact path="/translate" component={TranslatePresenter} model={model} />

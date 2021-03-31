@@ -4,7 +4,7 @@ const Dropdown = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: ${props => props.theme.secondary};
+  background: ${props => props.theme.dark};
   text-align: left;
   padding: 1rem;
   width: 150px;
@@ -15,7 +15,7 @@ const Dropdown = styled.nav`
   z-index: 10;
   font-size: 1rem;
   font-weight: regular;
-  color: #FFF;
+  color: ${props => props.theme.darkText};
   text-decoration: none;
   transition: color 0.3s linear;
 
