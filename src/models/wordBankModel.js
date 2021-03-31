@@ -10,7 +10,6 @@ export class WordBankModel {
       this.banks = [new Bank(0, true)];
       this.observers = [];
       this.userID = 123;
-
       this.languageFrom = LANGUAGES.SWE;
       this.languageTo = LANGUAGES.ENG;
       this.isTesting = true;
@@ -62,10 +61,8 @@ export class WordBankModel {
 
   /* 
         Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
-
          :) 
     */
-
   addObserver(callback) {
     this.observers = [...this.observers, callback];
   }
@@ -115,6 +112,7 @@ export class Bank {
   sortBoards() {}
 }
 
+
 export class Board {
   constructor(nameOfBoard, testing, id) {
     if (testing) {
@@ -155,24 +153,3 @@ export class Card {
 
   setComment() {}
 }
-
-/* export class Card {
-  constructor(testing, id, commentOnS, leftS, rightS) {
-    // super(props);
-    if (testing) {
-      this.cardID = id;
-      this.comment = commentOnS;
-      this.tag = null;
-      this.leftSentence = leftS;
-      this.rightSentence = rightS;
-    } else {
-      this.cardID = [];
-      this.comment = null;
-      this.tag = null;
-      this.leftSentence = null;
-      this.rightSentence = null;
-    }
-  }
-
-  setComment() {}
-} */

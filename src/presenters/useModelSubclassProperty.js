@@ -6,8 +6,6 @@ import React from "react";
         - subclass (banks,)
         - nr of element in subclass list
         - property of element
-
-
 */
 export default function useModelSubclassProperty(model, subclass, nr, property) {  // custom hook
     const [value, setValue] = React.useState(model[subclass][nr][property]);

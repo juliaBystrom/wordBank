@@ -1,6 +1,5 @@
 import { Route, Switch, useHistory } from "react-router-dom";
 import styled from "styled-components";
-
 import "./App.css";
 import { WordBankModel } from "./models/wordBankModel";
 import BankPresenter from "./presenters/bankPresenter";
