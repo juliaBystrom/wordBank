@@ -46,7 +46,7 @@ export const RoundButton = styled.button`
   :hover{
     box-shadow: 0 2px 8px;
     // Fun thing transform: rotate(45deg);
-    // background:  ${props => props.theme.secondary};
+    // background:  ${props => props.theme.hover};
   }
    
   :focus{
@@ -54,7 +54,7 @@ export const RoundButton = styled.button`
   }
 
   :active {
-    background-color:  ${props => props.theme.secondary};
+    background-color:  ${props => props.theme.link};
     box-shadow: 0 5px #666;
     transform: translateY(1px);
 }
