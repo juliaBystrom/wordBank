@@ -1,5 +1,4 @@
 import React from "react";
-//import styled from "styled-components";
 import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper,BoardTitle } from "./components"
 
 export default function BoardView(props) {
@@ -13,9 +12,6 @@ export default function BoardView(props) {
       <BoardCardWrapper>
         {props.children}
       </BoardCardWrapper>
-
-
-
     </BoardWrapper>
   );
 }

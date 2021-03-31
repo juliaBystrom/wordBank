@@ -20,4 +20,3 @@ export default function useModelSubclassProperty(model, subclass, nr, property) 
 
     return value;
 }
-

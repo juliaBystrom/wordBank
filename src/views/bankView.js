@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-
-
 const BankWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -13,11 +11,8 @@ const BankWrapper = styled.div`
   overflow-x: scroll;
 `;
 
-
-
 export default function BankView(props) {
-
-
+  
   return (
     <BankWrapper>
       {props.children}

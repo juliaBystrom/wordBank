@@ -1,29 +1,21 @@
 ## WordBank (Group 7):
 
+<img src="landingPage.png"/>
+
 ### Project description:
 
-WordBank is a translation application that is supposed to help ..
+WordBank was designed and implemented in order to ...
 
 ### Progress made:
 
-...
+These features have been implemented so far ...
 
 ### Planning to do:
 
-...
+Features that are planned to be implemented ...
 
 ### File structure
 
 Files are structured into the folders: models, presenters, views. In views we have an additional
 folder called components for parts in the application that is frequently used e.g. buttons, img
 tags, text.
-
-### `npm start` or `yarn start`
-
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-
-### `npm build` or `yarn build`
-
-Builds the app for production to the `build` folder.\

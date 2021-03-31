@@ -1,8 +1,20 @@
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: "Helvetica";
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
 }
 
 code {
-  font-family: "Helvetica"
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

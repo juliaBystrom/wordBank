@@ -1,10 +1,9 @@
 /*
 Colors used for color constants passed into themeprovider
-Plaese change to whatever ¯\_( ͡❛ ͜ʖ ͡❛)_/¯
+Plase change to whatever ¯\_( ͡❛ ͜ʖ ͡❛)_/¯
 */
-
-export const main = "#77b88e";
-export const secondary = "#6632a6";
+const main = "#44AF69";
+export const secondary = "#C6878F";
 export const lightBackground = "#FDFCDC";
 export const darkText = "#252422";
 export const testBorder = "#FFFF00";

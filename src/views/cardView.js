@@ -16,7 +16,6 @@ const TranslationWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-   
 `;
 
 const Translation = styled.div`
@@ -28,15 +27,9 @@ const Translation = styled.div`
     // flex: 0 0 50px;
     width: 50%;
     border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px" )}; /* top left, top right, bottom right, bottom left */
-    
 `;
 
-
-
 export default function CardView(props) {
-
-
-
     return (
         <Card>
             <span key={props.id} onClick={e => {
@@ -53,8 +46,5 @@ export default function CardView(props) {
 
             </span>
         </Card>
-
-
-
     );
 }

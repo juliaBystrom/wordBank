@@ -15,26 +15,22 @@ export const BoardNameInput = styled.input`
     text-align: center;
     font-style: italic;
     width: 100%;
-    
-    
+
     ::placeholder {
        /*  font-size: 1.2em;
         text-align: center; */
         border: none;
-    
     }
+
     :focus{
       border: none;
       outline: none;
     }
 `;
 
-
-
 export const RoundButton = styled.button`
     width: 60px;
     height: 60px;
-    
     border-radius: 100%;
     background: transparent;
     // box-shadow: 0 2px 6px ;
@@ -46,7 +42,7 @@ export const RoundButton = styled.button`
     justify-content: center;
     align-items: center;
     color: ${props => props.theme.darkText};
-    
+
   :hover{
     box-shadow: 0 2px 8px;
     // Fun thing transform: rotate(45deg);
@@ -56,12 +52,10 @@ export const RoundButton = styled.button`
   :focus{
     outline-style: none; 
   }
+
   :active {
     background-color:  ${props => props.theme.secondary};
     box-shadow: 0 5px #666;
     transform: translateY(1px);
 }
-  
-  
-   
 `;

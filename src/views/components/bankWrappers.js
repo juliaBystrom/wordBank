@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 /*
 Wrapper div for the bank View
 */
@@ -14,10 +12,8 @@ export const BoardWrapper = styled.div`
   background-color: ${props => props.theme.secondary};
   border: 2px ${props => (props.theme.showTestBorders ? "solid" : "hidden")} ${props => props.theme.testBorder};
   // flex growFactor shrinkFactor basisWidth 
-  flex: 0.2 0.2 200px;
-  
+  flex: 0.2 0.2 200px; 
 `;
-
 
 export const BoardTitleWrapper = styled.div`
   background-color: ${props => props.theme.lightBackground};

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { SidebarView } from "../views"
 import useModelSubclassProperty from "./useModelSubclassProperty"
@@ -33,3 +32,4 @@ export default function SidebarPresenter({model}){
         // sortBoards={(sorting)=>{model.sortBoards(sorting)}}
     />
 }
+
