@@ -23,55 +23,42 @@ const TranslateWrapper = styled.div`
 const Button = styled.button`
   background: transparent;
   border-radius: 3px;
-  border: 1px solid black;
+  border: none;
+  font-size: 16px;
   color: black;
+  font-weight: 600;
   padding: 0.25em 1em;
   background-color: springgreen;
+  border-radius: 8px;
   height: 40px;
   width: 200px;
   margin: 2px;
+  color: white;
   ${(props) =>
     props.primary &&
     css`
       background: #7cb9e8;
-      color: white;
+
     `}
 `;
 
-const LangBox = styled.span`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  padding: 20px;
-  border: 2px solid black;
-  border-radius: 3px;
-  height: 200;
-  background: white;
-`;
 
 const TitleBox = styled.div`
-  width: 300px;
+  width: 260px;
   border: 1px solid grey;
   border-radius: 1px;
-  height: 50px;
+  height: 10px;
   text-align: center;
   background-color: beige;
   font-family: serif, Times;
   font-size: 20px;
-`;
+  padding: 20px;
 
-const TextBoxOld = styled.div`
-  width: 180px;
-  border: 2px solid black;
-  border-radius: 1px;
-  height: 200px;
-  padding: 10px;
 `;
 
 const TextBox = styled.textarea`
   width: 280px;
   border: 1px solid grey;
-  border-radius: 1px;
   height: 100px;
   padding: 10px;
   resize: none;
@@ -82,14 +69,17 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   width: 200px;
-
-  border-radius: 1px;
-  height: 100px;
-  padding: 10px;
-  resize: none;
+  margin: 10px;
 `;
 
-const tags = ["noun", "verb", "restaurant", "etc"];
+const TagInput = styled.input`
+width: 180px;
+border-radius: 8px;
+height: 20px;
+padding: 10px;
+border: none;
+font-weight: 600;
+`;
 
 const TranslateView = (props) => {
   return (
@@ -111,19 +101,19 @@ const TranslateView = (props) => {
       </div>
       <ButtonContainer>
         <Button onClick={() => props.translate()}>Translate!</Button>
-        <Button primary onClick={() => props.createCard()}>
+        <Button primary onClick={() => {props.createCard()}}>
           Save translation
         </Button>
 
-        <input
+        <TagInput
           onChange={(event) => props.setTag(event.target.value)}
           type="text"
           name="tag"
           list="taglist"
           placeholder="Tag:"
-        ></input>
+        ></TagInput>
         <datalist onChange={() => console.log("set a tag")} id="taglist">
-          {tags.map((opt) => (
+          {props.tags.map((opt) => (
             <option>{opt}</option>
           ))}
         </datalist>
