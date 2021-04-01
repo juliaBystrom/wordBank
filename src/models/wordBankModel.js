@@ -13,6 +13,13 @@ export class WordBankModel {
       this.languageTo = LANGUAGES.ENG;
       this.isTesting = true;
       this.keyCountBoards = 3;
+
+      //test data
+      this.currentPhrase = "";
+      this.currentTranslation ="je suis un chat"
+      this.currentTag = "";
+      this.tags = ["noun", "verb", "restaurant", "etc"];
+      this.uid = 1;
     } else {
       this.currentBank = null;
       this.banks = [];
@@ -37,6 +44,19 @@ export class WordBankModel {
 
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
+    this.notifyObservers();
+  }
+
+  setPhrase(phrase){
+    this.currentPhrase = phrase;
+  }
+
+  addTag(tag){
+    this.tags=[...this.tags, tag];
+  }
+
+  setTag(tag){
+    this.currentTag = tag;
   }
 
   getKeyBoards() {
