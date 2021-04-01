@@ -3,6 +3,4 @@ const LANGUAGES = {
     SWE: "Swedish",
     SPA: "Spanish"
 }
-
-
 export {LANGUAGES}

@@ -1,16 +1,19 @@
 /*
-
 Colors used for color constants passed into themeprovider
-Plaese change to whatever ¯\_( ͡❛ ͜ʖ ͡❛)_/¯
-
+Plase change to whatever ¯\_( ͡❛ ͜ʖ ͡❛)_/¯
 */
 
-export const main = "#44AF69";
-export const secondary = "#C6878F";
-export const lightBackground = "#FDFCDC";
-export const darkText = "#252422";
-export const testBorder = "#FFFF00";
-export const fromLanguage = "#FF9B71";
-export const toLanguage = "#1B998B";
-export const showTestBorders= true; // If true will show borders for views within bank presenter
-
+export const theme = {
+    dark: '#5bab78',
+    medium: '#bad7e0',
+    light: '#e7e6f5',
+    darkText: '#36333b',
+    lightText: '#FFFFFF',
+    fromLanguage: '#d1ebda',
+    toLanguage: '#ebd1dc',
+    link: '#f29db0',
+    hover: '#d14b68',
+    mobile: '576px',
+    testBorder: '#ffdb3b',
+    showTestBorders: true,
+  }
