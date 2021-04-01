@@ -3,18 +3,26 @@ import styled from "styled-components";
 
 import "./App.css";
 import { WordBankModel } from "./models/wordBankModel";
+import {firebaseApp} from "./firebase";
 import BankPresenter from "./presenters/bankPresenter";
 import { AuthPresenter } from "./presenters/AuthPresenter";
 import TranslatePresenter from "./presenters/translatePresenter";
 import TranslateView from "./views/translateView.js";
 import sidebarView from "./views/sidebarView";
 import boardView from "./views/boardView";
+import {persistModel} from "./persistModel"
+
 
 function App() {
+
+
+
+  window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.? 
   const model = new WordBankModel(true);
+  persistModel(model);
   return (
     <>
-      <TranslatePresenter model={model} />
+      <TranslatePresenter model={model}/>
       <Route exact path="/" component={AuthPresenter} />
       <Route exact path="/test" component={boardView} />
       <Route exact path="/translate" component={TranslatePresenter} model={model} />
