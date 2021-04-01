@@ -17,8 +17,8 @@ function App() {
       <TranslatePresenter model={model} />
       <Route exact path="/" component={AuthPresenter} />
       <Route exact path="/test" component={boardView} />
-      <Route exact path="/translate" component={TranslatePresenter} model={model} />
-      {/* <Route exact path="/bank" component={BankPresenter} model={model} /> */}
+      {/* <Route exact path="/translate" component={TranslatePresenter} model={model} /> */}
+      <Route exact path="/bank" component={() => <BankPresenter model={model} />} />
     </>
   );
 }
