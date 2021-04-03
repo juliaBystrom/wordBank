@@ -5,8 +5,8 @@ import { Burger, Menu, Dropdown, DropdownItem} from './components';
 
 
 export default function SidebarView(props){
-    // const tags = ["Question", "Adjective"];
-    const banks = ["SWE -> ENG", "SWE -> FR"];
+
+    const banks = props.banks;
 
     return (
         <ThemeProvider theme={theme}>
@@ -18,13 +18,43 @@ export default function SidebarView(props){
                 <Menu open={props.open}>
                 {/* Routing link? */}
 
-                    <Dropdown onClick={()=>props.setDrop(!props.drop)}>
-                        <span aria-label="Settings"></span>
-                        Banks
+                    <Dropdown onClick={()=>props.setDropBanks(!props.dropBanks)}>
+                        <span aria-label="Select bank"></span>
+                        Select bank
                     </Dropdown>
                     {banks.map((bank) => (
-                        <DropdownItem drop={props.drop}>{bank}</DropdownItem>
+                        <DropdownItem drop={props.dropBanks}>
+                            {bank.languageFrom} - {bank.languageTo}
+                        </DropdownItem>
                     ))}
+
+                    <Dropdown onClick={()=>props.setDropFilter(!props.dropFilter)}>
+                        <span aria-label="Filter on tags"></span>
+                        Filter on tags
+                    </Dropdown>
+                    {props.currentBank["tags"].map((t) => (
+                        <DropdownItem drop={props.dropFilter}>
+                            <input type="checkbox" id={t.tag} name={t.tag}
+                                onClick={()=>props.onFilter(t.tag)}
+                            />
+                            <label for={t.tag} >{t.tag}</label>
+                        </DropdownItem>
+                    ))}
+
+                    <Dropdown onClick={()=>props.setDropSort(!props.dropSort)}>
+                        <span aria-label="Sort boards"></span>
+                        Sort boards
+                    </Dropdown>
+                    {props.sorts.map((s) => (
+                        <DropdownItem drop={props.dropSort}>
+                            <input type="radio" id={s.sorting} name={s.sorting}
+                                onClick={()=>props.onSort(s.sorting)}
+                            />
+                            <label for={s.sorting} >{s.sorting}</label>
+                        </DropdownItem>
+                    ))}
+
+
                 
                 </Menu>
             </div>

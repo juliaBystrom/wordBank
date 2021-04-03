@@ -5,7 +5,7 @@ const TranslatePresenter = ({ model }) => {
   const [text, setText] = React.useState("");
   const [tag, setTag] = React.useState("");
 
-  const useModelProperty = (model, propertyName) => {
+  const useModelProp = (model, propertyName) => {
     const [value, setValue] = React.useState(model[propertyName]);
     React.useEffect(() => {
       function obs() {
@@ -19,7 +19,7 @@ const TranslatePresenter = ({ model }) => {
     return value;
   };
 
-  let tags = useModelProperty(model, "tags");
+  let tags = useModelProp(model, "tags");
 
 
   return (

@@ -13,6 +13,14 @@ export class WordBankModel {
       this.languageTo = LANGUAGES.ENG;
       this.isTesting = true;
       this.keyCountBoards = 3;
+      this.sorts = [
+        { sorting: "Latest edited",
+          func: this.sortLatestEdited
+        }, 
+        { sorting: "Most used",
+          func: this.sortMostUsed
+        } 
+      ];
 
       //test data
       this.currentPhrase = "";
@@ -31,6 +39,23 @@ export class WordBankModel {
       this.isTesting = false;
       this.keyCountBoards = 0;
     }
+  }
+
+  getCurrentBank(){
+    
+    return this.banks.filter(b => {
+      return b.bankID === this.currentBank
+    })[0];
+  }
+
+  sortLatestEdited(){
+    this.getCurrentBank().sortLatestEdited();
+    this.notifyObservers();
+  }
+
+  sortMostUsed(){
+    this.getCurrentBank().sortMostUsed();
+    this.notifyObservers();
   }
 
   translate(phrase) {
@@ -150,7 +175,8 @@ export class Bank {
       ];
       this.reverseTranslate = false;
       this.testingBank = true;
-
+      this.languageFrom = "Swedish";
+      this.languageTo = "English";
       this.tags = [{ id: 0, tag: "Verb", show: false }, { id: 1, tag: "Thing", show: false }];
       // Keeps track if no tags is choosed for filter
       this.showAllCards = true;
@@ -168,7 +194,17 @@ export class Bank {
     }
   }
 
-  sortBoards() { }
+  sortLatestEdited(){
+    // TODO: order boards from left to right on last edit
+    console.log("Sort Latest Edited");
+    return;
+  }
+
+  sortMostUsed(){
+    // TODO: order boards from left to right on most clicked
+    console.log("Sort Most Used");
+    return;
+  }
 
   getIdTags() {
     return this.idCountTags++;
