@@ -6,7 +6,7 @@ import { AuthView } from "../views/AuthView";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
-export const AuthPresenter = () => {
+export const AuthPresenter = ({ model }) => {
   let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
