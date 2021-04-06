@@ -1,45 +1,36 @@
 import React from "react";
-import { CardView, BoardView, BankView, AddBoardView } from "../views";
 import useModelSubclassProperty from "./useModelSubclassProperty";
+import BoardPresenter from "./boardPresenter";
+import BoardsWrapperPresenter from "./boardsWrapperPresenter";
+
+
+
+/*
+BankPresenter manages:
+  - boardWrapperPresenter
+  - boardpresenters (one presenter for every board)
+
+  Note: Might be moved to an presenter also managing login. 
+
+*/
 
 export default function BankPresenter(props) {
-  const [newBoardName, setNewBoardName] = React.useState("");
 
   const boards = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "boards");
 
-  var boardViews = boards.map(function (board) {
-    var cardViews = board.cards.map(function (card) {
-      return (
-        <CardView
-          leftSentence={card.leftSentence}
-          rightSentence={card.rightSentence}
-          id={card.cardID}
-          key={card.cardID}
-          onCardPress={(idOfCard) => console.log(`Pressed card: ${idOfCard}`)}
-        />
-      );
-    });
 
-    return (
-      <BoardView title={board.title} key={board.boardID}>
-        {cardViews}
-      </BoardView>
-    );
+  // Index is used because baords are stored as an array in the model. 
+  // TODO: When index changing oimplementation is done test that reredering is correct
+  const boardPresenters = boards.map((board, index) => {
+
+    return <BoardPresenter model={props.model} boardIndex={index} key={board.boardID} />
+
   });
 
   return (
-    <BankView>
-      {boardViews}
-      <AddBoardView
-        value={newBoardName}
-        addBoard={() => {
-          props.model.addBoard(newBoardName);
-          setNewBoardName("");
-        }}
-        onBoardnameChange={(name) => {
-          setNewBoardName(name);
-        }}
-      />
-    </BankView>
+    <BoardsWrapperPresenter model={props.model}>
+      {boardPresenters}
+    </BoardsWrapperPresenter>
   );
+
 }
