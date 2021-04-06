@@ -15,9 +15,9 @@ export class WordBankModel {
       this.keyCountBoards = 3;
 
       //test data
-      this.currentPhrase = "";
-      this.currentTranslation = "je suis un chat"
-      this.currentTag = "";
+      // this.currentPhrase = "";
+      // this.currentTranslation = "je suis un chat"
+      // this.currentTag = "";
       this.tags = ["noun", "verb", "restaurant", "etc"];
       this.uid = 1;
     } else {
@@ -184,7 +184,7 @@ export class Bank {
     }
 
     // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
-    this.idCountTags = this.getIdTags.bind(this);
+    this.getIdTags = this.getIdTags.bind(this);
 
   }
 
@@ -294,8 +294,6 @@ export class Bank {
     console.log(boardIndex);
 
     this.boards[boardIndex].addCard(new Card(true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
-
-
 
   }
 
