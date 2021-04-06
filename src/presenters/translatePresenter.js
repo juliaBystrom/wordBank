@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import TranslateView from "../views/translateView";
 import useModelSubclassProperty from "./useModelSubclassProperty";
+import useModelProperty from "./useModelProperty";
 
 const TranslatePresenter = ({ model }) => {
   const [text, setText] = React.useState("");
@@ -14,33 +15,26 @@ const TranslatePresenter = ({ model }) => {
   const boards = useModelSubclassProperty(model, "banks", model.currentBank, "boards");
 
 
-  const useModelProperty = (model, propertyName) => {
-    const [value, setValue] = React.useState(model[propertyName]);
-    React.useEffect(() => {
-      function obs() {
-        setValue(model[propertyName]);
-      }
-      model.addObserver(obs);
-      /* return function () {
-        model.removeObserver(obs);
-      }; */
-    }, [model, propertyName]); // Kanske lägga till propertyName i arrayen.
-    return value;
-  };
-
-  let tags = useModelProperty(model, "tags");
+  // Used to create the tags list of boards to choose from
+  const tags = useModelSubclassProperty(model, "banks", model.currentBank, "tags");
 
   const createTranslationCard = (boardID) => {
     // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
     if (tag) {
       model.addTag(tag);
-      // model.setTag(tag);
-      // model.setPhrase(text);
       model.createCard(text, translation, boardID, tag);
     } else {
       console.log("please choose a tag");
     }
   };
+
+  // Used to controll the dropdown of possible boards to save to
+
+  const [open, setOpen] = useState(false);
+  // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save. 
+  const [selected, setSelectd] = useState(0);
+
+
 
 
   return (
@@ -55,24 +49,25 @@ const TranslatePresenter = ({ model }) => {
         // This prop is unecesarry but keept to not breaking anything
         createTranslationCard();
       }}
-      setTag={(newTag) => { setTag(newTag); model.currentTag = tag }}
-      saveToBoard={boardID => {
-        console.log("------- I presenter given:");
-        console.log(boardID);
-        console.log("-----------")
-        createTranslationCard(boardID)
+      setTag={(newTag) => {
+        setTag(newTag);
+      }}
+      saveToBoard={(board) => {
+
+
+        // Will close when selected
+        setOpen(!open)
+        
+        // Use state resets to 0 no use
+        setSelectd(board.boardID);
+
+        createTranslationCard(board.boardID)
+        // Should remove text etc now
       }}
       availableBoards={boards}
-    /*storeToDb = {() => db.collection("cards").doc(tag).add({
-      phrase: text
-  })
-  .then((docRef) => {
-      console.log("Document written with ID: ", docRef.id);
-  })
-  .catch((error) => {
-      console.error("Error adding document: ", error);
-  })}
-  */
+      toggle={() => setOpen(!open)}
+      openSelector={open}
+
     />
   );
 };

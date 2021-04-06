@@ -1,6 +1,8 @@
 import React from "react";
 
 import styled, { css } from "styled-components";
+import { DropdownComponent } from './components';
+
 
 const TranslateWrapper = styled.div`
   height: 30%;
@@ -82,6 +84,9 @@ font-weight: 600;
 `;
 
 const TranslateView = (props) => {
+  console.log("taaags");
+  console.log(props.tags);
+
   return (
     <TranslateWrapper>
       <div>
@@ -101,17 +106,17 @@ const TranslateView = (props) => {
       </div>
       <ButtonContainer>
         <Button onClick={() => props.translate()}>Translate!</Button>
-        <Button primary onClick={() => { props.createCard() }}>
-          Save translation
-        </Button>
 
-        <TagInput
-          onChange={(event) => props.saveToBoard(event.target.value)}
-          type="number"
-          name="boardName"
-          list="boardList"
-          placeholder="Save to board:"
-        ></TagInput>
+
+        <DropdownComponent
+          list={props.availableBoards}
+          title={"Save to"}
+          open={props.openSelector}
+          toggle={() => props.toggle()}
+          onSelectionDone={(board) => props.saveToBoard(board)}
+
+        />
+
 
         <TagInput
           onChange={(event) => props.setTag(event.target.value)}
@@ -122,16 +127,10 @@ const TranslateView = (props) => {
         ></TagInput>
         <datalist onChange={() => console.log("set a tag")} id="taglist">
           {props.tags.map((opt) => (
-            <option>{opt}</option>
+            <option value={Number(opt.id)}>{opt.tag}</option>
           ))}
         </datalist>
-        {/*   Data list for boar names */}
-        <datalist onChange={() => console.log("change to board datalist")} id="boardList">
-          {props.availableBoards.map((board) => (
-            // board.title will be diplayes as an option. While if selected board.boardID will be returned.
-            <option value={board.boardID}>{board.title}</option>
-          ))}
-        </datalist>
+
       </ButtonContainer>
     </TranslateWrapper>
   );
