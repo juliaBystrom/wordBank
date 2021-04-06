@@ -101,9 +101,17 @@ const TranslateView = (props) => {
       </div>
       <ButtonContainer>
         <Button onClick={() => props.translate()}>Translate!</Button>
-        <Button primary onClick={() => {props.createCard()}}>
+        <Button primary onClick={() => { props.createCard() }}>
           Save translation
         </Button>
+
+        <TagInput
+          onChange={(event) => props.saveToBoard(event.target.value)}
+          type="number"
+          name="boardName"
+          list="boardList"
+          placeholder="Save to board:"
+        ></TagInput>
 
         <TagInput
           onChange={(event) => props.setTag(event.target.value)}
@@ -115,6 +123,13 @@ const TranslateView = (props) => {
         <datalist onChange={() => console.log("set a tag")} id="taglist">
           {props.tags.map((opt) => (
             <option>{opt}</option>
+          ))}
+        </datalist>
+        {/*   Data list for boar names */}
+        <datalist onChange={() => console.log("change to board datalist")} id="boardList">
+          {props.availableBoards.map((board) => (
+            // board.title will be diplayes as an option. While if selected board.boardID will be returned.
+            <option value={board.boardID}>{board.title}</option>
           ))}
         </datalist>
       </ButtonContainer>
