@@ -16,7 +16,7 @@ export class WordBankModel {
 
       //test data
       this.currentPhrase = "";
-      this.currentTranslation ="je suis un chat"
+      this.currentTranslation = "je suis un chat"
       this.currentTag = "";
       this.tags = ["noun", "verb", "restaurant", "etc"];
       this.uid = 1;
@@ -47,15 +47,15 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  setPhrase(phrase){
+  setPhrase(phrase) {
     this.currentPhrase = phrase;
   }
 
-  addTag(tag){
-    this.tags=[...this.tags, tag];
-  }
+  /*   addTag(tag){
+      this.tags=[...this.tags, tag];
+    } */
 
-  setTag(tag){
+  setTag(tag) {
     this.currentTag = tag;
   }
 
@@ -186,8 +186,13 @@ export class Bank {
   
   */
 
+  // Add tage will first check if the tag already exist. If not it will add it. Else it will just do a console log
   addTag(tagName) {
-    this.tags = [...this.tags, { id: this.getIdTags(), tag: tagName, show: false }];
+    if (!this.tags.includes(tagName)) {
+      this.tags = [...this.tags, { id: this.getIdTags(), tag: tagName, show: false }];
+    } else {
+      console.log("[Info from model]: Tag already exist. No new tag created");
+    }
   }
 
   editTag(tagName, newTag) {
