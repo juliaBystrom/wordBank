@@ -28,7 +28,7 @@ const Menu = styled.nav`
     font-weight: regular;
     color: #FFF;
     text-decoration: none;
-    transition: color 0.3s linear;
+    transition: color 0.3s linear; 
     ${'' /* border-radius: 16px;
     border: 2px solid #FFF;
     padding: 20px;
