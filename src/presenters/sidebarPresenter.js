@@ -13,7 +13,6 @@ export default function SidebarPresenter({model}){
     const sorts = useModelProp(model, "sorts");
     const currentBankID = useModelProp(model, "currentBank");
 
-
     const currentBank = banks.filter(b => {
         return b.bankID === currentBankID;
       })[0]

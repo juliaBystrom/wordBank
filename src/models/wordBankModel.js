@@ -110,9 +110,7 @@ export class WordBankModel {
    ----------------------------------------------------------
 
   */
-
-
-
+ 
   addTag(tagName) {
     this.banks[this.currentBank].addTag(tagName);
     this.notifyObservers();
@@ -182,7 +180,7 @@ export class Bank {
       this.showAllCards = true;
       this.idCountTags = 2;
     } else {
-      this.bankID = null;
+      this.bankID = 0;
       this.boards = [];
       this.reverseTranslate = false;
 
