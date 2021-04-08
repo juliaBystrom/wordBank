@@ -38,10 +38,8 @@ const Button = styled.button`
     props.primary &&
     css`
       background: #7cb9e8;
-
     `}
 `;
-
 
 const TitleBox = styled.div`
   width: 260px;
@@ -53,7 +51,6 @@ const TitleBox = styled.div`
   font-family: serif, Times;
   font-size: 20px;
   padding: 20px;
-
 `;
 
 const TextBox = styled.textarea`
@@ -73,12 +70,12 @@ const ButtonContainer = styled.div`
 `;
 
 const TagInput = styled.input`
-width: 180px;
-border-radius: 8px;
-height: 20px;
-padding: 10px;
-border: none;
-font-weight: 600;
+  width: 180px;
+  border-radius: 8px;
+  height: 20px;
+  padding: 10px;
+  border: none;
+  font-weight: 600;
 `;
 
 const TranslateView = (props) => {
@@ -96,12 +93,17 @@ const TranslateView = (props) => {
       </div>
 
       <div>
-        <TitleBox>{props.toLanguage}</TitleBox>
+        <TitleBox></TitleBox>
         <TextBox></TextBox>
       </div>
       <ButtonContainer>
         <Button onClick={() => props.translate()}>Translate!</Button>
-        <Button primary onClick={() => {props.createCard()}}>
+        <Button
+          primary
+          onClick={() => {
+            props.createCard();
+          }}
+        >
           Save translation
         </Button>
 

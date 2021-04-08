@@ -10,6 +10,7 @@ import boardView from "./views/boardView";
 
 import { persistModel } from "./persistModel";
 import SidebarPresenter from "./presenters/sidebarPresenter";
+import TranslateViewTEST from "./views/TranslateViewTEST";
 
 function App() {
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <>
+      <TranslateViewTEST />
       <TranslatePresenter model={model} />
       <SidebarPresenter model={model} />
       <Route exact path="/" component={() => <AuthPresenter model={model} />} />
