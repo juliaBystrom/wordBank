@@ -10,7 +10,7 @@ import { format } from "prettier";
 export function persistModel(model) {
     let loadingFromFirebase = false;
     let cardNum = 0;
-    model.addObserver(() => {
+    model.addModelObserver(() => {
       if (!loadingFromFirebase) {
         setTimeout(() => {
           window.db.collection("tags").doc(model.uid + "").collection(model.currentTag).doc("card" + cardNum).set({ //hårdkodat, måste ändras sen

@@ -11,9 +11,9 @@ const TranslatePresenter = ({ model }) => {
       function obs() {
         setValue(model[propertyName]);
       }
-      model.addObserver(obs);
+      model.addModelObserver(obs);
       /* return function () {
-        model.removeObserver(obs);
+        model.removeModelObserver(obs);
       }; */
     }, [model, propertyName]); // Kanske lägga till propertyName i arrayen.
     return value;

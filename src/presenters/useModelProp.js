@@ -7,8 +7,8 @@ export default function useModelProp(model, propertyName) {  // custom hook
         function obs() {
             setValue(model[propertyName])
         }
-        model.addObserver(obs);
-        return function () { model.removeObserver(obs); }
+        model.addModelObserver(obs);
+        return function () { model.removeModelObserver(obs); }
     }, [model]);
     // though model never changes 
     return value;

@@ -7,7 +7,7 @@ export class WordBankModel {
       console.log("testing is true ...");
       this.currentBank = 0;
       this.banks = [new Bank(0, true)];
-      this.observers = [];
+      this.modelObservers = [];
       this.userID = 123;
       this.languageFrom = LANGUAGES.SWE;
       this.languageTo = LANGUAGES.ENG;
@@ -49,12 +49,12 @@ export class WordBankModel {
 
   sortLatestEdited(){
     this.getCurrentBank().sortLatestEdited();
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
   sortMostUsed(){
     this.getCurrentBank().sortMostUsed();
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
 
@@ -69,7 +69,7 @@ export class WordBankModel {
 
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
   setPhrase(phrase){
@@ -101,7 +101,7 @@ export class WordBankModel {
     ];
     console.log("Ny board");
     console.log(this.banks[this.currentBank].boards);
-    this.notifyObservers();
+    this.notifyModelObservers();
 
   }
 
@@ -114,40 +114,39 @@ export class WordBankModel {
  
   addTag(tagName) {
     this.banks[this.currentBank].addTag(tagName);
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
   //  
   editTag(tagName, newTagName) {
     this.banks[this.currentBank].editTag(tagName, newTagName);
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
 
   filterOnTag(tagName) {
     this.banks[this.currentBank].filterOnTag(tagName);
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
-
-
 
   /* 
         Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
          :) 
     */
-  addObserver(callback) {
-    this.observers = [...this.observers, callback];
+
+  addModelObserver(callback) {
+    this.modelObservers = [...this.modelObservers, callback];
   }
 
-  removeObserver(callback) {
-    this.observers = this.observers.filter((cb) => {
+  removeModelObserver(callback) {
+    this.modelObservers = this.modelObservers.filter((cb) => {
       return cb !== callback;
     });
   }
 
-  notifyObservers() {
-    if (this.observers) {
-      this.observers.forEach((cb) => {
+  notifyModelObservers() {
+    if (this.modelObservers) {
+      this.modelObservers.forEach((cb) => {
         try {
           cb();
         } catch (error) {
@@ -180,6 +179,7 @@ export class Bank {
       // Keeps track if no tags is choosed for filter
       this.showAllCards = true;
       this.idCountTags = 2;
+      this.bankObservers = [];
     } else {
       this.bankID = 0;
       this.boards = [];
@@ -276,6 +276,28 @@ export class Bank {
 
   }
 
+  addBankObserver(callback) {
+    this.bankObservers = [...this.bankObservers, callback];
+  }
+
+  removeBankObserver(callback) {
+    this.bankObservers = this.bankObservers.filter((cb) => {
+      return cb !== callback;
+    });
+  }
+
+  notifyBankObservers() {
+    if (this.bankObservers) {
+      this.bankObservers.forEach((cb) => {
+        try {
+          cb();
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
+  }
+
 }
 
 
@@ -291,6 +313,7 @@ export class Board {
         new Card(true, id * 10 + 4, "Kommentar 5", "Kul", "Fun"),
       ];
       this.title = nameOfBoard;
+      this.boardObservers = [];
     } else {
       this.boardID = null;
       this.cards = [];
@@ -312,6 +335,29 @@ export class Board {
   }
 
 
+  addBoardObserver(callback) {
+    this.boardObservers = [...this.boardObservers, callback];
+  }
+
+  removeBoardObserver(callback) {
+    this.boardObservers = this.boardObservers.filter((cb) => {
+      return cb !== callback;
+    });
+  }
+
+  notifyBoardObservers() {
+    if (this.boardObservers) {
+      this.boardObservers.forEach((cb) => {
+        try {
+          cb();
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
+  }
+
+
 }
 
 export class Card {
@@ -324,6 +370,7 @@ export class Card {
       this.leftSentence = leftS;
       this.rightSentence = rightS;
       this.show = true;
+      this.cardObservers = [];
     } else {
       this.cardID = [];
       this.comment = null;
@@ -354,6 +401,28 @@ export class Card {
       this.show = false;
     }
 
+  }
+
+  addCardObserver(callback) {
+    this.cardObservers = [...this.cardObservers, callback];
+  }
+
+  removeCardObserver(callback) {
+    this.cardObservers = this.cardObservers.filter((cb) => {
+      return cb !== callback;
+    });
+  }
+
+  notifyCardObservers() {
+    if (this.cardObservers) {
+      this.cardObservers.forEach((cb) => {
+        try {
+          cb();
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
   }
 
 }
