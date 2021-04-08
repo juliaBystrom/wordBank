@@ -18,6 +18,7 @@ const Dropdown = styled.nav`
   color: ${props => props.theme.darkText};
   text-decoration: none;
   transition: color 0.3s linear;
+  
 
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;

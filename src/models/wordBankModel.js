@@ -42,7 +42,6 @@ export class WordBankModel {
   }
 
   getCurrentBank(){
-    
     return this.banks.filter(b => {
       return b.bankID === this.currentBank
     })[0];
@@ -57,6 +56,7 @@ export class WordBankModel {
     this.getCurrentBank().sortMostUsed();
     this.notifyObservers();
   }
+
 
   translate(phrase) {
     console.log("translate: " + phrase);
@@ -94,6 +94,7 @@ export class WordBankModel {
 
   addBoard(name) {
     // TODO Networking to add newboard
+    console.log("this.banks:", this.banks);
     this.banks[this.currentBank].boards = [
       ...this.banks[this.currentBank].boards,
       new Board(name, this.isTesting, this.getKeyBoards()),

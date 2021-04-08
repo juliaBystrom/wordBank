@@ -18,7 +18,7 @@ export default function SidebarView(props){
             </Burger>
             <Menu open={props.open}>
             
-                <Dropdown onClick={()=>props.setDropBanks(!props.dropBanks)}>
+                <Dropdown onClick={()=>props.setDropBanks(!props.dropBanks)} >
                     <span aria-label="Select bank"></span>
                     Select bank
                 </Dropdown>
