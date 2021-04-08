@@ -15,10 +15,10 @@ export class WordBankModel {
       this.keyCountBoards = 3;
       this.sorts = [
         { sorting: "Latest edited",
-          func: this.sortLatestEdited
+          func: () => this.sortLatestEdited()
         }, 
         { sorting: "Most used",
-          func: this.sortMostUsed
+          func: () => this.sortMostUsed()
         } 
       ];
 
@@ -48,6 +48,7 @@ export class WordBankModel {
   }
 
   sortLatestEdited(){
+    console.log("SORTING LATEST EDITED: ", this)
     this.getCurrentBank().sortLatestEdited();
     this.notifyObservers();
   }
