@@ -66,10 +66,6 @@ export class WordBankModel {
   }
 
 
-  translate(phrase) {
-    console.log("translate: " + phrase);
-  }
-
 
 
   createCard(phrase, translation, saveToBoardId, tag) {
@@ -108,8 +104,7 @@ export class WordBankModel {
   addBoard(name) {
     // TODO Networking to add newboard
     this.banks[this.currentBank].addBoard(name, this.getKeyBoards());
-    console.log("Ny board");
-    console.log(this.banks[this.currentBank].boards);
+
     this.notifyObservers();
 
   }
