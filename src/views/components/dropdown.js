@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Dropdown = styled.nav`
+export const Dropdown = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -46,4 +46,75 @@ const Dropdown = styled.nav`
   }
 `;
 
-export default Dropdown
+export const DropdownComponentWrapper = styled.div`
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  
+
+`;
+
+
+export const DropdownButton = styled.div`
+  display: flex;
+  cursor: pointer;
+  padding-right: 20px;
+  padding-left: 20px;
+
+  // Create more rounded corners
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+
+
+  flex-direction: row;
+  // When :onHover changes background it will be wioth a transition
+  background: ${props => props.theme.dark};
+  transition: background 0.3s linear;
+  text-align: left;
+
+  z-index: 10;
+  font-size: 1rem;
+  font-weight: bold;
+
+
+  
+
+
+  @media (max-width: ${props => props.theme.mobile}) {
+    width: 100%;
+  }
+
+  :hover {
+    background: ${props => props.theme.medium};
+  }
+
+
+  // This will create a one-line border between the first and second div
+  div {
+    &:first-child {
+    border-right: 1px solid ${props => props.theme.light};
+  }
+  }
+   
+
+  p {
+    font-size: 1em;
+    color: ${props => props.theme.lightText};
+    padding: 1em;
+
+    
+    @media (max-width: ${props => props.theme.mobile}) {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+
+
+
+    // When the p is hovered
+    &:hover {
+      // color: ${props => props.theme.hover};
+    }
+  }
+`;
+

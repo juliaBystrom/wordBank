@@ -1,6 +1,8 @@
 import React from "react";
 
 import styled, { css } from "styled-components";
+import { DropdownComponent } from './components';
+
 
 const TranslateWrapper = styled.div`
   height: 30%;
@@ -82,6 +84,9 @@ font-weight: 600;
 `;
 
 const TranslateView = (props) => {
+  console.log("taaags");
+  console.log(props.tags);
+
   return (
     <TranslateWrapper>
       <div>
@@ -101,9 +106,17 @@ const TranslateView = (props) => {
       </div>
       <ButtonContainer>
         <Button onClick={() => props.translate()}>Translate!</Button>
-        <Button primary onClick={() => {props.createCard()}}>
-          Save translation
-        </Button>
+
+
+        <DropdownComponent
+          list={props.availableBoards}
+          title={"Save to"}
+          open={props.openSelector}
+          toggle={() => props.toggle()}
+          onSelectionDone={(board) => props.saveToBoard(board)}
+
+        />
+
 
         <TagInput
           onChange={(event) => props.setTag(event.target.value)}
@@ -114,9 +127,10 @@ const TranslateView = (props) => {
         ></TagInput>
         <datalist onChange={() => console.log("set a tag")} id="taglist">
           {props.tags.map((opt) => (
-            <option>{opt}</option>
+            <option value={Number(opt.id)}>{opt.tag}</option>
           ))}
         </datalist>
+
       </ButtonContainer>
     </TranslateWrapper>
   );
