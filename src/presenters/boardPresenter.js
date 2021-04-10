@@ -3,6 +3,9 @@ import { CardView, BoardView } from "../views";
 import useModelSubSubclassProperty from "./useModelSubSubclassProperty";
 
 import useBoardProp from "./useBoardProp";
+import useCardProp from "./useCardProp";
+
+import CardPresenter from "./cardPresenter";
 
 /*
     BoardPresenter 
@@ -18,22 +21,14 @@ export default function BoardPresenter(props) {
     const cards = useBoardProp(props.model, props.boardID, "cards");
 
 
-    var cardViews = cards.map(function (card) {
+    var cardPresenterList = cards.map(function (card) {
         console.log("> Rerender BoardPresenter with cardViews")
-
-        return card.show ? <CardView
-            leftSentence={card.leftSentence}
-            rightSentence={card.rightSentence}
-            id={card.cardID}
-            key={card.cardID}
-            onCardPress={(idOfCard) => console.log(`Pressed card: ${idOfCard}`)}
-        /> : <div></div>;
-
+        return <CardPresenter model={props.model} boardID={props.boardID} cardID={card.cardID} card={card} key={card.cardID} />
     });
 
     return (
         <BoardView title={props.title} key={props.boardID}>
-            {cardViews}
+            {cardPresenterList}
         </BoardView>
     );
 
