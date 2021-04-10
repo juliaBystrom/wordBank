@@ -14,7 +14,7 @@ import SidebarPresenter from "./presenters/sidebarPresenter";
 function App() {
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
   const model = new WordBankModel(true);
-  persistModel(model);
+  //persistModel(model);
 
   return (
     <>

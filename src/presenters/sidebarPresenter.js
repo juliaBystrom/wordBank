@@ -1,35 +1,37 @@
 import React, { useState } from 'react';
 import { SidebarView } from "../views"
-import useModelSubclassProperty from "./useModelSubclassProperty"
-import useModelProperty from "./useModelProperty"
+import useModelProp from './useModelProp.js';
 
 export default function SidebarPresenter({model}){
 
-
     const [open, setOpen] = useState(0);
-    const [drop, setDrop] = useState(0);
+    const [dropBanks, setDropBanks] = useState(0);
+    const [dropFilter, setDropFilter] = useState(0);
+    const [dropSort, setDropSort] = useState(0);
 
-    const userID = useModelProperty(model, "userID")
-    const currentBank = useModelSubclassProperty(model, "banks", model.currentBank, "bankID");
-    // Iterera över alla titlar?
-    //const inactiveBanks = useModelProperty(model, "banks");
-    // Hmm ska man ha en subsubclass också...? Måste komma åt taggar?
-    //const tags = useModelSubclassProperty(model, "banks", model.currentBank , "cards");
+    const banks = useModelProp(model, "banks");
+    const sorts = useModelProp(model, "sorts");
+    const currentBankID = useModelProp(model, "currentBank");
 
+    const currentBank = banks.filter(b => {
+        return b.bankID === currentBankID;
+      })[0]
 
     return <SidebarView
         open={open} setOpen={setOpen}
-        drop={drop} setDrop={setDrop}
-        user={userID}
+        dropBanks={dropBanks} setDropBanks={setDropBanks}
+        dropFilter={dropFilter} setDropFilter={setDropFilter}
+        dropSort={dropSort} setDropSort={setDropSort}
+        onFilter={(tag) => model.filterOnTag(tag)}
+        onSort={(sorting) => 
+                sorts.filter(s => {
+                    return s.sorting === sorting;
+                })[0].func()
+        }
         currentBank={currentBank}
-        inactiveBanks={[1, 2, 3]}
-        tags={["Question", "Verb", "Greeting"]}
-        sorting={["Latest Used", "Alphabetically"]}
-        onSelectBank={(bankID) => model.setCurrentBank(bankID)}
-        onSortBoards={(sorting)=> model.sortBoards(sorting)}
-        
-        onFilterBank={(tag)=>{model.filterBank(tag)}}
-        // sortBoards={(sorting)=>{model.sortBoards(sorting)}}
+        sorts={sorts}
+        banks={banks}
+        onSelectBank={(bankID) => model.setCurrentBank(bankID)}        
     />
 }
 

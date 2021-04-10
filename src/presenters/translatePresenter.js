@@ -6,10 +6,9 @@ import useModelProperty from "./useModelProperty";
 const TranslatePresenter = ({ model }) => {
   const [text, setText] = React.useState("");
   const [tag, setTag] = React.useState("");
-
+  
   // To be used until api is fixed
   const translation = "dummy translation";
-
 
   // Used to create the data list of boards to choose from
   const boards = useModelSubclassProperty(model, "banks", model.currentBank, "boards");
@@ -33,7 +32,6 @@ const TranslatePresenter = ({ model }) => {
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save. 
   const [selected, setSelectd] = useState(0);
-
 
 
 

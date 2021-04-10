@@ -13,6 +13,14 @@ export class WordBankModel {
       this.languageTo = LANGUAGES.ENG;
       this.isTesting = true;
       this.keyCountBoards = 3;
+      this.sorts = [
+        { sorting: "Latest edited",
+          func: () => this.sortLatestEdited()
+        }, 
+        { sorting: "Most used",
+          func: () => this.sortMostUsed()
+        } 
+      ];
 
       //test data
       // this.currentPhrase = "";
@@ -37,6 +45,24 @@ export class WordBankModel {
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
   }
+
+  getCurrentBank(){
+    return this.banks.filter(b => {
+      return b.bankID === this.currentBank
+    })[0];
+  }
+
+  sortLatestEdited(){
+    console.log("SORTING LATEST EDITED: ", this)
+    this.getCurrentBank().sortLatestEdited();
+    this.notifyObservers();
+  }
+
+  sortMostUsed(){
+    this.getCurrentBank().sortMostUsed();
+    this.notifyObservers();
+  }
+
 
   translate(phrase) {
     console.log("translate: " + phrase);
@@ -79,9 +105,7 @@ export class WordBankModel {
 
   addBoard(name) {
     // TODO Networking to add newboard
-
     this.banks[this.currentBank].addBoard(name, this.getKeyBoards());
-
     console.log("Ny board");
     console.log(this.banks[this.currentBank].boards);
     this.notifyObservers();
@@ -94,9 +118,7 @@ export class WordBankModel {
    ----------------------------------------------------------
 
   */
-
-
-
+ 
   addTag(tagName) {
     this.banks[this.currentBank].addTag(tagName);
     this.notifyObservers();
@@ -162,7 +184,8 @@ export class Bank {
       ];
       this.reverseTranslate = false;
       this.testingBank = true;
-
+      this.languageFrom = "Swedish";
+      this.languageTo = "English";
       this.tags = [{ id: 0, tag: "Verb", show: false }, { id: 1, tag: "Thing", show: false }];
       // Keeps track if no tags is choosed for filter
       this.showAllCards = true;
@@ -172,7 +195,7 @@ export class Bank {
 
 
     } else {
-      this.bankID = null;
+      this.bankID = 0;
       this.boards = [];
       this.reverseTranslate = false;
 
@@ -188,7 +211,17 @@ export class Bank {
 
   }
 
-  sortBoards() { }
+  sortLatestEdited(){
+    // TODO: order boards from left to right on last edit
+    console.log("Sort Latest Edited");
+    return;
+  }
+
+  sortMostUsed(){
+    // TODO: order boards from left to right on most clicked
+    console.log("Sort Most Used");
+    return;
+  }
 
   getIdTags() {
     return this.idCountTags++;
