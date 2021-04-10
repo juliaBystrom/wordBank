@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import TranslateView from "../views/translateView";
 
 
-import useBankProp from "/useBankProp";
+import useBankProp from "./useBankProp";
 
 
 const TranslatePresenter = ({ model }) => {

@@ -2,7 +2,7 @@ import React from "react";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 
-import useBankProp from "/useBankProp";
+import useBankProp from "./useBankProp";
 
 
 /*
