@@ -23,8 +23,9 @@ export default function BankPresenter(props) {
   // Index is used because baords are stored as an array in the model. 
   // TODO: When index changing oimplementation is done test that reredering is correct
   const boardPresenters = boards.map((board, index) => {
+    console.log("> Render BankPresenter");
 
-    return <BoardPresenter model={props.model} boardIndex={index} key={board.boardID} />
+    return <BoardPresenter model={props.model} boardIndex={index} key={board.boardID} boardID={board.boardID} title={board.title} />
 
   });
 

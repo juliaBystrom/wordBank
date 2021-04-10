@@ -13,12 +13,14 @@ import useBoardProp from "./useBoardProp";
 export default function BoardPresenter(props) {
 
     // Using boardIndex to accses the right board element in the model
-    const board = useModelSubSubclassProperty(props.model, "banks", props.model.currentBank, "boards", props.boardIndex);
+    // const board = useModelSubSubclassProperty(props.model, "banks", props.model.currentBank, "boards", props.boardIndex);
     // const board = useBoardProp(props.model, "banks", props.model.currentBank, "boards", props.boardIndex);
-    
+    const cards = useBoardProp(props.model, props.boardID, "cards");
 
 
-    var cardViews = board.cards.map(function (card) {
+    var cardViews = cards.map(function (card) {
+        console.log("> Rerender BoardPresenter with cardViews")
+
         return card.show ? <CardView
             leftSentence={card.leftSentence}
             rightSentence={card.rightSentence}
@@ -30,7 +32,7 @@ export default function BoardPresenter(props) {
     });
 
     return (
-        <BoardView title={board.title} key={board.boardID}>
+        <BoardView title={props.title} key={props.boardID}>
             {cardViews}
         </BoardView>
     );

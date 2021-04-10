@@ -12,6 +12,7 @@ import { BankView, AddBoardView } from "../views";
 */
 export default function BoardsWrapperPresenter(props) {
   const [newBoardName, setNewBoardName] = React.useState("");
+  console.log("> Render BoardsWrapperPresenter");
 
 
   return (
