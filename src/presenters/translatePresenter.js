@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TranslateView from "../views/translateView";
 import useModelSubclassProperty from "./useModelSubclassProperty";
-import useModelProperty from "./useModelProperty";
 
 const TranslatePresenter = ({ model }) => {
   const [text, setText] = React.useState("");
