@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import TranslateView from "../views/translateView";
 import useModelSubclassProperty from "./useModelSubclassProperty";
 import { googleTranslate } from "../utils/googleTranslate";
-import useModelProperty from "./useModelProperty";
+import useModelProp from "./useModelProp";
 
 const TranslatePresenter = ({ model }) => {
   const [phrase, setPhrase] = React.useState("");
@@ -54,8 +54,8 @@ const TranslatePresenter = ({ model }) => {
     });
   }, []);
 
-  let transPhrase = useModelProperty(model, "transPhrase");
-  let toLanguage = useModelProperty(model, "toLanguage");
+  let transPhrase = useModelProp(model, "transPhrase");
+  let toLanguage = useModelProp(model, "toLanguage");
 
   return (
     <TranslateView
