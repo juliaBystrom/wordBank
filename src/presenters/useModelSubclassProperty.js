@@ -14,8 +14,8 @@ export default function useModelSubclassProperty(model, subclass, nr, property) 
         function obs() {
             setValue(model[subclass][nr][property])
         }
-        model.addModelObserver(obs);
-        return function () { model.removeModelObserver(obs); }
+        model.addObserver(obs);
+        return function () { model.removeObserver(obs); }
     }, [model[subclass][nr][property]]);
 
     return value;

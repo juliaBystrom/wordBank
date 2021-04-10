@@ -9,7 +9,7 @@ export class WordBankModel {
       console.log("testing is true ...");
       this.currentBank = 0;
       this.banks = [new Bank(0, true)];
-      this.modelObservers = [];
+      this.observers = [];
       this.userID = 123;
       this.languageFrom = LANGUAGES.SWE;
       this.languageTo = LANGUAGES.ENG;
@@ -57,12 +57,12 @@ export class WordBankModel {
   sortLatestEdited(){
     console.log("SORTING LATEST EDITED: ", this)
     this.getCurrentBank().sortLatestEdited();
-    this.notifyModelObservers();
+    this.notifyObservers();
   }
 
   sortMostUsed(){
     this.getCurrentBank().sortMostUsed();
-    this.notifyModelObservers();
+    this.notifyObservers();
   }
 
 
@@ -111,7 +111,7 @@ export class WordBankModel {
     this.banks[this.currentBank].addBoard(name, this.getKeyBoards());
     console.log("Ny board");
     console.log(this.banks[this.currentBank].boards);
-    this.notifyModelObservers();
+    this.notifyObservers();
 
   }
 
@@ -124,19 +124,19 @@ export class WordBankModel {
  
   addTag(tagName) {
     this.banks[this.currentBank].addTag(tagName);
-    this.notifyModelObservers();
+    this.notifyObservers();
   }
 
   //  
   editTag(tagName, newTagName) {
     this.banks[this.currentBank].editTag(tagName, newTagName);
-    this.notifyModelObservers();
+    this.notifyObservers();
   }
 
 
   filterOnTag(tagName) {
     this.banks[this.currentBank].filterOnTag(tagName);
-    this.notifyModelObservers();
+    this.notifyObservers();
   }
 
   /* 
@@ -144,19 +144,19 @@ export class WordBankModel {
          :) 
     */
 
-  addModelObserver(callback) {
-    this.modelObservers = [...this.modelObservers, callback];
+  addObserver(callback) {
+    this.observers = [...this.observers, callback];
   }
 
   removeModelObserver(callback) {
-    this.modelObservers = this.modelObservers.filter((cb) => {
+    this.observers = this.observers.filter((cb) => {
       return cb !== callback;
     });
   }
 
-  notifyModelObservers() {
-    if (this.modelObservers) {
-      this.modelObservers.forEach((cb) => {
+  notifyObservers() {
+    if (this.observers) {
+      this.observers.forEach((cb) => {
         try {
           cb();
         } catch (error) {
