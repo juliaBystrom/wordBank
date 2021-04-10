@@ -9,6 +9,7 @@ const TranslatePresenter = ({ model }) => {
   // To be used until api is fixed
   const translation = "dummy translation";
 
+
   // Used to create the data list of boards to choose from
   const boards = useModelSubclassProperty(model, "banks", model.currentBank, "boards");
 
@@ -24,6 +25,7 @@ const TranslatePresenter = ({ model }) => {
     } else {
       console.log("please choose a tag");
     }
+
   };
 
   // Used to controll the dropdown of possible boards to save to

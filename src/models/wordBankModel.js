@@ -9,7 +9,7 @@ export class WordBankModel {
       console.log("testing is true ...");
       this.currentBank = 0;
       this.banks = [new Bank(0, true)];
-      this.observers = [];
+      this.modelObservers = [];
       this.userID = 123;
       this.languageFrom = LANGUAGES.SWE;
       this.languageTo = LANGUAGES.ENG;
@@ -57,12 +57,12 @@ export class WordBankModel {
   sortLatestEdited(){
     console.log("SORTING LATEST EDITED: ", this)
     this.getCurrentBank().sortLatestEdited();
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
   sortMostUsed(){
     this.getCurrentBank().sortMostUsed();
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
 
@@ -79,6 +79,7 @@ export class WordBankModel {
     this.banks[this.currentBank].createCard(phrase, translation, saveToBoardId, tag);
 
     this.notifyObservers();
+
   }
 
 
@@ -110,7 +111,7 @@ export class WordBankModel {
     this.banks[this.currentBank].addBoard(name, this.getKeyBoards());
     console.log("Ny board");
     console.log(this.banks[this.currentBank].boards);
-    this.notifyObservers();
+    this.notifyModelObservers();
 
   }
 
@@ -123,40 +124,39 @@ export class WordBankModel {
  
   addTag(tagName) {
     this.banks[this.currentBank].addTag(tagName);
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
   //  
   editTag(tagName, newTagName) {
     this.banks[this.currentBank].editTag(tagName, newTagName);
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
 
 
   filterOnTag(tagName) {
     this.banks[this.currentBank].filterOnTag(tagName);
-    this.notifyObservers();
+    this.notifyModelObservers();
   }
-
-
 
   /* 
         Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
          :) 
     */
-  addObserver(callback) {
-    this.observers = [...this.observers, callback];
+
+  addModelObserver(callback) {
+    this.modelObservers = [...this.modelObservers, callback];
   }
 
-  removeObserver(callback) {
-    this.observers = this.observers.filter((cb) => {
+  removeModelObserver(callback) {
+    this.modelObservers = this.modelObservers.filter((cb) => {
       return cb !== callback;
     });
   }
 
-  notifyObservers() {
-    if (this.observers) {
-      this.observers.forEach((cb) => {
+  notifyModelObservers() {
+    if (this.modelObservers) {
+      this.modelObservers.forEach((cb) => {
         try {
           cb();
         } catch (error) {

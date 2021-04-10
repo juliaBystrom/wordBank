@@ -24,8 +24,8 @@ export default function useCardProp(model, boardID, cardID, property) {  // cust
         function obs() {
             setValue(card[property])
         }
-        model.addObserver(obs);
-        return function () { model.removeObserver(obs); }
+        model.addModelObserver(obs);
+        return function () { model.removeModelObserver(obs); }
     }, [card[property]]);
     // though model never changes 
     return value;

@@ -14,8 +14,8 @@ export default function useBankProp(model,property) {  // custom hook
         function obs() {
             setValue(bank[property])
         }
-        model.addObserver(obs);
-        return function () { model.removeObserver(obs); }
+        model.addModelObserver(obs);
+        return function () { model.removeModelObserver(obs); }
     }, [bank[property]]);
     // though model never changes 
     return value;
