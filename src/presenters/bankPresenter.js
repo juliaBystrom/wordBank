@@ -1,8 +1,8 @@
 import React from "react";
-import useModelSubclassProperty from "./useModelSubclassProperty";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 
+import useBankProp from "/useBankProp";
 
 
 /*
@@ -16,7 +16,8 @@ BankPresenter manages:
 
 export default function BankPresenter(props) {
 
-  const boards = useModelSubclassProperty(props.model, "banks", props.model.currentBank, "boards");
+  const boards = useBankProp(props.model, "boards");
+
 
 
   // Index is used because baords are stored as an array in the model. 
