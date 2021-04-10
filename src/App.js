@@ -10,9 +10,9 @@ import boardView from "./views/boardView";
 
 import { persistModel } from "./persistModel";
 import SidebarPresenter from "./presenters/sidebarPresenter";
-import TranslateViewTEST from "./views/TranslateViewTEST";
 
 function App() {
+  require("dotenv").config();
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
   const model = new WordBankModel(true);
   //persistModel(model);
@@ -23,7 +23,11 @@ function App() {
       <SidebarPresenter model={model} />
       <Route exact path="/" component={() => <AuthPresenter model={model} />} />
       {/* <Route exact path="/test" component={boardView} /> */}
-      <Route exact path="/bank" component={() => <BankPresenter model={model} />} />
+      <Route
+        exact
+        path="/bank"
+        component={() => <BankPresenter model={model} />}
+      />
     </>
   );
 }
