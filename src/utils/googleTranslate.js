@@ -1,5 +1,5 @@
 const apiKey = process.env.REACT_APP_GOOGLE_TRANSLATE_API_KEY;
 export const googleTranslate = require("google-translate")(
-  "ask Kristopher for code"
+  "AIzaSyAJ6x_qfTEvy44HNmA5siAC9EozJuCcIVo"
 );
 console.log(apiKey);

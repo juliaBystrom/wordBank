@@ -15,11 +15,10 @@ import TranslateViewTEST from "./views/TranslateViewTEST";
 function App() {
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
   const model = new WordBankModel(true);
-  persistModel(model);
+  //persistModel(model);
 
   return (
     <>
-      <TranslateViewTEST />
       <TranslatePresenter model={model} />
       <SidebarPresenter model={model} />
       <Route exact path="/" component={() => <AuthPresenter model={model} />} />

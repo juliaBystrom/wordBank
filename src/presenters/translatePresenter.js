@@ -4,13 +4,11 @@ import { googleTranslate } from "../utils/googleTranslate";
 import cookie from "react-cookies";
 
 const TranslatePresenter = ({ model }) => {
-  const [text, setText] = React.useState("");
+  const [phrase, setPhrase] = React.useState("");
   const [tag, setTag] = React.useState("");
 
   const [languageCodes, setLanguageCodes] = useState([]);
-  const [language, setLanguage] = useState(
-    cookie.load("language") ? cookie.load("language") : "en"
-  );
+
   const [question, setQuestion] = useState(
     cookie.load("question") ? cookie.load("question") : "What language do you prefer to read with?"
   );
@@ -34,69 +32,71 @@ const TranslatePresenter = ({ model }) => {
       /* return function () {
         model.removeObserver(obs);
       }; */
-    }, [model, propertyName]); // Kanske lägga till propertyName i arrayen.
+    }, [model, propertyName, value]); 
     return value;
   };
 
   let tags = useModelProperty(model, "tags");
+  let transPhrase = useModelProperty(model, "transPhrase");
+  let toLanguage=useModelProperty(model, "toLanguage");
 
-  const changeHandler = (language) => {
-    let cookieLanguage = cookie.load("language");
-    let transQuestion = "";
+  let cookieLanguage = cookie.load("language");
 
-    const translating = (transQuestion) => {
-      if (question !== transQuestion) {
-        this.setState({ question: transQuestion });
-        cookie.save("question", transQuestion, { path: "/" });
-      }
-    };
 
-    // translate the question when selecting a different language
-    if (language !== cookieLanguage) {
-      googleTranslate.translate(question, language, function (err, translation) {
-        transQuestion = translation.translatedText;
-        translating(transQuestion);
-      });
-    }
 
-    setLanguage(language);
-    cookie.save("language", language, { path: "/" });
-  };
+
 
   return (
     <TranslateView
+
+    setLanguage = {(newLanguage) => {
+
+      model.setToLanguage(newLanguage);
+      console.log(toLanguage);
+
+      cookie.save("language", newLanguage, { path: "/" })
+      
+}} //ska va mer effektivt att spara till cookie
+    changeHandler = {(newLanguage) => {
+      model.setToLanguage(newLanguage);
+      let cookieLanguage = cookie.load("language");}}
+
+    translate = {() => {
+        //console.log("phrase: " + phrase + " language: " + language);
+        googleTranslate.translate(phrase, toLanguage, function (err, translation) {
+          console.log(phrase);
+          model.setTransPhrase(translation.translatedText);
+          console.log(translation.translatedText);
+        });
+
+      }} 
+    languageCodes = {languageCodes}
+
+    transPhrase = {transPhrase} 
+ 
+    fromLanguage={model.languageFrom} 
+    toLanguage={toLanguage}
+    
       tags={tags}
-      setText={(phrase) => {
-        setText(phrase);
+      setPhrase={(phrase) => {
+        setPhrase(phrase);
       }}
-      translate={() => {
-        model.translate(text);
-      }}
-      fromLanguage={model.languageFrom}
-      toLanguage={model.languageTo}
+
+
+
       createCard={() => {
         if (tag) {
           model.addTag(tag);
           model.setTag(tag);
-          model.setPhrase(text);
-          model.createCard(text, tag);
+          model.setPhrase(phrase);
+          model.createCard(phrase, tag);
         } else console.log("please choose a tag");
       }}
       setTag={(newTag) => {
         setTag(newTag);
         model.currentTag = tag;
       }}
-      /*storeToDb = {() => db.collection("cards").doc(tag).add({
-        phrase: text
-    })
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    })}
-    */
     />
   );
-};
+    };
 export default TranslatePresenter;

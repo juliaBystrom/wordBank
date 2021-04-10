@@ -60,6 +60,7 @@ class TranslateViewTEST extends Component {
     if (language !== cookieLanguage) {
       googleTranslate.translate(question, language, function (err, translation) {
         transQuestion = translation.translatedText;
+        console.log(translation.translatedText);
         translating(transQuestion);
       });
     }

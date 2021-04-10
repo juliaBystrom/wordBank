@@ -42,6 +42,9 @@ const Button = styled.button`
 `;
 
 const TitleBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 260px;
   border: 1px solid grey;
   border-radius: 1px;
@@ -78,6 +81,18 @@ const TagInput = styled.input`
   font-weight: 600;
 `;
 
+const StyledSelect = styled.select`
+  width: 180px;
+  border-radius: 8px;
+
+  height: 30px;
+  padding: 3px;
+  border: none;
+  font-weight: 600;
+  margin: 0px;
+`;
+
+
 const TranslateView = (props) => {
   return (
     <TranslateWrapper>
@@ -86,15 +101,25 @@ const TranslateView = (props) => {
           <TitleBox>{props.fromLanguage}</TitleBox>
 
           <TextBox
-            onChange={(e) => props.setText(e.target.value)}
+            onChange={(e) => props.setPhrase(e.target.value)}
             placeholder="Type here"
           ></TextBox>
         </form>
       </div>
 
       <div>
-        <TitleBox></TitleBox>
-        <TextBox></TextBox>
+        <TitleBox><StyledSelect
+          className="select-language"
+          
+          onChange={(e) => {props.setLanguage(e.target.value);}}
+        >
+          {props.languageCodes.map((lang) => (
+            <option key={lang.language} value={lang.language}>
+              {lang.name}
+            </option>
+          ))}
+        </StyledSelect></TitleBox>
+        <TextBox>{props.transPhrase}</TextBox>
       </div>
       <ButtonContainer>
         <Button onClick={() => props.translate()}>Translate!</Button>

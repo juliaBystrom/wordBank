@@ -20,6 +20,8 @@ export class WordBankModel {
       this.currentTag = "";
       this.tags = ["noun", "verb", "restaurant", "etc"];
       this.uid = 1;
+      this.transPhrase = "";
+      this.toLanguage = "";
     } else {
       this.currentBank = null;
       this.banks = [];
@@ -46,9 +48,15 @@ export class WordBankModel {
     this.getKeyBanks = this.getKeyBanks.bind(this);
     this.notifyObservers();
   }
-
+//Testkod ----------------------------------
   setPhrase(phrase){
     this.currentPhrase = phrase;
+    this.notifyObservers();
+  }
+
+  setTransPhrase(translation){
+    this.transPhrase = translation;
+    this.notifyObservers();
   }
 
   addTag(tag){
@@ -58,6 +66,14 @@ export class WordBankModel {
   setTag(tag){
     this.currentTag = tag;
   }
+
+  setToLanguage(newLanguage){
+    this.toLanguage=newLanguage;
+    this.notifyObservers();
+  }
+  //---------------------------------------
+
+
 
   getKeyBoards() {
     return this.keyCountBoards++;
