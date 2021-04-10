@@ -92,7 +92,6 @@ const StyledSelect = styled.select`
   margin: 0px;
 `;
 
-
 const TranslateView = (props) => {
   return (
     <TranslateWrapper>
@@ -108,18 +107,22 @@ const TranslateView = (props) => {
       </div>
 
       <div>
-        <TitleBox><StyledSelect
-          className="select-language"
-          
-          onChange={(e) => {props.setLanguage(e.target.value);}}
-        >
-          {props.languageCodes.map((lang) => (
-            <option key={lang.language} value={lang.language}>
-              {lang.name}
-            </option>
-          ))}
-        </StyledSelect></TitleBox>
-        <TextBox>{props.transPhrase}</TextBox>
+        <TitleBox>
+          <StyledSelect
+            className="select-language"
+            value={props.toLanguage}
+            onChange={(e) => {
+              props.setLanguage(e.target.value);
+            }}
+          >
+            {props.languageCodes.map((lang) => (
+              <option key={lang.language} value={lang.language}>
+                {lang.name}
+              </option>
+            ))}
+          </StyledSelect>
+        </TitleBox>
+        <TextBox value={props.transPhrase}></TextBox>
       </div>
       <ButtonContainer>
         <Button onClick={() => props.translate()}>Translate!</Button>

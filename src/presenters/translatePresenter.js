@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
+
 import TranslateView from "../views/translateView";
 import { googleTranslate } from "../utils/googleTranslate";
-import cookie from "react-cookies";
+import useModelProperty from "./useModelProperty";
 
 const TranslatePresenter = ({ model }) => {
   const [phrase, setPhrase] = React.useState("");
   const [tag, setTag] = React.useState("");
-
   const [languageCodes, setLanguageCodes] = useState([]);
-
-  const [question, setQuestion] = useState(
-    cookie.load("question") ? cookie.load("question") : "What language do you prefer to read with?"
-  );
 
   useEffect(() => {
     const getLanguageCodes = (languageCodes) => {
@@ -22,68 +18,35 @@ const TranslatePresenter = ({ model }) => {
     });
   }, []);
 
-  const useModelProperty = (model, propertyName) => {
-    const [value, setValue] = React.useState(model[propertyName]);
-    React.useEffect(() => {
-      function obs() {
-        setValue(model[propertyName]);
-      }
-      model.addObserver(obs);
-      /* return function () {
-        model.removeObserver(obs);
-      }; */
-    }, [model, propertyName, value]); 
-    return value;
-  };
-
   let tags = useModelProperty(model, "tags");
   let transPhrase = useModelProperty(model, "transPhrase");
-  let toLanguage=useModelProperty(model, "toLanguage");
-
-  let cookieLanguage = cookie.load("language");
-
-
-
-
+  let toLanguage = useModelProperty(model, "toLanguage");
 
   return (
     <TranslateView
-
-    setLanguage = {(newLanguage) => {
-
-      model.setToLanguage(newLanguage);
-      console.log(toLanguage);
-
-      cookie.save("language", newLanguage, { path: "/" })
-      
-}} //ska va mer effektivt att spara till cookie
-    changeHandler = {(newLanguage) => {
-      model.setToLanguage(newLanguage);
-      let cookieLanguage = cookie.load("language");}}
-
-    translate = {() => {
-        //console.log("phrase: " + phrase + " language: " + language);
-        googleTranslate.translate(phrase, toLanguage, function (err, translation) {
-          console.log(phrase);
-          model.setTransPhrase(translation.translatedText);
-          console.log(translation.translatedText);
-        });
-
-      }} 
-    languageCodes = {languageCodes}
-
-    transPhrase = {transPhrase} 
- 
-    fromLanguage={model.languageFrom} 
-    toLanguage={toLanguage}
-    
+      languageCodes={languageCodes}
+      transPhrase={transPhrase}
+      fromLanguage={model.languageFrom}
+      toLanguage={toLanguage}
       tags={tags}
+      setLanguage={(newLanguage) => {
+        model.setToLanguage(newLanguage);
+        console.log(toLanguage);
+      }}
+      translate={() => {
+        googleTranslate.translate(
+          phrase,
+          toLanguage,
+          function (err, translation) {
+            console.log(phrase);
+            model.setTransPhrase(translation.translatedText);
+            console.log(translation.translatedText);
+          }
+        );
+      }}
       setPhrase={(phrase) => {
         setPhrase(phrase);
       }}
-
-
-
       createCard={() => {
         if (tag) {
           model.addTag(tag);
@@ -98,5 +61,6 @@ const TranslatePresenter = ({ model }) => {
       }}
     />
   );
-    };
+};
+
 export default TranslatePresenter;

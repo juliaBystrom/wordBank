@@ -21,7 +21,7 @@ export class WordBankModel {
       this.tags = ["noun", "verb", "restaurant", "etc"];
       this.uid = 1;
       this.transPhrase = "";
-      this.toLanguage = "";
+      this.toLanguage = "en";
     } else {
       this.currentBank = null;
       this.banks = [];
