@@ -1,7 +1,6 @@
 import { LANGUAGES } from "../shared";
 import Bank from "./bank";
 
-
 export class WordBankModel {
   constructor(testing) {
     // super(props);
@@ -16,12 +15,8 @@ export class WordBankModel {
       this.isTesting = true;
       this.keyCountBoards = 3;
       this.sorts = [
-        { sorting: "Latest edited",
-          func: () => this.sortLatestEdited()
-        }, 
-        { sorting: "Most used",
-          func: () => this.sortMostUsed()
-        } 
+        { sorting: "Latest edited", func: () => this.sortLatestEdited() },
+        { sorting: "Most used", func: () => this.sortMostUsed() },
       ];
 
       //test data
@@ -30,6 +25,8 @@ export class WordBankModel {
       // this.currentTag = "";
       this.tags = ["noun", "verb", "restaurant", "etc"];
       this.uid = 1;
+      this.transPhrase = "";
+      this.toLanguage = "en";
     } else {
       this.currentBank = null;
       this.banks = [];
@@ -48,41 +45,58 @@ export class WordBankModel {
     this.getKeyBanks = this.getKeyBanks.bind(this);
   }
 
-  getCurrentBank(){
-    return this.banks.filter(b => {
-      return b.bankID === this.currentBank
+  getCurrentBank() {
+    return this.banks.filter((b) => {
+      return b.bankID === this.currentBank;
     })[0];
   }
 
-  sortLatestEdited(){
-    console.log("SORTING LATEST EDITED: ", this)
+  sortLatestEdited() {
+    console.log("SORTING LATEST EDITED: ", this);
     this.getCurrentBank().sortLatestEdited();
     this.notifyObservers();
   }
 
-  sortMostUsed(){
+  sortMostUsed() {
     this.getCurrentBank().sortMostUsed();
     this.notifyObservers();
   }
-
 
   translate(phrase) {
     console.log("translate: " + phrase);
   }
 
-
-
   createCard(phrase, translation, saveToBoardId, tag) {
+    console.log(
+      "will create a card with phrase: " +
+        phrase +
+        "\n  translation: " +
+        translation +
+        " \n tag: " +
+        tag +
+        " \n save to board: " +
+        saveToBoardId
+    );
 
-    console.log("will create a card with phrase: " + phrase + "\n  translation: " + translation + " \n tag: " + tag + " \n save to board: " + saveToBoardId);
-
-    this.banks[this.currentBank].createCard(phrase, translation, saveToBoardId, tag);
+    this.banks[this.currentBank].createCard(
+      phrase,
+      translation,
+      saveToBoardId,
+      tag
+    );
 
     this.notifyObservers();
   }
+  //Testkod ----------------------------------
+  setPhrase(phrase) {
+    this.currentPhrase = phrase;
+    this.notifyObservers();
+  }
 
-
-
+  setTransPhrase(translation) {
+    this.transPhrase = translation;
+    this.notifyObservers();
+  }
 
   /*   setPhrase(phrase) {
       this.currentPhrase = phrase;
@@ -96,6 +110,12 @@ export class WordBankModel {
   /*   setTag(tag) {
       this.currentTag = tag;
     } */
+
+  setToLanguage(newLanguage) {
+    this.toLanguage = newLanguage;
+    this.notifyObservers();
+  }
+  //---------------------------------------
 
   getKeyBoards() {
     return this.keyCountBoards++;
@@ -111,7 +131,6 @@ export class WordBankModel {
     console.log("Ny board");
     console.log(this.banks[this.currentBank].boards);
     this.notifyObservers();
-
   }
 
   /* 
@@ -120,25 +139,22 @@ export class WordBankModel {
    ----------------------------------------------------------
 
   */
- 
+
   addTag(tagName) {
     this.banks[this.currentBank].addTag(tagName);
     this.notifyObservers();
   }
 
-  //  
+  //
   editTag(tagName, newTagName) {
     this.banks[this.currentBank].editTag(tagName, newTagName);
     this.notifyObservers();
   }
 
-
   filterOnTag(tagName) {
     this.banks[this.currentBank].filterOnTag(tagName);
     this.notifyObservers();
   }
-
-
 
   /* 
         Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
@@ -165,9 +181,4 @@ export class WordBankModel {
       });
     }
   }
-
-
-
 }
-
-

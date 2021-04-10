@@ -9,7 +9,7 @@ export default function useModelProp(model, propertyName) {  // custom hook
         }
         model.addObserver(obs);
         return function () { model.removeObserver(obs); }
-    }, [model]);
+    }, [model, propertyName, value]);
     // though model never changes 
     return value;
 }
