@@ -8,13 +8,13 @@ import { AuthPresenter } from "./presenters/AuthPresenter";
 import TranslatePresenter from "./presenters/translatePresenter";
 import boardView from "./views/boardView";
 
-import { persistModel } from "./persistModel";
+import { persistence } from "./persistence";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 
 function App() {
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
   const model = new WordBankModel(true);
-  //persistModel(model);
+  //persistence(model);
 
   return (
     <>
