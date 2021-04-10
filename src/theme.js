@@ -15,5 +15,5 @@ export const theme = {
     hover: '#d14b68',
     mobile: '576px',
     testBorder: '#ffdb3b',
-    showTestBorders: true,
+    showTestBorders: false,
   }
