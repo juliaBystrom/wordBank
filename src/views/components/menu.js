@@ -10,6 +10,7 @@ const Menu = styled.nav`
   flex-direction: column;
   justify-content: center;
   background-color: ${props => props.theme.medium};
+  box-shadow: 0.5px 0.5px 15px #c4c2c2;
   height: 100vh;
   text-align: left;
   padding: 1rem;
@@ -28,7 +29,7 @@ const Menu = styled.nav`
     font-weight: regular;
     color: #FFF;
     text-decoration: none;
-    transition: color 0.3s linear;
+    transition: color 0.3s linear; 
     ${'' /* border-radius: 16px;
     border: 2px solid #FFF;
     padding: 20px;
