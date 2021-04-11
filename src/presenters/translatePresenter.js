@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TranslateView from "../views/translateView";
-
-
-
 import useBankProp from "./useBankProp";
-
-
-import useModelSubclassProperty from "./useModelSubclassProperty";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
 

@@ -167,7 +167,7 @@ export class WordBankModel {
     this.observers = [...this.observers, callback];
   }
 
-  removeModelObserver(callback) {
+  removeObserver(callback) {
     this.observers = this.observers.filter((cb) => {
       return cb !== callback;
     });

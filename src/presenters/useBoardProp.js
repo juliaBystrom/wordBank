@@ -20,8 +20,8 @@ export default function useBoardProp(model, boardID, property) {  // custom hook
         function obs() {
             setValue(board[property])
         }
-        model.addModelObserver(obs);
-        return function () { model.removeModelObserver(obs); }
+        model.addObserver(obs);
+        return function () { model.removeObserver(obs); }
     }, [board[property]]);
     // though model never changes 
     return value;

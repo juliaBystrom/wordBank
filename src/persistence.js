@@ -15,7 +15,7 @@ export function persistence(model) {
         setTimeout(() => {
           window.db
           .collection("Users").doc(model.userID)
-          .collection("Banks").doc(model.banks[modelcurrentBank])
+          .collection("Banks").doc(model.banks[0])
           .set({ //hårdkodat, måste ändras sen
             phrase: model.currentPhrase,
             translation: model.currentTranslation,
