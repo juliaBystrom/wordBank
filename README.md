@@ -21,8 +21,8 @@ folder called components for parts in the application that is frequently used e.
 tags, text. 
 <br/>
 <br/>
-Utils = Utilities
-src/index.js = entry point for the application
-src/App.js = routing, modal creation, etc.
-src/theme.js & src/style.js = shared styling and colors for the application
-src/firebase.js = firebase connection established
+* Utils = Utilities
+* src/index.js = entry point for the application
+* src/App.js = routing, modal creation, etc.
+* src/theme.js & src/style.js = shared styling and colors for the application
+* src/firebase.js = firebase connection established
