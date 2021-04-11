@@ -10,9 +10,8 @@ import useCardProp from "./useCardProp";
 */
 
 export default function CardPresenter(props) {
-
+    
     const showCard = useCardProp(props.model, props.boardID, props.cardID, "show");
-
 
     return (
         showCard ? <CardView

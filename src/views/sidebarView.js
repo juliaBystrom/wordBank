@@ -34,11 +34,10 @@ export default function SidebarView(props){
                     <span aria-label="Filter on tags"></span>
                     Filter on tags
                 </Dropdown>
-                {props.currentBank["tags"].map((t) => (
+                {props.tags.map((t) => (
                     <DropdownItem drop={props.dropFilter}>
                         <input type="checkbox" id={t.tag} name={t.tag}
-                            onClick={()=>props.onFilter(t.tag)}
-                        />
+                            onClick={()=>props.onFilter(t.tag)}/>
                         <label for={t.tag} >{t.tag}</label>
                     </DropdownItem>
                 ))}
@@ -47,12 +46,11 @@ export default function SidebarView(props){
                     <span aria-label="Sort boards"></span>
                     Sort boards
                 </Dropdown>
-                {props.sorts.map((s) => (
+                {props.sortings.map((sorting) => (
                     <DropdownItem drop={props.dropSort}>
-                        <input type="checkbox" id={s.sorting} name={s.sorting}
-                            onClick={()=>props.onSort(s.sorting)}
-                        />
-                        <label for={s.sorting} >{s.sorting}</label>
+                        <input type="radio" name="sort"
+                            onClick={()=>props.onSort(sorting.name)}/>
+                        <label for={sorting.name} >{sorting.name}</label>
                     </DropdownItem>
                 ))}
             </Menu>

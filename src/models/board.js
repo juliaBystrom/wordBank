@@ -27,7 +27,7 @@ export default class Board {
     }
   
     filterCards(showAll, tags) {
-  
+      console.log("showAll:", showAll);
       // If showAll is true use setShowTrue() on all cards to display them else call filterOnTags(tags)
       for (var i = 0; i < this.cards.length; i++) {
         if (showAll) {
