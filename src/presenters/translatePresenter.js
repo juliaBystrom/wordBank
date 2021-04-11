@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import TranslateView from "../views/translateView";
+
+
+
+import useBankProp from "./useBankProp";
+
+
 import useModelSubclassProperty from "./useModelSubclassProperty";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
@@ -12,20 +18,13 @@ const TranslatePresenter = ({ model }) => {
   const translation = "dummy translation";
 
   // Used to create the data list of boards to choose from
-  const boards = useModelSubclassProperty(
-    model,
-    "banks",
-    model.currentBank,
-    "boards"
-  );
+
+  const boards = useBankProp(model, "boards");
+
 
   // Used to create the tags list of boards to choose from
-  const tags = useModelSubclassProperty(
-    model,
-    "banks",
-    model.currentBank,
-    "tags"
-  );
+  const tags = useBankProp(model, "tags");
+
 
   const createTranslationCard = (boardID) => {
     // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
@@ -92,6 +91,7 @@ const TranslatePresenter = ({ model }) => {
       }}
       saveToBoard={(board) => {
         // Will close when selected
+
         setOpen(!open);
 
         // Use state resets to 0 no use

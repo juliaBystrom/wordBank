@@ -89,7 +89,7 @@ export default class Bank {
       if (!this.tags.includes(tagName)) {
         this.tags = [...this.tags, { id: this.getIdTags(), tag: tagName, show: false }];
       } else {
-        console.log("[Info from model]: Tag already exist. No new tag created");
+        // console.log("[Info from model]: Tag already exist. No new tag created");
       }
     }
   
@@ -146,18 +146,14 @@ export default class Bank {
   
   
     createCard(phrase, translation, saveToBoardId, tag) {
-      console.log("Wanna save to id:");
-      console.log(saveToBoardId);
+
   
       var boardIndex = this.boards.findIndex((boardObject) => {
-        console.log("board id:");
-        console.log(boardObject.boardID)
+
   
         return boardObject.boardID === Number(saveToBoardId);
       });
   
-      console.log("In index: ");
-      console.log(boardIndex);
   
       this.boards[boardIndex].addCard(new Card(true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
   
