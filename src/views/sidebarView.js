@@ -2,8 +2,6 @@ import React from "react";
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../theme';
 import { Burger, Menu, Dropdown, DropdownItem} from './components';
-import {Link} from "react-router-dom";
-
 
 export default function SidebarView(props){
 
@@ -23,11 +21,13 @@ export default function SidebarView(props){
                     Select bank
                 </Dropdown>
                 {banks.map((bank) => (
+                    <label>
                     <DropdownItem drop={props.dropBanks}>
-                        <Link to="/bank">
-                            {bank.languageFrom} - {bank.languageTo}
-                        </Link>
+                        <input type="radio" name="bank"
+                        onClick={()=>props.onSelectBank(bank.bankID)}/>
+                        {bank.languageFrom} - {bank.languageTo}
                     </DropdownItem>
+                    </label>
                 ))}
 
                 <Dropdown onClick={()=>props.setDropFilter(!props.dropFilter)}>
@@ -35,11 +35,13 @@ export default function SidebarView(props){
                     Filter on tags
                 </Dropdown>
                 {props.tags.map((t) => (
+                    <label>
                     <DropdownItem drop={props.dropFilter}>
-                        <input type="checkbox" id={t.tag} name={t.tag}
+                        <input type="checkbox" name={t.tag}
                             onClick={()=>props.onFilter(t.tag)}/>
-                        <label for={t.tag} >{t.tag}</label>
+                        {t.tag}
                     </DropdownItem>
+                    </label>
                 ))}
 
                 <Dropdown onClick={()=>props.setDropSort(!props.dropSort)}>
@@ -47,11 +49,13 @@ export default function SidebarView(props){
                     Sort boards
                 </Dropdown>
                 {props.sortings.map((sorting) => (
+                    <label>
                     <DropdownItem drop={props.dropSort}>
                         <input type="radio" name="sort"
                             onClick={()=>props.onSort(sorting.name)}/>
-                        <label for={sorting.name} >{sorting.name}</label>
+                        {sorting.name}
                     </DropdownItem>
+                    </label>
                 ))}
             </Menu>
         </div>

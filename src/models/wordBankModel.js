@@ -8,7 +8,7 @@ export class WordBankModel {
     if (testing) {
       console.log("testing is true ...");
       this.currentBank = 0;
-      this.banks = [new Bank(0, true)];
+      this.banks = [new Bank(0, true), new Bank(1, true)];
       this.observers = [];
       this.userID = 123;
       this.languageFrom = LANGUAGES.SWE;
@@ -44,6 +44,11 @@ export class WordBankModel {
     this.getKeyBoards = this.getKeyBoards.bind(this);
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
+  }
+
+  setCurrentBank(bankID){
+    this.currentBank = bankID;
+    this.notifyObservers();
   }
 
   getCurrentBank() {
