@@ -19,13 +19,12 @@ export default class Bank {
         this.testingBank = true;
         this.languageFrom = "Swedish";
         this.languageTo = "English";
-        this.tags = [{ id: 0, tag: "Verb", show: false }, { id: 1, tag: "Thing", show: false }];
+        this.tags = [ { id: 0, tag: "Verb", show: false },
+                    ];
         // Keeps track if no tags is choosed for filter
         this.showAllCards = true;
         this.idCountTags = 2;
-  
-  
-  
+        this.nrOfShow = 0;
   
       } else {
         this.bankID = 0;
@@ -95,8 +94,8 @@ export default class Bank {
   
     editTag(tagName, newTag) {
   
-      this.tags.map((tagObject) => {
-        return tagObject.tag !== tagName ? tagObject : { id: tagObject.id, tag: newTag, show: tagObject.show };
+      this.tags.map((t) => {
+        return t.tag !== tagName ? t : { id: t.id, tag: newTag, show: t.show };
   
       })
   
@@ -109,34 +108,30 @@ export default class Bank {
     
     */
     filterOnTag(tagName) {
-  
-  
-      // Reset the nrOfShow of variables. This variable will count nr of tags not used for filtering 
-      this.nrOfShow = 0;
-  
-      this.tags.map((tagObject) => {
-  
-  
-        if (tagObject.tag === tagName) {
-  
-          // Because this is the tag to toggle befroe retuning the inverse value of show is checked for true.
-          if (!tagObject.show) {
+
+      // Check or uncheck tag.
+      this.tags.map((t) => {
+        if (t.tag === tagName) {
+          if (!t.show) {
+            t.show = true;
             this.nrOfShow++;
+          } else if (t.show) {
+            t.show = false;
+            this.nrOfShow--;
           }
-  
-          return { id: tagObject.id, tag: tagObject.tag, show: !tagObject.show }
-        } else {
-          if (tagObject.show) {
-            this.nrOfShow++;
-          }
-          return tagObject;
-  
-        }
+        } 
       })
+
+      // Keep track of unchecked tags.
+      var uncheckedTags = 0;
+      this.tags.map((tag)=>{
+        if(tag.show == false){
+          uncheckedTags++;
+        }
+      });
   
-  
-      this.showAllCards = this.nrOfShow === 0;
-  
+      // If no tag is checked, show all cards.
+      this.showAllCards = this.tags.length-uncheckedTags === 0;
   
       for (var i = 0; i < this.boards.length; i++) {
         this.boards[i].filterCards(this.showAllCards, this.tags);
@@ -146,17 +141,10 @@ export default class Bank {
   
   
     createCard(phrase, translation, saveToBoardId, tag) {
-
-  
       var boardIndex = this.boards.findIndex((boardObject) => {
-
-  
         return boardObject.boardID === Number(saveToBoardId);
       });
-  
-  
       this.boards[boardIndex].addCard(new Card(true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
-  
     }
   
   }
