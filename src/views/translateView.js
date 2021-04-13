@@ -147,7 +147,7 @@ const TranslateView = (props) => {
         ></TagInput>
         <datalist onChange={() => console.log("set a tag")} id="taglist">
           {props.tags.map((opt) => (
-            <option value={Number(opt.id)}>{opt.tag}</option>
+            <option value={Number(opt.id)} label={opt.tag}></option>
           ))}
         </datalist>
       </ButtonContainer>
