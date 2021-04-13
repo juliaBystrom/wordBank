@@ -94,8 +94,6 @@ const StyledSelect = styled.select`
 `;
 
 const TranslateView = (props) => {
-  console.log("taaags");
-  console.log(props.tags);
 
   return (
     <TranslateWrapper>
@@ -137,6 +135,7 @@ const TranslateView = (props) => {
           open={props.openSelector}
           toggle={() => props.toggle()}
           onSelectionDone={(board) => props.saveToBoard(board)}
+          keyExtractor={(item) => { return item.boardID }}
         />
 
         <TagInput
