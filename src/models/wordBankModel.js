@@ -3,46 +3,23 @@ import Bank from "./bank";
 
 
 export class WordBankModel {
-  constructor(testing) {
-    // super(props);
-    if (testing) {
-      console.log("testing is true ...");
+  constructor() {
+
       this.currentBank = 0;
-      this.banks = [new Bank(0, true), new Bank(1, true)];
+      this.banks = [new Bank(0)];
       this.observers = [];
       this.userID = 123;
-      this.languageFrom = LANGUAGES.SWE;
-      this.languageTo = LANGUAGES.ENG;
-      this.isTesting = true;
       this.keyCountBoards = 3;
       this.sortings = [
         { name: "Latest edited", func: () => this.sortLatestEdited() },
         { name: "Most used", func: () => this.sortMostUsed() },
       ];
-
-      //test data
-      // this.currentPhrase = "";
-      // this.currentTranslation = "je suis un chat"
-      // this.currentTag = "";
-      this.tags = ["noun", "verb", "restaurant", "etc"];
-      this.uid = 1;
       this.transPhrase = "";
       this.toLanguage = "en";
-    } else {
-      this.currentBank = null;
-      this.banks = [];
-      this.observers = [];
-      this.userID = null;
-      this.languageFrom = null;
-      this.languageTo = null;
-      this.isTesting = false;
-      this.keyCountBoards = 0;
-    }
-
-    // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
-    this.getKeyBoards = this.getKeyBoards.bind(this);
-    this.keyCountBanks = 0;
-    this.getKeyBanks = this.getKeyBanks.bind(this);
+      // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
+      this.getKeyBoards = this.getKeyBoards.bind(this);
+      this.keyCountBanks = 0;
+      this.getKeyBanks = this.getKeyBanks.bind(this);
   }
 
   toString() {
@@ -50,9 +27,6 @@ export class WordBankModel {
           + this.userID + ', '
           + this.languageFrom + ', '
           + this.languageTo;
-          // + this.observers + ', '
-          //  + ', '
-          // + this.sorts;
   }
   setCurrentBank(bankID){
     this.currentBank = bankID;
@@ -80,7 +54,6 @@ export class WordBankModel {
   translate(phrase) {
     console.log("translate: " + phrase);
   }
-
 
   createCard(phrase, translation, saveToBoardId, tag) {
     console.log(
@@ -114,19 +87,6 @@ export class WordBankModel {
     this.transPhrase = translation;
     this.notifyObservers();
   }
-
-  /*   setPhrase(phrase) {
-      this.currentPhrase = phrase;
-    } */
-
-  // Commented out testing funciton for addTag. It breaks the use of this class original addTag
-  /*   addTag(tag){
-      this.tags=[...this.tags, tag];
-    } */
-
-  /*   setTag(tag) {
-      this.currentTag = tag;
-    } */
 
   setToLanguage(newLanguage) {
     this.toLanguage = newLanguage;

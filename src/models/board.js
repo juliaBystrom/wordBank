@@ -1,22 +1,10 @@
-
 import Card from "./card";
 
 export default class Board {
-    constructor(nameOfBoard, testing, id, getIdCardsArray) {
-      if (testing) {
-        this.boardID = id;
-  
-        this.cards = [
-          new Card(true, getIdCardsArray[0], "Kommentar 0", "Hej", "Hello", "Verb"),
-          new Card(true, getIdCardsArray[1], "Kommentar 1", "Fest", "Sleep", "Verb"),
-          new Card(true, getIdCardsArray[2], "Kommentar 2", "Kul", "Fun", "Verb"),
-        ];
-        this.title = nameOfBoard;
-      } else {
+    constructor(title, id) {
         this.boardID = id;
         this.cards = [];
-        this.title = "";
-      }
+        this.title = title;
     }
   
     /*
@@ -38,9 +26,5 @@ export default class Board {
   
       }
     }
-  
-  
-  
-  
   }
   

@@ -2,44 +2,24 @@ import Board from "./board";
 import Card from "./card";
 
 export default class Bank {
-    constructor(id, testing) {
-      // super(props);
+    constructor(id) {
   
+      this.bankID = id;
+      this.boards = [];
+      this.languageFrom = "Swedish";
+      this.languageTo = "English";
+      this.tags = [ { id: 0, tag: "Verb", show: false },
+                  ];
+      // Keeps track if no tags is choosed for filter
+      this.showAllCards = true;
+
       this.idCountCards = 0;
+      this.idCountTags = 2;
       this.getIdCards = this.getIdCards.bind(this);
-  
-      if (testing) {
-        console.log("Skapade bank")
-        this.bankID = id;
-        this.boards = [
-          new Board("Board1", true, 0, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() }),
-          new Board("Board2", true, 1, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() }),
-          new Board("Board3", true, 2, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() }),
-        ];
-        this.reverseTranslate = false;
-        this.testingBank = true;
-        this.languageFrom = "Swedish";
-        this.languageTo = "English";
-        this.tags = [ { id: 0, tag: "Verb", show: false },
-                    ];
-        // Keeps track if no tags is choosed for filter
-        this.showAllCards = true;
-        this.idCountTags = 2;
-      } else {
-        this.bankID = 0;
-        this.boards = [];
-        this.reverseTranslate = false;
-  
-        this.testingBank = false;
-        this.tags = []
-        // Keeps track if no tags is choosed for filter
-        this.showAllCards = true;
-        this.idCountTags = 0;
-      }
-  
       // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
       this.getIdTags = this.getIdTags.bind(this);
-  
+
+
     }
   
     sortLatestEdited(){

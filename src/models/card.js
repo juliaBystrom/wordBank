@@ -1,21 +1,12 @@
 export default class Card {
-    constructor(testing, id, commentOnS, leftS, rightS, givenTag) {
-      // super(props);
-      if (testing) {
+    constructor(id, commentOnS, leftS, rightS, givenTag) {
+
         this.cardID = id;
         this.comment = commentOnS;
         this.tag = givenTag;
         this.leftSentence = leftS;
         this.rightSentence = rightS;
         this.show = true;
-      } else {
-        this.cardID = [];
-        this.comment = null;
-        this.tag = givenTag;
-        this.leftSentence = null;
-        this.rightSentence = null;
-        this.show = true;
-      }
     }
   
     setComment() { }
@@ -32,7 +23,6 @@ export default class Card {
           return tagInfo.tag === this.tag
   
         })
-  
         this.show = tagInfo.show;
       } else {
         this.show = false;
