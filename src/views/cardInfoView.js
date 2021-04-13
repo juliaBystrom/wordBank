@@ -27,8 +27,17 @@ export default function CardInfoView(props) {
                 <p>{props.card.leftSentence}</p>
                 <p>{props.card.rightSentence}</p>
                 <form>
+
                     <input />
                 </form>
+                <DropdownComponent
+                    list={props.tags}
+                    title={props.card.tag}
+                    open={props.openSelector}
+                    toggle={() => props.toggleTaglist()}
+                    onSelectionDone={(event) => props.setTag(event.target.value)}
+                    keyExtractor={(item) => { return item.id }}
+                />
             </div>
 
 
