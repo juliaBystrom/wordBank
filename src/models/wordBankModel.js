@@ -34,7 +34,6 @@ export class WordBankModel {
       this.userID = null;
       this.languageFrom = null;
       this.languageTo = null;
-
       this.isTesting = false;
       this.keyCountBoards = 0;
     }
@@ -44,6 +43,17 @@ export class WordBankModel {
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
   }
+
+  toString() {
+    return  this.currentBank + ', '
+          + this.userID + ', '
+          + this.languageFrom + ', '
+          + this.languageTo;
+          // + this.observers + ', '
+          //  + ', '
+          // + this.sorts;
+  }
+
 
   getCurrentBank() {
     return this.banks.filter((b) => {

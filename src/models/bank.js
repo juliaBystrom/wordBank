@@ -9,6 +9,7 @@ export default class Bank {
       this.getIdCards = this.getIdCards.bind(this);
   
       if (testing) {
+        console.log("Skapade bank")
         this.bankID = id;
         this.boards = [
           new Board("Board1", true, 0, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() }),
@@ -23,10 +24,7 @@ export default class Bank {
         // Keeps track if no tags is choosed for filter
         this.showAllCards = true;
         this.idCountTags = 2;
-  
-  
-  
-  
+
       } else {
         this.bankID = 0;
         this.boards = [];
