@@ -19,16 +19,14 @@ export function persistence(model) {
           .set({
             userID: model.userID,
             name: "Fanny"
-          });
-          
-          window.db
-          .collection("Users").doc(model.userID)
-          .collection("Banks").doc(model.currentBank)
-          .set({
-            bankID: model.bankID,
-            name: "Fanny"
-          });
-
+          }).then(
+            window.db
+            .collection("Users").doc(model.userID)
+            .collection("Banks").doc(model.currentBank)
+            .set({
+              bankID: model.bankID,
+              name: "Fanny"
+            }))
           ;
         }, 1000);
       }
@@ -66,7 +64,7 @@ var modelConverter = {
 // Set with modelConverter
 db.collection("models").doc("user")
   .withConverter(modelConverter)
-  .set(new Model("..."));
+  .set(model);
 
 
 // class User {
