@@ -24,8 +24,8 @@ const DropdownComponent = ({ list, title, open, toggle, onSelectionDone, keyExtr
         <DropdownComponentWrapper>
             <DropdownButton
                 role="button"
-                onKeyPress={() => toggle(!open)}
-                onClick={() => toggle(!open)}>
+                onKeyPress={() => toggle()}
+                onClick={() => toggle()}>
                 <div>
                     <p>{title}</p>
                 </div>
