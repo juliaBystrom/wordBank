@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export const DropdownItem = styled.nav`
@@ -16,6 +15,10 @@ export const DropdownItem = styled.nav`
   ${'' /* opacity: ${props => (!props.drop ? '0' : '1')}; */}
   display: ${props => (!props.drop ? 'none' : 'flex')};
 
+  &:hover {
+    cursor: pointer;
+    color: ${props => props.theme.hover}
+  }
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;
   }
@@ -26,10 +29,6 @@ export const DropdownItem = styled.nav`
     color: #000;
     text-decoration: none;
     transition: color 0.3s linear;
-    ${'' /* border-radius: 16px;
-    border: 2px solid #FFF;
-    padding: 20px;
-    margin: 5px; */}
     
     @media (max-width: ${props => props.theme.mobile}) {
       font-size: 1.5rem;

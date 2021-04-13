@@ -1,22 +1,23 @@
 import { LANGUAGES } from "../shared";
 import Bank from "./bank";
 
+
 export class WordBankModel {
   constructor(testing) {
     // super(props);
     if (testing) {
       console.log("testing is true ...");
       this.currentBank = 0;
-      this.banks = [new Bank(0, true)];
+      this.banks = [new Bank(0, true), new Bank(1, true)];
       this.observers = [];
       this.userID = 123;
       this.languageFrom = LANGUAGES.SWE;
       this.languageTo = LANGUAGES.ENG;
       this.isTesting = true;
       this.keyCountBoards = 3;
-      this.sorts = [
-        { sorting: "Latest edited", func: () => this.sortLatestEdited() },
-        { sorting: "Most used", func: () => this.sortMostUsed() },
+      this.sortings = [
+        { name: "Latest edited", func: () => this.sortLatestEdited() },
+        { name: "Most used", func: () => this.sortMostUsed() },
       ];
 
       //test data
@@ -53,7 +54,10 @@ export class WordBankModel {
           //  + ', '
           // + this.sorts;
   }
-
+  setCurrentBank(bankID){
+    this.currentBank = bankID;
+    this.notifyObservers();
+  }
 
   getCurrentBank() {
     return this.banks.filter((b) => {
@@ -183,7 +187,7 @@ export class WordBankModel {
     });
   }
 
-  notifyObservers() {
+ notifyObservers() {
     if (this.observers) {
       this.observers.forEach((cb) => {
         try {
@@ -195,3 +199,4 @@ export class WordBankModel {
     }
   }
 }
+

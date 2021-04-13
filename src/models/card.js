@@ -37,8 +37,8 @@ export default class Card {
       } else {
         this.show = false;
       }
-  
     }
+    
   
   }
   

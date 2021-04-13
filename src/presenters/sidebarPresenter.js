@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SidebarView } from "../views"
 import useModelProp from './useModelProp.js';
+import useBankProp from './useBankProp.js';
 
 export default function SidebarPresenter({model}){
 
@@ -10,12 +11,8 @@ export default function SidebarPresenter({model}){
     const [dropSort, setDropSort] = useState(0);
 
     const banks = useModelProp(model, "banks");
-    const sorts = useModelProp(model, "sorts");
-    const currentBankID = useModelProp(model, "currentBank");
-
-    const currentBank = banks.filter(b => {
-        return b.bankID === currentBankID;
-      })[0]
+    const sortings = useModelProp(model, "sortings");
+    const tags = useBankProp(model, "tags");
 
     return <SidebarView
         open={open} setOpen={setOpen}
@@ -23,14 +20,14 @@ export default function SidebarPresenter({model}){
         dropFilter={dropFilter} setDropFilter={setDropFilter}
         dropSort={dropSort} setDropSort={setDropSort}
         onFilter={(tag) => model.filterOnTag(tag)}
-        onSort={(sorting) => 
-                sorts.filter(s => {
-                    return s.sorting === sorting;
+        onSort={(chosenSorting) => 
+                sortings.filter((sorting) => {
+                    return sorting.name === chosenSorting;
                 })[0].func()
         }
-        currentBank={currentBank}
-        sorts={sorts}
+        sortings={sortings}
         banks={banks}
+        tags={tags}
         onSelectBank={(bankID) => model.setCurrentBank(bankID)}        
     />
 }
