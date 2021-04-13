@@ -19,6 +19,7 @@ export default function CardPresenter(props) {
 
     // State and funcitos for handeling card info popup
     const [modalIsOpen, setIsOpen] = React.useState(false);
+    
     function openModal() {
         setIsOpen(true);
     }
@@ -43,7 +44,7 @@ export default function CardPresenter(props) {
                  }} */
                 onCardPress={openModal}
             /> : <div><p> NEJ SHOW</p></div>}
-            <CardInfoPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} card={props.card} model={props.model} />
+            <CardInfoPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} card={props.card} model={props.model} boardID={props.boardID} />
         </>
 
     );
