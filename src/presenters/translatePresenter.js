@@ -25,9 +25,9 @@ const TranslatePresenter = ({ model }) => {
       //model.createCard(phrase, translation, id, tag);
    // } else {
     //  console.log("please choose a tag");
-   // }
+   // }};
 
-  };
+  
 //
   // Used to controll the dropdown of possible boards to save to
 

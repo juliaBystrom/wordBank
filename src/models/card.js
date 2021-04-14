@@ -1,5 +1,4 @@
 export default class Card {
-
     constructor(id, commentOnS, leftS, rightS, givenTag) {
 
         this.id = id;
@@ -29,5 +28,7 @@ export default class Card {
         this.checked = false;
       }
     }
+    
+  
   }
-}
+  
