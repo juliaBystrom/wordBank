@@ -14,19 +14,19 @@ export function persistence(model) {
         window.db
           .collection("users")
           .doc(String(model.userID))
-          .set({ activeBankID: String(model.currentBank) })
+          .set({ activeBankID: String(model.activeBankID) })
           .then(
             model.banks.forEach((bank) => {
               window.db
                 .collection("users")
                 .doc(String(model.userID))
                 .collection("banks")
-                .doc(String(bank.bankID))
+                .doc(String(bank.id))
                 .set({
                   languageFrom: bank.languageFrom,
                   languageTo: bank.languageTo,
                   tags: bank.tags.map((tag) => {
-                    return String(tag.tag);
+                    return String(tag.name);
                   }),
                 })
                 .then(
@@ -35,9 +35,9 @@ export function persistence(model) {
                       .collection("users")
                       .doc(String(model.userID))
                       .collection("banks")
-                      .doc(String(bank.bankID))
+                      .doc(String(bank.id))
                       .collection("boards")
-                      .doc(String(board.boardID))
+                      .doc(String(board.id))
                       .set({ title: board.title })
 
                       .then(
@@ -46,15 +46,14 @@ export function persistence(model) {
                             .collection("users")
                             .doc(String(model.userID))
                             .collection("banks")
-                            .doc(String(bank.bankID))
+                            .doc(String(bank.id))
                             .collection("boards")
-                            .doc(String(board.boardID))
+                            .doc(String(board.id))
                             .collection("cards")
-                            .doc(String(card.cardID))
+                            .doc(String(card.id))
                             .set({
                               leftSentence: card.leftSentence,
                               rightSentence: card.rightSentence,
-                              // tag & comment are "undefined" right now. Why? Both are set in testing?
                               tag: card.tag,
                               comment: card.comment,
                             });
