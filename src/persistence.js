@@ -1,91 +1,70 @@
-import {WordBankModel} from "./models/wordBankModel";
+import { WordBankModel } from "./models/wordBankModel";
 
 /**
  * Lägger till Observers till modellen som uppdaterar databasen när modellens state ändras.
- * Kan behövas separata implementationer för olika delar av modellen. 
+ * Kan behövas separata implementationer för olika delar av modellen.
  */
 
- export function persistence(model) {
-  // Firestore data converter
-  var modelConverter = {
-    toFirestore: function(model) {
-        return {
-            activeBankId: model.activeBankId,
-            userID: model.userID,
-            languageFrom: model.languageFrom,
-            languageTo: model.languageTo,
-            banks: model.banks.map(bank => { 
-              var id = bank.id; 
-              return {id: bank}
-            })
-            };
-
-    },
-    fromFirestore: function(snapshot, options){
-        const data = snapshot.data(options);
-        return new WordBankModel
-        (
-          data.activeBankId,
-          data.userID,
-          data.languageFrom,
-          data.languageTo,
-        );
-    }
-  };
-
-    let loadingFromFirebase = false;
-    let cardNum = 0;
-    model.addObserver(() => {
-      if (!loadingFromFirebase) {
-        setTimeout(() => {
-          window.db
-            .collection("models").doc("123")
-            .withConverter(modelConverter)
-            .set(model)
-            /* .then(() => {
-              model.banks.forEach((bank) => {
-                window.db
-                .collection("models").doc("123")
-                .collection("banks").doc(String(bank.id))
+export function persistence(model) {
+  let loadingFromFirebase = false;
+  let cardNum = 0;
+  model.addObserver(() => {
+    if (!loadingFromFirebase) {
+      setTimeout(() => {
+        window.db
+          .collection("users")
+          .doc(String(model.userID))
+          .set({ activeBankID: String(model.activeBankID) })
+          .then(
+            model.banks.forEach((bank) => {
+              window.db
+                .collection("users")
+                .doc(String(model.userID))
+                .collection("banks")
+                .doc(String(bank.id))
                 .set({
                   languageFrom: bank.languageFrom,
                   languageTo: bank.languageTo,
-                  });
-                  
-                  bank.boards.forEach((board) =>{
+                  tags: bank.tags.map((tag) => {
+                    return String(tag.name);
+                  }),
+                })
+                .then(
+                  bank.boards.forEach((board) => {
                     window.db
-                    .collection("models").doc("123")
-                    .collection("banks").doc(String(bank.id))
-                    .collection("boards").doc(board.id)
-                    .set({
-                      title: board.title
-                      })
+                      .collection("users")
+                      .doc(String(model.userID))
+                      .collection("banks")
+                      .doc(String(bank.id))
+                      .collection("boards")
+                      .doc(String(board.id))
+                      .set({ title: board.title })
+
+                      .then(
+                        board.cards.forEach((card) => {
+                          window.db
+                            .collection("users")
+                            .doc(String(model.userID))
+                            .collection("banks")
+                            .doc(String(bank.id))
+                            .collection("boards")
+                            .doc(String(board.id))
+                            .collection("cards")
+                            .doc(String(card.id))
+                            .set({
+                              leftSentence: card.leftSentence,
+                              rightSentence: card.rightSentence,
+                              // tag & comment are "undefined" right now. Why? Both are set in testing?
+                              tag: card.tag,
+                              comment: card.comment,
+                            });
+                        })
+                      );
                   })
-              }) 
-              }) */
-        }, 1000);
-      }
-    });    
-  }
-
-
-// class User {
-//   constructor (userID, name) {
-//     this.userID = userID;  
-//     this.name = name;
-//   }
-// }
-
-// // Firestore data converter
-// var userConverter = {
-//   toFirestore: function(user) {
-//       return {
-//           userID: user.userID,
-//           name: user.name,
-//           };
-//   },
-//   fromFirestore: function(snapshot, options){
-//       const data = snapshot.data(options);
-//       return new User(user.userID, user.name);
-//   }
-// };
+                );
+            })
+          );
+      }, 1000);
+    }
+  });
+}

@@ -8,7 +8,7 @@ const TranslateWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e0e0e0;
+  background: #55555;
 
   /* 
   display: flex;
@@ -78,7 +78,7 @@ const TagInput = styled.input`
   border-radius: 8px;
   height: 20px;
   padding: 10px;
-  border: none;
+  border: 1px solid;
   font-weight: 600;
 `;
 
@@ -94,9 +94,6 @@ const StyledSelect = styled.select`
 `;
 
 const TranslateView = (props) => {
-  console.log("taaags");
-  console.log(props.tags);
-
   return (
     <TranslateWrapper>
       <div>
@@ -119,11 +116,11 @@ const TranslateView = (props) => {
               props.setLanguage(e.target.value);
             }}
           >
-            {/* {props.languageCodes.map((lang) => (
+            {props.languageCodes.map((lang) => (
               <option key={lang.language} value={lang.language}>
                 {lang.name}
               </option>
-            ))} */}
+            ))}
           </StyledSelect>
         </TitleBox>
         <TextBox value={props.transPhrase}></TextBox>
@@ -148,7 +145,7 @@ const TranslateView = (props) => {
         ></TagInput>
         <datalist onChange={() => console.log("set a tag")} id="taglist">
           {props.tags.map((opt) => (
-            <option value={Number(opt.id)}>{opt.tag}</option>
+            <option key={Number(opt.id)}>{opt.tag}</option>
           ))}
         </datalist>
       </ButtonContainer>
