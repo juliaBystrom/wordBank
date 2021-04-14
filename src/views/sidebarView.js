@@ -24,7 +24,7 @@ export default function SidebarView(props){
                     <label>
                     <DropdownItem drop={props.dropBanks}>
                         <input type="radio" name="bank"
-                        onClick={()=>props.onSelectBank(bank.bankID)}/>
+                        onClick={()=>props.onSelectBank(bank.id)}/>
                         {bank.languageFrom} - {bank.languageTo}
                     </DropdownItem>
                     </label>
@@ -34,12 +34,12 @@ export default function SidebarView(props){
                     <span aria-label="Filter on tags"></span>
                     Filter on tags
                 </Dropdown>
-                {props.tags.map((t) => (
+                {props.tags.map((tag) => (
                     <label>
                     <DropdownItem drop={props.dropFilter}>
-                        <input type="checkbox" name={t.tag}
-                            onClick={()=>props.onFilter(t.tag)}/>
-                        {t.tag}
+                        <input type="checkbox" name={tag.tag}
+                            onClick={()=>props.onFilter(tag.tag)}/>
+                        {tag.tag}
                     </DropdownItem>
                     </label>
                 ))}

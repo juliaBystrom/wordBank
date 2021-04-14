@@ -38,7 +38,7 @@ const DropdownComponent = ({ list, title, open, toggle, onSelectionDone }) => {
             {open && (
                 <DropdownComponentItem>
                     {list.map(item => (
-                        <li key={item.boardID}>
+                        <li key={item.id}>
                             <button type="button" onClick={(e) => {
                                 console.log("pressed button with item: ");
                                 console.log(item.title);

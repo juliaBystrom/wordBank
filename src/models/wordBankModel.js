@@ -3,65 +3,39 @@ import Bank from "./bank";
 
 
 export class WordBankModel {
-  constructor(testing) {
-    // super(props);
-    if (testing) {
-      console.log("testing is true ...");
-      this.currentBank = 0;
-      this.banks = [new Bank(0, true), new Bank(1, true)];
+  constructor() {
+
+      this.activeBankId = 0;
+      this.banks = [new Bank(0)];
       this.observers = [];
       this.userID = 123;
-      this.languageFrom = LANGUAGES.SWE;
-      this.languageTo = LANGUAGES.ENG;
-      this.isTesting = true;
       this.keyCountBoards = 3;
       this.sortings = [
         { name: "Latest edited", func: () => this.sortLatestEdited() },
         { name: "Most used", func: () => this.sortMostUsed() },
       ];
-
-      //test data
-      // this.currentPhrase = "";
-      // this.currentTranslation = "je suis un chat"
-      // this.currentTag = "";
-      this.tags = ["noun", "verb", "restaurant", "etc"];
-      this.uid = 1;
       this.transPhrase = "";
       this.toLanguage = "en";
-    } else {
-      this.currentBank = null;
-      this.banks = [];
-      this.observers = [];
-      this.userID = null;
-      this.languageFrom = null;
-      this.languageTo = null;
-      this.isTesting = false;
-      this.keyCountBoards = 0;
-    }
-
-    // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
-    this.getKeyBoards = this.getKeyBoards.bind(this);
-    this.keyCountBanks = 0;
-    this.getKeyBanks = this.getKeyBanks.bind(this);
+      // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
+      this.getKeyBoards = this.getKeyBoards.bind(this);
+      this.keyCountBanks = 0;
+      this.getKeyBanks = this.getKeyBanks.bind(this);
   }
 
   toString() {
-    return  this.currentBank + ', '
+    return  this.activeBankId + ', '
           + this.userID + ', '
           + this.languageFrom + ', '
           + this.languageTo;
-          // + this.observers + ', '
-          //  + ', '
-          // + this.sorts;
   }
-  setCurrentBank(bankID){
-    this.currentBank = bankID;
+  setCurrentBank(id){
+    this.activeBankId = id;
     this.notifyObservers();
   }
 
   getCurrentBank() {
-    return this.banks.filter((b) => {
-      return b.bankID === this.currentBank;
+    return this.banks.filter((bank) => {
+      return bank.id === this.activeBankId;
     })[0];
   }
 
@@ -81,20 +55,19 @@ export class WordBankModel {
     console.log("translate: " + phrase);
   }
 
-
   createCard(phrase, translation, saveToBoardId, tag) {
     console.log(
       "will create a card with phrase: " +
         phrase +
         "\n  translation: " +
         translation +
-        " \n tag: " +
+        " \n name: " +
         tag +
         " \n save to board: " +
         saveToBoardId
     );
 
-    this.banks[this.currentBank].createCard(
+    this.banks[this.activeBankId].createCard(
       phrase,
       translation,
       saveToBoardId,
@@ -115,19 +88,6 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  /*   setPhrase(phrase) {
-      this.currentPhrase = phrase;
-    } */
-
-  // Commented out testing funciton for addTag. It breaks the use of this class original addTag
-  /*   addTag(tag){
-      this.tags=[...this.tags, tag];
-    } */
-
-  /*   setTag(tag) {
-      this.currentTag = tag;
-    } */
-
   setToLanguage(newLanguage) {
     this.toLanguage = newLanguage;
     this.notifyObservers();
@@ -144,7 +104,7 @@ export class WordBankModel {
 
   addBoard(name) {
     // TODO Networking to add newboard
-    this.banks[this.currentBank].addBoard(name, this.getKeyBoards());
+    this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
 
     this.notifyObservers();
   }
@@ -156,19 +116,19 @@ export class WordBankModel {
 
   */
 
-  addTag(tagName) {
-    this.banks[this.currentBank].addTag(tagName);
+  addTag(name) {
+    this.banks[this.activeBankId].addTag(name);
     this.notifyObservers();
   }
 
   //
-  editTag(tagName, newTagName) {
-    this.banks[this.currentBank].editTag(tagName, newTagName);
+  editTag(name, newTagNameName) {
+    this.banks[this.activeBankId].editTag(name, newTagNameName);
     this.notifyObservers();
   }
 
-  filterOnTag(tagName) {
-    this.banks[this.currentBank].filterOnTag(tagName);
+  filterOnTag(name) {
+    this.banks[this.activeBankId].filterOnTag(name);
     this.notifyObservers();
   }
 
