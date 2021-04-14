@@ -3,23 +3,18 @@ import Card from "./card";
 
 export default class Bank {
     constructor(id) {
-  
       this.id = id;
-      this.boards = [];
+      this.boards = [new Board("My First Board", 0, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })];
       this.languageFrom = "Swedish";
       this.languageTo = "English";
-      this.tags = [ { id: 0, name: "Verb", checked: false },
-                  ];
+      this.tags = [ { id: 0, name: "Verb", checked: false }];
       // Keeps track if no tags is choosed for filter
       this.bankIsFiltered = true;
-
       this.idCountCards = 0;
       this.idCountTags = 2;
       this.getIdCards = this.getIdCards.bind(this);
       // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
       this.getIdTags = this.getIdTags.bind(this);
-
-
     }
   
     sortLatestEdited(){

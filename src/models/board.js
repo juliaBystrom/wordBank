@@ -3,7 +3,7 @@ import Card from "./card";
 export default class Board {
     constructor(title, id) {
         this.id = id;
-        this.cards = [];
+        this.cards = [new Card(0, "", "Hej världen!", "Hello world!", "Greeting")];
         this.title = title;
     }
   
