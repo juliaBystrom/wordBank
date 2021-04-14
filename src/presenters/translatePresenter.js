@@ -27,7 +27,7 @@ const TranslatePresenter = ({ model }) => {
     //  console.log("please choose a tag");
    // }
 
-  };
+  //};
 //
   // Used to controll the dropdown of possible boards to save to
 

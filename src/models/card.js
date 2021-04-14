@@ -29,5 +29,4 @@ export default class Card {
         this.checked = false;
       }
     }
-  }
 }
