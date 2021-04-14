@@ -46,7 +46,7 @@ export default class Bank {
       // Obs only testing version. Outerwise if not testing the last is not needed
       this.boards = [
         ...this.boards,
-        new Board(name, true, id, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })
+        new Board(name, id, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })
       ];
     }
   
@@ -120,10 +120,10 @@ export default class Bank {
   
   
     createCard(phrase, translation, saveToBoardId, tag) {
-      var boardIndex = this.boards.findIndex((boardObject) => {
-        return boardObject.id === Number(saveToBoardId);
+      var boardIndex = this.boards.findIndex((board) => {
+        return board.id === Number(saveToBoardId);
       });
-      this.boards[boardIndex].addCard(new Card(true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
+      this.boards[boardIndex].addCard(new Card(this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
     }
   
   }

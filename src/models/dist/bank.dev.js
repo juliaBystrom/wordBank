@@ -28,52 +28,33 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var Bank =
 /*#__PURE__*/
 function () {
-  function Bank(id, testing) {
+  function Bank(id) {
     _classCallCheck(this, Bank);
-
-    // super(props);
+    this.id = id;
     this.idCountCards = 0;
+    this.idCountTags = 0;
     this.getIdCards = this.getIdCards.bind(this);
-
-    if (testing) {
-      this.id = id;
-      this.boards = [new _board["default"]("Board1", true, 0, {
-        0: this.getIdCards(),
-        1: this.getIdCards(),
-        2: this.getIdCards()
-      }), new _board["default"]("Board2", true, 1, {
-        0: this.getIdCards(),
-        1: this.getIdCards(),
-        2: this.getIdCards()
-      }), new _board["default"]("Board3", true, 2, {
-        0: this.getIdCards(),
-        1: this.getIdCards(),
-        2: this.getIdCards()
-      })];
-      this.reverseTranslate = false;
-      this.testingBank = true;
-      this.languageFrom = "Swedish";
-      this.languageTo = "English";
-      this.tags = [{
-        id: 0,
-        name: "Verb",
-        checked: false
-      }]; // Keeps track if no tags is choosed for filter
-
-      this.bankIsFiltered = true;
-      this.idCountTags = 2;
-    } else {
-      this.id = 0;
-      this.boards = [];
-      this.reverseTranslate = false;
-      this.testingBank = false;
-      this.tags = []; // Keeps track if no tags is choosed for filter
-
-      this.bankIsFiltered = true;
-      this.idCountTags = 0;
-    } // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
-
-
+    this.boards = [new _board["default"]("Board1", 0, {
+      0: this.getIdCards(),
+      1: this.getIdCards(),
+      2: this.getIdCards()
+    }), new _board["default"]("Board2", 1, {
+      0: this.getIdCards(),
+      1: this.getIdCards(),
+      2: this.getIdCards()
+    }), new _board["default"]("Board3", 2, {
+      0: this.getIdCards(),
+      1: this.getIdCards(),
+      2: this.getIdCards()
+    })];
+    this.languageFrom = "Swedish";
+    this.languageTo = "English";
+    this.tags = [{
+      id: 0,
+      name: "Verb",
+      checked: false
+    }]; // Keeps track if no tags is choosed for filter
+    this.bankIsFiltered = true;
     this.getIdTags = this.getIdTags.bind(this);
   }
 
@@ -105,7 +86,7 @@ function () {
     key: "addBoard",
     value: function addBoard(name, id) {
       // Obs only testing version. Outerwise if not testing the last is not needed
-      this.boards = [].concat(_toConsumableArray(this.boards), [new _board["default"](name, true, id, {
+      this.boards = [].concat(_toConsumableArray(this.boards), [new _board["default"](name, id, {
         0: this.getIdCards(),
         1: this.getIdCards(),
         2: this.getIdCards()

@@ -11,7 +11,7 @@ import SidebarPresenter from "./presenters/sidebarPresenter";
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
-  const model = new WordBankModel(true);
+  const model = new WordBankModel();
   persistence(model);
 
   return (

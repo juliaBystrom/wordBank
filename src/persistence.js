@@ -54,7 +54,6 @@ export function persistence(model) {
                             .set({
                               leftSentence: card.leftSentence,
                               rightSentence: card.rightSentence,
-                              // tag & comment are "undefined" right now. Why? Both are set in testing?
                               tag: card.tag,
                               comment: card.comment,
                             });

@@ -1,4 +1,3 @@
-import { LANGUAGES } from "../shared";
 import Bank from "./bank";
 
 
