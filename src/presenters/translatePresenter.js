@@ -7,36 +7,32 @@ import useModelProp from "./useModelProp";
 const TranslatePresenter = ({ model }) => {
   const [phrase, setPhrase] = React.useState("");
   const [tag, setTag] = React.useState("");
-
-  // To be used until api is fixed
-  const translation = "dummy translation";
-
+  let transPhrase = useModelProp(model, "transPhrase");
+  let toLanguage = useModelProp(model, "toLanguage");
 
   // Used to create the data list of boards to choose from
 
   const boards = useBankProp(model, "boards");
 
-
   // Used to create the tags list of boards to choose from
   const tags = useBankProp(model, "tags");
-
-
-  const createTranslationCard = (boardID) => {
-    // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
-    if (tag) {
-      model.addTag(tag);
-      model.createCard(phrase, translation, boardID, tag);
-    } else {
-      console.log("please choose a tag");
-    }
-
-  };
 
   // Used to controll the dropdown of possible boards to save to
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
   const [selected, setSelectd] = useState(0);
+
+  const createTranslationCard = (boardID) => {
+    if (!tag) {
+      console.log("choose a tag");
+    } else if (!transPhrase) {
+      console.log("translate first");
+    } else {
+      model.addTag(tag);
+      model.createCard(phrase, transPhrase, boardID, tag);
+    }
+  };
 
   const [languageCodes, setLanguageCodes] = useState([]);
 
@@ -48,9 +44,6 @@ const TranslatePresenter = ({ model }) => {
       getLanguageCodes(languageCodes);
     });
   }, []);
-
-  let transPhrase = useModelProp(model, "transPhrase");
-  let toLanguage = useModelProp(model, "toLanguage");
 
   return (
     <TranslateView
