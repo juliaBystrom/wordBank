@@ -1,7 +1,6 @@
 import { LANGUAGES } from "../shared";
 import Bank from "./bank";
 
-
 export class WordBankModel {
   constructor(testing) {
     // super(props);
@@ -46,15 +45,29 @@ export class WordBankModel {
   }
 
   toString() {
-    return  this.currentBank + ', '
-          + this.userID + ', '
-          + this.languageFrom + ', '
-          + this.languageTo;
-          // + this.observers + ', '
-          //  + ', '
-          // + this.sorts;
+    return (
+      this.currentBank + ", " + this.userID + ", " + this.languageFrom + ", " + this.languageTo
+    );
+    // + this.observers + ', '
+    //  + ', '
+    // + this.sorts;
   }
-  setCurrentBank(bankID){
+
+  // SignUp action
+  createUserModel(userId) {
+    this.userID = userId;
+    console.log(this.userID);
+    this.notifyObservers();
+  }
+
+  // SignIn action
+  setCurrentUser(userId) {
+    this.userID = userId;
+    console.log(this.userID);
+    this.notifyObservers();
+  }
+
+  setCurrentBank(bankID) {
     this.currentBank = bankID;
     this.notifyObservers();
   }
@@ -76,11 +89,9 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-
   translate(phrase) {
     console.log("translate: " + phrase);
   }
-
 
   createCard(phrase, translation, saveToBoardId, tag) {
     console.log(
@@ -94,15 +105,9 @@ export class WordBankModel {
         saveToBoardId
     );
 
-    this.banks[this.currentBank].createCard(
-      phrase,
-      translation,
-      saveToBoardId,
-      tag
-    );
+    this.banks[this.currentBank].createCard(phrase, translation, saveToBoardId, tag);
 
     this.notifyObservers();
-
   }
   //Testkod ----------------------------------
   setPhrase(phrase) {
@@ -187,7 +192,7 @@ export class WordBankModel {
     });
   }
 
- notifyObservers() {
+  notifyObservers() {
     if (this.observers) {
       this.observers.forEach((cb) => {
         try {
@@ -199,4 +204,3 @@ export class WordBankModel {
     }
   }
 }
-

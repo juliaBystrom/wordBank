@@ -1,7 +1,6 @@
 import React from "react";
 import { BankView, AddBoardView } from "../views";
 
-
 /*
     BoardsWrapperPresenter 
 
@@ -12,7 +11,6 @@ import { BankView, AddBoardView } from "../views";
 */
 export default function BoardsWrapperPresenter(props) {
   const [newBoardName, setNewBoardName] = React.useState("");
-
 
   return (
     <BankView>

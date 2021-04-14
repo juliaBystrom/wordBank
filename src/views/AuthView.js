@@ -98,12 +98,12 @@ export const AuthView = ({
           pattern="^[a-zA-Z0-9]{3,24}$"
         />
         <Error>{passwordError}</Error>
-        <AuthButton type="submit" value="Login" />
+        <AuthButton type="submit" defaultValue="Login" />
       </LoginContainer>
 
       <AuthButton
         type="button"
-        value="Register"
+        defaultValue="Register"
         onClick={() => {
           handleRegister();
         }}
