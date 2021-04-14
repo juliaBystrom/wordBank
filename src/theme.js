@@ -15,5 +15,16 @@ export const theme = {
     hover: '#d14b68',
     mobile: '576px',
     testBorder: '#ffdb3b',
+
+    midnightgreen: '#114b5f',
+    queenblue: '#445E93',
+    nyanza: '#e4fde1',
+    fieryrose: '#f45b69',
+    wine: '#6b2737',
+    blanchedalmond: '#fcecc9',
+    alabaster: '#F7F4EA',
+    lightpink: '#fcb0b3',
+    coral: '#FF8A5B',
+
     showTestBorders: false,
   }

@@ -29,7 +29,7 @@ const Button = styled.button`
   color: black;
   font-weight: 600;
   padding: 0.25em 1em;
-  background-color: springgreen;
+  background-color: ${props => props.theme.queenblue};
   border-radius: 8px;
   height: 40px;
   width: 200px;
@@ -51,7 +51,7 @@ const TitleBox = styled.div`
   border-radius: 1px;
   height: 10px;
   text-align: center;
-  background-color: beige;
+  background-color: ${props => props.theme.alabaster};
   font-family: serif, Times;
   font-size: 20px;
   padding: 20px;

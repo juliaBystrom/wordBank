@@ -9,7 +9,7 @@ const Menu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: ${props => props.theme.medium};
+  background-color: ${props => props.theme.alabaster};
   box-shadow: 0.5px 0.5px 15px #c4c2c2;
   height: 100vh;
   text-align: left;

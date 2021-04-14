@@ -4,7 +4,7 @@ export const Dropdown = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: ${props => props.theme.dark};
+  background: ${props => props.theme.queenblue};
   text-align: left;
   padding: 1rem 1.5rem 1rem 1.5rem;
   width: 170px;
@@ -15,7 +15,7 @@ export const Dropdown = styled.nav`
   z-index: 10;
   font-size: 1rem;
   font-weight: regular;
-  color: ${props => props.theme.darkText};
+  color: white;
   text-decoration: none;
   transition: color 0.3s linear;
   

@@ -5,7 +5,7 @@ const BankWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  background-color: ${props => props.theme.main};
+  background-color: ${props => props.theme.alabaster};
   border: 2px ${props => (props.theme.showTestBorders ? "solid" : "hidden")} ${props => props.theme.testBorder};
   height: 400px;
   overflow-x: scroll;
