@@ -40,6 +40,7 @@ Features that are planned to be implemented:
 - Translate by pressing 'enter'
 - Add comment on creation of card
 - Choose language to translate FROM
+- Edit board and tag names
 - Overall styling and UX
 
 ### File structure
