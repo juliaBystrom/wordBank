@@ -119,11 +119,11 @@ const TranslateView = (props) => {
               props.setLanguage(e.target.value);
             }}
           >
-            {/* {props.languageCodes.map((lang) => (
+            {props.languageCodes.map((lang) => (
               <option key={lang.language} value={lang.language}>
                 {lang.name}
               </option>
-            ))} */}
+            ))}
           </StyledSelect>
         </TitleBox>
         <TextBox value={props.transPhrase}></TextBox>
