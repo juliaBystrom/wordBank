@@ -6,8 +6,8 @@ export const Dropdown = styled.nav`
   justify-content: center;
   background: ${props => props.theme.dark};
   text-align: left;
-  padding: 1rem;
-  width: 150px;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  width: 170px;
   top: 0;
   left: 0;
   transition: transform 0.2s ease-in-out;
