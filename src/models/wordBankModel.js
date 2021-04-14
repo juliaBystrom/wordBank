@@ -1,33 +1,55 @@
 import Bank from "./bank";
 
-
 export class WordBankModel {
   constructor() {
-
-      this.activeBankId = 0;
-      this.banks = [new Bank(0)];
-      this.observers = [];
-      this.userID = 123;
-      this.keyCountBoards = 3;
-      this.sortings = [
-        { name: "Latest edited", func: () => this.sortLatestEdited() },
-        { name: "Most used", func: () => this.sortMostUsed() },
-      ];
-      this.transPhrase = "";
-      this.toLanguage = "en";
-      // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
-      this.getKeyBoards = this.getKeyBoards.bind(this);
-      this.keyCountBanks = 0;
-      this.getKeyBanks = this.getKeyBanks.bind(this);
+    this.activeBankId = 0;
+    this.banks = [new Bank(0)];
+    this.observers = [];
+    this.userID = 123;
+    this.keyCountBoards = 3;
+    this.sortings = [
+      { name: "Latest edited", func: () => this.sortLatestEdited() },
+      { name: "Most used", func: () => this.sortMostUsed() },
+    ];
+    this.transPhrase = "";
+    this.toLanguage = "en";
+    // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
+    this.getKeyBoards = this.getKeyBoards.bind(this);
+    this.keyCountBanks = 0;
+    this.getKeyBanks = this.getKeyBanks.bind(this);
   }
 
   toString() {
+    return (
+      this.currentBank + ", " + this.userID + ", " + this.languageFrom + ", " + this.languageTo
+    );
+    // + this.observers + ', '
+    //  + ', '
+    // + this.sorts;
+  }
+
+  // SignUp action
+  createUserModel(userId) {
+    this.userID = userId;
+    console.log(this.userID);
+    this.notifyObservers();
+  }
+
+  // SignIn action
+  setCurrentUser(userId) {
+    this.userID = userId;
+    console.log(this.userID);
+    this.notifyObservers();
+  }
+
+  /* setCurrentBank(bankID) {
+    this.currentBank = bankID;
     return  this.activeBankId + ', '
           + this.userID + ', '
           + this.languageFrom + ', '
           + this.languageTo;
-  }
-  setCurrentBank(id){
+  } */
+  setCurrentBank(id) {
     this.activeBankId = id;
     this.notifyObservers();
   }
@@ -49,7 +71,6 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-
   translate(phrase) {
     console.log("translate: " + phrase);
   }
@@ -66,15 +87,9 @@ export class WordBankModel {
         saveToBoardId
     );
 
-    this.banks[this.activeBankId].createCard(
-      phrase,
-      translation,
-      saveToBoardId,
-      tag
-    );
+    this.banks[this.activeBankId].createCard(phrase, translation, saveToBoardId, tag);
 
     this.notifyObservers();
-
   }
   //Testkod ----------------------------------
   setPhrase(phrase) {
@@ -146,7 +161,7 @@ export class WordBankModel {
     });
   }
 
- notifyObservers() {
+  notifyObservers() {
     if (this.observers) {
       this.observers.forEach((cb) => {
         try {
@@ -158,4 +173,3 @@ export class WordBankModel {
     }
   }
 }
-

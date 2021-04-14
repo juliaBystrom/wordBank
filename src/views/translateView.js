@@ -8,7 +8,7 @@ const TranslateWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #55555;
+  background: "#55555";
 
   /* 
   display: flex;
@@ -123,32 +123,40 @@ const TranslateView = (props) => {
             ))}
           </StyledSelect>
         </TitleBox>
-        <TextBox value={props.transPhrase}></TextBox>
+        <TextBox defaultValue={props.transPhrase}></TextBox>
       </div>
-      <ButtonContainer>
-        <Button onClick={() => props.translate()}>Translate!</Button>
+      {
+        <ButtonContainer>
+          <Button onClick={() => props.translate()}>Translate!</Button>
 
-        <DropdownComponent
-          list={props.availableBoards}
-          title={"Save to"}
-          open={props.openSelector}
-          toggle={() => props.toggle()}
-          onSelectionDone={(board) => props.saveToBoard(board)}
-        />
+          {props.model.userID !== 123 ? (
+            <span>
+              <DropdownComponent
+                list={props.availableBoards}
+                title={"Save to"}
+                open={props.openSelector}
+                toggle={() => props.toggle()}
+                onSelectionDone={(board) => props.saveToBoard(board)}
+              />
 
-        <TagInput
-          onChange={(event) => props.setTag(event.target.value)}
-          type="text"
-          name="tag"
-          list="taglist"
-          placeholder="Tag:"
-        ></TagInput>
-        <datalist onChange={() => console.log("set a tag")} id="taglist">
-          {props.tags.map((opt) => (
-            <option key={Number(opt.id)}>{opt.tag}</option>
-          ))}
-        </datalist>
-      </ButtonContainer>
+              <TagInput
+                onChange={(event) => props.setTag(event.target.value)}
+                type="text"
+                name="tag"
+                list="taglist"
+                placeholder="Tag:"
+              ></TagInput>
+            </span>
+          ) : (
+            ""
+          )}
+          <datalist onChange={() => console.log("set a tag")} id="taglist">
+            {props.tags.map((opt) => (
+              <option key={Number(opt.id)}>{opt.tag}</option>
+            ))}
+          </datalist>
+        </ButtonContainer>
+      }
     </TranslateWrapper>
   );
 };

@@ -59,6 +59,7 @@ const TranslatePresenter = ({ model }) => {
 
   return (
     <TranslateView
+      model={model}
       languageCodes={languageCodes}
       transPhrase={transPhrase}
       fromLanguage={model.languageFrom}
@@ -68,15 +69,11 @@ const TranslatePresenter = ({ model }) => {
         console.log(toLanguage);
       }}
       translate={() => {
-        googleTranslate.translate(
-          phrase,
-          toLanguage,
-          function (err, translation) {
-            console.log(phrase);
-            model.setTransPhrase(translation.translatedText);
-            console.log(translation.translatedText);
-          }
-        );
+        googleTranslate.translate(phrase, toLanguage, function (err, translation) {
+          console.log(phrase);
+          model.setTransPhrase(translation.translatedText);
+          console.log(translation.translatedText);
+        });
       }}
       tags={tags}
       setPhrase={(phrase) => {
