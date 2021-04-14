@@ -36,7 +36,7 @@ function () {
     this.getIdCards = this.getIdCards.bind(this);
 
     if (testing) {
-      this.bankID = id;
+      this.id = id;
       this.boards = [new _board["default"]("Board1", true, 0, {
         0: this.getIdCards(),
         1: this.getIdCards(),
@@ -56,20 +56,20 @@ function () {
       this.languageTo = "English";
       this.tags = [{
         id: 0,
-        tag: "Verb",
-        show: false
+        name: "Verb",
+        checked: false
       }]; // Keeps track if no tags is choosed for filter
 
-      this.showAllCards = true;
+      this.bankIsFiltered = true;
       this.idCountTags = 2;
     } else {
-      this.bankID = 0;
+      this.id = 0;
       this.boards = [];
       this.reverseTranslate = false;
       this.testingBank = false;
       this.tags = []; // Keeps track if no tags is choosed for filter
 
-      this.showAllCards = true;
+      this.bankIsFiltered = true;
       this.idCountTags = 0;
     } // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
 
@@ -118,7 +118,7 @@ function () {
      
       addTag, editTag and filterOnTag is used by being called in the WordBankModel
     
-      Theese functions add tags, edit tagnames and update the show value of tags by interacting with this.tags of this Bank objects. 
+      Theese functions add tags, edit tagnames and update the checked value of tags by interacting with this.tags of this Bank objects. 
     
      
     */
@@ -126,79 +126,79 @@ function () {
 
   }, {
     key: "addTag",
-    value: function addTag(tagName) {
-      if (!this.tags.includes(tagName)) {
+    value: function addTag(name) {
+      if (!this.tags.includes(name)) {
         this.tags = [].concat(_toConsumableArray(this.tags), [{
           id: this.getIdTags(),
-          tag: tagName,
-          show: false
+          name: name,
+          checked: false
         }]);
       } else {// console.log("[Info from model]: Tag already exist. No new tag created");
       }
     }
   }, {
     key: "editTag",
-    value: function editTag(tagName, newTag) {
-      this.tags.map(function (t) {
-        return t.tag !== tagName ? t : {
-          id: t.id,
-          tag: newTag,
-          show: t.show
+    value: function editTag(name, newTagName) {
+      this.tags.map(function (tag) {
+        return tag.name!== name ? tag : {
+          id: tag.id,
+          name: newTagName,
+          checked: tag.checked
         };
       });
     }
     /* 
-      Toggles the value of tag with tagName
-      It does also count how many tags have show: true
-      If nrOfShow is 0 then no tags is curently being filtred which put the this.showAllCards to true
+      Toggles the value of tag with name
+      It does also count how many tags have checked: true
+      If checkedTags is 0 then no tags is curently being filtred which put the this.bankIsFiltered to true
     
     */
 
   }, {
     key: "filterOnTag",
-    value: function filterOnTag(tagName) {
+    value: function filterOnTag(name) {
       var _this = this;
 
-      // Reset the nrOfShow of variables. This variable will count nr of tags not used for filtering 
-      this.nrOfShow = 0;
-      this.tags.map(function (t) {
-        if (t.tag === tagName) {
-          // Because this is the tag to toggle befroe retuning the inverse value of show is checked for true.
-          if (!t.show) {
-            _this.nrOfShow++;
+      // Reset the checkedTags of variables. This variable will count nr of tags not used for filtering 
+      this.checkedTags = 0;
+      this.tags.map(function (tag) {
+        if (tag.name=== name) {
+          // Because this is the tag to toggle befroe retuning the inverse value of checked is checked for true.
+          if (!tag.checked) {
+            _this.checkedTags++;
           }
 
           return {
-            id: t.id,
-            tag: t.tag,
-            show: !t.show
+            id: tag.id,
+            name: tag.tag,
+            checked: !tag.checked
           };
         } else {
-          if (t.show) {
-            _this.nrOfShow++;
+          if (tag.checked) {
+            _this.checkedTags++;
           }
 
           return t;
         }
       });
 
-      if (this.nrOfShow - this.tags.length === 0) {
-        this.showAllCards = true;
-      } // this.showAllCards = this.nrOfShow === 0;
+      if (this.checkedTags - this.tags.length === 0) {
+        this.bankIsFiltered = true;
+      } // this.bankIsFiltered = this.checkedTags === 0;
 
 
-      console.log("nrOfShow", this.nrOfShow);
-      console.log("Equality assignment:", this.nrOfShow === 0);
+      console.log("checkedTags", this.checkedTags);
+      console.log("Equality assignment:", this.checkedTags === 0);
 
       for (var i = 0; i < this.boards.length; i++) {
-        this.boards[i].filterCards(this.showAllCards, this.tags);
+        this.boards[i].filterCards(this.bankIsFiltered, this.tags);
       }
     }
   }, {
     key: "createCard",
     value: function createCard(phrase, translation, saveToBoardId, tag) {
       var boardIndex = this.boards.findIndex(function (boardObject) {
-        return boardObject.boardID === Number(saveToBoardId);
+        return boardObject.id === Number(saveToBoardId);
       });
       this.boards[boardIndex].addCard(new _card["default"](true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
     }

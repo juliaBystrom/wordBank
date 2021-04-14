@@ -10,12 +10,12 @@ import {WordBankModel} from "./models/wordBankModel";
   var modelConverter = {
     toFirestore: function(model) {
         return {
-            currentBank: model.currentBank,
+            activeBankId: model.activeBankId,
             userID: model.userID,
             languageFrom: model.languageFrom,
             languageTo: model.languageTo,
             banks: model.banks.map(bank => { 
-              var id = bank.bankID; 
+              var id = bank.id; 
               return {id: bank}
             })
             };
@@ -25,7 +25,7 @@ import {WordBankModel} from "./models/wordBankModel";
         const data = snapshot.data(options);
         return new WordBankModel
         (
-          data.currentBank,
+          data.activeBankId,
           data.userID,
           data.languageFrom,
           data.languageTo,
@@ -46,7 +46,7 @@ import {WordBankModel} from "./models/wordBankModel";
               model.banks.forEach((bank) => {
                 window.db
                 .collection("models").doc("123")
-                .collection("banks").doc(String(bank.bankID))
+                .collection("banks").doc(String(bank.id))
                 .set({
                   languageFrom: bank.languageFrom,
                   languageTo: bank.languageTo,
@@ -55,8 +55,8 @@ import {WordBankModel} from "./models/wordBankModel";
                   bank.boards.forEach((board) =>{
                     window.db
                     .collection("models").doc("123")
-                    .collection("banks").doc(String(bank.bankID))
-                    .collection("boards").doc(board.boardID)
+                    .collection("banks").doc(String(bank.id))
+                    .collection("boards").doc(board.id)
                     .set({
                       title: board.title
                       })

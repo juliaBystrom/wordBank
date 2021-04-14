@@ -28,7 +28,7 @@ export default function SidebarPresenter({model}){
         sortings={sortings}
         banks={banks}
         tags={tags}
-        onSelectBank={(bankID) => model.setCurrentBank(bankID)}        
+        onSelectBank={(id) => model.setCurrentBank(id)}        
     />
 }
 

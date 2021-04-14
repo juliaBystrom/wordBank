@@ -21,11 +21,11 @@ const TranslatePresenter = ({ model }) => {
   const tags = useBankProp(model, "tags");
 
 
-  const createTranslationCard = (boardID) => {
+  const createTranslationCard = (id) => {
     // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
     if (tag) {
       model.addTag(tag);
-      model.createCard(phrase, translation, boardID, tag);
+      model.createCard(phrase, translation, id, tag);
     } else {
       console.log("please choose a tag");
     }
@@ -82,8 +82,8 @@ const TranslatePresenter = ({ model }) => {
         // This prop is unecesarry but keept to not breaking anything
         createTranslationCard();
       }}
-      setTag={(newTag) => {
-        setTag(newTag);
+      setTag={(newTagName) => {
+        setTag(newTagName);
       }}
       saveToBoard={(board) => {
         // Will close when selected
@@ -91,9 +91,9 @@ const TranslatePresenter = ({ model }) => {
         setOpen(!open);
 
         // Use state resets to 0 no use
-        setSelectd(board.boardID);
+        setSelectd(board.id);
 
-        createTranslationCard(board.boardID);
+        createTranslationCard(board.id);
         // Should remove text etc now
       }}
       availableBoards={boards}

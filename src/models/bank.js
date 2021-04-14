@@ -4,14 +4,14 @@ import Card from "./card";
 export default class Bank {
     constructor(id) {
   
-      this.bankID = id;
+      this.id = id;
       this.boards = [];
       this.languageFrom = "Swedish";
       this.languageTo = "English";
-      this.tags = [ { id: 0, tag: "Verb", show: false },
+      this.tags = [ { id: 0, name: "Verb", checked: false },
                   ];
       // Keeps track if no tags is choosed for filter
-      this.showAllCards = true;
+      this.bankIsFiltered = true;
 
       this.idCountCards = 0;
       this.idCountTags = 2;
@@ -57,46 +57,46 @@ export default class Bank {
      
       addTag, editTag and filterOnTag is used by being called in the WordBankModel
     
-      Theese functions add tags, edit tagnames and update the show value of tags by interacting with this.tags of this Bank objects. 
+      Theese functions add tags, edit tagnames and update the checked value of tags by interacting with this.tags of this Bank objects. 
     
      
     */
   
     // Add tage will first check if the tag already exist. If not it will add it. Else it will just do a console log
-    addTag(tagName) {
-      if (!this.tags.includes(tagName)) {
-        this.tags = [...this.tags, { id: this.getIdTags(), tag: tagName, show: false }];
+    addTag(name) {
+      if (!this.tags.includes(name)) {
+        this.tags = [...this.tags, { id: this.getIdTags(), name: name, checked: false }];
       } else {
         // console.log("[Info from model]: Tag already exist. No new tag created");
       }
     }
   
-    editTag(tagName, newTag) {
+    editTag(name, newTagName) {
   
-      this.tags.map((t) => {
-        return t.tag !== tagName ? t : { id: t.id, tag: newTag, show: t.show };
+      this.tags.map((tag) => {
+        return tag.name!== name ? tag : { id: tag.id, name: newTagName, checked: tag.checked };
   
       })
   
     }
   
     /* 
-      Toggles the value of tag with tagName
-      It does also count how many tags have show: true
-      If nrOfShow is 0 then no tags is curently being filtred which put the this.showAllCards to true
+      Toggles the value of tag with name
+      It does also count how many tags have checked: true
+      If checkedTags is 0 then no tags is curently being filtred which put the this.bankIsFiltered to true
     
     */
-    filterOnTag(tagName) {
+    filterOnTag(name) {
 
       // Check or uncheck tag.
-      this.tags.map((t) => {
-        if (t.tag === tagName) {
-          if (!t.show) {
-            t.show = true;
-            this.nrOfShow++;
-          } else if (t.show) {
-            t.show = false;
-            this.nrOfShow--;
+      this.tags.map((tag) => {
+        if (tag.name === name) {
+          if (!tag.checked) {
+            tag.checked = true;
+            this.checkedTags++;
+          } else if (tag.checked) {
+            tag.checked = false;
+            this.checkedTags--;
           }
         } 
       })
@@ -104,16 +104,16 @@ export default class Bank {
       // Keep track of unchecked tags.
       var uncheckedTags = 0;
       this.tags.map((tag)=>{
-        if(tag.show == false){
+        if(tag.checked == false){
           uncheckedTags++;
         }
       });
   
-      // If no tag is checked, show all cards.
-      this.showAllCards = this.tags.length-uncheckedTags === 0;
+      // If no tag is checked, checked all cards.
+      this.bankIsFiltered = this.tags.length-uncheckedTags === 0;
   
       for (var i = 0; i < this.boards.length; i++) {
-        this.boards[i].filterCards(this.showAllCards, this.tags);
+        this.boards[i].filterCards(this.bankIsFiltered, this.tags);
       }
   
     }
@@ -121,7 +121,7 @@ export default class Bank {
   
     createCard(phrase, translation, saveToBoardId, tag) {
       var boardIndex = this.boards.findIndex((boardObject) => {
-        return boardObject.boardID === Number(saveToBoardId);
+        return boardObject.id === Number(saveToBoardId);
       });
       this.boards[boardIndex].addCard(new Card(true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
     }

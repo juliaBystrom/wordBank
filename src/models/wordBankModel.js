@@ -5,7 +5,7 @@ import Bank from "./bank";
 export class WordBankModel {
   constructor() {
 
-      this.currentBank = 0;
+      this.activeBankId = 0;
       this.banks = [new Bank(0)];
       this.observers = [];
       this.userID = 123;
@@ -23,19 +23,19 @@ export class WordBankModel {
   }
 
   toString() {
-    return  this.currentBank + ', '
+    return  this.activeBankId + ', '
           + this.userID + ', '
           + this.languageFrom + ', '
           + this.languageTo;
   }
-  setCurrentBank(bankID){
-    this.currentBank = bankID;
+  setCurrentBank(id){
+    this.activeBankId = id;
     this.notifyObservers();
   }
 
   getCurrentBank() {
-    return this.banks.filter((b) => {
-      return b.bankID === this.currentBank;
+    return this.banks.filter((bank) => {
+      return bank.id === this.activeBankId;
     })[0];
   }
 
@@ -61,13 +61,13 @@ export class WordBankModel {
         phrase +
         "\n  translation: " +
         translation +
-        " \n tag: " +
+        " \n name: " +
         tag +
         " \n save to board: " +
         saveToBoardId
     );
 
-    this.banks[this.currentBank].createCard(
+    this.banks[this.activeBankId].createCard(
       phrase,
       translation,
       saveToBoardId,
@@ -104,7 +104,7 @@ export class WordBankModel {
 
   addBoard(name) {
     // TODO Networking to add newboard
-    this.banks[this.currentBank].addBoard(name, this.getKeyBoards());
+    this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
 
     this.notifyObservers();
   }
@@ -116,19 +116,19 @@ export class WordBankModel {
 
   */
 
-  addTag(tagName) {
-    this.banks[this.currentBank].addTag(tagName);
+  addTag(name) {
+    this.banks[this.activeBankId].addTag(name);
     this.notifyObservers();
   }
 
   //
-  editTag(tagName, newTagName) {
-    this.banks[this.currentBank].editTag(tagName, newTagName);
+  editTag(name, newTagNameName) {
+    this.banks[this.activeBankId].editTag(name, newTagNameName);
     this.notifyObservers();
   }
 
-  filterOnTag(tagName) {
-    this.banks[this.currentBank].filterOnTag(tagName);
+  filterOnTag(name) {
+    this.banks[this.activeBankId].filterOnTag(name);
     this.notifyObservers();
   }
 
