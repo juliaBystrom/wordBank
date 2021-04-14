@@ -9,17 +9,17 @@ The project's target group will be people who aim to learn a new language. The u
 
 ### Technology
 
-Front-end:         React.js
+- Front-end: React.js
 
-Persistence:         Google’s service Firestore
+- Persistence: Google’s service Firestore
 
-Hosting:         Netlify
+- Hosting: Netlify
 
-API:             Google Cloud Translation API 
+- API: Google Cloud Translation API 
 
-Third-party-libs:     React DnD HTML5 Backend, to enable drag and drop functionality. 
+- Third-party-libs: React DnD HTML5 Backend, to enable drag and drop functionality. 
 
-Data:            The translation data comes from Google Cloud Translation API.
+- Data: The translation data comes from Google Cloud Translation API.
 App specific data will include user information, boards, cards, tags, comments.
 
 ### Progress made:
