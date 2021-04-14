@@ -25,14 +25,16 @@ App specific data will include user information, boards, cards, tags, comments.
 ### Progress made:
 
 These features have been implemented so far:
-- signup/signin page
-- sidebar with filtration of cards, setup for sorting boards 
-- translate functionality with Google API
-- trello-like boards to save translations
+- Signup/signin page
+- Sidebar with filtration of cards, setup for sorting boards 
+- Translate functionality with Google API
+- Trello-like boards to save translations
+- Save user-specific data to Firestore
 
 ### Planning to do:
 
 Features that are planned to be implemented:
+- Persist model by retrieving saved data from Firestore at signin
 - Drag & drop functionality
 - Ranking of most used / latest used boards to sort on
 - Translate by pressing 'enter'
