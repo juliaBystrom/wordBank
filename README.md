@@ -6,7 +6,7 @@
 
 The project's target group will be people who aim to learn a new language. The user will be able to translate a word or expression from one language to another, and in a quick and easy manner save that translation in a personal bank. To be able to use this feature the user will need to create an account and log in. The user can organize the translations in different boards and add information to support learning, in the form of a tag or comment. 
 
-
+Link to current website: https://wordbank.netlify.app/
 ### Technology
 
 - Front-end: React.js
@@ -30,6 +30,7 @@ These features have been implemented so far:
 - Translate functionality with Google API
 - Trello-like boards to save translations
 - Save user-specific data to Firestore
+- Card info is given by a pop up when a card is pressed.
 
 ### Planning to do:
 
@@ -41,6 +42,7 @@ Features that are planned to be implemented:
 - Add comment on creation of card
 - Choose language to translate FROM
 - Edit board and tag names
+- Not necessary to input tag - it is as of now necessary 
 - Overall styling and UX
 
 ### File structure
