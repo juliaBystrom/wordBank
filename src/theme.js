@@ -24,7 +24,9 @@ export const theme = {
     blanchedalmond: '#fcecc9',
     alabaster: '#F7F4EA',
     lightpink: '#fcb0b3',
-    coral: '#FF8A5B',
+    coral: '#F78764',
+    purplerain: '#C0B9DD',
+    cambridgeblue: '#8FC0A9',
 
     showTestBorders: false,
   }

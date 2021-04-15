@@ -48,21 +48,23 @@ const TitleBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 260px;
-  border: 1px solid grey;
-  border-radius: 1px;
+  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
   height: 10px;
   text-align: center;
-  background-color: ${(props) => props.theme.alabaster};
+  background-color: ${props => (props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain)};
   font-family: serif, Times;
   font-size: 20px;
   padding: 20px;
 `;
 
 const TextBox = styled.textarea`
-  width: 280px;
-  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 256px;
+  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
   height: 100px;
-  padding: 10px;
+  padding: 20px;
   resize: none;
 `;
 
@@ -88,7 +90,7 @@ const TranslateView = (props) => {
     <TranslateWrapper>
       <div>
         <form onSubmit={() => console.log("translate!")}>
-          <TitleBox>
+          <TitleBox isTranslateFrom={true}>
             <LanguageList
               language={props.fromLanguage}
               languageCodes={props.languageCodes}
@@ -99,19 +101,20 @@ const TranslateView = (props) => {
           <TextBox
             onChange={(e) => props.setPhrase(e.target.value)}
             placeholder={props.placeholder}
+            isTranslateFrom={true}
           ></TextBox>
         </form>
       </div>
 
       <div>
-        <TitleBox>
+        <TitleBox isTranslateFrom={false}>
           <LanguageList
             language={props.toLanguage}
             languageCodes={props.languageCodes}
             setLanguage={props.setToLanguage}
           ></LanguageList>
         </TitleBox>
-        <TextBox defaultValue={props.transPhrase}></TextBox>
+        <TextBox defaultValue={props.transPhrase} isTranslateFrom={false}></TextBox>
       </div>
       {
         <ButtonContainer>
@@ -119,14 +122,6 @@ const TranslateView = (props) => {
 
           {props.loggedIn ? (
             <span>
-              <DropdownComponent
-                list={props.availableBoards}
-                title={"Save to"}
-                open={props.openSelector}
-                toggle={() => props.toggle()}
-                onSelectionDone={(board) => props.saveToBoard(board)}
-              />
-
               <TagInput
                 onChange={(event) => props.setTag(event.target.value)}
                 type="text"
@@ -134,6 +129,14 @@ const TranslateView = (props) => {
                 list="taglist"
                 placeholder="Tag:"
               ></TagInput>
+
+              <DropdownComponent
+                list={props.availableBoards}
+                title={"Save to"}
+                open={props.openSelector}
+                toggle={() => props.toggle()}
+                onSelectionDone={(board) => props.saveToBoard(board)}
+              />
             </span>
           ) : (
             ""

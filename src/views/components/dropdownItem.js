@@ -8,8 +8,6 @@ export const DropdownItem = styled.nav`
   text-align: center;
   padding: 0.5rem 1.5rem 0.5rem 0.5rem;
   width: relative;
-  top: 0;
-  left: 0;
   transition: transform 0.3s ease-in-out;
   display: ${props => (!props.drop ? 'none' : 'flex')};
 

@@ -30,10 +30,6 @@ const Menu = styled.nav`
     color: #FFF;
     text-decoration: none;
     transition: color 0.3s linear; 
-    ${'' /* border-radius: 16px;
-    border: 2px solid #FFF;
-    padding: 20px;
-    margin: 5px; */}
     
     @media (max-width: ${props => props.theme.mobile}) {
       font-size: 1.5rem;

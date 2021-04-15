@@ -16,9 +16,9 @@ export default function SidebarView(props) {
           <div />
         </Burger>
         <Menu open={props.open}>
-          <Dropdown onClick={() => props.setDropBanks(!props.dropBanks)}>
+          <Dropdown onClick={() => props.setDropBanks(!props.dropBanks)} dropBank={props.dropBank}>
             <span aria-label="Select bank"></span>
-            Select bank
+            Select bank {props.dropBanks ? 'Ʌ' : 'V'}
           </Dropdown>
           {banks.map((bank) => (
             <label>
@@ -31,7 +31,7 @@ export default function SidebarView(props) {
 
           <Dropdown onClick={() => props.setDropFilter(!props.dropFilter)}>
             <span aria-label="Filter on tags"></span>
-            Filter on tags
+            Filter on tags {props.dropFilter? 'Ʌ' : 'V'}
           </Dropdown>
           {props.tags.map((tag) => (
             <label>
@@ -44,7 +44,7 @@ export default function SidebarView(props) {
 
           <Dropdown onClick={() => props.setDropSort(!props.dropSort)}>
             <span aria-label="Sort boards"></span>
-            Sort boards
+            Sort boards {props.dropSort ? 'Ʌ' : 'V'}
           </Dropdown>
           {props.sortings.map((sorting) => (
             <label>

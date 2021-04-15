@@ -23,9 +23,11 @@ export const  TranslationWrapper = styled.div`
 `;
 
 export const  Translation = styled.div`
-    background-color: ${props => (props.isTranslateFrom ? props.theme.fromLanguage : props.theme.toLanguage)};
+    background-color: ${props => (props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain)};
     padding: 10px;
+    margin: ${props => (props.isTranslateFrom ? "0px 0px 0px 10px" : "0px 10px 0px 0px")};
     color: ${props => props.theme.darkText};
+    box-shadow: 0.5px 0.5px 7px #c4c2c2;
     text-align: center;
     font-size: 1em;
     // flex: 0 0 50px;
