@@ -26,11 +26,13 @@ App specific data will include user information, boards, cards, tags, comments.
 
 These features have been implemented so far:
 - Signup/signin page
+- Enabling creating and giving tags to cards with translations
 - Sidebar with filtration of cards, setup for sorting boards 
 - Translate functionality with Google API
 - Trello-like boards to save translations
 - Save user-specific data to Firestore
 - Card info is given by a pop up when a card is pressed.
+
 
 ### Planning to do:
 
@@ -44,6 +46,7 @@ Features that are planned to be implemented:
 - Edit board and tag names
 - Not necessary to input tag - it is as of now necessary 
 - Overall styling and UX
+- Adding code to make our website more accessible 
 
 ### File structure
 
