@@ -83,17 +83,6 @@ const TagInput = styled.input`
   font-weight: 600;
 `;
 
-const StyledSelect = styled.select`
-  width: 180px;
-  border-radius: 8px;
-
-  height: 30px;
-  padding: 3px;
-  border: none;
-  font-weight: 600;
-  margin: 0px;
-`;
-
 const TranslateView = (props) => {
   return (
     <TranslateWrapper>
@@ -109,7 +98,7 @@ const TranslateView = (props) => {
 
           <TextBox
             onChange={(e) => props.setPhrase(e.target.value)}
-            placeholder="Type here"
+            placeholder={props.placeholder}
           ></TextBox>
         </form>
       </div>

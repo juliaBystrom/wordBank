@@ -11,6 +11,7 @@ const TranslatePresenter = ({ model }) => {
   let toLanguage = useModelProp(model, "toLanguage");
   let fromLanguage = useModelProp(model, "fromLanguage");
   let loggedIn = useModelProp(model, "loggedIn");
+  let placeholder = useModelProp(model, "placeholder");
 
   // Used to create the data list of boards to choose from
 
@@ -57,6 +58,31 @@ const TranslatePresenter = ({ model }) => {
     });
   }, []);
 
+  //Vill egentligen göra denna mer generell för att översätta andra grejer också
+  const translate = () => {
+    googleTranslate.translate(
+      phrase,
+      fromLanguage,
+      toLanguage,
+      function (err, translation) {
+        console.log(phrase);
+        model.setTransPhrase(translation.translatedText);
+      }
+    );
+  };
+  //Den här borde tex gå att göra med funktionen ovan
+  const translatePlaceholder = (newLanguage) => {
+    googleTranslate.translate(
+      placeholder,
+      fromLanguage,
+      newLanguage,
+      function (err, translation) {
+        console.log(placeholder);
+        model.setPlaceholder(translation.translatedText);
+      }
+    );
+  };
+
   return (
     <TranslateView
       model={model}
@@ -64,25 +90,20 @@ const TranslatePresenter = ({ model }) => {
       languageCodes={languageCodes}
       transPhrase={transPhrase}
       fromLanguage={fromLanguage}
+      placeholder={placeholder}
       toLanguage={toLanguage}
       setToLanguage={(newLanguage) => {
         model.setToLanguage(newLanguage);
         console.log(toLanguage);
       }}
       setFromLanguage={(newLanguage) => {
+        translatePlaceholder(newLanguage);
         model.setFromLanguage(newLanguage);
-        console.log(toLanguage);
+        model.setTransPhrase("");
+        console.log(fromLanguage);
       }}
       translate={() => {
-        googleTranslate.translate(
-          phrase,
-          toLanguage,
-          function (err, translation) {
-            console.log(phrase);
-            model.setTransPhrase(translation.translatedText);
-            console.log(translation.translatedText);
-          }
-        );
+        translate();
       }}
       tags={tags}
       setPhrase={(phrase) => {
