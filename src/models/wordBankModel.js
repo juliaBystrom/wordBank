@@ -13,6 +13,8 @@ export class WordBankModel {
     ];
     this.transPhrase = "";
     this.toLanguage = "en";
+    this.fromLanguage = "sv";
+    this.loggedIn = false;
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.getKeyBoards = this.getKeyBoards.bind(this);
     this.keyCountBanks = 0;
@@ -21,7 +23,13 @@ export class WordBankModel {
 
   toString() {
     return (
-      this.currentBank + ", " + this.userID + ", " + this.languageFrom + ", " + this.languageTo
+      this.currentBank +
+      ", " +
+      this.userID +
+      ", " +
+      this.languageFrom +
+      ", " +
+      this.languageTo
     );
     // + this.observers + ', '
     //  + ', '
@@ -38,6 +46,7 @@ export class WordBankModel {
   // SignIn action
   setCurrentUser(userId) {
     this.userID = userId;
+    this.loggedIn = true;
     console.log(this.userID);
     this.notifyObservers();
   }
@@ -71,10 +80,6 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  translate(phrase) {
-    console.log("translate: " + phrase);
-  }
-
   createCard(phrase, translation, saveToBoardId, tag) {
     console.log(
       "will create a card with phrase: " +
@@ -87,11 +92,16 @@ export class WordBankModel {
         saveToBoardId
     );
 
-    this.banks[this.activeBankId].createCard(phrase, translation, saveToBoardId, tag);
+    this.banks[this.activeBankId].createCard(
+      phrase,
+      translation,
+      saveToBoardId,
+      tag
+    );
 
     this.notifyObservers();
   }
-  //Testkod ----------------------------------
+
   setPhrase(phrase) {
     this.currentPhrase = phrase;
     this.notifyObservers();
@@ -106,7 +116,11 @@ export class WordBankModel {
     this.toLanguage = newLanguage;
     this.notifyObservers();
   }
-  //---------------------------------------
+
+  setFromLanguage(newLanguage) {
+    this.fromLanguage = newLanguage;
+    this.notifyObservers();
+  }
 
   getKeyBoards() {
     return this.keyCountBoards++;

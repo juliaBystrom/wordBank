@@ -2,6 +2,7 @@ import React from "react";
 
 import styled, { css } from "styled-components";
 import { DropdownComponent } from "./components";
+import LanguageList from "./components/languageList";
 
 const TranslateWrapper = styled.div`
   height: 30%;
@@ -29,7 +30,7 @@ const Button = styled.button`
   color: black;
   font-weight: 600;
   padding: 0.25em 1em;
-  background-color: ${props => props.theme.queenblue};
+  background-color: ${(props) => props.theme.queenblue};
   border-radius: 8px;
   height: 40px;
   width: 200px;
@@ -51,7 +52,7 @@ const TitleBox = styled.div`
   border-radius: 1px;
   height: 10px;
   text-align: center;
-  background-color: ${props => props.theme.alabaster};
+  background-color: ${(props) => props.theme.alabaster};
   font-family: serif, Times;
   font-size: 20px;
   padding: 20px;
@@ -98,7 +99,13 @@ const TranslateView = (props) => {
     <TranslateWrapper>
       <div>
         <form onSubmit={() => console.log("translate!")}>
-          <TitleBox>{props.fromLanguage}</TitleBox>
+          <TitleBox>
+            <LanguageList
+              language={props.fromLanguage}
+              languageCodes={props.languageCodes}
+              setLanguage={props.setFromLanguage}
+            ></LanguageList>
+          </TitleBox>
 
           <TextBox
             onChange={(e) => props.setPhrase(e.target.value)}
@@ -109,19 +116,11 @@ const TranslateView = (props) => {
 
       <div>
         <TitleBox>
-          <StyledSelect
-            className="select-language"
-            value={props.toLanguage}
-            onChange={(e) => {
-              props.setLanguage(e.target.value);
-            }}
-          >
-            {props.languageCodes.map((lang) => (
-              <option key={lang.language} value={lang.language}>
-                {lang.name}
-              </option>
-            ))}
-          </StyledSelect>
+          <LanguageList
+            language={props.toLanguage}
+            languageCodes={props.languageCodes}
+            setLanguage={props.setToLanguage}
+          ></LanguageList>
         </TitleBox>
         <TextBox defaultValue={props.transPhrase}></TextBox>
       </div>
@@ -129,7 +128,7 @@ const TranslateView = (props) => {
         <ButtonContainer>
           <Button onClick={() => props.translate()}>Translate!</Button>
 
-          {props.model.userID !== 123 ? (
+          {props.loggedIn ? (
             <span>
               <DropdownComponent
                 list={props.availableBoards}

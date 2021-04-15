@@ -9,6 +9,8 @@ const TranslatePresenter = ({ model }) => {
   const [tag, setTag] = React.useState("");
   let transPhrase = useModelProp(model, "transPhrase");
   let toLanguage = useModelProp(model, "toLanguage");
+  let fromLanguage = useModelProp(model, "fromLanguage");
+  let loggedIn = useModelProp(model, "loggedIn");
 
   // Used to create the data list of boards to choose from
 
@@ -17,18 +19,16 @@ const TranslatePresenter = ({ model }) => {
   // Used to create the tags list of boards to choose from
   const tags = useBankProp(model, "tags");
 
-
   //const createTranslationCard = (id) => {
-    // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
-    //if (tag) {
-      //model.addTag(tag);
-      //model.createCard(phrase, translation, id, tag);
-   // } else {
-    //  console.log("please choose a tag");
-   // }};
+  // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
+  //if (tag) {
+  //model.addTag(tag);
+  //model.createCard(phrase, translation, id, tag);
+  // } else {
+  //  console.log("please choose a tag");
+  // }};
 
-  
-//
+  //
   // Used to controll the dropdown of possible boards to save to
 
   const [open, setOpen] = useState(false);
@@ -60,20 +60,29 @@ const TranslatePresenter = ({ model }) => {
   return (
     <TranslateView
       model={model}
+      loggedIn={loggedIn}
       languageCodes={languageCodes}
       transPhrase={transPhrase}
-      fromLanguage={model.languageFrom}
+      fromLanguage={fromLanguage}
       toLanguage={toLanguage}
-      setLanguage={(newLanguage) => {
+      setToLanguage={(newLanguage) => {
         model.setToLanguage(newLanguage);
         console.log(toLanguage);
       }}
+      setFromLanguage={(newLanguage) => {
+        model.setFromLanguage(newLanguage);
+        console.log(toLanguage);
+      }}
       translate={() => {
-        googleTranslate.translate(phrase, toLanguage, function (err, translation) {
-          console.log(phrase);
-          model.setTransPhrase(translation.translatedText);
-          console.log(translation.translatedText);
-        });
+        googleTranslate.translate(
+          phrase,
+          toLanguage,
+          function (err, translation) {
+            console.log(phrase);
+            model.setTransPhrase(translation.translatedText);
+            console.log(translation.translatedText);
+          }
+        );
       }}
       tags={tags}
       setPhrase={(phrase) => {
