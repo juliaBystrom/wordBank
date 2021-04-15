@@ -1,12 +1,12 @@
 export default class Card {
-    constructor(id, commentOnS, leftS, rightS, givenTag) {
+    constructor(id, commentOnS, leftS, rightS, tag) {
 
         this.id = id;
         this.comment = commentOnS;
-        this.tag = givenTag;
+        this.tag = tag;
         this.leftSentence = leftS;
         this.rightSentence = rightS;
-        this.showCard();
+        this.show = true;
     }
   
     setComment() { }
@@ -15,20 +15,18 @@ export default class Card {
       this.show = true;
     }
   
-    // If the card have a tag ( not null, "", false or undefined) this method will update the checked value depnding on the tag
-    // If the card does not have an tag the checked value will be set to false
+    // If the card have a tag ( not null, "", false or undefined) this method will update the show value depnding on the tag
+    // If the card does not have an tag the show value will be set to false
     filterOnTags(tags) {
       if (this.tag) {
-        const tagInfo = tags.find((tagInfo) => {
-          return tagInfo.tag === this.tag
-  
+          const tag = tags.find((tag) => {
+          return tag.name === this.tag
         })
-        this.checked = tagInfo.checked;
+        this.show = tag.checked;
       } else {
-        this.checked = false;
+        this.show = false;
       }
     }
-    
   
   }
   

@@ -36,8 +36,8 @@ export default function SidebarView(props) {
           {props.tags.map((tag) => (
             <label>
               <DropdownItem drop={props.dropFilter}>
-                <input type="checkbox" name={tag.tag} onClick={() => props.onFilter(tag.tag)} />
-                {tag.tag}
+                <input type="checkbox" name={tag.name} onClick={() => props.onFilter(tag.name)} />
+                {tag.name}
               </DropdownItem>
             </label>
           ))}

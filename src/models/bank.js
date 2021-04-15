@@ -78,11 +78,12 @@ export default class Bank {
     /* 
       Toggles the value of tag with name
       It does also count how many tags have checked: true
-      If checkedTags is 0 then no tags is curently being filtred which put the this.bankIsFiltered to true
+      If checkedTags is 0 then no tags is curently being filtred which put the this.bankIsFiltered to false
     
     */
     filterOnTag(name) {
-
+      var uncheckedTags = 0;
+      this.checkedTags = 0;
       // Check or uncheck tag.
       this.tags.map((tag) => {
         if (tag.name === name) {
@@ -95,17 +96,9 @@ export default class Bank {
           }
         } 
       })
-
-      // Keep track of unchecked tags.
-      var uncheckedTags = 0;
-      this.tags.map((tag)=>{
-        if(tag.checked == false){
-          uncheckedTags++;
-        }
-      });
   
-      // If no tag is checked, checked all cards.
-      this.bankIsFiltered = this.tags.length-uncheckedTags === 0;
+      // If no tag is checked, show all cards.
+      this.bankIsFiltered = this.checkedTags > 0;
   
       for (var i = 0; i < this.boards.length; i++) {
         this.boards[i].filterCards(this.bankIsFiltered, this.tags);

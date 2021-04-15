@@ -15,10 +15,9 @@ export default class Board {
     }
   
     filterCards(bankIsFiltered, tags) {
-      console.log("bankIsFiltered:", bankIsFiltered);
-      // If bankIsFiltered is true use showCard() on all cards to display them else call filterOnTags(tags)
+      // If bankIsFiltered is false use showCard() on all cards to display them else call filterOnTags(tags)
       for (var i = 0; i < this.cards.length; i++) {
-        if (bankIsFiltered) {
+        if (!bankIsFiltered) {
           this.cards[i].showCard();
         } else {
           this.cards[i].filterOnTags(tags)
