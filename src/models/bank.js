@@ -59,10 +59,13 @@ export default class Bank {
   
     // Add tage will first check if the tag already exist. If not it will add it. Else it will just do a console log
     addTag(name) {
-      if (!this.tags.includes(name)) {
+      const tag = this.tags.find((tag) => {
+        return tag.name === name;
+      })
+      if (!tag) {
         this.tags = [...this.tags, { id: this.getIdTags(), name: name, checked: false }];
       } else {
-        // console.log("[Info from model]: Tag already exist. No new tag created");
+        console.log("Tag exists.");
       }
     }
   
@@ -70,7 +73,6 @@ export default class Bank {
   
       this.tags.map((tag) => {
         return tag.name!== name ? tag : { id: tag.id, name: newTagName, checked: tag.checked };
-  
       })
   
     }
@@ -82,7 +84,6 @@ export default class Bank {
     
     */
     filterOnTag(name) {
-      var uncheckedTags = 0;
       this.checkedTags = 0;
       // Check or uncheck tag.
       this.tags.map((tag) => {
