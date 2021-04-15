@@ -21,7 +21,7 @@ export default function BoardPresenter(props) {
 
 
     var cardPresenterList = cards.map(function (card) {
-        return <CardPresenter model={props.model} id={props.id} id={card.id} card={card} key={card.id} />
+        return <CardPresenter model={props.model} boardId={props.id} cardId={card.id} card={card} key={card.id} />
     });
 
     return (

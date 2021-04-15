@@ -42,6 +42,7 @@ Features that are planned to be implemented:
 - Add comment on creation of card
 - Choose language to translate FROM
 - Edit board and tag names
+- Not necessary to input tag - it is as of now necessary 
 - Overall styling and UX
 
 ### File structure
