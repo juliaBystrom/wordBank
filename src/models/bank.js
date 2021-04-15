@@ -98,7 +98,8 @@ export default class Bank {
         } 
       })
   
-      // If no tag is checked, show all cards.
+      // If bank is not filtered, all cards are shown 
+      // else if bankIsFiltered ; only cards with checked tags will be shown
       this.bankIsFiltered = this.checkedTags > 0;
   
       for (var i = 0; i < this.boards.length; i++) {
