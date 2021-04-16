@@ -5,7 +5,6 @@ export class WordBankModel {
     this.activeBankId = 0;
     this.banks = [new Bank(0)];
     this.observers = [];
-    this.userID = 123;
     this.keyCountBoards = 3;
     this.sortings = [
       { name: "Latest edited", func: () => this.sortLatestEdited() },
@@ -26,7 +25,7 @@ export class WordBankModel {
     return (
       this.currentBank +
       ", " +
-      this.userID +
+      this.userId +
       ", " +
       this.languageFrom +
       ", " +
@@ -39,23 +38,23 @@ export class WordBankModel {
 
   // SignUp action
   createUserModel(userId) {
-    this.userID = userId;
-    console.log(this.userID);
+    this.userId = userId;
+    console.log(this.userId);
     this.notifyObservers();
   }
 
   // SignIn action
   setCurrentUser(userId) {
-    this.userID = userId;
+    this.userId = userId;
     this.loggedIn = true;
-    console.log(this.userID);
+    console.log(this.userId);
     this.notifyObservers();
   }
 
   /* setCurrentBank(bankID) {
     this.currentBank = bankID;
     return  this.activeBankId + ', '
-          + this.userID + ', '
+          + this.userId + ', '
           + this.languageFrom + ', '
           + this.languageTo;
   } */

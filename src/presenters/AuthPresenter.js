@@ -1,5 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import {persistence} from "../persistence";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
@@ -21,6 +22,7 @@ export const AuthPresenter = ({ model }) => {
         console.log("LogIn successful ", userCredentials.user.email);
         console.log("User id: ", userCredentials.user.uid);
         model.setCurrentUser(userCredentials.user.uid);
+        persistence(model);
         setEmailError("");
         setPasswordError("");
         history.push("/bank");
