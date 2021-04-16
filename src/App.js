@@ -4,14 +4,14 @@ import { WordBankModel } from "./models/wordBankModel";
 import { firebaseApp } from "./firebase";
 import BankPresenter from "./presenters/bankPresenter";
 import { AuthPresenter } from "./presenters/AuthPresenter";
-import TranslatePresenter from "./presenters/translatePresenter"
+import TranslatePresenter from "./presenters/translatePresenter";
 import { persistence } from "./persistence";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
-  const model = new WordBankModel(true);
+  const model = new WordBankModel();
   persistence(model);
 
   return (
@@ -19,12 +19,8 @@ function App() {
       <TranslatePresenter model={model} />
       <SidebarPresenter model={model} />
       <Route exact path="/" component={() => <AuthPresenter model={model} />} />
+      <Route exact path="/bank" component={() => <BankPresenter model={model} />} />
       {/* <Route exact path="/test" component={boardView} /> */}
-      <Route
-        exact
-        path="/bank"
-        component={() => <BankPresenter model={model} />}
-      />
     </>
   );
 }

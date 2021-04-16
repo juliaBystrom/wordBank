@@ -4,9 +4,10 @@ export const Dropdown = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  background: ${props => props.theme.dark};
+  background: ${props => props.theme.queenblue};
   text-align: left;
   padding: 1rem 1.5rem 1rem 1.5rem;
+  box-shadow: 0.5px 0.5px 15px #c4c2c2;
   width: 170px;
   top: 0;
   left: 0;
@@ -15,9 +16,10 @@ export const Dropdown = styled.nav`
   z-index: 10;
   font-size: 1rem;
   font-weight: regular;
-  color: ${props => props.theme.darkText};
+  color: white;
   text-decoration: none;
   transition: color 0.3s linear;
+  margin: 10px 0 10px 0;
   
 
   @media (max-width: ${props => props.theme.mobile}) {
@@ -50,34 +52,24 @@ export const DropdownComponentWrapper = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  
-
 `;
-
 
 export const DropdownButton = styled.div`
   display: flex;
   cursor: pointer;
-  padding-right: 20px;
-  padding-left: 20px;
-
-  // Create more rounded corners
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-
-
+  padding: 1px 20px 1px 20px;
+  justify-content: center;
+  text-align: center;
+  ${'' /* // Create more rounded corners */}
+  border-radius: 4px;
   flex-direction: row;
-  // When :onHover changes background it will be wioth a transition
-  background: ${props => props.theme.dark};
+  ${'' /* // When :onHover changes background it will be wioth a transition */}
+  background-color: ${props => props.theme.midnightgreen};
   transition: background 0.3s linear;
   text-align: left;
-
   z-index: 10;
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: bold;
-
-
-  
 
 
   @media (max-width: ${props => props.theme.mobile}) {
@@ -89,7 +81,7 @@ export const DropdownButton = styled.div`
   }
 
 
-  // This will create a one-line border between the first and second div
+  ${'' /* // This will create a one-line border between the first and second div */}
   div {
     &:first-child {
     border-right: 1px solid ${props => props.theme.light};
