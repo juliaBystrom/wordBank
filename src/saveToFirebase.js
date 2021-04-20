@@ -3,7 +3,8 @@
  * Kan behövas separata implementationer för olika delar av modellen.
  */
 
-export function Persistence(model) {
+export function saveToFirebase(model) {
+  console.log("Model save: ", model);
   let loadingFromFirebase = true;
   var usr = window.db.collection("users").doc(String(model.userId));
   
@@ -13,7 +14,11 @@ export function Persistence(model) {
     if (true) {
       setTimeout(() => {
         usr
-          .set({ activeBankId: String(model.activeBankId) })
+          .set({ 
+            activeBankId: String(model.activeBankId),
+            keyCountBanks: model.keyCountBanks,
+            keyCountBoards: model.keyCountBoards
+          })
 
           .then(
             model.banks.forEach((bank) => {
@@ -64,5 +69,6 @@ export function Persistence(model) {
       }, 1000);
     }
   });
+  console.log("Model end save: ", model);
 
 }

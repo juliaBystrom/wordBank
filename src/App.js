@@ -5,19 +5,20 @@ import { firebaseApp } from "./firebase";
 import BankPresenter from "./presenters/bankPresenter";
 import { AuthPresenter } from "./presenters/AuthPresenter";
 import TranslatePresenter from "./presenters/translatePresenter";
-import { Persistence } from "./persistence.js";
 import SidebarPresenter from "./presenters/sidebarPresenter";
+import { useState } from "react";
 
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
-  const model = new WordBankModel();
+  //const model = new WordBankModel();
+  const [model, setModel] = useState(new WordBankModel()) ;
 
   return (
     <>
       <TranslatePresenter model={model} />
       <SidebarPresenter model={model} />
-      <Route exact path="/" component={() => <AuthPresenter model={model} />} />
+      <Route exact path="/" component={() => <AuthPresenter model={model} setModel={setModel} />} />
       <Route
         exact
         path="/bank"

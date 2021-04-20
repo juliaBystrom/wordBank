@@ -1,14 +1,15 @@
 import React, { useState, useContext, createContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Persistence } from "../persistence";
+import { saveToFirebase } from "../saveToFirebase";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
-import { restoreFromDb } from "../restoreFromDb";
+import { loadFromFirebase } from "../loadFromFirebase";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
-export const AuthPresenter = ({ model }) => {
+export const AuthPresenter = (props) => {
+  const model = props.model;
   let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
@@ -23,12 +24,14 @@ export const AuthPresenter = ({ model }) => {
         console.log("LogIn successful ", userCredentials.user.email);
         console.log("User id: ", userCredentials.user.uid);
         model.setCurrentUser(userCredentials.user.uid);
+        props.setModel(model);
         setEmailError("");
         setPasswordError("");
         history.push("/bank");
+
       })
-      .then(()=>{restoreFromDb(model)})
-      .then(()=>{Persistence(model)})
+      .then(()=>{loadFromFirebase(model)})
+      .then(()=>{saveToFirebase(model)})
       .catch((err) => {
         if (
           err.code === "auth/invalid-email" ||

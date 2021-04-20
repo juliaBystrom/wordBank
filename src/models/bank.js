@@ -116,9 +116,12 @@ export default class Bank {
   }
 
   createCard(phrase, translation, saveToBoardId, tag) {
+    console.log("saveToBoardId: ", saveToBoardId);
     var boardIndex = this.boards.findIndex((board) => {
       return board.id === Number(saveToBoardId);
     });
+
+    console.log("boardIndex: ", boardIndex);
     this.boards[boardIndex].addCard(
       new Card(this.getIdCards(), "Kommentar Holder", phrase, translation, tag)
     );

@@ -1,4 +1,5 @@
 import React from "react";
+import { loadBankFromFirebase } from "../loadFromFirebase";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 
