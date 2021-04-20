@@ -63,6 +63,10 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
+  addBank(id) {
+    this.banks = [new Bank(id), ...this.banks];
+  }
+
   getCurrentBank() {
     return this.banks.filter((bank) => {
       return bank.id === this.activeBankId;
@@ -139,6 +143,12 @@ export class WordBankModel {
     // TODO Networking to add newboard
     this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
 
+    this.notifyObservers();
+  }
+
+  addBoardVer2(boardId, boardName) {
+    this.banks[0].addBoard(boardName, boardId);
+    console.log(this.banks[0].boards);
     this.notifyObservers();
   }
 

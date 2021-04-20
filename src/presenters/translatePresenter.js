@@ -15,7 +15,7 @@ const TranslatePresenter = ({ model }) => {
 
   // Used to create the data list of boards to choose from
 
-  const boards = useBankProp(model, "boards");
+  let boards = useBankProp(model, "boards");
 
   // Used to create the tags list of boards to choose from
   const tags = useBankProp(model, "tags");
@@ -70,7 +70,7 @@ const TranslatePresenter = ({ model }) => {
       }
     );
   };
-  //Den här borde tex gå att göra med funktionen ovan
+  //Den här borde tex i framtiden gå att göra med funktionen ovan
   const translatePlaceholder = (newLanguage) => {
     googleTranslate.translate(
       placeholder,
@@ -103,11 +103,16 @@ const TranslatePresenter = ({ model }) => {
         console.log(fromLanguage);
       }}
       translate={() => {
+        model.setTransPhrase("");
         translate();
       }}
       tags={tags}
       setPhrase={(phrase) => {
         setPhrase(phrase);
+      }}
+      //använder model state för coherence med andra användningar av transphrase
+      setTransPhrase={(phrase) => {
+        model.setTransPhrase(phrase);
       }}
       createCard={() => {
         // Moved this code to createTranslationCard
@@ -119,7 +124,6 @@ const TranslatePresenter = ({ model }) => {
       }}
       saveToBoard={(board) => {
         // Will close when selected
-
         setOpen(!open);
 
         // Use state resets to 0 no use

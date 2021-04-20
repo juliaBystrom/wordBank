@@ -1,6 +1,6 @@
 import React, { useState, useContext, createContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import {persistence} from "../persistence";
+import { persistence } from "../persistence";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
@@ -54,7 +54,10 @@ export const AuthPresenter = ({ model }) => {
         history.push("/bank");
       })
       .catch((err) => {
-        if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
+        if (
+          err.code === "auth/email-already-in-use" ||
+          err.code === "auth/invalid-email"
+        ) {
           setEmailError(err.message);
         } else setEmailError("");
         if (err.code === "auth/weak-password") {

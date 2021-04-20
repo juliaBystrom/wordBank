@@ -48,10 +48,12 @@ const TitleBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 260px;
-  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  border-radius: ${(props) =>
+    props.isTranslateFrom ? "5px 0px 0px 0px" : "0px 5px 0px 0px"};
   height: 10px;
   text-align: center;
-  background-color: ${props => (props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain)};
+  background-color: ${(props) =>
+    props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain};
   font-family: serif, Times;
   font-size: 20px;
   padding: 20px;
@@ -61,8 +63,9 @@ const TextBox = styled.textarea`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 256px;
-  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  width: 258px;
+  border-radius: ${(props) =>
+    props.isTranslateFrom ? "0px 0px 0px 5px" : "0px 0px 5px 0px"};
   height: 100px;
   padding: 20px;
   resize: none;
@@ -114,7 +117,11 @@ const TranslateView = (props) => {
             setLanguage={props.setToLanguage}
           ></LanguageList>
         </TitleBox>
-        <TextBox defaultValue={props.transPhrase} isTranslateFrom={false}></TextBox>
+        <TextBox
+          value={props.transPhrase}
+          isTranslateFrom={false}
+          onChange={(e) => props.setTransPhrase(e.target.value)}
+        ></TextBox>
       </div>
       {
         <ButtonContainer>

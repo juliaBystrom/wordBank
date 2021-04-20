@@ -12,14 +12,18 @@ function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
   const model = new WordBankModel();
-  persistence(model);
+  //persistence(model);
 
   return (
     <>
       <TranslatePresenter model={model} />
       <SidebarPresenter model={model} />
       <Route exact path="/" component={() => <AuthPresenter model={model} />} />
-      <Route exact path="/bank" component={() => <BankPresenter model={model} />} />
+      <Route
+        exact
+        path="/bank"
+        component={() => <BankPresenter model={model} />}
+      />
       {/* <Route exact path="/test" component={boardView} /> */}
     </>
   );
