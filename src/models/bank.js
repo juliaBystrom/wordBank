@@ -36,6 +36,15 @@ export default class Bank {
     return;
   }
 
+  getBoardById(id){
+    return this.boards.filter((board) => {
+      return board.id === id;
+    })[0];
+  }
+  getBoardIndex(Board){
+    return this.boards.indexOf(Board);
+  }
+
   getIdTags() {
     return this.idCountTags++;
   }
@@ -44,10 +53,10 @@ export default class Bank {
     return this.idCountCards++;
   }
 
-  addBoard(name, id) {
+  addBoard(boardId, title) {
     // Obs only testing version. Outerwise if not testing the last is not needed
-    this.boards = [...this.boards, new Board(name, id)];
-    console.log("new board: ", name);
+    this.boards = [...this.boards, new Board(title, boardId)];
+    console.log("new board: ", title);
   }
 
   /* 

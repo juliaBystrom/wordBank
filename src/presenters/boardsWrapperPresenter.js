@@ -18,7 +18,7 @@ export default function BoardsWrapperPresenter(props) {
       <AddBoardView
         value={newBoardName}
         addBoard={() => {
-          props.model.addBoard(newBoardName);
+          props.model.addBoard(props.model.activeBankId, null, newBoardName);
           setNewBoardName("");
         }}
         onBoardnameChange={(name) => {

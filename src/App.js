@@ -18,7 +18,7 @@ function App() {
     <>
       <TranslatePresenter model={model} />
       <SidebarPresenter model={model} />
-      <Route exact path="/" component={() => <AuthPresenter model={model} setModel={setModel} />} />
+      <Route exact path="/" component={() => <AuthPresenter model={model} setModel={(model) => setModel} />} />
       <Route
         exact
         path="/bank"

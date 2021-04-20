@@ -73,6 +73,16 @@ export class WordBankModel {
     })[0];
   }
 
+  getBankById(id){
+    return this.banks.filter((bank) => {
+      return bank.id === id;
+    })[0];
+  }
+
+  getBankIndex(Bank){
+    return this.banks.indexOf(Bank);
+  }
+
   sortLatestEdited() {
     console.log("SORTING LATEST EDITED: ", this);
     this.getCurrentBank().sortLatestEdited();
@@ -139,10 +149,22 @@ export class WordBankModel {
     return this.keyCountBanks++;
   }
 
-  addBoard(name) {
+  setKeyBoards(count) {
+    this.keyCountBoards = [count, ...this.keyCountBoards]
+  }
+
+  setKeyBanks(count) {
+    this.keyCountBanks = [count, ...this.keyCountBanks]
+  }
+
+  addBoard(bankId, boardId, title) {
     // TODO Networking to add newboard
     console.log("activeBankId", this.activeBankId);
-    this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
+    if(!boardId){
+      this.banks[this.getBankIndex(bankId)].addBoard(this.getKeyBoards(), title);
+    } else {
+      this.banks[this.getBankIndex(bankId)].addBoard(boardId, title);
+    }
 
     this.notifyObservers();
   }
