@@ -141,6 +141,7 @@ export class WordBankModel {
 
   addBoard(name) {
     // TODO Networking to add newboard
+    console.log("activeBankId", this.activeBankId);
     this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
 
     this.notifyObservers();

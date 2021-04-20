@@ -3,24 +3,23 @@
  * Kan behövas separata implementationer för olika delar av modellen.
  */
 
-import Bank from "./models/bank";
-import Board from "./models/board";
-import Card from "./models/card";
-
-export function persistence(model) {
+export function Persistence(model) {
   let loadingFromFirebase = true;
   var usr = window.db.collection("users").doc(String(model.userId));
+  
 
-  // Save to Firestore
-  model.addObserver(() => {
-    if (!loadingFromFirebase) {
+   // Save to Firestore
+   model.addObserver(() => {
+    if (true) {
       setTimeout(() => {
         usr
           .set({ activeBankId: String(model.activeBankId) })
 
           .then(
             model.banks.forEach((bank) => {
-              console.log(bank);
+              console.log("activeBankId: ", String(model.activeBankId));
+              console.log("Save bank: ", bank);
+              console.log("Save bank.id: ",bank.id);
               usr
                 .collection("banks")
                 .doc(String(bank.id))
@@ -66,50 +65,4 @@ export function persistence(model) {
     }
   });
 
-  // Restore banks from db
-  usr
-    .collection("banks")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        //console.log(bank.id, " => ", bank.data());
-        var bankFromDb = doc.data();
-        //model.banks = [new Bank(bank.id), ...model.banks];
-        model.addBank(Number(doc.id));
-
-        var bankObj = model.banks[0];
-
-        console.log(model.banks[0]);
-        //console.log("model.banks[0]", model.banks[0]);
-        bankObj.languageFrom = bankFromDb.languageFrom;
-        bankObj.languageTo = bankFromDb.languageTo;
-        bankObj.tags = bankFromDb.tags;
-        loadingFromFirebase = true;
-        model.setCurrentBank(Number(doc.id));
-
-        // Restore boards from db
-        usr
-          .collection("banks")
-          .doc(doc.id)
-          .collection("boards")
-          .get()
-          .then((querySnapshot) => {
-            querySnapshot.forEach((board) => {
-              // doc.data() is never undefined for query doc snapshots
-              //console.log(board.id, " => ", board.data());
-              var boardFromDb = board.data();
-              model.addBoardVer2(Number(board.id), boardFromDb.title);
-              console.log(boardFromDb);
-              /*model.banks[0].boards = [
-                new Board(board.id, board.title),
-                ...model.banks[0].boards,
-              ];
-              
-              console.log("model.banks[0].boards[0]", model.banks[0].boards[0]);
-              */
-            });
-          });
-      });
-    });
 }

@@ -1,9 +1,10 @@
 import React, { useState, useContext, createContext } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { persistence } from "../persistence";
+import { Persistence } from "../persistence";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
+import { restoreFromDb } from "../restoreFromDb";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
@@ -22,11 +23,12 @@ export const AuthPresenter = ({ model }) => {
         console.log("LogIn successful ", userCredentials.user.email);
         console.log("User id: ", userCredentials.user.uid);
         model.setCurrentUser(userCredentials.user.uid);
-        persistence(model);
         setEmailError("");
         setPasswordError("");
         history.push("/bank");
       })
+      .then(()=>{restoreFromDb(model)})
+      .then(()=>{Persistence(model)})
       .catch((err) => {
         if (
           err.code === "auth/invalid-email" ||

@@ -5,14 +5,13 @@ import { firebaseApp } from "./firebase";
 import BankPresenter from "./presenters/bankPresenter";
 import { AuthPresenter } from "./presenters/AuthPresenter";
 import TranslatePresenter from "./presenters/translatePresenter";
-import { persistence } from "./persistence";
+import { Persistence } from "./persistence.js";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
   const model = new WordBankModel();
-  //persistence(model);
 
   return (
     <>

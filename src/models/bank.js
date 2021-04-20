@@ -4,13 +4,14 @@ import Card from "./card";
 export default class Bank {
   constructor(id) {
     this.id = id;
-    this.boards = [
-      new Board("My First Board", 0, {
-        0: this.getIdCards(),
-        1: this.getIdCards(),
-        2: this.getIdCards(),
-      }),
-    ];
+    // this.boards = [
+    //   new Board("My First Board", 0, {
+    //     0: this.getIdCards(),
+    //     1: this.getIdCards(),
+    //     2: this.getIdCards(),
+    //   }),
+    // ];
+    this.boards = [];
     this.languageFrom = "Swedish";
     this.languageTo = "English";
     this.tags = [];
