@@ -12,13 +12,8 @@ const TranslatePresenter = ({ model }) => {
   let fromLanguage = useModelProp(model, "fromLanguage");
   let loggedIn = useModelProp(model, "loggedIn");
   let placeholder = useModelProp(model, "placeholder");
-
-  // Used to create the data list of boards to choose from
-
   let boards = useBankProp(model, "boards");
-
-  // Used to create the tags list of boards to choose from
-  const tags = useBankProp(model, "tags");
+  let tags = useBankProp(model, "tags");
 
   //const createTranslationCard = (id) => {
   // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)

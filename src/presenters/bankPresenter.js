@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { loadBankFromFirebase } from "../loadFromFirebase";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
@@ -17,9 +17,14 @@ BankPresenter manages:
 export default function BankPresenter(props) {
   const boards = useBankProp(props.model, "boards");
 
+  useEffect(() => {
+    console.log(props.model.banks[0]);
+  }, [props.model]);
+
   // Index is used because baords are stored as an array in the model.
   // TODO: When index changing oimplementation is done test that reredering is correct
   const boardPresenters = boards.map((board, index) => {
+    console.log("board, index: ", board, index); //denna kod körs aldrig efter firebase laddat
     return (
       <BoardPresenter
         model={props.model}

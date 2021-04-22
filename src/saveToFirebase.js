@@ -4,27 +4,25 @@
  */
 
 export function saveToFirebase(model) {
-  console.log("Model save: ", model);
   let loadingFromFirebase = true;
   var usr = window.db.collection("users").doc(String(model.userId));
-  
 
-   // Save to Firestore
-   model.addObserver(() => {
-    if (true) {
+  // Save to Firestore
+  model.addObserver(() => {
+    if (false) {
       setTimeout(() => {
         usr
-          .set({ 
+          .set({
             activeBankId: String(model.activeBankId),
             keyCountBanks: model.keyCountBanks,
-            keyCountBoards: model.keyCountBoards
+            keyCountBoards: model.keyCountBoards,
           })
 
           .then(
             model.banks.forEach((bank) => {
               console.log("activeBankId: ", String(model.activeBankId));
               console.log("Save bank: ", bank);
-              console.log("Save bank.id: ",bank.id);
+              console.log("Save bank.id: ", bank.id);
               usr
                 .collection("banks")
                 .doc(String(bank.id))
@@ -69,6 +67,4 @@ export function saveToFirebase(model) {
       }, 1000);
     }
   });
-  console.log("Model end save: ", model);
-
 }

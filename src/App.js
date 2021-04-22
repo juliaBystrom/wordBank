@@ -10,20 +10,30 @@ import { useState } from "react";
 
 function App() {
   require("dotenv").config();
-  window.db = firebaseApp.firestore(); //finns kanske nån annan lösning än window.?
+  window.db = firebaseApp.firestore();
   //const model = new WordBankModel();
-  const [model, setModel] = useState(new WordBankModel()) ;
+  const [model, setModel] = useState(new WordBankModel());
 
   return (
     <>
       <TranslatePresenter model={model} />
       <SidebarPresenter model={model} />
-      <Route exact path="/" component={() => <AuthPresenter model={model} setModel={setModel} />} />
+      <Route
+        exact
+        path="/"
+        component={() => <AuthPresenter model={model} setModel={setModel} />}
+      />
       <Route
         exact
         path="/bank"
-        component={() => <BankPresenter model={model} />}
+        component={() => {
+          if (model.userId) {
+            console.log("#1!");
+            return <BankPresenter model={model} />;
+          } else return <div>nothing</div>;
+        }}
       />
+
       {/* <Route exact path="/test" component={boardView} /> */}
     </>
   );

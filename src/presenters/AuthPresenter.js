@@ -24,14 +24,16 @@ export const AuthPresenter = (props) => {
         console.log("LogIn successful ", userCredentials.user.email);
         console.log("User id: ", userCredentials.user.uid);
         model.setCurrentUser(userCredentials.user.uid);
-        props.setModel(model);
         setEmailError("");
         setPasswordError("");
-        history.push("/bank");
-
       })
-      .then(()=>{loadFromFirebase(model)})
-      .then(()=>{saveToFirebase(model)})
+      .then(async () => {
+        await loadFromFirebase(model);
+        history.push("/bank");
+      })
+      .then(() => {
+        saveToFirebase(model);
+      })
       .catch((err) => {
         if (
           err.code === "auth/invalid-email" ||

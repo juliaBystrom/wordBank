@@ -23,6 +23,6 @@ export default function useBankProp(model, property) {
     },
     [model, bank, property]
   );
-  // though model never changes
+
   return value;
 }

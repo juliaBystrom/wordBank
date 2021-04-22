@@ -5,7 +5,7 @@ export class WordBankModel {
     this.activeBankId = 0;
     this.banks = [new Bank(0)];
     this.observers = [];
-    this.keyCountBoards = 3;
+
     this.sortings = [
       { name: "Latest edited", func: () => this.sortLatestEdited() },
       { name: "Most used", func: () => this.sortMostUsed() },
@@ -14,11 +14,15 @@ export class WordBankModel {
     this.toLanguage = "en";
     this.fromLanguage = "sv";
     this.loggedIn = false;
+    this.userId = "";
     this.placeholder = "Skriv här";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.getKeyBoards = this.getKeyBoards.bind(this);
+    this.keyCountBoards = 0;
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
+
+    this.boardCount = 0;
   }
 
   toString() {
@@ -142,8 +146,8 @@ export class WordBankModel {
   addBoard(name) {
     // TODO Networking to add newboard
     console.log("activeBankId", this.activeBankId);
-    this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
-
+    this.banks[this.activeBankId].addBoard(name, this.boardCount++);
+    console.log(this.boardCount);
     this.notifyObservers();
   }
 
@@ -162,6 +166,7 @@ export class WordBankModel {
 
   addTag(name) {
     this.banks[this.activeBankId].addTag(name);
+    console.log(this.banks[this.activeBankId].tags);
     this.notifyObservers();
   }
 

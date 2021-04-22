@@ -86,6 +86,7 @@ const TagInput = styled.input`
   padding: 10px;
   border: 1px solid;
   font-weight: 600;
+  background: white;
 `;
 
 const TranslateView = (props) => {
@@ -150,7 +151,7 @@ const TranslateView = (props) => {
           )}
           <datalist onChange={() => console.log("set a tag")} id="taglist">
             {props.tags.map((opt) => (
-              <option key={Number(opt.id)}>{opt.tag}</option>
+              <option key={Number(opt.id)}>{opt.name}</option>
             ))}
           </datalist>
         </ButtonContainer>
