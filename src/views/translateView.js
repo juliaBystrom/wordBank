@@ -115,7 +115,7 @@ const TranslateView = (props) => {
             setLanguage={props.setToLanguage}
           ></LanguageList>
         </TitleBox>
-        <TextBox defaultValue={props.transPhrase} isTranslateFrom={false}></TextBox>
+        <TextBox readOnly={true} defaultValue={props.transPhrase} isTranslateFrom={false}></TextBox>
       </div>
       {
         <ButtonContainer>

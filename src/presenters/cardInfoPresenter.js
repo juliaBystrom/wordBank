@@ -32,9 +32,6 @@ export default function CardInfoPresenter(props) {
     const [comment, setComment] = React.useState(prevComment);
 
 
-
-
-
     return (
         <>
             <CardInfoView
