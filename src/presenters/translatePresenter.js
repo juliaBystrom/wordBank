@@ -3,6 +3,7 @@ import TranslateView from "../views/translateView";
 import useBankProp from "./useBankProp";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
+import Modal from 'react-modal';
 
 const TranslatePresenter = ({ model }) => {
   const [phrase, setPhrase] = React.useState("");
@@ -34,7 +35,7 @@ const TranslatePresenter = ({ model }) => {
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
-  const [selected, setSelectd] = useState(0);
+  const [selected, setSelected] = useState(0);
 
   const createTranslationCard = (boardID) => {
     if (!tag) {
@@ -83,6 +84,20 @@ const TranslatePresenter = ({ model }) => {
     );
   };
 
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+    
+  function openModal() {
+      setIsOpen(true);
+  }
+  function closeModal() {
+      setIsOpen(false);
+  }
+
+
+  const isNewLanguageCombo = (language1, language2) => {
+    return model.isLanguageComboUsed(language1, language2);
+  }
+
   return (
     <TranslateView
       model={model}
@@ -94,12 +109,18 @@ const TranslatePresenter = ({ model }) => {
       toLanguage={toLanguage}
       setToLanguage={(newLanguage) => {
         model.setToLanguage(newLanguage);
+        if(isNewLanguageCombo(newLanguage, toLanguage)){
+          openModal();
+        } 
         console.log(toLanguage);
       }}
       setFromLanguage={(newLanguage) => {
         translatePlaceholder(newLanguage);
         model.setFromLanguage(newLanguage);
         model.setTransPhrase("");
+        if(isNewLanguageCombo(newLanguage, toLanguage)){
+          openModal();
+        } 
         console.log(fromLanguage);
       }}
       translate={() => {
@@ -123,7 +144,7 @@ const TranslatePresenter = ({ model }) => {
         setOpen(!open);
 
         // Use state resets to 0 no use
-        setSelectd(board.id);
+        setSelected(board.id);
 
         createTranslationCard(board.id);
         // Should remove text etc now

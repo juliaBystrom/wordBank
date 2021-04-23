@@ -90,7 +90,7 @@ const TranslateView = (props) => {
   return (
     <TranslateWrapper>
       <div>
-        <form onSubmit={() => console.log("translate!")}>
+        <form>
           <TitleBox isTranslateFrom={true}>
             <LanguageList
               language={props.fromLanguage}

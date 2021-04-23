@@ -20,7 +20,9 @@ export class WordBankModel {
     this.getKeyBoards = this.getKeyBoards.bind(this);
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
+    this.languageCombos =[]; 
   }
+
 
   toString() {
     return (
@@ -141,6 +143,22 @@ export class WordBankModel {
     this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
 
     this.notifyObservers();
+  }
+
+  createBank(id, language1, language2){
+    this.languageCombos = [[language1, language2], ...this.languageCombos];
+    this.banks = [new Bank(id), ...this.banks];
+  }
+
+  isLanguageComboUsed(language1, language2) {
+    this.languageCombos.forEach(combo => {
+      if( combo.includes([language1, language2]) ||
+          combo.includes([language2, language1])) {
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
 
   /* 

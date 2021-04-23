@@ -2,11 +2,11 @@ import Board from "./board";
 import Card from "./card";
 
 export default class Bank {
-    constructor(id) {
+    constructor(id, languageFrom, languageTo) {
       this.id = id;
       this.boards = [new Board("My First Board", 0, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })];
-      this.languageFrom = "Swedish";
-      this.languageTo = "English";
+      this.languageFrom = languageFrom;
+      this.languageTo = languageTo;
       this.tags = [];
       // Keeps track if no tags is choosed for filter
       this.bankIsFiltered = true;
