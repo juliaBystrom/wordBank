@@ -1,26 +1,17 @@
 export default class Card {
-    constructor(testing, id, commentOnS, leftS, rightS, givenTag) {
-      // super(props);
-      if (testing) {
-        this.cardID = id;
+    constructor(id, commentOnS, leftS, rightS, tag) {
+
+        this.id = id;
         this.comment = commentOnS;
-        this.tag = givenTag;
+        this.tag = tag;
         this.leftSentence = leftS;
         this.rightSentence = rightS;
         this.show = true;
-      } else {
-        this.cardID = [];
-        this.comment = null;
-        this.tag = givenTag;
-        this.leftSentence = null;
-        this.rightSentence = null;
-        this.show = true;
-      }
     }
   
     setComment() { }
   
-    setShowTrue() {
+    showCard() {
       this.show = true;
     }
   
@@ -28,17 +19,14 @@ export default class Card {
     // If the card does not have an tag the show value will be set to false
     filterOnTags(tags) {
       if (this.tag) {
-        const tagInfo = tags.find((tagInfo) => {
-          return tagInfo.tag === this.tag
-  
+          const tag = tags.find((tag) => {
+          return tag.name === this.tag
         })
-  
-        this.show = tagInfo.show;
+        this.show = tag.checked;
       } else {
         this.show = false;
       }
     }
-    
   
   }
   

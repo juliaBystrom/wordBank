@@ -2,45 +2,19 @@ import Board from "./board";
 import Card from "./card";
 
 export default class Bank {
-    constructor(id, testing) {
-      // super(props);
-  
+    constructor(id) {
+      this.id = id;
+      this.boards = [new Board("My First Board", 0, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })];
+      this.languageFrom = "Swedish";
+      this.languageTo = "English";
+      this.tags = [];
+      // Keeps track if no tags is choosed for filter
+      this.bankIsFiltered = true;
       this.idCountCards = 0;
+      this.idCountTags = 2;
       this.getIdCards = this.getIdCards.bind(this);
-  
-      if (testing) {
-        this.bankID = id;
-        this.boards = [
-          new Board("Board1", true, 0, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() }),
-          new Board("Board2", true, 1, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() }),
-          new Board("Board3", true, 2, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() }),
-        ];
-        this.reverseTranslate = false;
-        this.testingBank = true;
-        this.languageFrom = "Swedish";
-        this.languageTo = "English";
-        this.tags = [ { id: 0, tag: "Verb", show: false },
-                    ];
-        // Keeps track if no tags is choosed for filter
-        this.showAllCards = true;
-        this.idCountTags = 2;
-        this.nrOfShow = 0;
-  
-      } else {
-        this.bankID = 0;
-        this.boards = [];
-        this.reverseTranslate = false;
-  
-        this.testingBank = false;
-        this.tags = []
-        // Keeps track if no tags is choosed for filter
-        this.showAllCards = true;
-        this.idCountTags = 0;
-      }
-  
       // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
       this.getIdTags = this.getIdTags.bind(this);
-  
     }
   
     sortLatestEdited(){
@@ -67,7 +41,7 @@ export default class Bank {
       // Obs only testing version. Outerwise if not testing the last is not needed
       this.boards = [
         ...this.boards,
-        new Board(name, true, id, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })
+        new Board(name, id, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })
       ];
     }
   
@@ -78,73 +52,68 @@ export default class Bank {
      
       addTag, editTag and filterOnTag is used by being called in the WordBankModel
     
-      Theese functions add tags, edit tagnames and update the show value of tags by interacting with this.tags of this Bank objects. 
+      Theese functions add tags, edit tagnames and update the checked value of tags by interacting with this.tags of this Bank objects. 
     
      
     */
   
     // Add tage will first check if the tag already exist. If not it will add it. Else it will just do a console log
-    addTag(tagName) {
-      if (!this.tags.includes(tagName)) {
-        this.tags = [...this.tags, { id: this.getIdTags(), tag: tagName, show: false }];
+    addTag(name) {
+      const tag = this.tags.find((tag) => {
+        return tag.name === name;
+      })
+      if (!tag) {
+        this.tags = [...this.tags, { id: this.getIdTags(), name: name, checked: false }];
       } else {
-        // console.log("[Info from model]: Tag already exist. No new tag created");
+        console.log("Tag exists.");
       }
     }
   
-    editTag(tagName, newTag) {
+    editTag(name, newTagName) {
   
-      this.tags.map((t) => {
-        return t.tag !== tagName ? t : { id: t.id, tag: newTag, show: t.show };
-  
+      this.tags.map((tag) => {
+        return tag.name!== name ? tag : { id: tag.id, name: newTagName, checked: tag.checked };
       })
   
     }
   
     /* 
-      Toggles the value of tag with tagName
-      It does also count how many tags have show: true
-      If nrOfShow is 0 then no tags is curently being filtred which put the this.showAllCards to true
+      Toggles the value of tag with name
+      It does also count how many tags have checked: true
+      If checkedTags is 0 then no tags is curently being filtred which put the this.bankIsFiltered to false
     
     */
-    filterOnTag(tagName) {
-
+    filterOnTag(name) {
+      this.checkedTags = 0;
       // Check or uncheck tag.
-      this.tags.map((t) => {
-        if (t.tag === tagName) {
-          if (!t.show) {
-            t.show = true;
-            this.nrOfShow++;
-          } else if (t.show) {
-            t.show = false;
-            this.nrOfShow--;
+      this.tags.map((tag) => {
+        if (tag.name === name) {
+          if (!tag.checked) {
+            tag.checked = true;
+            this.checkedTags++;
+          } else if (tag.checked) {
+            tag.checked = false;
+            this.checkedTags--;
           }
         } 
       })
-
-      // Keep track of unchecked tags.
-      var uncheckedTags = 0;
-      this.tags.map((tag)=>{
-        if(tag.show == false){
-          uncheckedTags++;
-        }
-      });
   
-      // If no tag is checked, show all cards.
-      this.showAllCards = this.tags.length-uncheckedTags === 0;
+      // If bank is not filtered, all cards are shown 
+      // else if bankIsFiltered ; only cards with checked tags will be shown
+      this.bankIsFiltered = this.checkedTags > 0;
   
       for (var i = 0; i < this.boards.length; i++) {
-        this.boards[i].filterCards(this.showAllCards, this.tags);
+        this.boards[i].filterCards(this.bankIsFiltered, this.tags);
       }
   
     }
   
   
     createCard(phrase, translation, saveToBoardId, tag) {
-      var boardIndex = this.boards.findIndex((boardObject) => {
-        return boardObject.boardID === Number(saveToBoardId);
+      var boardIndex = this.boards.findIndex((board) => {
+        return board.id === Number(saveToBoardId);
       });
-      this.boards[boardIndex].addCard(new Card(true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
+      this.boards[boardIndex].addCard(new Card(this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
     }
   
   }

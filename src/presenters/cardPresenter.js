@@ -14,7 +14,9 @@ import Modal from 'react-modal';
 
 export default function CardPresenter(props) {
 
-    const showCard = useCardProp(props.model, props.boardID, props.cardID, "show");
+    
+    const showCard = useCardProp(props.model, props.boardId, props.cardId, "show");
+
 
 
     // State and funcitos for handeling card info popup
@@ -32,6 +34,7 @@ export default function CardPresenter(props) {
 
 
     return (
+
         <>
             {showCard ? <CardView
                 leftSentence={props.card.leftSentence}
@@ -46,6 +49,7 @@ export default function CardPresenter(props) {
             /> : <div><p> NEJ SHOW</p></div>}
             <CardInfoPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} card={props.card} model={props.model} boardID={props.boardID} />
         </>
+
 
     );
 

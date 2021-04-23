@@ -33,7 +33,7 @@ const Credentials = styled.input`
 `;
 
 const AuthButton = styled.input`
-  background: #7fa650;
+  background: ${props => props.theme.queenblue};
   font-size: 20px;
   margin: 5px 0px;
   padding: 10px 0px;
@@ -56,7 +56,7 @@ const Text = styled.div`
 
 const Error = styled.span`
   margin-bottom: 10px;
-  color: red;
+  color: ${props => props.theme.fieryrose};
   font-weight: 800px;
 `;
 
@@ -98,12 +98,12 @@ export const AuthView = ({
           pattern="^[a-zA-Z0-9]{3,24}$"
         />
         <Error>{passwordError}</Error>
-        <AuthButton type="submit" value="Login" />
+        <AuthButton type="submit" defaultValue="Login" />
       </LoginContainer>
 
       <AuthButton
         type="button"
-        value="Register"
+        defaultValue="Register"
         onClick={() => {
           handleRegister();
         }}

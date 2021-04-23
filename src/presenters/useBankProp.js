@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function useBankProp(model,property) {  // custom hook
     const banks = model.banks
-    const currentBank = model.currentBank;
+    const activeBankId = model.activeBankId;
 
-    var bank = banks.filter(b => {
-        return b.bankID === currentBank;
+    var bank = banks.filter(bank => {
+        return bank.id === activeBankId;
       })[0]
 
     const [value, setValue] = React.useState(bank[property]);

@@ -37,7 +37,9 @@ const DropdownComponent = ({ list, title, open, toggle, onSelectionDone, keyExtr
             {open && (
                 <DropdownComponentItem>
                     {list.map(item => (
+
                         <li key={keyExtractor(item)}>
+
                             <button type="button" onClick={(e) => {
 
                                 onSelectionDone(item);

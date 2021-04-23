@@ -9,7 +9,7 @@ const Menu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: ${props => props.theme.medium};
+  background-color: ${props => props.theme.alabaster};
   box-shadow: 0.5px 0.5px 15px #c4c2c2;
   height: 100vh;
   text-align: left;
@@ -18,7 +18,7 @@ const Menu = styled.nav`
   top: 0;
   left: 0;
   transition: transform 0.2s ease-in-out;
-  transform: ${props => !props.open ?  'translateX(0)' : 'translateX(-100%)'};
+  transform: ${props => props.open ?  'translateX(0)' : 'translateX(-100%)'};
 
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;
@@ -30,10 +30,6 @@ const Menu = styled.nav`
     color: #FFF;
     text-decoration: none;
     transition: color 0.3s linear; 
-    ${'' /* border-radius: 16px;
-    border: 2px solid #FFF;
-    padding: 20px;
-    margin: 5px; */}
     
     @media (max-width: ${props => props.theme.mobile}) {
       font-size: 1.5rem;

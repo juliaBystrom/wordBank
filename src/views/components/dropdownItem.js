@@ -5,14 +5,10 @@ export const DropdownItem = styled.nav`
   flex-direction: row;
   justify-content: center;
   background: #FFF;
-  text-align: left;
-  padding: 1rem;
-  width: 150px;
-  top: 0;
-  left: 0;
+  text-align: center;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  width: relative;
   transition: transform 0.3s ease-in-out;
-  ${'' /* transform: ${props => (!props.drop ?  'translateY(-100%)' : 'translateY(0%)')}; */}
-  ${'' /* opacity: ${props => (!props.drop ? '0' : '1')}; */}
   display: ${props => (!props.drop ? 'none' : 'flex')};
 
   &:hover {
@@ -24,7 +20,7 @@ export const DropdownItem = styled.nav`
   }
 
   a {
-    font-size: 1rem;
+    font-size: 0.5rem;
     font-weight: regular;
     color: #000;
     text-decoration: none;

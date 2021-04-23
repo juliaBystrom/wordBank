@@ -2,13 +2,14 @@ import React from "react";
 
 import styled, { css } from "styled-components";
 import { DropdownComponent } from "./components";
+import LanguageList from "./components/languageList";
 
 const TranslateWrapper = styled.div`
   height: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #e0e0e0;
+  background: "#55555";
 
   /* 
   display: flex;
@@ -29,7 +30,7 @@ const Button = styled.button`
   color: black;
   font-weight: 600;
   padding: 0.25em 1em;
-  background-color: springgreen;
+  background-color: ${(props) => props.theme.queenblue};
   border-radius: 8px;
   height: 40px;
   width: 200px;
@@ -47,21 +48,23 @@ const TitleBox = styled.div`
   justify-content: center;
   align-items: center;
   width: 260px;
-  border: 1px solid grey;
-  border-radius: 1px;
+  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
   height: 10px;
   text-align: center;
-  background-color: beige;
+  background-color: ${props => (props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain)};
   font-family: serif, Times;
   font-size: 20px;
   padding: 20px;
 `;
 
 const TextBox = styled.textarea`
-  width: 280px;
-  border: 1px solid grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 256px;
+  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
   height: 100px;
-  padding: 10px;
+  padding: 20px;
   resize: none;
 `;
 
@@ -78,19 +81,8 @@ const TagInput = styled.input`
   border-radius: 8px;
   height: 20px;
   padding: 10px;
-  border: none;
+  border: 1px solid;
   font-weight: 600;
-`;
-
-const StyledSelect = styled.select`
-  width: 180px;
-  border-radius: 8px;
-
-  height: 30px;
-  padding: 3px;
-  border: none;
-  font-weight: 600;
-  margin: 0px;
 `;
 
 const TranslateView = (props) => {
@@ -99,58 +91,68 @@ const TranslateView = (props) => {
     <TranslateWrapper>
       <div>
         <form onSubmit={() => console.log("translate!")}>
-          <TitleBox>{props.fromLanguage}</TitleBox>
+          <TitleBox isTranslateFrom={true}>
+            <LanguageList
+              language={props.fromLanguage}
+              languageCodes={props.languageCodes}
+              setLanguage={props.setFromLanguage}
+            ></LanguageList>
+          </TitleBox>
 
           <TextBox
             onChange={(e) => props.setPhrase(e.target.value)}
-            placeholder="Type here"
+            placeholder={props.placeholder}
+            isTranslateFrom={true}
           ></TextBox>
         </form>
       </div>
 
       <div>
-        <TitleBox>
-          <StyledSelect
-            className="select-language"
-            value={props.toLanguage}
-            onChange={(e) => {
-              props.setLanguage(e.target.value);
-            }}
-          >
-            {/* {props.languageCodes.map((lang) => (
-              <option key={lang.language} value={lang.language}>
-                {lang.name}
-              </option>
-            ))} */}
-          </StyledSelect>
+        <TitleBox isTranslateFrom={false}>
+          <LanguageList
+            language={props.toLanguage}
+            languageCodes={props.languageCodes}
+            setLanguage={props.setToLanguage}
+          ></LanguageList>
         </TitleBox>
-        <TextBox value={props.transPhrase}></TextBox>
+        <TextBox defaultValue={props.transPhrase} isTranslateFrom={false}></TextBox>
       </div>
-      <ButtonContainer>
-        <Button onClick={() => props.translate()}>Translate!</Button>
+      {
+        <ButtonContainer>
+          <Button onClick={() => props.translate()}>Translate!</Button>
 
-        <DropdownComponent
-          list={props.availableBoards}
-          title={"Save to"}
-          open={props.openSelector}
-          toggle={() => props.toggle()}
-          onSelectionDone={(board) => props.saveToBoard(board)}
-          keyExtractor={(item) => { return item.boardID }}
-        />
+          {props.loggedIn ? (
+            <span>
+              <TagInput
+                onChange={(event) => props.setTag(event.target.value)}
+                type="text"
+                name="tag"
+                list="taglist"
+                placeholder="Tag:"
+              ></TagInput>
 
-        <TagInput
-          onChange={(event) => props.setTag(event.target.value)}
-          type="text"
-          name="tag"
-          list="taglist"
-          placeholder="Tag:"
-        ></TagInput>
-        <datalist onChange={() => console.log("set a tag")} id="taglist">
-          {props.tags.map((opt) => (
-            <option value={Number(opt.id)} label={opt.tag}></option>
-          ))}
-        </datalist>
-      </ButtonContainer>
+              <DropdownComponent
+                list={props.availableBoards}
+                title={"Save to"}
+                open={props.openSelector}
+                toggle={() => props.toggle()}
+                onSelectionDone={(board) => props.saveToBoard(board)}
+                keyExtractor={(item) => { return item.id }}
+
+              />
+            </span>
+          ) : (
+            ""
+          )}
+          <datalist onChange={() => console.log("set a tag")} id="taglist">
+            {props.tags.map((opt) => (
+              <option key={Number(opt.id)}>{opt.tag}</option>
+              //  <option value={Number(opt.id)} label={opt.tag}></option>
+            ))}
+          </datalist>
+        </ButtonContainer>
+      }
+
     </TranslateWrapper>
   );
 };

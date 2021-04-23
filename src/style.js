@@ -10,8 +10,8 @@ export const style = createGlobalStyle`
   }
   body {
     align-items: left;
-    background: ${props => props.theme.main};
-    color: ${props => props.theme.secondary}; 
+    ${'' /* background: ${props => props.theme.main};
+    color: ${props => props.theme.secondary};  */}
     display: flex;
     font-family: "Helvetica"; 
     height: 100vh;
