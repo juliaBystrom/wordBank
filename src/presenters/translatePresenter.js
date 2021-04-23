@@ -99,60 +99,62 @@ const TranslatePresenter = ({ model }) => {
   }
 
   return (
-    <TranslateView
-      model={model}
-      loggedIn={loggedIn}
-      languageCodes={languageCodes}
-      transPhrase={transPhrase}
-      fromLanguage={fromLanguage}
-      placeholder={placeholder}
-      toLanguage={toLanguage}
-      setToLanguage={(newLanguage) => {
-        model.setToLanguage(newLanguage);
-        if(isNewLanguageCombo(newLanguage, toLanguage)){
-          openModal();
-        } 
-        console.log(toLanguage);
-      }}
-      setFromLanguage={(newLanguage) => {
-        translatePlaceholder(newLanguage);
-        model.setFromLanguage(newLanguage);
-        model.setTransPhrase("");
-        if(isNewLanguageCombo(newLanguage, toLanguage)){
-          openModal();
-        } 
-        console.log(fromLanguage);
-      }}
-      translate={() => {
-        translate();
-      }}
-      tags={tags}
-      setPhrase={(phrase) => {
-        setPhrase(phrase);
-      }}
-      createCard={() => {
-        // Moved this code to createTranslationCard
-        // This prop is unecesarry but keept to not breaking anything
-        createTranslationCard();
-      }}
-      setTag={(newTagName) => {
-        setTag(newTagName);
-      }}
-      saveToBoard={(board) => {
-        // Will close when selected
+    <>
+      <TranslateView
+        model={model}
+        loggedIn={loggedIn}
+        languageCodes={languageCodes}
+        transPhrase={transPhrase}
+        fromLanguage={fromLanguage}
+        placeholder={placeholder}
+        toLanguage={toLanguage}
+        setToLanguage={(newLanguage) => {
+          model.setToLanguage(newLanguage);
+          if(isNewLanguageCombo(newLanguage, toLanguage)){
+            openModal();
+          } 
+          console.log(toLanguage);
+        }}
+        setFromLanguage={(newLanguage) => {
+          translatePlaceholder(newLanguage);
+          model.setFromLanguage(newLanguage);
+          model.setTransPhrase("");
+          if(isNewLanguageCombo(newLanguage, toLanguage)){
+            openModal();
+          } 
+          console.log(fromLanguage);
+        }}
+        translate={() => {
+          translate();
+        }}
+        tags={tags}
+        setPhrase={(phrase) => {
+          setPhrase(phrase);
+        }}
+        createCard={() => {
+          // Moved this code to createTranslationCard
+          // This prop is unecesarry but keept to not breaking anything
+          createTranslationCard();
+        }}
+        setTag={(newTagName) => {
+          setTag(newTagName);
+        }}
+        saveToBoard={(board) => {
+          // Will close when selected
+          setOpen(!open);
 
-        setOpen(!open);
+          // Use state resets to 0 no use
+          setSelected(board.id);
 
-        // Use state resets to 0 no use
-        setSelected(board.id);
-
-        createTranslationCard(board.id);
-        // Should remove text etc now
-      }}
-      availableBoards={boards}
-      toggle={() => setOpen(!open)}
-      openSelector={open}
-    />
+          createTranslationCard(board.id);
+          // Should remove text etc now
+        }}
+        availableBoards={boards}
+        toggle={() => setOpen(!open)}
+        openSelector={open}
+      /> 
+      <CreateBankPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} model={props.model}/>
+    <> 
   );
 };
 
