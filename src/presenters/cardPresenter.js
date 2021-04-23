@@ -47,7 +47,7 @@ export default function CardPresenter(props) {
                  }} */
                 onCardPress={openModal}
             /> : <div><p> NEJ SHOW</p></div>}
-            <CardInfoPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} card={props.card} model={props.model} boardID={props.boardID} />
+            <CardInfoPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} card={props.card} model={props.model} boardId={props.boardId} />
         </>
 
 

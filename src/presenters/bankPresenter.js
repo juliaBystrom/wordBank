@@ -24,7 +24,7 @@ export default function BankPresenter(props) {
   // TODO: When index changing oimplementation is done test that reredering is correct
   const boardPresenters = boards.map((board, index) => {
 
-    return <BoardPresenter model={props.model} boardIndex={index} key={board.id} id={board.id} title={board.title} />
+    return <BoardPresenter model={props.model} boardIndex={index} key={board.id} boardId={board.id} title={board.title} />
 
   });
 

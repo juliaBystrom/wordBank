@@ -17,11 +17,11 @@ export default function BoardPresenter(props) {
     // Using boardIndex to accses the right board element in the model
     // const board = useModelSubSubclassProperty(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
     // const board = useBoardProp(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
-    const cards = useBoardProp(props.model, props.id, "cards");
+    const cards = useBoardProp(props.model, props.boardId, "cards");
 
 
     var cardPresenterList = cards.map(function (card) {
-        return <CardPresenter model={props.model} boardId={props.id} cardId={card.id} card={card} key={card.id} />
+        return <CardPresenter model={props.model} boardId={props.boardId} cardId={card.id} card={card} key={card.id} />
     });
 
     return (

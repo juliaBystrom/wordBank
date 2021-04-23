@@ -27,7 +27,7 @@ export default function CardInfoPresenter(props) {
 
 
     // TO DO get comment without using this
-    const prevComment = useCardProp(props.model,props.boardID, props.card.cardID, "comment");
+    const prevComment = useCardProp(props.model, props.boardId, props.card.id, "comment");
 
     const [comment, setComment] = React.useState(prevComment);
 
