@@ -167,6 +167,42 @@ export class WordBankModel {
   }
 
   /* 
+   ----------------------------------------------------------
+                 CARD FUNCIONALITY WordBankModel
+   ----------------------------------------------------------
+
+  */
+
+  setCardComment(newComment, cardId, boardId) {
+    this.banks[this.activeBankId].setCardComment(newComment, cardId, boardId);
+    this.notifyObservers();
+  }
+
+  setCardLeftSentence(newSentence, cardId, boardId) {
+    this.banks[this.activeBankId].setCardLeftSentence(
+      newSentence,
+      cardId,
+      boardId
+    );
+    this.notifyObservers();
+  }
+  setCardRightSentence(newSentence, cardId, boardId) {
+    this.banks[this.activeBankId].setCardRightSentence(
+      newSentence,
+      cardId,
+      boardId
+    );
+    this.notifyObservers();
+
+  }
+
+  setCardNewTag(newTagName, cardId, boardId) {
+    this.banks[this.activeBankId].setCardNewTag(newTagName, cardId, boardId);
+    this.notifyObservers();
+
+  }
+
+  /* 
         Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
          :) 
     */
