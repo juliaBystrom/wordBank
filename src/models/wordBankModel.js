@@ -2,10 +2,10 @@ import Bank from "./bank";
 
 export class WordBankModel {
   constructor() {
-    this.activeBankId = 0;
+    this.setActiveBankId(0);
     this.banks = [new Bank(0, "Swedish", "English")];
     this.observers = [];
-    this.userID = 123;
+    this.userId = 123;
     this.keyCountBoards = 3;
     this.sortings = [
       { name: "Latest edited", func: () => this.sortLatestEdited() },
@@ -26,9 +26,9 @@ export class WordBankModel {
 
   toString() {
     return (
-      this.currentBank +
+      this.activeBank +
       ", " +
-      this.userID +
+      this.userId +
       ", " +
       this.languageFrom +
       ", " +
@@ -41,45 +41,49 @@ export class WordBankModel {
 
   // SignUp action
   createUserModel(userId) {
-    this.userID = userId;
-    console.log(this.userID);
+    this.userId = userId;
+    console.log(this.userId);
     this.notifyObservers();
   }
 
   // SignIn action
-  setCurrentUser(userId) {
-    this.userID = userId;
+  setActiveUser(userId) {
+    this.userId = userId;
     this.loggedIn = true;
-    console.log(this.userID);
+    console.log(this.userId);
     this.notifyObservers();
   }
 
-  /* setCurrentBank(bankID) {
-    this.currentBank = bankID;
+  /* setActiveBankId(bankId) {
+    this.activeBank = bankId;
     return  this.activeBankId + ', '
-          + this.userID + ', '
+          + this.userId + ', '
           + this.languageFrom + ', '
           + this.languageTo;
   } */
-  setCurrentBank(id) {
+  setActiveBankId(id) {
     this.activeBankId = id;
     this.notifyObservers();
   }
 
-  getCurrentBank() {
+  getActiveBank() {
     return this.banks.filter((bank) => {
       return bank.id === this.activeBankId;
     })[0];
   }
 
+  getActiveBankIndex(){
+    return this.banks.indexOf(this.getActiveBank());
+  }
+
   sortLatestEdited() {
     console.log("SORTING LATEST EDITED: ", this);
-    this.getCurrentBank().sortLatestEdited();
+    this.getActiveBank().sortLatestEdited();
     this.notifyObservers();
   }
 
   sortMostUsed() {
-    this.getCurrentBank().sortMostUsed();
+    this.getActiveBank().sortMostUsed();
     this.notifyObservers();
   }
 
@@ -95,7 +99,7 @@ export class WordBankModel {
         saveToBoardId
     );
 
-    this.banks[this.activeBankId].createCard(
+    this.banks[this.getActiveBankIndex()].createCard(
       phrase,
       translation,
       saveToBoardId,
@@ -106,7 +110,7 @@ export class WordBankModel {
   }
 
   setPhrase(phrase) {
-    this.currentPhrase = phrase;
+    this.activePhrase = phrase;
     this.notifyObservers();
   }
 
@@ -149,14 +153,15 @@ export class WordBankModel {
 
   addBoard(name) {
     // TODO Networking to add newboard
-    this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
-
+    this.banks[this.getActiveBankIndex()].addBoard(name, this.getKeyBoards());
     this.notifyObservers();
   }
 
   createBank(id, language1, language2){
     this.languageCombos = [[language1, language2], ...this.languageCombos];
     this.banks = [new Bank(id, language1, language2), ...this.banks];
+    this.setActiveBankId(id);
+    this.notifyObservers();
   }
 
   isLanguageComboUsed(language1, language2) {
@@ -172,6 +177,8 @@ export class WordBankModel {
     });
   }
 
+
+
   /* 
    ----------------------------------------------------------
                  TAG FUNCIONALITY WordBankModel
@@ -180,18 +187,18 @@ export class WordBankModel {
   */
 
   addTag(name) {
-    this.banks[this.activeBankId].addTag(name);
+    this.banks[this.getActiveBankIndex()].addTag(name);
     this.notifyObservers();
   }
 
   //
   editTag(name, newTagNameName) {
-    this.banks[this.activeBankId].editTag(name, newTagNameName);
+    this.banks[this.getActiveBankIndex()].editTag(name, newTagNameName);
     this.notifyObservers();
   }
 
   filterOnTag(name) {
-    this.banks[this.activeBankId].filterOnTag(name);
+    this.banks[this.getActiveBankIndex()].filterOnTag(name);
     this.notifyObservers();
   }
 

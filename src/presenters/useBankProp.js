@@ -1,8 +1,9 @@
 import React from 'react';
+import useModelProp from "./useModelProp";
 
-export default function useBankProp(model,property) {  // custom hook
+export default function useBankProp(model, property) {  // custom hook
+    const activeBankId = useModelProp(model, "activeBankId");
     const banks = model.banks
-    const activeBankId = model.activeBankId;
 
     var bank = banks.filter(bank => {
         return bank.id === activeBankId;

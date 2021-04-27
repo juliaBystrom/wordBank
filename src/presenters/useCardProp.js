@@ -1,8 +1,9 @@
 import React from 'react';
+import useModelProp from "./useModelProp";
 
-export default function useCardProp(model, boardID, cardID, property) {  // custom hook
+export default function useCardProp(model, boardId, cardId, property) {  // custom hook
+    const activeBankId = useModelProp(model, "activeBankId");
     const banks = model.banks;
-    const activeBankId = model.activeBankId;
 
     var bank = banks.filter(bank => {
         return bank.id === activeBankId;
@@ -11,11 +12,11 @@ export default function useCardProp(model, boardID, cardID, property) {  // cust
     const boards = bank.boards;
     
     var board = boards.filter(board => {
-        return board.id === boardID;
+        return board.id === boardId;
       })[0]
 
     const card = board.cards.filter(card => {
-        return card.id === cardID;
+        return card.id === cardId;
       })[0]
 
     const [value, setValue] = React.useState(card[property]);

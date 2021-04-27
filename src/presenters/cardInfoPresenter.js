@@ -4,6 +4,7 @@ import useCardProp from "./useCardProp";
 
 import Modal from 'react-modal';
 import useBankProp from "./useBankProp";
+import useModelProp from "./useModelProp";
 
 
 

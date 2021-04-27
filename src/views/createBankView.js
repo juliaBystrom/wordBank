@@ -59,36 +59,17 @@ function getStyle(darkBorder) {
 }
 
 export default function CreateBankView(props) {
-
-    /*     const customModalStyle = {
-            content: {
-                top: '50%',
-                left: '50%',
-                right: 'auto',
-                bottom: 'auto',
-                marginRight: '-50%',
-                transform: 'translate(-50%, -50%)',
-                borderRadius: '10px',
-                borderStyle: 'solid',
-                borderWidth: '2px',
-                borderColor: `${props => props.theme.medium}`,
-    
-            },
-            overlay: {
-                // TO DO: Do we want another bluring background colour?
-            }
-        }; */
-
     return (
         <Modal
             isOpen={props.modalIsOpen}
             onRequestClose={props.closeModal}
-            contentLabel="Card info"
+            contentLabel="CreateBank"
             style={getStyle("#36333b", )}
         >
             <div>
                 <button onClick={props.closeModal}>close</button>
-                <p>JIPPI</p>
+                <p>Cool - a new language combo!</p>
+                <p>A new bank {props.fromLanguage}–{props.toLanguage} has been created to store your translations in.</p>
             </div>
         </Modal>
     );

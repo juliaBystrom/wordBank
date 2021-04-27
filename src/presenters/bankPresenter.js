@@ -1,9 +1,8 @@
 import React from "react";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
-
 import useBankProp from "./useBankProp";
-
+import useModelProp from "./useModelProp";
 
 /*
 BankPresenter manages:
@@ -17,7 +16,6 @@ BankPresenter manages:
 export default function BankPresenter(props) {
 
   const boards = useBankProp(props.model, "boards");
-
 
 
   // Index is used because baords are stored as an array in the model. 

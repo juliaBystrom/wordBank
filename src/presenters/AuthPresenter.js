@@ -20,7 +20,7 @@ export const AuthPresenter = ({ model }) => {
       .then((userCredentials) => {
         console.log("LogIn successful ", userCredentials.user.email);
         console.log("User id: ", userCredentials.user.uid);
-        model.setCurrentUser(userCredentials.user.uid);
+        model.setActiveUser(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
         history.push("/bank");

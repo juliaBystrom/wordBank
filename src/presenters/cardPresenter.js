@@ -2,24 +2,15 @@ import React from "react";
 import { CardView, CardInfoView } from "../views";
 import useCardProp from "./useCardProp";
 import CardInfoPresenter from "./cardInfoPresenter";
-import Modal from 'react-modal';
 
 /*
     CardPresenter 
-
 */
 
-
-
-
 export default function CardPresenter(props) {
-
-    
     const showCard = useCardProp(props.model, props.boardId, props.cardId, "show");
 
-
-
-    // State and funcitos for handeling card info popup
+    // State and functions for handling card info popup
     const [modalIsOpen, setIsOpen] = React.useState(false);
     
     function openModal() {
@@ -29,18 +20,13 @@ export default function CardPresenter(props) {
         setIsOpen(false);
     }
 
-
-
-
-
     return (
-
         <>
             {showCard ? <CardView
                 leftSentence={props.card.leftSentence}
                 rightSentence={props.card.rightSentence}
-                id={props.card.cardID}
-                key={props.card.cardID}
+                id={props.card.cardId}
+                key={props.card.cardId}
                 /*  onCardPress={(idOfCard) => {
                      console.log(`Pressed card: ${idOfCard}`);
                      openModal();
@@ -49,9 +35,5 @@ export default function CardPresenter(props) {
             /> : <div><p> NEJ SHOW</p></div>}
             <CardInfoPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} card={props.card} model={props.model} boardId={props.boardId} />
         </>
-
-
     );
-
-
 }

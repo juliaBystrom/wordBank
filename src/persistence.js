@@ -13,13 +13,13 @@ export function persistence(model) {
       setTimeout(() => {
         window.db
           .collection("users")
-          .doc(String(model.userID))
-          .set({ activeBankID: String(model.activeBankID) })
+          .doc(String(model.userId))
+          .set({ activeBankId: String(model.activeBankId) })
           .then(
             model.banks.forEach((bank) => {
               window.db
                 .collection("users")
-                .doc(String(model.userID))
+                .doc(String(model.userId))
                 .collection("banks")
                 .doc(String(bank.id))
                 .set({
@@ -33,7 +33,7 @@ export function persistence(model) {
                   bank.boards.forEach((board) => {
                     window.db
                       .collection("users")
-                      .doc(String(model.userID))
+                      .doc(String(model.userId))
                       .collection("banks")
                       .doc(String(bank.id))
                       .collection("boards")
@@ -44,7 +44,7 @@ export function persistence(model) {
                         board.cards.forEach((card) => {
                           window.db
                             .collection("users")
-                            .doc(String(model.userID))
+                            .doc(String(model.userId))
                             .collection("banks")
                             .doc(String(bank.id))
                             .collection("boards")
