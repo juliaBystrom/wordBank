@@ -1,12 +1,15 @@
 import React, { useState, useContext, createContext } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { saveToFirebase } from "../saveToFirebase";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
+import { loadFromFirebase } from "../loadFromFirebase";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
-export const AuthPresenter = ({ model }) => {
+export const AuthPresenter = (props) => {
+  const model = props.model;
   let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
@@ -23,7 +26,13 @@ export const AuthPresenter = ({ model }) => {
         model.setCurrentUser(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
+      })
+      .then(async () => {
+        await loadFromFirebase(model);
         history.push("/bank");
+      })
+      .then(() => {
+        saveToFirebase(model);
       })
       .catch((err) => {
         if (
@@ -52,7 +61,10 @@ export const AuthPresenter = ({ model }) => {
         history.push("/bank");
       })
       .catch((err) => {
-        if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
+        if (
+          err.code === "auth/email-already-in-use" ||
+          err.code === "auth/invalid-email"
+        ) {
           setEmailError(err.message);
         } else setEmailError("");
         if (err.code === "auth/weak-password") {

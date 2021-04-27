@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { loadBankFromFirebase } from "../loadFromFirebase";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 
 import useBankProp from "./useBankProp";
-
 
 /*
 BankPresenter manages:
@@ -15,23 +15,23 @@ BankPresenter manages:
 */
 
 export default function BankPresenter(props) {
-
   const boards = useBankProp(props.model, "boards");
 
+  useEffect(() => {}, [props.model]);
 
-
-  // Index is used because baords are stored as an array in the model. 
+  // Index is used because baords are stored as an array in the model.
   // TODO: When index changing oimplementation is done test that reredering is correct
   const boardPresenters = boards.map((board, index) => {
-
-    return <BoardPresenter model={props.model} boardIndex={index} key={board.id} boardId={board.id} title={board.title} />
-
+    return (
+      <BoardPresenter
+        model={props.model}
+        boardIndex={index}
+        key={board.id}
+        id={board.id}
+        title={board.title}
+      />
+    );
   });
 
-  return (
-    <BoardsWrapperPresenter model={props.model}>
-      {boardPresenters}
-    </BoardsWrapperPresenter>
-  );
-
+  return <BoardsWrapperPresenter model={props.model}>{boardPresenters}</BoardsWrapperPresenter>;
 }
