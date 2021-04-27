@@ -1,8 +1,7 @@
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 import React from "react";
 import styled from "styled-components";
-
 
 /*
     CardInfoView
@@ -13,10 +12,7 @@ import styled from "styled-components";
 
 import { DropdownComponent } from "./components";
 
-
-Modal.setAppElement(document.getElementById('root'));
-
-
+Modal.setAppElement(document.getElementById("root"));
 
 const TagInput = styled.input`
   width: 180px;
@@ -27,65 +23,52 @@ const TagInput = styled.input`
   font-weight: 600;
 `;
 
-
-
-
 const StyledModal = styled(Modal)`
-    
-    content: {
+  content: {
+    position: absolute;
+    background: #fff;
+    overflow: auto;
+    webkitoverflowscrolling: touch;
+    outline: none;
+    padding: 20px;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    border: 2px solid ${(props) => props.theme.darkBorder};
+  }
 
-        position: absolute;
-        background: #fff;
-        overflow: auto;
-        WebkitOverflowScrolling: touch;
-        outline: none;
-        padding: 20px;
-        top: 50%;
-        left: 50%;
-        right: auto;
-        bottom: auto;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-        border-radius: 10px;
-        border: 2px solid ${props => props.theme.darkBorder};
-
-
-
-    }
-
-    overlay: {
-        // TO DO: Do we want another bluring background colour?
-    }
-
-    
+  overlay: {
+    // TO DO: Do we want another bluring background colour?
+  }
 `;
 
 function getStyle(darkBorder) {
-    let customModalStyle = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            borderRadius: '10px',
-            borderStyle: 'solid',
-            borderWidth: '2px',
-            borderColor: `${darkBorder}`,
-
-        },
-        overlay: {
-            // TO DO: Do we want another bluring background colour?
-        }
-    };
-    return customModalStyle
+  let customModalStyle = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "10px",
+      borderStyle: "solid",
+      borderWidth: "2px",
+      borderColor: `${darkBorder}`,
+    },
+    overlay: {
+      // TO DO: Do we want another bluring background colour?
+    },
+  };
+  return customModalStyle;
 }
 
-
 export default function CardInfoView(props) {
-
-    /*     const customModalStyle = {
+  /*     const customModalStyle = {
             content: {
                 top: '50%',
                 left: '50%',
@@ -104,50 +87,41 @@ export default function CardInfoView(props) {
             }
         }; */
 
+  return (
+    <Modal
+      isOpen={props.modalIsOpen}
+      onRequestClose={props.closeModal}
+      contentLabel="Card info"
+      style={getStyle("#36333b")}
+    >
+      <div>
+        <button onClick={props.closeModal}>close</button>
+        <p>{props.card.leftSentence}</p>
+        <p>{props.card.rightSentence}</p>
+        <form>
+          <label>
+            Comment
+            <textarea
+              value={props.comment}
+              onChange={(event) => props.setComment(event.target.value)}
+            />
+          </label>
+        </form>
 
+        <TagInput
+          onChange={(event) => props.setTag(event.target.value)}
+          type="text"
+          name="tag"
+          list="taglist"
+          placeholder="Tag:"
+        ></TagInput>
 
-    return (
-        <Modal
-            isOpen={props.modalIsOpen}
-            onRequestClose={props.closeModal}
-            contentLabel="Card info"
-            style={getStyle("#36333b", )}
-        >
-            <div>
-                <button onClick={props.closeModal}>close</button>
-                <p>{props.card.leftSentence}</p>
-                <p>{props.card.rightSentence}</p>
-                <form>
-                    <label>
-                        Comment
-                        <textarea value={props.comment} onChange={(event) => props.setComment(event.target.value)} />
-
-                    </label>
-
-
-                </form>
-
-
-
-                <TagInput
-                    onChange={(event) => props.setTag(event.target.value)}
-                    type="text"
-                    name="tag"
-                    list="taglist"
-                    placeholder="Tag:"
-                ></TagInput>
-
-                <datalist id="taglist">
-                    {props.tags.map((opt) => (
-                        <option value={Number(opt.id)} label={opt.tag}></option>
-                    ))}
-                </datalist>
-            </div>
-
-
-
-
-        </Modal>
-
-    );
+        <datalist id="taglist">
+          {props.tags.map((opt, key) => (
+            <option key={key} value={Number(opt.id)} label={opt.tag}></option>
+          ))}
+        </datalist>
+      </div>
+    </Modal>
+  );
 }

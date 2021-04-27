@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TranslateView from "../views/translateView";
 import useBankProp from "./useBankProp";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
+import { AuthContext } from "./AuthProvider.js";
 
 const TranslatePresenter = ({ model }) => {
+  /* const { currentUser } = useContext(AuthContext);
+  let model;
+  if (currentUser) await loadFromFirebase(props.model);
+  else model = props.model; */
+
   const [phrase, setPhrase] = React.useState("");
   const [tag, setTag] = React.useState("");
   let transPhrase = useModelProp(model, "transPhrase");
@@ -55,27 +61,17 @@ const TranslatePresenter = ({ model }) => {
 
   //Vill egentligen göra denna mer generell för att översätta andra grejer också
   const translate = () => {
-    googleTranslate.translate(
-      phrase,
-      fromLanguage,
-      toLanguage,
-      function (err, translation) {
-        console.log(phrase);
-        model.setTransPhrase(translation.translatedText);
-      }
-    );
+    googleTranslate.translate(phrase, fromLanguage, toLanguage, function (err, translation) {
+      console.log(phrase);
+      model.setTransPhrase(translation.translatedText);
+    });
   };
   //Den här borde tex i framtiden gå att göra med funktionen ovan
   const translatePlaceholder = (newLanguage) => {
-    googleTranslate.translate(
-      placeholder,
-      fromLanguage,
-      newLanguage,
-      function (err, translation) {
-        console.log(placeholder);
-        model.setPlaceholder(translation.translatedText);
-      }
-    );
+    googleTranslate.translate(placeholder, fromLanguage, newLanguage, function (err, translation) {
+      console.log(placeholder);
+      model.setPlaceholder(translation.translatedText);
+    });
   };
 
   return (
