@@ -3,7 +3,7 @@ import Bank from "./bank";
 export class WordBankModel {
   constructor() {
     this.activeBankId = 0;
-    this.banks = [new Bank(0)];
+    this.banks = [new Bank(0, "Swedish", "English")];
     this.observers = [];
     this.userID = 123;
     this.keyCountBoards = 3;
@@ -115,13 +115,22 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
+  setLanguageCombo(from, to){
+    this.toLanguage = to;
+    this.fromLanguage = from;
+    this.languageCombos = [[from, to], this.languageCombos];
+    this.notifyObservers();
+  }
+
   setToLanguage(newLanguage) {
     this.toLanguage = newLanguage;
+    this.languageCombos = [[this.fromLanguage, newLanguage], this.languageCombos];
     this.notifyObservers();
   }
 
   setFromLanguage(newLanguage) {
     this.fromLanguage = newLanguage;
+    this.languageCombos = [[newLanguage, this.toLanguage], this.languageCombos];
     this.notifyObservers();
   }
   //"type here" men kan översättas till andra språk
@@ -147,10 +156,12 @@ export class WordBankModel {
 
   createBank(id, language1, language2){
     this.languageCombos = [[language1, language2], ...this.languageCombos];
-    this.banks = [new Bank(id), ...this.banks];
+    this.banks = [new Bank(id, language1, language2), ...this.banks];
   }
 
   isLanguageComboUsed(language1, language2) {
+    console.log("Lang1:", language1);
+    console.log("Lang2:", language2);
     this.languageCombos.forEach(combo => {
       if( combo.includes([language1, language2]) ||
           combo.includes([language2, language1])) {

@@ -3,7 +3,7 @@ import TranslateView from "../views/translateView";
 import useBankProp from "./useBankProp";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
-import Modal from 'react-modal';
+import CreateBankPresenter from "./createBankPresenter";
 
 const TranslatePresenter = ({ model }) => {
   const [phrase, setPhrase] = React.useState("");
@@ -20,18 +20,6 @@ const TranslatePresenter = ({ model }) => {
 
   // Used to create the tags list of boards to choose from
   const tags = useBankProp(model, "tags");
-
-  //const createTranslationCard = (id) => {
-  // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
-  //if (tag) {
-  //model.addTag(tag);
-  //model.createCard(phrase, translation, id, tag);
-  // } else {
-  //  console.log("please choose a tag");
-  // }};
-
-  //
-  // Used to controll the dropdown of possible boards to save to
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
@@ -94,8 +82,9 @@ const TranslatePresenter = ({ model }) => {
   }
 
 
-  const isNewLanguageCombo = (language1, language2) => {
-    return model.isLanguageComboUsed(language1, language2);
+  function isNewLanguageCombo(language1, language2){
+    console.log("Result:", model.isLanguageComboUsed(language1, language2));
+    return !model.isLanguageComboUsed(language1, language2);
   }
 
   return (
@@ -109,20 +98,22 @@ const TranslatePresenter = ({ model }) => {
         placeholder={placeholder}
         toLanguage={toLanguage}
         setToLanguage={(newLanguage) => {
-          model.setToLanguage(newLanguage);
-          if(isNewLanguageCombo(newLanguage, toLanguage)){
+          model.setLanguageCombo(fromLanguage, newLanguage);
+          if(isNewLanguageCombo(fromLanguage, newLanguage)){
+            console.log("Check", isNewLanguageCombo(fromLanguage, newLanguage));
             openModal();
           } 
-          console.log(toLanguage);
+          console.log("setToLanguage", fromLanguage, newLanguage);
         }}
         setFromLanguage={(newLanguage) => {
           translatePlaceholder(newLanguage);
-          model.setFromLanguage(newLanguage);
           model.setTransPhrase("");
+          model.setLanguageCombo(newLanguage, toLanguage);
           if(isNewLanguageCombo(newLanguage, toLanguage)){
+            console.log("Check", isNewLanguageCombo(newLanguage, toLanguage));
             openModal();
           } 
-          console.log(fromLanguage);
+          console.log("setFromLanguage", newLanguage, toLanguage);
         }}
         translate={() => {
           translate();
@@ -153,8 +144,8 @@ const TranslatePresenter = ({ model }) => {
         toggle={() => setOpen(!open)}
         openSelector={open}
       /> 
-      <CreateBankPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} model={props.model}/>
-    <> 
+      <CreateBankPresenter modalIsOpen={modalIsOpen} closeModal={closeModal} model={model}/>
+    </> 
   );
 };
 
