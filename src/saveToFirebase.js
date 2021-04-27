@@ -9,20 +9,15 @@ export function saveToFirebase(model) {
 
   // Save to Firestore
   model.addObserver(() => {
-    if (false) {
+    if (true) {
       setTimeout(() => {
         usr
           .set({
-            activeBankId: String(model.activeBankId),
-            keyCountBanks: model.keyCountBanks,
-            keyCountBoards: model.keyCountBoards,
+            activeBankID: model.activeBankId,
           })
 
           .then(
             model.banks.forEach((bank) => {
-              console.log("activeBankId: ", String(model.activeBankId));
-              console.log("Save bank: ", bank);
-              console.log("Save bank.id: ", bank.id);
               usr
                 .collection("banks")
                 .doc(String(bank.id))
@@ -30,7 +25,7 @@ export function saveToFirebase(model) {
                   languageFrom: bank.languageFrom,
                   languageTo: bank.languageTo,
                   tags: bank.tags.map((tag) => {
-                    return String(tag.name);
+                    return tag.name;
                   }),
                 })
 

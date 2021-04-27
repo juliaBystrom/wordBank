@@ -47,7 +47,6 @@ export default class Bank {
   addBoard(name, id) {
     // Obs only testing version. Outerwise if not testing the last is not needed
     this.boards = [...this.boards, new Board(name, id)];
-    console.log("new board: ", name);
   }
 
   /* 
@@ -68,10 +67,7 @@ export default class Bank {
       return tag.name === name;
     });
     if (!tag) {
-      this.tags = [
-        ...this.tags,
-        { id: this.getIdTags(), name: name, checked: false },
-      ];
+      this.tags = [...this.tags, { id: this.getIdTags(), name: name, checked: false }];
     } else {
       console.log("Tag exists.");
     }
@@ -79,9 +75,7 @@ export default class Bank {
 
   editTag(name, newTagName) {
     this.tags.map((tag) => {
-      return tag.name !== name
-        ? tag
-        : { id: tag.id, name: newTagName, checked: tag.checked };
+      return tag.name !== name ? tag : { id: tag.id, name: newTagName, checked: tag.checked };
     });
   }
 
@@ -115,15 +109,11 @@ export default class Bank {
     }
   }
 
-  createCard(phrase, translation, saveToBoardId, tag) {
-    console.log("saveToBoardId: ", saveToBoardId);
+  createCard(phrase, translation, saveToBoardId, tag, id) {
     var boardIndex = this.boards.findIndex((board) => {
-      return board.id === Number(saveToBoardId);
+      return Number(board.id) === Number(saveToBoardId);
     });
 
-    console.log("boardIndex: ", boardIndex);
-    this.boards[boardIndex].addCard(
-      new Card(this.getIdCards(), "Kommentar Holder", phrase, translation, tag)
-    );
+    this.boards[boardIndex].addCard(new Card(id, "Kommentar Holder", phrase, translation, tag));
   }
 }

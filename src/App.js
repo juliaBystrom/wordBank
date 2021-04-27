@@ -28,7 +28,6 @@ function App() {
         path="/bank"
         component={() => {
           if (model.userId) {
-            console.log("#1!");
             return <BankPresenter model={model} />;
           } else return <div>nothing</div>;
         }}

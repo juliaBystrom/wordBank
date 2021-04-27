@@ -25,7 +25,7 @@ export async function loadFromFirebase(model) {
   await usr.get().then((x) => {
     var a = x.data();
     if (a) {
-      model.activeBankId = a.activeBankId;
+      model.activeBankId = Number(a.activeBankID);
       model.keyCountBanks = a.keyCountBanks;
       model.keyCountBoards = a.keyCountBoards;
     } else {
@@ -39,11 +39,11 @@ export async function loadFromFirebase(model) {
     .get()
     .then((querySnapshot) => {
       if (querySnapshot) {
-        model.banks = [];
         querySnapshot.forEach((bank) => {
           let bankFromDb = bank.data();
 
-          model.banks = [new Bank(bank.id)];
+          model.banks = [new Bank(Number(bank.id))];
+          model.activeBankId = Number(bank.id);
           model.banks[0].activeBankId = bank.id;
           model.banks[0].languageFrom = bankFromDb.languageFrom;
           model.banks[0].languageTo = bankFromDb.languageTo;
@@ -58,11 +58,15 @@ export async function loadFromFirebase(model) {
             .collection("boards")
             .get()
             .then((querySnapshot) => {
+              let maxBoardId = 0;
               querySnapshot.forEach((board) => {
                 var boardFromDb = board.data();
 
-                model.addBoard(boardFromDb.title);
-                console.log(model.banks[0].boards);
+                if (Number(board.id) > Number(maxBoardId)) {
+                  model.boardId = board.id;
+                  maxBoardId = board.id;
+                }
+                model.addBoardFromFirebase(boardFromDb.title, board.id);
                 usr
                   .collection("banks")
                   .doc(bank.id)
@@ -71,13 +75,19 @@ export async function loadFromFirebase(model) {
                   .collection("cards")
                   .get()
                   .then((querySnapshot) => {
+                    let maxCardId = 0;
                     querySnapshot.forEach((card) => {
+                      if (Number(card.id) > Number(maxCardId)) {
+                        model.cardId = card.id;
+                        maxCardId = card.id;
+                      }
                       var cardFromDb = card.data();
-                      model.createCard(
+                      model.createCardFromFirebase(
                         cardFromDb.leftSentence,
                         cardFromDb.rightSentence,
-                        0,
-                        cardFromDb.tag
+                        Number(board.id),
+                        cardFromDb.tag,
+                        Number(card.id)
                       );
 
                       model.notifyObservers();

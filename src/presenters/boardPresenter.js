@@ -17,7 +17,6 @@ export default function BoardPresenter(props) {
   // const board = useModelSubSubclassProperty(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
   // const board = useBoardProp(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
   const cards = useBoardProp(props.model, props.id, "cards");
-  console.log("title of board: ", props.title);
 
   var cardPresenterList = cards.map(function (card, key) {
     return (

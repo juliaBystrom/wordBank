@@ -6,7 +6,7 @@ export default function useBankProp(model, property) {
   const activeBankId = model.activeBankId;
 
   var bank = banks.filter((bank) => {
-    return bank.id === activeBankId;
+    return Number(bank.id) === Number(activeBankId);
   })[0];
 
   const [value, setValue] = React.useState(bank[property]);
