@@ -13,8 +13,12 @@ import { Card, TranslationWrapper, Translation } from "./components"
 export default function CardView(props) {
     return (
         <Card>
-            <span key={props.id} onClick={e => {
+            {/*             <span key={props.id} onClick={e => {
                 props.onCardPress(props.id)
+            }}> */}
+            <span key={props.id} onClick={() => {
+                props.onCardPress();
+                console.log("Pressed card");
             }}>
                 <TranslationWrapper>
                     <Translation isTranslateFrom={true}>

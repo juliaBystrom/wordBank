@@ -18,7 +18,7 @@ const Menu = styled.nav`
   top: 0;
   left: 0;
   transition: transform 0.2s ease-in-out;
-  transform: ${props => props.open ?  'translateX(0)' : 'translateX(-100%)'};
+  transform: ${props => !props.open ? 'translateX(-100%)' : 'translateX(0)'};
 
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;

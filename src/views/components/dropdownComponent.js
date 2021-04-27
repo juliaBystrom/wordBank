@@ -14,19 +14,18 @@ Input:
     - toggle: fuction to call when opening or closing the selector
     - onClick: function to handle when a selector have been choosen
 
-TODO: Create key extractor to not be in need of BANKID as key
 
 */
 
-const DropdownComponent = ({ list, title, open, toggle, onSelectionDone }) => {
+const DropdownComponent = ({ list, title, open, toggle, onSelectionDone, keyExtractor }) => {
 
 
     return (
         <DropdownComponentWrapper>
             <DropdownButton
                 role="button"
-                onKeyPress={() => toggle(!open)}
-                onClick={() => toggle(!open)}>
+                onKeyPress={() => toggle()}
+                onClick={() => toggle()}>
                 <div>
                     <p>{title}</p>
                 </div>
@@ -38,10 +37,11 @@ const DropdownComponent = ({ list, title, open, toggle, onSelectionDone }) => {
             {open && (
                 <DropdownComponentItem>
                     {list.map(item => (
-                        <li key={item.id}>
+
+                        <li key={keyExtractor(item)}>
+
                             <button type="button" onClick={(e) => {
-                                console.log("pressed button with item: ");
-                                console.log(item.title);
+
                                 onSelectionDone(item);
 
                             }}>

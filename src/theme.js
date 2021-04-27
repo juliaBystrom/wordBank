@@ -8,6 +8,7 @@ export const theme = {
     medium: '#bad7e0',
     light: '#e7e6f5',
     darkText: '#36333b',
+    darkBorder: '#36333b',
     lightText: '#FFFFFF',
     fromLanguage: '#d1ebda',
     toLanguage: '#ebd1dc',

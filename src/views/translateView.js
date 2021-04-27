@@ -90,6 +90,7 @@ const TagInput = styled.input`
 `;
 
 const TranslateView = (props) => {
+
   return (
     <TranslateWrapper>
       <div>
@@ -144,18 +145,21 @@ const TranslateView = (props) => {
                 open={props.openSelector}
                 toggle={() => props.toggle()}
                 onSelectionDone={(board) => props.saveToBoard(board)}
+                keyExtractor={(item) => { return item.id }}
+
               />
             </span>
           ) : (
             ""
           )}
           <datalist onChange={() => console.log("set a tag")} id="taglist">
-            {props.tags.map((opt) => (
-              <option key={Number(opt.id)}>{opt.name}</option>
+            {props.tags.map((tag) => (
+              <option key={Number(tag.id)}>{tag.name}</option>
             ))}
           </datalist>
         </ButtonContainer>
       }
+
     </TranslateWrapper>
   );
 };
