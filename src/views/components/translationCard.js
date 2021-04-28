@@ -32,10 +32,16 @@ export const Translation = styled.div`
   box-shadow: 0.5px 0.5px 7px #c4c2c2;
   text-align: center;
   font-size: 1em;
-  // flex: 0 0 50px;
   width: 50%;
   border-radius: ${(props) =>
     props.isTranslateFrom
       ? "5px 0px 0px 5px"
       : "0px 5px 5px 0px"}; /* top left, top right, bottom right, bottom left */
+  
+  
+`;
+export const PhraseText = styled.p`
+  max-width: 150px;
+  max-height: 100px;
+  overflow: scroll;
 `;

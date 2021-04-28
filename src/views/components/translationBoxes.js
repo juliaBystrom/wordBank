@@ -49,6 +49,18 @@ export const TextBox = styled.textarea`
   resize: none;
 `;
 
+export const TextBoxDynamic = styled.textarea`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 256px;
+  // border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  border-radius: "5px 5px 5px 5px";
+  // height: 100px;
+  padding: 20px;
+  resize: none;
+`;
+
 export const TagInput = styled.input`
   width: 180px;
   border-radius: 8px;
