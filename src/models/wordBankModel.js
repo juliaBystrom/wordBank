@@ -15,24 +15,21 @@ export class WordBankModel {
     this.toLanguage = "en";
     this.fromLanguage = "sv";
     this.loggedIn = false;
+    this.userId = "";
     this.placeholder = "Skriv här";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
-    this.getKeyBoards = this.getKeyBoards.bind(this);
+    this.boardId = 0;
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
     this.languageCombos =[]; 
+    this.boardId = 0;
+    this.cardId = 0;
   }
 
 
   toString() {
     return (
-      this.activeBank +
-      ", " +
-      this.userId +
-      ", " +
-      this.languageFrom +
-      ", " +
-      this.languageTo
+      this.currentBank + ", " + this.userId + ", " + this.languageFrom + ", " + this.languageTo
     );
     // + this.observers + ', '
     //  + ', '
@@ -66,6 +63,11 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
+
+  addBank(id) {
+    this.banks = [new Bank(id), ...this.banks];
+  }
+
   getActiveBank() {
     return this.banks.filter((bank) => {
       return bank.id === this.activeBankId;
@@ -87,25 +89,20 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  createCard(phrase, translation, saveToBoardId, tag) {
-    console.log(
-      "will create a card with phrase: " +
-        phrase +
-        "\n  translation: " +
-        translation +
-        " \n name: " +
-        tag +
-        " \n save to board: " +
-        saveToBoardId
-    );
 
+  createCard(phrase, translation, boardId, tag) {
     this.banks[this.getActiveBankIndex()].createCard(
       phrase,
       translation,
-      saveToBoardId,
-      tag
+      Number(boardId),
+      tag,
+      ++this.cardId
     );
+    this.notifyObservers();
+  }
 
+  createCardFromFirebase(phrase, translation, boardId, tag, id) {
+    this.banks[this.activeBankId].createCard(phrase, translation, Number(boardId), tag, id);
     this.notifyObservers();
   }
 
@@ -143,10 +140,6 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  getKeyBoards() {
-    return this.keyCountBoards++;
-  }
-
   getKeyBanks() {
     return this.keyCountBanks++;
   }
@@ -161,6 +154,13 @@ export class WordBankModel {
     this.languageCombos = [[language1, language2], ...this.languageCombos];
     this.banks = [new Bank(id, language1, language2), ...this.banks];
     this.setActiveBankId(id);
+    this.notifyObservers();
+  }
+
+  addBoardFromFirebase(name, id) {
+    console.log("activeBankId", this.activeBankId);
+    this.banks[this.getActiveBankIndex()].addBoard(name, ++this.boardId);
+    console.log("id of board: ", this.boardId);
     this.notifyObservers();
   }
 

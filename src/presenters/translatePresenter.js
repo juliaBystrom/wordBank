@@ -13,13 +13,8 @@ const TranslatePresenter = ({ model }) => {
   let fromLanguage = useModelProp(model, "fromLanguage");
   let loggedIn = useModelProp(model, "loggedIn");
   let placeholder = useModelProp(model, "placeholder");
-
-  // Used to create the data list of boards to choose from
-
-  const boards = useBankProp(model, "boards");
-
-  // Used to create the tags list of boards to choose from
-  const tags = useBankProp(model, "tags");
+  let boards = useBankProp(model, "boards");
+  let tags = useBankProp(model, "tags");
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
@@ -59,7 +54,7 @@ const TranslatePresenter = ({ model }) => {
       }
     );
   };
-  //Den här borde tex gå att göra med funktionen ovan
+  //Den här borde tex i framtiden gå att göra med funktionen ovan
   const translatePlaceholder = (newLanguage) => {
     googleTranslate.translate(
       placeholder,

@@ -18,10 +18,10 @@ export default function SidebarView(props) {
         <Menu open={props.open}>
           <Dropdown onClick={() => props.setDropBanks(!props.dropBanks)} dropBank={props.dropBank}>
             <span aria-label="Select bank"></span>
-            Select bank {props.dropBanks ? 'Ʌ' : 'V'}
+            Select bank {props.dropBanks ? "Ʌ" : "V"}
           </Dropdown>
-          {banks.map((bank) => (
-            <label>
+          {banks.map((bank, key) => (
+            <label key={key}>
               <DropdownItem drop={props.dropBanks}>
                 <input type="radio" name="bank" onClick={() => props.onSelectBank(bank.id)} />
                 {bank.languageFrom} - {bank.languageTo}
@@ -31,10 +31,10 @@ export default function SidebarView(props) {
 
           <Dropdown onClick={() => props.setDropFilter(!props.dropFilter)}>
             <span aria-label="Filter on tags"></span>
-            Filter on tags {props.dropFilter? 'Ʌ' : 'V'}
+            Filter on tags {props.dropFilter ? "Ʌ" : "V"}
           </Dropdown>
-          {props.tags.map((tag) => (
-            <label>
+          {props.tags.map((tag, key) => (
+            <label key={key}>
               <DropdownItem drop={props.dropFilter}>
                 <input type="checkbox" name={tag.name} onClick={() => props.onFilter(tag.name)} />
                 {tag.name}
@@ -44,10 +44,10 @@ export default function SidebarView(props) {
 
           <Dropdown onClick={() => props.setDropSort(!props.dropSort)}>
             <span aria-label="Sort boards"></span>
-            Sort boards {props.dropSort ? 'Ʌ' : 'V'}
+            Sort boards {props.dropSort ? "Ʌ" : "V"}
           </Dropdown>
-          {props.sortings.map((sorting) => (
-            <label>
+          {props.sortings.map((sorting, key) => (
+            <label key={key}>
               <DropdownItem drop={props.dropSort}>
                 <input type="radio" name="sort" onClick={() => props.onSort(sorting.name)} />
                 {sorting.name}
