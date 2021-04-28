@@ -1,18 +1,10 @@
-<<<<<<< HEAD
+
 import React from 'react';
 import useModelProp from "./useModelProp";
 
 export default function useBoardProp(model, id, property) {  // custom hook
     const activeBankId = useModelProp(model, "activeBankId");
     const banks = model.banks;
-=======
-import React from "react";
-
-export default function useBoardProp(model, id, property) {
-  // custom hook
-  const banks = model.banks;
-  const activeBankId = model.activeBankId;
->>>>>>> master
 
   var bank = banks.filter((bank) => {
     return bank.id === activeBankId;

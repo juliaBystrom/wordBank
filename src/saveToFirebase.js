@@ -11,17 +11,6 @@ export function saveToFirebase(model) {
   model.addObserver(() => {
     if (true) {
       setTimeout(() => {
-<<<<<<< HEAD:src/persistence.js
-        window.db
-          .collection("users")
-          .doc(String(model.userId))
-          .set({ activeBankId: String(model.activeBankId) })
-          .then(
-            model.banks.forEach((bank) => {
-              window.db
-                .collection("users")
-                .doc(String(model.userId))
-=======
         usr
           .set({
             activeBankID: model.activeBankId,
@@ -30,7 +19,6 @@ export function saveToFirebase(model) {
           .then(
             model.banks.forEach((bank) => {
               usr
->>>>>>> master:src/saveToFirebase.js
                 .collection("banks")
                 .doc(String(bank.id))
                 .set({
@@ -43,13 +31,7 @@ export function saveToFirebase(model) {
 
                 .then(
                   bank.boards.forEach((board) => {
-<<<<<<< HEAD:src/persistence.js
-                    window.db
-                      .collection("users")
-                      .doc(String(model.userId))
-=======
                     usr
->>>>>>> master:src/saveToFirebase.js
                       .collection("banks")
                       .doc(String(bank.id))
                       .collection("boards")
@@ -58,13 +40,8 @@ export function saveToFirebase(model) {
 
                       .then(
                         board.cards.forEach((card) => {
-<<<<<<< HEAD:src/persistence.js
-                          window.db
-                            .collection("users")
-                            .doc(String(model.userId))
-=======
+
                           usr
->>>>>>> master:src/saveToFirebase.js
                             .collection("banks")
                             .doc(String(bank.id))
                             .collection("boards")

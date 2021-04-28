@@ -102,7 +102,7 @@ export class WordBankModel {
   }
 
   createCardFromFirebase(phrase, translation, boardId, tag, id) {
-    this.banks[this.activeBankId].createCard(phrase, translation, Number(boardId), tag, id);
+    this.banks[this.getActiveBankIndex()].createCard(phrase, translation, Number(boardId), tag, id);
     this.notifyObservers();
   }
 

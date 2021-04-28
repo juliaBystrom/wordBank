@@ -2,7 +2,6 @@ import Board from "./board";
 import Card from "./card";
 
 export default class Bank {
-<<<<<<< HEAD
     constructor(id, languageFrom, languageTo) {
       this.id = id;
       this.boards = [new Board("My First Board", 0, { 0: this.getIdCards(), 1: this.getIdCards(), 2: this.getIdCards() })];
@@ -47,7 +46,6 @@ export default class Bank {
     }
   
     /* 
-=======
   constructor(id) {
     this.id = id;
     // this.boards = [
@@ -96,7 +94,6 @@ export default class Bank {
   }
 
   /* 
->>>>>>> master
      ----------------------------------------------------------
                    TAG FUNCIONALITY Bank
      ----------------------------------------------------------
