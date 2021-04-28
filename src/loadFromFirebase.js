@@ -25,7 +25,7 @@ export async function loadFromFirebase(model) {
   await usr.get().then((x) => {
     var a = x.data();
     if (a) {
-      model.activeBankId = Number(a.activeBankID);
+      model.activeBankId = Number(a.activeBankId);
       model.keyCountBanks = a.keyCountBanks;
       model.keyCountBoards = a.keyCountBoards;
     } else {

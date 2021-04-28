@@ -39,8 +39,8 @@ export default function CardPresenter(props) {
             {showCard ? <CardView
                 leftSentence={props.card.leftSentence}
                 rightSentence={props.card.rightSentence}
-                id={props.card.cardID}
-                key={props.card.cardID}
+                id={props.card.cardId}
+                key={props.card.cardId}
                 /*  onCardPress={(idOfCard) => {
                      console.log(`Pressed card: ${idOfCard}`);
                      openModal();

@@ -23,6 +23,7 @@ export class WordBankModel {
 
     this.boardId = 0;
     this.cardId = 0;
+    this.languageCombos =[]; 
   }
 
   toString() {
@@ -65,10 +66,14 @@ export class WordBankModel {
     this.banks = [new Bank(id), ...this.banks];
   }
 
-  getCurrentBank() {
+  getActiveBank() {
     return this.banks.filter((bank) => {
       return bank.id === this.activeBankId;
     })[0];
+  }
+
+  getActiveBankIndex(){
+    return this.banks.indexOf(this.getActiveBank());
   }
 
   sortLatestEdited() {
@@ -83,7 +88,7 @@ export class WordBankModel {
   }
 
   createCard(phrase, translation, boardId, tag) {
-    this.banks[this.activeBankId].createCard(
+    this.banks[this.getActiveBankIndex()].createCard(
       phrase,
       translation,
       Number(boardId),
@@ -94,7 +99,7 @@ export class WordBankModel {
   }
 
   createCardFromFirebase(phrase, translation, boardId, tag, id) {
-    this.banks[this.activeBankId].createCard(phrase, translation, Number(boardId), tag, id);
+    this.banks[this.getActiveBankIndex()].createCard(phrase, translation, Number(boardId), tag, id);
     this.notifyObservers();
   }
 
@@ -108,15 +113,25 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
+  setLanguageCombo(from, to){
+    this.toLanguage = to;
+    this.fromLanguage = from;
+    this.languageCombos = [[from, to], this.languageCombos];
+    this.notifyObservers();
+  }
+
   setToLanguage(newLanguage) {
     this.toLanguage = newLanguage;
+    this.languageCombos = [[this.fromLanguage, newLanguage], this.languageCombos];
     this.notifyObservers();
   }
 
   setFromLanguage(newLanguage) {
     this.fromLanguage = newLanguage;
+    this.languageCombos = [[newLanguage, this.toLanguage], this.languageCombos];
     this.notifyObservers();
   }
+
   //"type here" men kan översättas till andra språk
   setPlaceholder(newText) {
     this.placeholder = newText;
@@ -130,13 +145,13 @@ export class WordBankModel {
   addBoard(name) {
     // TODO Networking to add newboard
     console.log("activeBankId", this.activeBankId);
-    this.banks[this.activeBankId].addBoard(name, ++this.boardId);
+    this.banks[this.getActiveBankIndex()].addBoard(name, ++this.boardId);
     console.log("id of board: ", this.boardId);
     this.notifyObservers();
   }
 
   addBoardFromFirebase(name, id) {
-    this.banks[this.activeBankId].addBoard(name, id);
+    this.banks[this.getActiveBankIndex()].addBoard(name, id);
     this.notifyObservers();
   }
 
@@ -148,18 +163,18 @@ export class WordBankModel {
   */
 
   addTag(name) {
-    this.banks[this.activeBankId].addTag(name);
+    this.banks[this.getActiveBankIndex()].addTag(name);
     this.notifyObservers();
   }
 
   //
   editTag(name, newTagNameName) {
-    this.banks[this.activeBankId].editTag(name, newTagNameName);
+    this.banks[this.getActiveBankIndex()].editTag(name, newTagNameName);
     this.notifyObservers();
   }
 
   filterOnTag(name) {
-    this.banks[this.activeBankId].filterOnTag(name);
+    this.banks[this.getActiveBankIndex()].filterOnTag(name);
     this.notifyObservers();
   }
 
@@ -189,4 +204,25 @@ export class WordBankModel {
       });
     }
   }
+  createBank(id, language1, language2){
+    this.languageCombos = [[language1, language2], ...this.languageCombos];
+    this.banks = [new Bank(id, language1, language2), ...this.banks];
+    this.setCurrentBank(id);
+    this.notifyObservers();
+  }
+
+  isLanguageComboUsed(language1, language2) {
+    console.log("Lang1:", language1);
+    console.log("Lang2:", language2);
+    this.languageCombos.forEach(combo => {
+      if( combo.includes([language1, language2]) ||
+          combo.includes([language2, language1])) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
 }
+

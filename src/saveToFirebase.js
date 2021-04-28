@@ -13,7 +13,7 @@ export function saveToFirebase(model) {
       setTimeout(() => {
         usr
           .set({
-            activeBankID: model.activeBankId,
+            activeBankId: model.activeBankId,
           })
 
           .then(
