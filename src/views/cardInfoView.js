@@ -14,16 +14,10 @@ import editSymbolPath from "../images/editSymbol.svg";
 
 import { DropdownComponent } from "./components";
 import {
-  TranslateWrapper,
-  TitleBox,
-  TextBox,
   TagInput,
-  TranslateButton,
   StyledCloseButton,
   EditButton,
   TextBoxDynamic,
-} from "./components";
-import {
   Card,
   TranslationWrapper,
   Translation,
@@ -32,6 +26,7 @@ import {
   InputTitle,
   PhraseText,
 } from "./components";
+import {} from "./components";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -43,7 +38,7 @@ export default function CardInfoView(props) {
       contentLabel="Card info"
       style={getStyle("#36333b", "#F7F4EA")}
     >
-      <>
+      <ModalWrapper>
         <ModelHeader>
           <CardBarWrapper>
             <Card>
@@ -132,7 +127,7 @@ export default function CardInfoView(props) {
             <option value={Number(opt.id)} label={opt.tag}></option>
           ))}
         </datalist>
-      </>
+      </ModalWrapper>
     </Modal>
   );
 }
@@ -158,3 +153,9 @@ function getStyle(darkBorder, bgColor) {
   };
   return customModalStyle;
 }
+
+export const ModalWrapper = styled.div`
+
+  width: 60vw;
+  min-width: ${props => props.theme.mobile};
+`;

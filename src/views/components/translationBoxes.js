@@ -50,14 +50,17 @@ export const TextBox = styled.textarea`
 `;
 
 export const TextBoxDynamic = styled.textarea`
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   // width: 256px;
   // border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  box-sizing: border-box;
+  display: inline-block;
   border-radius: "5px 5px 5px 5px";
-  // height: 100px;
-  padding: 20px;
+  min-height: 100px;
+  padding: 10px;
+  width: 100%;
   resize: none;
 `;
 

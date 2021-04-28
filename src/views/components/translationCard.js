@@ -30,18 +30,17 @@ export const Translation = styled.div`
     props.isTranslateFrom ? "0px 0px 0px 10px" : "0px 10px 0px 0px"};
   color: ${(props) => props.theme.darkText};
   box-shadow: 0.5px 0.5px 7px #c4c2c2;
-  text-align: center;
-  font-size: 1em;
+
   width: 50%;
+  max-height: 100px;
+  overflow: auto;
   border-radius: ${(props) =>
     props.isTranslateFrom
       ? "5px 0px 0px 5px"
       : "0px 5px 5px 0px"}; /* top left, top right, bottom right, bottom left */
-  
-  
 `;
 export const PhraseText = styled.p`
-  max-width: 150px;
-  max-height: 100px;
-  overflow: scroll;
+  text-align: center;
+  font-size: 1em;
+  
 `;
