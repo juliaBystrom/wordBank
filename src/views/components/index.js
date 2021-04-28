@@ -6,9 +6,10 @@ import { Dropdown, DropdownComponentWrapper, DropdownButton } from "./dropdown.j
 import { DropdownItem, DropdownComponentItem } from "./dropdownItem.js"
 import { Card, TranslationWrapper, Translation } from "./translationCard.js";
 import DropdownComponent from "./dropdownComponent.js";
+import { TranslateWrapper, TitleBox, TextBox, TagInput, TranslateButton } from "./translationBoxes.js";
 
 export {
     BoardWrapper, BoardTitleWrapper, BoardCardWrapper, BoardTitle, BoardNameInput, RoundButton,
     Menu, Burger, Dropdown, DropdownItem, Card, TranslationWrapper, Translation, DropdownComponent,
-    DropdownComponentWrapper, DropdownComponentItem, DropdownButton
+    DropdownComponentWrapper, DropdownComponentItem, DropdownButton, TranslateWrapper, TitleBox, TextBox, TagInput, TranslateButton, 
 };
