@@ -5,8 +5,7 @@ export class WordBankModel {
     this.activeBankId = 0;
     this.banks = [new Bank(0)];
     this.observers = [];
-    this.userID = 123;
-    this.keyCountBoards = 3;
+
     this.sortings = [
       { name: "Latest edited", func: () => this.sortLatestEdited() },
       { name: "Most used", func: () => this.sortMostUsed() },
@@ -15,22 +14,20 @@ export class WordBankModel {
     this.toLanguage = "en";
     this.fromLanguage = "sv";
     this.loggedIn = false;
+    this.userId = "";
     this.placeholder = "Skriv här";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
-    this.getKeyBoards = this.getKeyBoards.bind(this);
+    this.boardId = 0;
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
+
+    this.boardId = 0;
+    this.cardId = 0;
   }
 
   toString() {
     return (
-      this.currentBank +
-      ", " +
-      this.userID +
-      ", " +
-      this.languageFrom +
-      ", " +
-      this.languageTo
+      this.currentBank + ", " + this.userId + ", " + this.languageFrom + ", " + this.languageTo
     );
     // + this.observers + ', '
     //  + ', '
@@ -39,29 +36,33 @@ export class WordBankModel {
 
   // SignUp action
   createUserModel(userId) {
-    this.userID = userId;
-    console.log(this.userID);
+    this.userId = userId;
+    console.log(this.userId);
     this.notifyObservers();
   }
 
   // SignIn action
   setCurrentUser(userId) {
-    this.userID = userId;
+    this.userId = userId;
     this.loggedIn = true;
-    console.log(this.userID);
+    console.log(this.userId);
     this.notifyObservers();
   }
 
   /* setCurrentBank(bankID) {
     this.currentBank = bankID;
     return  this.activeBankId + ', '
-          + this.userID + ', '
+          + this.userId + ', '
           + this.languageFrom + ', '
           + this.languageTo;
   } */
   setCurrentBank(id) {
     this.activeBankId = id;
     this.notifyObservers();
+  }
+
+  addBank(id) {
+    this.banks = [new Bank(id), ...this.banks];
   }
 
   getCurrentBank() {
@@ -81,25 +82,19 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  createCard(phrase, translation, saveToBoardId, tag) {
-    console.log(
-      "will create a card with phrase: " +
-        phrase +
-        "\n  translation: " +
-        translation +
-        " \n name: " +
-        tag +
-        " \n save to board: " +
-        saveToBoardId
-    );
-
+  createCard(phrase, translation, boardId, tag) {
     this.banks[this.activeBankId].createCard(
       phrase,
       translation,
-      saveToBoardId,
-      tag
+      Number(boardId),
+      tag,
+      ++this.cardId
     );
+    this.notifyObservers();
+  }
 
+  createCardFromFirebase(phrase, translation, boardId, tag, id) {
+    this.banks[this.activeBankId].createCard(phrase, translation, Number(boardId), tag, id);
     this.notifyObservers();
   }
 
@@ -128,18 +123,20 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  getKeyBoards() {
-    return this.keyCountBoards++;
-  }
-
   getKeyBanks() {
     return this.keyCountBanks++;
   }
 
   addBoard(name) {
     // TODO Networking to add newboard
-    this.banks[this.activeBankId].addBoard(name, this.getKeyBoards());
+    console.log("activeBankId", this.activeBankId);
+    this.banks[this.activeBankId].addBoard(name, ++this.boardId);
+    console.log("id of board: ", this.boardId);
+    this.notifyObservers();
+  }
 
+  addBoardFromFirebase(name, id) {
+    this.banks[this.activeBankId].addBoard(name, id);
     this.notifyObservers();
   }
 

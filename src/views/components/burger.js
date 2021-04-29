@@ -35,16 +35,16 @@ const Burger = styled.button`
     transform-origin: 1px;
 
     :first-child {
-      transform: ${props => (!props.open ? 'rotate(45deg)' : 'rotate(0)')};
+      transform: ${props => (props.open ? 'rotate(45deg)' : 'rotate(0)')};
     }
 
     :nth-child(2) {
-      opacity: ${props => (!props.open ? '0' : '1')};
-      transform: ${props => (!props.open ? 'translateX(20px)' : 'translateX(0)')};
+      opacity: ${props => (props.open ? '0' : '1')};
+      transform: ${props => (props.open ? 'translateX(20px)' : 'translateX(0)')};
     }
 
     :nth-child(3) {
-      transform: ${props => (!props.open ? 'rotate(-45deg)' : 'rotate(0)')};
+      transform: ${props => (props.open ? 'rotate(-45deg)' : 'rotate(0)')};
     }
   }
 `;

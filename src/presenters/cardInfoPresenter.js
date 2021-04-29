@@ -12,6 +12,7 @@ import useBankProp from "./useBankProp";
 */
 
 export default function CardInfoPresenter(props) {
+
   // Used to controll the tags of the card
   const tags = useBankProp(props.model, "tags");
 
@@ -93,4 +94,5 @@ export default function CardInfoPresenter(props) {
       />
     </>
   );
+
 }

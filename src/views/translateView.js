@@ -50,7 +50,11 @@ const TranslateView = (props) => {
             setLanguage={props.setToLanguage}
           ></LanguageList>
         </TitleBox>
-        <TextBox defaultValue={props.transPhrase} isTranslateFrom={false}></TextBox>
+        <TextBox
+          value={props.transPhrase}
+          isTranslateFrom={false}
+          onChange={(e) => props.setTransPhrase(e.target.value)}
+        ></TextBox>
       </div>
       {
         <ButtonContainer>
@@ -80,9 +84,8 @@ const TranslateView = (props) => {
             ""
           )}
           <datalist onChange={() => console.log("set a tag")} id="taglist">
-            {props.tags.map((opt) => (
-              <option key={Number(opt.id)}>{opt.tag}</option>
-              //  <option value={Number(opt.id)} label={opt.tag}></option>
+            {props.tags.map((tag) => (
+              <option key={Number(tag.id)}>{tag.name}</option>
             ))}
           </datalist>
         </ButtonContainer>

@@ -1,39 +1,37 @@
-import { WordBankModel } from "./models/wordBankModel";
-
 /**
  * Lägger till Observers till modellen som uppdaterar databasen när modellens state ändras.
  * Kan behövas separata implementationer för olika delar av modellen.
  */
 
-export function persistence(model) {
-  let loadingFromFirebase = false;
-  let cardNum = 0;
+export function saveToFirebase(model) {
+  let loadingFromFirebase = true;
+  var usr = window.db.collection("users").doc(String(model.userId));
+
+  // Save to Firestore
   model.addObserver(() => {
-    if (!loadingFromFirebase) {
+    if (true) {
       setTimeout(() => {
-        window.db
-          .collection("users")
-          .doc(String(model.userID))
-          .set({ activeBankID: String(model.activeBankID) })
+        usr
+          .set({
+            activeBankID: model.activeBankId,
+          })
+
           .then(
             model.banks.forEach((bank) => {
-              window.db
-                .collection("users")
-                .doc(String(model.userID))
+              usr
                 .collection("banks")
                 .doc(String(bank.id))
                 .set({
                   languageFrom: bank.languageFrom,
                   languageTo: bank.languageTo,
                   tags: bank.tags.map((tag) => {
-                    return String(tag.name);
+                    return tag.name;
                   }),
                 })
+
                 .then(
                   bank.boards.forEach((board) => {
-                    window.db
-                      .collection("users")
-                      .doc(String(model.userID))
+                    usr
                       .collection("banks")
                       .doc(String(bank.id))
                       .collection("boards")
@@ -42,9 +40,7 @@ export function persistence(model) {
 
                       .then(
                         board.cards.forEach((card) => {
-                          window.db
-                            .collection("users")
-                            .doc(String(model.userID))
+                          usr
                             .collection("banks")
                             .doc(String(bank.id))
                             .collection("boards")
