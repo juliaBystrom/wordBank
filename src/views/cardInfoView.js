@@ -124,7 +124,7 @@ export default function CardInfoView(props) {
 
         <datalist id="taglist">
           {props.tags.map((opt) => (
-            <option value={Number(opt.id)} label={opt.tag}></option>
+            <option value={Number(opt.id)} label={opt.tag} key={opt.id}></option>
           ))}
         </datalist>
       </ModalWrapper>
