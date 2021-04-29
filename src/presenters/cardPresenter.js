@@ -43,7 +43,6 @@ export default function CardPresenter(props) {
         />
       ) : (
         <div>
-          <p> NEJ SHOW</p>
         </div>
       )}
       <CardInfoPresenter
