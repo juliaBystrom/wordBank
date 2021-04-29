@@ -1,8 +1,9 @@
-import Modal from 'react-modal';
+import Modal from "react-modal";
 
 import React from "react";
 import styled from "styled-components";
 
+import editSymbolPath from "../images/editSymbol.svg";
 
 /*
     CardInfoView
@@ -12,142 +13,149 @@ import styled from "styled-components";
 */
 
 import { DropdownComponent } from "./components";
+import {
+  TagInput,
+  StyledCloseButton,
+  EditButton,
+  TextBoxDynamic,
+  Card,
+  TranslationWrapper,
+  Translation,
+  ModelHeader,
+  CardBarWrapper,
+  InputTitle,
+  PhraseText,
+} from "./components";
+import {} from "./components";
 
-
-Modal.setAppElement(document.getElementById('root'));
-
-
-
-const TagInput = styled.input`
-  width: 180px;
-  border-radius: 8px;
-  height: 20px;
-  padding: 10px;
-  border: none;
-  font-weight: 600;
-`;
-
-
-
-
-const StyledModal = styled(Modal)`
-    
-    content: {
-
-        position: absolute;
-        background: #fff;
-        overflow: auto;
-        WebkitOverflowScrolling: touch;
-        outline: none;
-        padding: 20px;
-        top: 50%;
-        left: 50%;
-        right: auto;
-        bottom: auto;
-        margin-right: -50%;
-        transform: translate(-50%, -50%);
-        border-radius: 10px;
-        border: 2px solid ${props => props.theme.darkBorder};
-
-
-
-    }
-
-    overlay: {
-        // TO DO: Do we want another bluring background colour?
-    }
-
-    
-`;
-
-function getStyle(darkBorder) {
-    let customModalStyle = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            borderRadius: '10px',
-            borderStyle: 'solid',
-            borderWidth: '2px',
-            borderColor: `${darkBorder}`,
-
-        },
-        overlay: {
-            // TO DO: Do we want another bluring background colour?
-        }
-    };
-    return customModalStyle
-}
-
+Modal.setAppElement(document.getElementById("root"));
 
 export default function CardInfoView(props) {
+  return (
+    <Modal
+      isOpen={props.modalIsOpen}
+      onRequestClose={props.closeModal}
+      contentLabel="Card info"
+      style={getStyle("#36333b", "#F7F4EA")}
+    >
+      <ModalWrapper>
+        <ModelHeader>
+          <CardBarWrapper>
+            <Card>
+              <TranslationWrapper>
+                <Translation isTranslateFrom={true}>
+                  {props.editTranslationMode ? (
+                    <TextBoxDynamic
+                      value={props.phrase}
+                      onChange={(event) =>
+                        props.changePhrase(event.target.value)
+                      }
+                    />
+                  ) : (
+                    <PhraseText>{props.phrase}</PhraseText>
+                  )}
+                </Translation>
+                <Translation isTranslateFrom={false}>
+                  {props.editTranslationMode ? (
+                    <TextBoxDynamic
+                      value={props.translation}
+                      onChange={(event) =>
+                        props.changeTranslation(event.target.value)
+                      }
+                    />
+                  ) : (
+                    <PhraseText>{props.translation}</PhraseText>
+                  )}
+                </Translation>
+              </TranslationWrapper>
+            </Card>
 
-    /*     const customModalStyle = {
-            content: {
-                top: '50%',
-                left: '50%',
-                right: 'auto',
-                bottom: 'auto',
-                marginRight: '-50%',
-                transform: 'translate(-50%, -50%)',
-                borderRadius: '10px',
-                borderStyle: 'solid',
-                borderWidth: '2px',
-                borderColor: `${props => props.theme.medium}`,
-    
-            },
-            overlay: {
-                // TO DO: Do we want another bluring background colour?
-            }
-        }; */
+            {props.editTranslationMode ? (
+              <EditButton onClick={props.closeEditTranslation}>
+                Close
+                <img
+                  src={editSymbolPath}
+                  alt="Edit button"
+                  width="30"
+                  height="30"
+                />
+              </EditButton>
+            ) : (
+              <EditButton onClick={props.startEditTranslation}>
+                Open
+                <img
+                  src={editSymbolPath}
+                  alt="Edit button"
+                  width="30"
+                  height="30"
+                />
+              </EditButton>
+            )}
+          </CardBarWrapper>
 
-
-
-    return (
-        <Modal
-            isOpen={props.modalIsOpen}
-            onRequestClose={props.closeModal}
-            contentLabel="Card info"
-            style={getStyle("#36333b", )}
-        >
+          <StyledCloseButton onClick={props.closeModal}>
             <div>
-                <button onClick={props.closeModal}>close</button>
-                <p>{props.card.leftSentence}</p>
-                <p>{props.card.rightSentence}</p>
-                <form>
-                    <label>
-                        Comment
-                        <textarea value={props.comment} onChange={(event) => props.setComment(event.target.value)} />
-
-                    </label>
-
-
-                </form>
-
-
-
-                <TagInput
-                    onChange={(event) => props.setTag(event.target.value)}
-                    type="text"
-                    name="tag"
-                    list="taglist"
-                    placeholder="Tag:"
-                ></TagInput>
-
-                <datalist id="taglist">
-                    {props.tags.map((opt) => (
-                        <option value={Number(opt.id)} label={opt.tag}></option>
-                    ))}
-                </datalist>
+              <div />
+              <div />
             </div>
+          </StyledCloseButton>
+        </ModelHeader>
 
+        <form>
+          <label>
+            <InputTitle>Comment</InputTitle>
 
+            <TextBoxDynamic
+              value={props.comment}
+              onChange={(event) => props.setComment(event.target.value)}
+            />
+          </label>
+          <label>
+            <InputTitle>Tag</InputTitle>
+            <TagInput
+              onChange={(event) => props.setTag(event.target.value)}
+              type="text"
+              name="tag"
+              list="taglist"
+              placeholder={props.tagText}
+            ></TagInput>
+          </label>
+        </form>
 
-
-        </Modal>
-
-    );
+        <datalist id="taglist">
+          {props.tags.map((opt) => (
+            <option value={Number(opt.id)} label={opt.tag}></option>
+          ))}
+        </datalist>
+      </ModalWrapper>
+    </Modal>
+  );
 }
+
+function getStyle(darkBorder, bgColor) {
+  let customModalStyle = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      borderRadius: "10px",
+      borderStyle: "solid",
+      borderWidth: "2px",
+      borderColor: `${darkBorder}`,
+      backgroundColor: `${bgColor}`,
+    },
+    overlay: {
+      // TO DO: Do we want another bluring background colour?
+    },
+  };
+  return customModalStyle;
+}
+
+export const ModalWrapper = styled.div`
+
+  width: 60vw;
+  min-width: ${props => props.theme.mobile};
+`;
