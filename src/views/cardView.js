@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 
 /*
     CardView
@@ -21,7 +20,6 @@ export default function CardView(props) {
         key={props.id}
         onClick={() => {
           props.onCardPress();
-          console.log("Pressed card");
         }}
       >
         <TranslationWrapper>

@@ -31,8 +31,6 @@ export default class Card {
   // If the card have a tag ( not null, "", false or undefined) this method will update the show value depnding on the tag
   // If the card does not have an tag the show value will be set to false
   filterOnTags(tags) {
-    console.log("> filterontags in card");
-    console.log(tags);
     if (this.tag) {
       const tag = tags.find((tag) => {
         return tag.name === this.tag;
