@@ -1,16 +1,20 @@
 import styled, { css } from "styled-components";
 
-
 /*
  Styled componens for wraping and boxing translations
 */
 
 export const TranslateWrapper = styled.div`
-  height: 30%;
+  // height: 30%;
+
+  // align-items: flex-start;
+  // justify-content: center;
+  background-color: "#55555";
+  background-color: red;
+  padding: 0px auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: "#55555";
+  flex-wrap: wrap;
+  margin: 0;
 
   /* 
   display: flex;
@@ -23,30 +27,31 @@ export const TranslateWrapper = styled.div`
   */
 `;
 
-
 export const TitleBox = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  width: 260px;
-  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
-  height: 10px;
+  border-radius: ${(props) =>
+    props.isTranslateFrom ? "5px 0px 0px 0px" : "0px 5px 0px 0px"};
   text-align: center;
-  background-color: ${props => (props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain)};
-  font-family: serif, Times;
-  font-size: 20px;
-  padding: 20px;
+  background-color: ${(props) =>
+    props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain};
+  font-size: 2em;
+  padding: 10px 10px;
+  box-sizing: border-box;
 `;
 
 export const TextBox = styled.textarea`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 256px;
-  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
-  height: 100px;
-  padding: 20px;
+  border-radius: ${(props) =>
+    props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px"};
+  min-height: 100px;
+  max-height: 200px;
+  width: auto;
+  // padding: 20px;
   resize: none;
+  overflow: auto;
+  box-sizing: border-box;
+  width: 100%;
 `;
 
 export const TextBoxDynamic = styled.textarea`
@@ -54,7 +59,8 @@ export const TextBoxDynamic = styled.textarea`
   justify-content: center;
   align-items: center; */
   // width: 256px;
-  // border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  border-radius: ${(props) =>
+    props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px"};
   box-sizing: border-box;
   display: inline-block;
   border-radius: "5px 5px 5px 5px";
@@ -65,11 +71,10 @@ export const TextBoxDynamic = styled.textarea`
 `;
 
 export const TagInput = styled.input`
-  width: 180px;
   border-radius: 8px;
-  height: 20px;
   padding: 10px;
   border: 1px solid;
+  padding: 10px 20px;
   font-weight: 600;
 `;
 
@@ -78,14 +83,12 @@ export const TranslateButton = styled.button`
   border-radius: 3px;
   border: none;
   font-size: 16px;
-  color: black;
   font-weight: 600;
   padding: 0.25em 1em;
   background-color: ${(props) => props.theme.queenblue};
   border-radius: 8px;
+  padding: 10px 20px;
   height: 40px;
-  width: 200px;
-  margin: 2px;
   color: white;
   ${(props) =>
     props.primary &&

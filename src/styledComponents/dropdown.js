@@ -67,7 +67,7 @@ export const DropdownButton = styled.div`
   background-color: ${props => props.theme.midnightgreen};
   transition: background 0.3s linear;
   text-align: left;
-  z-index: 10;
+  z-index: 1;
   font-size: 15px;
   font-weight: bold;
 

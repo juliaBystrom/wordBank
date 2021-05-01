@@ -7,6 +7,7 @@ import { AuthPresenter } from "./presenters/AuthPresenter";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 import { useState } from "react";
+import { AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./styledComponents";
 
 function App() {
   require("dotenv").config();
@@ -15,26 +16,34 @@ function App() {
   const [model, setModel] = useState(new WordBankModel());
 
   return (
-    <>
-      <TranslatePresenter model={model} />
-      <SidebarPresenter model={model} />
-      <Route
-        exact
-        path="/"
-        component={() => <AuthPresenter model={model} setModel={setModel} />}
-      />
-      <Route
-        exact
-        path="/bank"
-        component={() => {
-          if (model.userId) {
-            return <BankPresenter model={model} />;
-          } else return <div>nothing</div>;
-        }}
-      />
+    <AppWrapper>
+    
+      <HeaderContainer>
+        <SidebarPresenter model={model} />
+      </HeaderContainer>
+      <TopContainer>
+        <TranslatePresenter model={model} />
+      </TopContainer>
 
-      {/* <Route exact path="/test" component={boardView} /> */}
-    </>
+      <BottomContainer>
+        <Route
+          exact
+          path="/"
+          component={() => <AuthPresenter model={model} setModel={setModel} />}
+        />
+        <Route
+          exact
+          path="/bank"
+          component={() => {
+            if (model.userId) {
+              return <BankPresenter model={model} />;
+            } else return <div>nothing</div>;
+          }}
+        />
+      </BottomContainer>
+
+        {/* <Route exact path="/test" component={boardView} /> */}
+    </AppWrapper>
   );
 }
 

@@ -1,5 +1,5 @@
 import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper } from "./bankWrappers.js";
-import { BoardTitle, BoardNameInput, RoundButton } from "./general.js";
+import { BoardTitle, BoardNameInput, RoundButton, AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./general.js";
 import Burger from "./burger.js"
 import Menu from "./menu.js"
 import { Dropdown, DropdownComponentWrapper, DropdownButton } from "./dropdown.js"
@@ -11,5 +11,5 @@ export {
     BoardWrapper, BoardTitleWrapper, BoardCardWrapper, BoardTitle, BoardNameInput, RoundButton,
     Menu, Burger, Dropdown, DropdownItem, Card, TranslationWrapper, Translation,
     DropdownComponentWrapper, DropdownComponentItem, DropdownButton, TranslateWrapper, TitleBox, TextBox, TagInput, TranslateButton,
-    StyledCloseButton, EditButton, ModelHeader, CardBarWrapper, InputTitle, TextBoxDynamic, PhraseText
+    StyledCloseButton, EditButton, ModelHeader, CardBarWrapper, InputTitle, TextBoxDynamic, PhraseText, AppWrapper, HeaderContainer, BottomContainer, TopContainer
 };

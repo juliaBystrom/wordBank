@@ -3,28 +3,31 @@ import React from "react";
 import styled, { css } from "styled-components";
 import { DropdownComponent } from "./components/";
 import LanguageList from "./components/languageList";
-import {TranslateWrapper, TitleBox, TextBox, TagInput, TranslateButton} from "../styledComponents";
-
-
-
-
-
+import {
+  TranslateWrapper,
+  TitleBox,
+  TextBox,
+  TagInput,
+  TranslateButton,
+} from "../styledComponents";
 
 const ButtonContainer = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: flex-start;
-  width: 200px;
-  margin: 10px;
+  flex-wrap: wrap;
 `;
 
-
+export const TranslationBox = styled.div`
+  // flex-basis: 50%;
+  min-width: 300px;
+  flex: 1 1 30%;
+  border: 4px solid purple;
+`;
 
 const TranslateView = (props) => {
-
   return (
     <TranslateWrapper>
-      <div>
+      <TranslationBox>
         <form onSubmit={() => console.log("translate!")}>
           <TitleBox isTranslateFrom={true}>
             <LanguageList
@@ -40,9 +43,9 @@ const TranslateView = (props) => {
             isTranslateFrom={true}
           ></TextBox>
         </form>
-      </div>
+      </TranslationBox>
 
-      <div>
+      <TranslationBox>
         <TitleBox isTranslateFrom={false}>
           <LanguageList
             language={props.toLanguage}
@@ -55,10 +58,12 @@ const TranslateView = (props) => {
           isTranslateFrom={false}
           onChange={(e) => props.setTransPhrase(e.target.value)}
         ></TextBox>
-      </div>
+      </TranslationBox>
       {
         <ButtonContainer>
-          <TranslateButton onClick={() => props.translate()}>Translate!</TranslateButton>
+          <TranslateButton onClick={() => props.translate()}>
+            Translate!
+          </TranslateButton>
 
           {props.loggedIn ? (
             <span>
@@ -76,8 +81,9 @@ const TranslateView = (props) => {
                 open={props.openSelector}
                 toggle={() => props.toggle()}
                 onSelectionDone={(board) => props.saveToBoard(board)}
-                keyExtractor={(item) => { return item.id }}
-
+                keyExtractor={(item) => {
+                  return item.id;
+                }}
               />
             </span>
           ) : (
@@ -90,7 +96,6 @@ const TranslateView = (props) => {
           </datalist>
         </ButtonContainer>
       }
-
     </TranslateWrapper>
   );
 };
