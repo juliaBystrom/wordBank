@@ -11,7 +11,7 @@ import {
   TranslationWrapper,
   Translation,
   PhraseText,
-} from "./components";
+} from "../styledComponents";
 
 export default function CardView(props) {
   return (

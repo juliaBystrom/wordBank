@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper, BoardTitle, BoardNameInput, RoundButton } from "./components"
+import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper, BoardTitle, BoardNameInput, RoundButton } from "../styledComponents"
 
 
 const ButtonWrapper = styled.div`

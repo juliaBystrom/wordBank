@@ -1,7 +1,7 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../theme";
-import { Burger, Menu, Dropdown, DropdownItem } from "./components";
+import { Burger, Menu, Dropdown, DropdownItem } from "../styledComponents";
 
 export default function SidebarView(props) {
   const banks = props.banks;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DropdownComponentWrapper, DropdownButton, DropdownComponentItem } from '.';
+import { DropdownComponentWrapper, DropdownButton, DropdownComponentItem } from '../../styledComponents';
 
 /*
 Just a Dropdown view

@@ -1,9 +1,9 @@
 import React from "react";
 
 import styled, { css } from "styled-components";
-import { DropdownComponent } from "./components";
+import { DropdownComponent } from "./components/";
 import LanguageList from "./components/languageList";
-import {TranslateWrapper, TitleBox, TextBox, TagInput, TranslateButton} from "./components";
+import {TranslateWrapper, TitleBox, TextBox, TagInput, TranslateButton} from "../styledComponents";
 
 
 

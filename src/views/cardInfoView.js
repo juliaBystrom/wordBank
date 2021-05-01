@@ -12,7 +12,7 @@ import editSymbolPath from "../images/editSymbol.svg";
 
 */
 
-import { DropdownComponent } from "./components";
+import { DropdownComponent } from "../styledComponents";
 import {
   TagInput,
   StyledCloseButton,
@@ -25,8 +25,8 @@ import {
   CardBarWrapper,
   InputTitle,
   PhraseText,
-} from "./components";
-import {} from "./components";
+} from "../styledComponents";
+import {} from "../styledComponents";
 
 Modal.setAppElement(document.getElementById("root"));
 
