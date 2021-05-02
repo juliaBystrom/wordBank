@@ -42,11 +42,12 @@ export async function loadFromFirebase(model) {
         querySnapshot.forEach((bank) => {
           let bankFromDb = bank.data();
 
-          model.banks = [new Bank(Number(bank.id))];
+          model.banks = [new Bank(Number(bank.id), bankFromDb.languageFrom, bankFromDb.languageTo)];
           model.activeBankId = Number(bank.id);
-          model.banks[0].activeBankId = bank.id;
-          model.banks[0].languageFrom = bankFromDb.languageFrom;
-          model.banks[0].languageTo = bankFromDb.languageTo;
+          // The following 3 are unnecessary.
+          // model.banks[0].activeBankId = bank.id;
+          // model.banks[0].languageFrom = bankFromDb.languageFrom;
+          // model.banks[0].languageTo = bankFromDb.languageTo;
 
           bankFromDb.tags.forEach((tag) => {
             model.addTag(tag);

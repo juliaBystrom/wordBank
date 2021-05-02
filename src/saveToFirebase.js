@@ -2,11 +2,13 @@
  * Lägger till Observers till modellen som uppdaterar databasen när modellens state ändras.
  * Kan behövas separata implementationer för olika delar av modellen.
  */
+import UseModelProp from "./presenters/useModelProp";
 
 export function saveToFirebase(model) {
   let loadingFromFirebase = true;
   var usr = window.db.collection("users").doc(String(model.userId));
-
+  var bank = model.banks[model.getActiveBankIndex()];
+  console.log("Bank: ", bank)
   // Save to Firestore
   model.addObserver(() => {
     if (true) {
@@ -17,7 +19,7 @@ export function saveToFirebase(model) {
           })
 
           .then(
-            model.banks.forEach((bank) => {
+            // model.banks.forEach((bank) => {
               usr
                 .collection("banks")
                 .doc(String(bank.id))
@@ -56,8 +58,8 @@ export function saveToFirebase(model) {
                         })
                       );
                   })
-                );
-            })
+                )
+          // )}
           );
       }, 1000);
     }

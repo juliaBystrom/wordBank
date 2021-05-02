@@ -11,8 +11,7 @@ import { useState } from "react";
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
-  //const model = new WordBankModel();
-  const [model, setModel] = useState(new WordBankModel());
+  const model = new WordBankModel();
 
   return (
     <>
@@ -21,7 +20,7 @@ function App() {
       <Route
         exact
         path="/"
-        component={() => <AuthPresenter model={model} setModel={setModel} />}
+        component={() => <AuthPresenter model={model}/>}
       />
       <Route
         exact

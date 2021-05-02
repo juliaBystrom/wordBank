@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SidebarView } from "../views"
-import useModelProp from './useModelProp.js';
-import useBankProp from './useBankProp.js';
+import UseModelProp from './useModelProp';
+import useBankProp from './useBankProp';
 
 export default function SidebarPresenter({model}){
 
@@ -10,8 +10,8 @@ export default function SidebarPresenter({model}){
     const [dropFilter, setDropFilter] = useState(0);
     const [dropSort, setDropSort] = useState(0);
 
-    const banks = useModelProp(model, "banks");
-    const sortings = useModelProp(model, "sortings");
+    const banks = UseModelProp(model, "banks");
+    const sortings = UseModelProp(model, "sortings");
     const tags = useBankProp(model, "tags");
 
     return <SidebarView

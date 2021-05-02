@@ -3,7 +3,7 @@ import Bank from "./bank";
 export class WordBankModel {
   constructor() {
     this.activeBankId = 0;
-    this.banks = [new Bank(0)];
+    this.banks = [new Bank(0, "sv", "en")];
     this.observers = [];
 
     this.sortings = [
@@ -17,7 +17,6 @@ export class WordBankModel {
     this.userId = "";
     this.placeholder = "Skriv här";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
-    this.boardId = 0;
     this.keyCountBanks = 0;
     this.getKeyBanks = this.getKeyBanks.bind(this);
 
@@ -60,10 +59,6 @@ export class WordBankModel {
   setCurrentBank(id) {
     this.activeBankId = id;
     this.notifyObservers();
-  }
-
-  addBank(id) {
-    this.banks = [new Bank(id), ...this.banks];
   }
 
   getActiveBank() {
