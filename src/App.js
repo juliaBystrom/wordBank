@@ -3,6 +3,7 @@ import "./App.css";
 import { WordBankModel } from "./models/wordBankModel";
 import { firebaseApp } from "./firebase";
 import BankPresenter from "./presenters/bankPresenter";
+import useModelProp from "./presenters/useModelProp";
 import { AuthPresenter } from "./presenters/AuthPresenter";
 import { AuthProvider } from "./presenters/AuthProvider";
 import TranslatePresenter from "./presenters/translatePresenter";
@@ -15,13 +16,14 @@ function App() {
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
 
-  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.LOCAL);
+  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
   firebaseApp.auth().onAuthStateChanged(async function (user) {
     if (user) {
+      model.loggedIn = false;
       model.setCurrentUser(user.uid);
-      console.log("REACHED");
       await loadFromFirebase(model);
       model.loggedIn = true;
+      console.log(model);
     }
   });
 

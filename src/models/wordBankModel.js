@@ -41,6 +41,11 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
+  setLoggedIn(bool){
+    this.loggedIn = bool;
+    this.notifyObservers();
+  }
+
   // SignIn action
   setCurrentUser(userId) {
     this.userId = userId;
