@@ -2,7 +2,8 @@ import React from "react";
 import { CardView, CardInfoView } from "../views";
 import useCardProp from "./useCardProp";
 import CardInfoPresenter from "./cardInfoPresenter";
-// import Modal from "react-modal";
+import Modal from "react-modal";
+
 
 /*
     CardPresenter 
@@ -10,7 +11,12 @@ import CardInfoPresenter from "./cardInfoPresenter";
 */
 
 export default function CardPresenter(props) {
-  const showCard = useCardProp(props.model, props.boardId, props.cardId, "show");
+  const showCard = useCardProp(
+    props.model,
+    props.boardId,
+    props.cardId,
+    "show"
+  );
 
   // State and funcitos for handeling card info popup
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -38,7 +44,7 @@ export default function CardPresenter(props) {
         />
       ) : (
         <div>
-          <p> NEJ SHOW</p>
+
         </div>
       )}
       <CardInfoPresenter

@@ -95,12 +95,6 @@ export default class Bank {
     });
   }
 
-  /* 
-      Toggles the value of tag with name
-      It does also count how many tags have checked: true
-      If checkedTags is 0 then no tags is curently being filtred which put the this.bankIsFiltered to false
-    
-    */
   filterOnTag(name) {
     this.checkedTags = 0;
     // Check or uncheck tag.
@@ -125,6 +119,89 @@ export default class Bank {
     }
   }
 
+  /*
+      Card functionality
+      Add and edit cards
+
+
+    */
+
+  /*
+    createCard(phrase, translation, saveToBoardId, tag) {
+      var boardIndex = this.boards.findIndex((board) => {
+        return board.id === Number(saveToBoardId);
+      });
+      this.boards[boardIndex].addCard(new Card(this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
+    }
+    */
+
+  setCardComment(newComment, cardId, boardId) {
+    // Checks that the bank got a board array
+    if (this.boards) {
+      const boardIndex = this.boards.findIndex((board) => {
+        return board.id === boardId;
+      });
+      // Checks that the board was found
+      if (boardIndex !== -1) {
+        this.boards[boardIndex].setCardComment(newComment, cardId);
+      }
+    }
+  }
+
+  setCardLeftSentence(newSentence, cardId, boardId) {
+    // Checks that the bank got a board array
+    if (this.boards) {
+      const boardIndex = this.boards.findIndex((board) => {
+        return board.id === boardId;
+      });
+      // Checks that the board was found
+      if (boardIndex !== -1) {
+        this.boards[boardIndex].setCardLeftSentence(newSentence, cardId);
+      }
+    }
+  }
+
+  setCardRightSentence(newSentence, cardId, boardId) {
+    // Checks that the bank got a board array
+    if (this.boards) {
+      const boardIndex = this.boards.findIndex((board) => {
+        return board.id === boardId;
+      });
+      // Checks that the board was found
+      if (boardIndex !== -1) {
+        this.boards[boardIndex].setCardRightSentence(newSentence, cardId);
+      }
+    }
+  }
+
+  setCardNewTag(newTagName, cardId, boardId) {
+    // Checks that the bank got a board array
+    if (this.boards) {
+      const boardIndex = this.boards.findIndex((board) => {
+        return board.id === boardId;
+      });
+      // Checks that the board was found
+      if (boardIndex !== -1) {
+        // This will return undefined if the tag does not exist
+        const tag = this.tags.find((tag) => {
+          return tag.name === newTagName;
+        });
+        // If the tag exist add it outerwise
+        if (tag) {
+          this.boards[boardIndex].setCardNewTag(tag.name, cardId);
+        } else {
+          this.addTag(newTagName);
+          console.log("New tag ");
+          console.log(newTagName);
+          console.log(this.tags[0]);
+
+          // Will take the first tag whitch should be the new one
+          this.boards[boardIndex].setCardNewTag(newTagName, cardId);
+        }
+      }
+    }
+  }
+
   createCard(phrase, translation, saveToBoardId, tag, id) {
     var boardIndex = this.boards.findIndex((board) => {
       return Number(board.id) === Number(saveToBoardId);
@@ -133,6 +210,7 @@ export default class Bank {
     this.boards[boardIndex].addCard(
       new Card(id, "Kommentar Holder", phrase, translation, tag)
     );
+
 
     this.notifyObservers();
   }
@@ -157,5 +235,6 @@ export default class Bank {
         }
       });
     }
+
   }
 }
