@@ -1,4 +1,9 @@
-import React, { useState, useContext, createContext, useLocalStorage } from "react";
+import React, {
+  useState,
+  useContext,
+  createContext,
+  useLocalStorage,
+} from "react";
 import { Link, useHistory } from "react-router-dom";
 import { saveToFirebase } from "../saveToFirebase";
 
@@ -15,7 +20,7 @@ export const AuthPresenter = (props) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const { currentUser } = useContext(AuthContext);
+  //const { currentUser } = useContext(AuthContext);
   let model;
   if (false) {
     console.log("USER found: ");
@@ -70,7 +75,10 @@ export const AuthPresenter = (props) => {
         history.push("/bank");
       })
       .catch((err) => {
-        if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
+        if (
+          err.code === "auth/email-already-in-use" ||
+          err.code === "auth/invalid-email"
+        ) {
           setEmailError(err.message);
         } else setEmailError("");
         if (err.code === "auth/weak-password") {

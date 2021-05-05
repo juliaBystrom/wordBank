@@ -17,12 +17,9 @@ BankPresenter manages:
 export default function BankPresenter(props) {
   const boards = useBankProp(props.model, "boards");
   let loggedIn = useModelProp(props.model, "loggedIn");
-  console.log(loggedIn);
-  console.log(boards);
   // Index is used because baords are stored as an array in the model.
   // TODO: When index changing oimplementation is done test that reredering is correct
   const boardPresenters = boards.map((board, index) => {
-
     if (!loggedIn) return <div>nothing</div>;
     else {
       return (
@@ -37,5 +34,11 @@ export default function BankPresenter(props) {
     }
   });
 
-  return loggedIn ? <BoardsWrapperPresenter model={props.model}>{boardPresenters}</BoardsWrapperPresenter> : <div>jahaja</div>;
+  return loggedIn ? (
+    <BoardsWrapperPresenter model={props.model}>
+      {boardPresenters}
+    </BoardsWrapperPresenter>
+  ) : (
+    <div>jahaja</div>
+  );
 }

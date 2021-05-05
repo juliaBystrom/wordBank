@@ -16,25 +16,30 @@ function App() {
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
 
-  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
+  firebaseApp.firebase_
+    .auth()
+    .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
   firebaseApp.auth().onAuthStateChanged(async function (user) {
     if (user) {
       model.loggedIn = false;
+      await loadFromFirebase(model, user.uid);
       model.setCurrentUser(user.uid);
-      await loadFromFirebase(model);
+      console.log("Model: ", model);
       model.loggedIn = true;
-      console.log(model);
     }
   });
 
   return (
     <>
-      <AuthProvider>
-        <TranslatePresenter model={model} />
-        <SidebarPresenter model={model} />
-        <Route exact path="/" component={() => <AuthPresenter model={model} />} />
-        <Route exact path="/bank" component={() => <BankPresenter model={model} />} />
-      </AuthProvider>
+      <TranslatePresenter model={model} />
+
+      <SidebarPresenter model={model} />
+      <Route exact path="/" component={() => <AuthPresenter model={model} />} />
+      <Route
+        exact
+        path="/bank"
+        component={() => <BankPresenter model={model} />}
+      />
     </>
   );
 }

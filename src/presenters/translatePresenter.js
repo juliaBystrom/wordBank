@@ -18,20 +18,15 @@ const TranslatePresenter = ({ model }) => {
   let fromLanguage = useModelProp(model, "fromLanguage");
   let loggedIn = useModelProp(model, "loggedIn");
   let placeholder = useModelProp(model, "placeholder");
-  let boards = useBankProp(model, "boards");
-  let tags = useBankProp(model, "tags");
+  let boards = useModelProp(model.banks[0], "boards");
+  let tags = useModelProp(model.banks[0], "tags");
 
-  //const createTranslationCard = (id) => {
-  // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
-  //if (tag) {
-  //model.addTag(tag);
-  //model.createCard(phrase, translation, id, tag);
-  // } else {
-  //  console.log("please choose a tag");
-  // }};
-
-  //
-  // Used to controll the dropdown of possible boards to save to
+  useEffect(() => {
+    console.log("tags = ", tags);
+    console.log("boards = ", boards);
+    console.log("model = ", model);
+    console.log("banks = ", model.banks);
+  }, [loggedIn, boards, tags, model]);
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
@@ -61,17 +56,27 @@ const TranslatePresenter = ({ model }) => {
 
   //Vill egentligen göra denna mer generell för att översätta andra grejer också
   const translate = () => {
-    googleTranslate.translate(phrase, fromLanguage, toLanguage, function (err, translation) {
-      console.log(phrase);
-      model.setTransPhrase(translation.translatedText);
-    });
+    googleTranslate.translate(
+      phrase,
+      fromLanguage,
+      toLanguage,
+      function (err, translation) {
+        console.log(phrase);
+        model.setTransPhrase(translation.translatedText);
+      }
+    );
   };
   //Den här borde tex i framtiden gå att göra med funktionen ovan
   const translatePlaceholder = (newLanguage) => {
-    googleTranslate.translate(placeholder, fromLanguage, newLanguage, function (err, translation) {
-      console.log(placeholder);
-      model.setPlaceholder(translation.translatedText);
-    });
+    googleTranslate.translate(
+      placeholder,
+      fromLanguage,
+      newLanguage,
+      function (err, translation) {
+        console.log(placeholder);
+        model.setPlaceholder(translation.translatedText);
+      }
+    );
   };
 
   return (
