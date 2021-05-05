@@ -3,37 +3,43 @@ import "./App.css";
 import { WordBankModel } from "./models/wordBankModel";
 import { firebaseApp } from "./firebase";
 import BankPresenter from "./presenters/bankPresenter";
+import useModelProp from "./presenters/useModelProp";
 import { AuthPresenter } from "./presenters/AuthPresenter";
+import { AuthProvider } from "./presenters/AuthProvider";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { loadFromFirebase } from "./loadFromFirebase";
 
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
-  //const model = new WordBankModel();
-  const [model, setModel] = useState(new WordBankModel());
+  let model = new WordBankModel();
+
+  firebaseApp.firebase_
+    .auth()
+    .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
+  firebaseApp.auth().onAuthStateChanged(async function (user) {
+    if (user) {
+      model.loggedIn = false;
+      await loadFromFirebase(model, user.uid);
+      model.setCurrentUser(user.uid);
+      console.log("Model: ", model);
+      model.loggedIn = true;
+    }
+  });
 
   return (
     <>
       <TranslatePresenter model={model} />
+
       <SidebarPresenter model={model} />
-      <Route
-        exact
-        path="/"
-        component={() => <AuthPresenter model={model} setModel={setModel} />}
-      />
+      <Route exact path="/" component={() => <AuthPresenter model={model} />} />
       <Route
         exact
         path="/bank"
-        component={() => {
-          if (model.userId) {
-            return <BankPresenter model={model} />;
-          } else return <div>nothing</div>;
-        }}
+        component={() => <BankPresenter model={model} />}
       />
-
-      {/* <Route exact path="/test" component={boardView} /> */}
     </>
   );
 }

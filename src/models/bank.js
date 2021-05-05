@@ -4,13 +4,6 @@ import Card from "./card";
 export default class Bank {
   constructor(id) {
     this.id = id;
-    // this.boards = [
-    //   new Board("My First Board", 0, {
-    //     0: this.getIdCards(),
-    //     1: this.getIdCards(),
-    //     2: this.getIdCards(),
-    //   }),
-    // ];
     this.boards = [];
     this.languageFrom = "Swedish";
     this.languageTo = "English";
@@ -21,6 +14,20 @@ export default class Bank {
     this.idCountTags = 2;
     this.getIdCards = this.getIdCards.bind(this);
     // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
+    this.getIdTags = this.getIdTags.bind(this);
+
+    this.observers = [];
+  }
+
+  reset() {
+    this.boards = [];
+    this.languageFrom = "Swedish";
+    this.languageTo = "English";
+    this.tags = [];
+    this.bankIsFiltered = true;
+    this.idCountCards = 0;
+    this.idCountTags = 2;
+    this.getIdCards = this.getIdCards.bind(this);
     this.getIdTags = this.getIdTags.bind(this);
   }
 
@@ -47,6 +54,8 @@ export default class Bank {
   addBoard(name, id) {
     // Obs only testing version. Outerwise if not testing the last is not needed
     this.boards = [...this.boards, new Board(name, id)];
+    // console.log("boards inside bank:", this.boards);
+    this.notifyObservers();
   }
 
   /* 
@@ -74,6 +83,8 @@ export default class Bank {
     } else {
       console.log("Tag exists.");
     }
+    console.log("tags inside bank:", this.tags);
+    this.notifyObservers();
   }
 
   editTag(name, newTagName) {
@@ -199,5 +210,31 @@ export default class Bank {
     this.boards[boardIndex].addCard(
       new Card(id, "Kommentar Holder", phrase, translation, tag)
     );
+
+
+    this.notifyObservers();
+  }
+
+  addObserver(callback) {
+    this.observers = [...this.observers, callback];
+  }
+
+  removeObserver(callback) {
+    this.observers = this.observers.filter((cb) => {
+      return cb !== callback;
+    });
+  }
+
+  notifyObservers() {
+    if (this.observers) {
+      this.observers.forEach((cb) => {
+        try {
+          cb();
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
+
   }
 }
