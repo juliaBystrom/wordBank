@@ -1,8 +1,6 @@
 import Modal from "react-modal";
-
 import React from "react";
 import styled from "styled-components";
-
 import editSymbolPath from "../images/editSymbol.svg";
 
 /*
@@ -11,6 +9,7 @@ import editSymbolPath from "../images/editSymbol.svg";
     Uses react-modal, read more about it: http://reactcommunity.org/react-modal/
 
 */
+
 
 import {
   TagInput,
@@ -30,6 +29,7 @@ import {} from "../styledComponents";
 Modal.setAppElement(document.getElementById("root"));
 
 export default function CardInfoView(props) {
+
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -105,6 +105,7 @@ export default function CardInfoView(props) {
             <InputTitle>Comment</InputTitle>
 
             <TextBoxDynamic
+
               value={props.comment}
               onChange={(event) => props.setComment(event.target.value)}
             />

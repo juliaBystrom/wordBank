@@ -1,26 +1,5 @@
-import Bank from "./models/bank";
-import Board from "./models/board";
-import Card from "./models/card";
-
-// export function loadBanksFromFirebase(){
-//   var usr = window.db.collection("users").doc(String(model.userId));
-
-//   usr
-//   .collection("banks")
-//   .get()
-//   .then((querySnapshot) => {
-//     var banks = []
-//     querySnapshot.forEach((bank) => {
-//       banks.append(bank.data());
-//       if(banks){
-//         return banks;
-//       }
-//     })
-//   })
-// }
-
-export async function loadFromFirebase(model) {
-  var usr = window.db.collection("users").doc(String(model.userId));
+export async function loadFromFirebase(model, uid) {
+  var usr = window.db.collection("users").doc(String(uid));
 
   await usr.get().then((x) => {
     var a = x.data();
@@ -42,7 +21,7 @@ export async function loadFromFirebase(model) {
         querySnapshot.forEach((bank) => {
           let bankFromDb = bank.data();
 
-          model.banks = [new Bank(Number(bank.id))];
+          model.banks[0].reset();
           model.activeBankId = Number(bank.id);
           model.banks[0].activeBankId = bank.id;
           model.banks[0].languageFrom = bankFromDb.languageFrom;
@@ -91,6 +70,7 @@ export async function loadFromFirebase(model) {
                       );
 
                       model.notifyObservers();
+                      model.banks[0].notifyObservers();
                     });
                   });
               });

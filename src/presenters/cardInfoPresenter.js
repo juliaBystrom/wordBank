@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CardInfoView } from "../views";
 import useCardProp from "./useCardProp";
-
 import Modal from "react-modal";
 import useBankProp from "./useBankProp";
 
@@ -12,6 +11,7 @@ import useBankProp from "./useBankProp";
 */
 
 export default function CardInfoPresenter(props) {
+
 
   // Used to controll the tags of the card
   const tags = useBankProp(props.model, "tags");
@@ -44,6 +44,7 @@ export default function CardInfoPresenter(props) {
       <CardInfoView
         modalIsOpen={props.modalIsOpen}
         closeModal={props.closeModal}
+
         phrase={phrase}
         translation={translation}
         tags={tags}
@@ -51,6 +52,7 @@ export default function CardInfoPresenter(props) {
         setTag={(newTag) => {
           setTagText(newTag);
           props.model.setCardNewTag(newTag, props.card.id, props.boardId);
+
         }}
         comment={comment}
         setComment={(newComment) => {
@@ -94,5 +96,4 @@ export default function CardInfoPresenter(props) {
       />
     </>
   );
-
 }

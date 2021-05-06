@@ -4,6 +4,7 @@ import useCardProp from "./useCardProp";
 import CardInfoPresenter from "./cardInfoPresenter";
 import Modal from "react-modal";
 
+
 /*
     CardPresenter 
 
@@ -43,6 +44,7 @@ export default function CardPresenter(props) {
         />
       ) : (
         <div>
+
         </div>
       )}
       <CardInfoPresenter

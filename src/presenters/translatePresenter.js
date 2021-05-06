@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import TranslateView from "../views/translateView";
 import useBankProp from "./useBankProp";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
+import { AuthContext } from "./AuthProvider.js";
 
 const TranslatePresenter = ({ model }) => {
+  /* const { currentUser } = useContext(AuthContext);
+  let model;
+  if (currentUser) await loadFromFirebase(props.model);
+  else model = props.model; */
+
   const [phrase, setPhrase] = React.useState("");
   const [tag, setTag] = React.useState("");
   let transPhrase = useModelProp(model, "transPhrase");
@@ -12,20 +18,15 @@ const TranslatePresenter = ({ model }) => {
   let fromLanguage = useModelProp(model, "fromLanguage");
   let loggedIn = useModelProp(model, "loggedIn");
   let placeholder = useModelProp(model, "placeholder");
-  let boards = useBankProp(model, "boards");
-  let tags = useBankProp(model, "tags");
+  let boards = useModelProp(model.banks[0], "boards");
+  let tags = useModelProp(model.banks[0], "tags");
 
-  //const createTranslationCard = (id) => {
-  // Note: Please dont put a if else statement with 5 instuctions in one line of code :´)
-  //if (tag) {
-  //model.addTag(tag);
-  //model.createCard(phrase, translation, id, tag);
-  // } else {
-  //  console.log("please choose a tag");
-  // }};
-
-  //
-  // Used to controll the dropdown of possible boards to save to
+  useEffect(() => {
+    console.log("tags = ", tags);
+    console.log("boards = ", boards);
+    console.log("model = ", model);
+    console.log("banks = ", model.banks);
+  }, [loggedIn, boards, tags, model]);
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
