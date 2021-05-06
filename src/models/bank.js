@@ -14,7 +14,7 @@ export default class Bank {
     this.boards = [];
     this.languageFrom = "Swedish";
     this.languageTo = "English";
-    this.tags = [];
+    this.tags = [{ id: this.getIdTags(), name: "no tag", checked: false }];
     // Keeps track if no tags is choosed for filter
     this.bankIsFiltered = true;
     this.idCountCards = 0;

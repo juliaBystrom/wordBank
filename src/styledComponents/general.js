@@ -60,27 +60,25 @@ export const RoundButton = styled.button`
 `;
 
 export const AppWrapper = styled.div`
-  // background-color: brown;
-  min-height: 100vh;
+  // min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   max-width: 1400px;
-  min-width: ${props => props.theme.mobile};
   padding: 0 auto;
   margin: 0 auto;
 `;
 
 export const HeaderContainer = styled.div`
   background-color: transparent;
-  background-color: brown;
   padding: 1.8em 0em;
-  width: 100%;
+ 
 `;
 
 export const TopContainer = styled.div`
-  background-color: pink;
-  width: 100%;
+  // width: 100%;
 `;
 
 export const BottomContainer = styled.div`
-  background-color: yellow;
-  width: 100%;
+  // width: 100%;
 `;

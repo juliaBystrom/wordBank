@@ -13,15 +13,32 @@ import {
 
 const ButtonContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding: 0 10px;
+  & > * {
+    margin-bottom: 5px;
+  }
+
+  @media (max-width: 650px) {
+    width: 100%;
+    align-items: stretch;
+  }
 `;
 
 export const TranslationBox = styled.div`
-  // flex-basis: 50%;
-  min-width: 300px;
+  box-sizing: border-box;
+  padding-left: 10px;
+  min-width: 200px;
+  max-width: 500px;
   flex: 1 1 30%;
-  border: 4px solid purple;
+
+  @media (max-width: ${(props) => props.theme.mobile}) {
+    padding: 0;
+  }
+
+
 `;
 
 const TranslateView = (props) => {
@@ -59,43 +76,42 @@ const TranslateView = (props) => {
           onChange={(e) => props.setTransPhrase(e.target.value)}
         ></TextBox>
       </TranslationBox>
-      {
-        <ButtonContainer>
-          <TranslateButton onClick={() => props.translate()}>
-            Translate!
-          </TranslateButton>
 
-          {props.loggedIn ? (
-            <span>
-              <TagInput
-                onChange={(event) => props.setTag(event.target.value)}
-                type="text"
-                name="tag"
-                list="taglist"
-                placeholder="Tag:"
-              ></TagInput>
+      <ButtonContainer>
+        <TranslateButton onClick={() => props.translate()}>
+          Translate!
+        </TranslateButton>
 
-              <DropdownComponent
-                list={props.availableBoards}
-                title={"Save to"}
-                open={props.openSelector}
-                toggle={() => props.toggle()}
-                onSelectionDone={(board) => props.saveToBoard(board)}
-                keyExtractor={(item) => {
-                  return item.id;
-                }}
-              />
-            </span>
-          ) : (
-            ""
-          )}
-          <datalist onChange={() => console.log("set a tag")} id="taglist">
-            {props.tags.map((tag) => (
-              <option key={Number(tag.id)}>{tag.name}</option>
-            ))}
-          </datalist>
-        </ButtonContainer>
-      }
+        {props.loggedIn ? (
+          <>
+            <TagInput
+              onChange={(event) => props.setTag(event.target.value)}
+              type="text"
+              name="tag"
+              list="taglist"
+              placeholder="Choose or write a tag"
+            ></TagInput>
+
+            <DropdownComponent
+              list={props.availableBoards}
+              title={"Save to"}
+              open={props.openSelector}
+              toggle={() => props.toggle()}
+              onSelectionDone={(board) => props.saveToBoard(board)}
+              keyExtractor={(item) => {
+                return item.id;
+              }}
+            />
+          </>
+        ) : (
+          ""
+        )}
+        <datalist onChange={() => console.log("set a tag")} id="taglist">
+          {props.tags.map((tag) => (
+            <option key={Number(tag.id)}>{tag.name}</option>
+          ))}
+        </datalist>
+      </ButtonContainer>
     </TranslateWrapper>
   );
 };

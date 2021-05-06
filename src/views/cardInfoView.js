@@ -12,7 +12,6 @@ import editSymbolPath from "../images/editSymbol.svg";
 
 */
 
-import { DropdownComponent } from "../styledComponents";
 import {
   TagInput,
   StyledCloseButton,
@@ -157,5 +156,6 @@ function getStyle(darkBorder, bgColor) {
 export const ModalWrapper = styled.div`
 
   width: 60vw;
-  min-width: ${props => props.theme.mobile};
+  min-width: 250px;
+  // min-width: ${props => props.theme.mobile};
 `;
