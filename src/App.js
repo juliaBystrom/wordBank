@@ -8,8 +8,12 @@ import { AuthPresenter } from "./presenters/AuthPresenter";
 import { AuthProvider } from "./presenters/AuthProvider";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
+
+import { AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./styledComponents";
+
 import { useEffect, useState } from "react";
 import { loadFromFirebase } from "./loadFromFirebase";
+
 
 function App() {
   require("dotenv").config();
@@ -30,17 +34,36 @@ function App() {
   });
 
   return (
-    <>
-      <TranslatePresenter model={model} />
 
-      <SidebarPresenter model={model} />
-      <Route exact path="/" component={() => <AuthPresenter model={model} />} />
-      <Route
-        exact
-        path="/bank"
-        component={() => <BankPresenter model={model} />}
-      />
-    </>
+    <AppWrapper>
+    
+      <HeaderContainer>
+        <SidebarPresenter model={model} />
+      </HeaderContainer>
+      <TopContainer>
+        <TranslatePresenter model={model} />
+      </TopContainer>
+
+      <BottomContainer>
+        <Route
+          exact
+          path="/"
+          component={() => <AuthPresenter model={model} setModel={setModel} />}
+        />
+        <Route
+          exact
+          path="/bank"
+          component={() => {
+            if (model.userId) {
+              return <BankPresenter model={model} />;
+            } else return <div>nothing</div>;
+          }}
+        />
+      </BottomContainer>
+
+        {/* <Route exact path="/test" component={boardView} /> */}
+    </AppWrapper>
+
   );
 }
 

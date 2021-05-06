@@ -10,7 +10,6 @@ import editSymbolPath from "../images/editSymbol.svg";
 
 */
 
-import { DropdownComponent } from "./components";
 
 import {
   TagInput,
@@ -24,8 +23,8 @@ import {
   CardBarWrapper,
   InputTitle,
   PhraseText,
-} from "./components";
-import {} from "./components";
+} from "../styledComponents";
+import {} from "../styledComponents";
 
 Modal.setAppElement(document.getElementById("root"));
 
@@ -158,5 +157,6 @@ function getStyle(darkBorder, bgColor) {
 export const ModalWrapper = styled.div`
 
   width: 60vw;
-  min-width: ${props => props.theme.mobile};
+  min-width: 250px;
+  // min-width: ${props => props.theme.mobile};
 `;

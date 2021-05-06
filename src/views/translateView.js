@@ -1,30 +1,50 @@
 import React from "react";
 
 import styled, { css } from "styled-components";
-import { DropdownComponent } from "./components";
+import { DropdownComponent } from "./components/";
 import LanguageList from "./components/languageList";
-import {TranslateWrapper, TitleBox, TextBox, TagInput, TranslateButton} from "./components";
-
-
-
-
-
+import {
+  TranslateWrapper,
+  TitleBox,
+  TextBox,
+  TagInput,
+  TranslateButton,
+} from "../styledComponents";
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 200px;
-  margin: 10px;
+  flex-wrap: wrap;
+  padding: 0 10px;
+  & > * {
+    margin-bottom: 5px;
+  }
+
+  @media (max-width: 650px) {
+    width: 100%;
+    align-items: stretch;
+  }
 `;
 
+export const TranslationBox = styled.div`
+  box-sizing: border-box;
+  padding-left: 10px;
+  min-width: 200px;
+  max-width: 500px;
+  flex: 1 1 30%;
 
+  @media (max-width: ${(props) => props.theme.mobile}) {
+    padding: 0;
+  }
+
+
+`;
 
 const TranslateView = (props) => {
-
   return (
     <TranslateWrapper>
-      <div>
+      <TranslationBox>
         <form onSubmit={() => console.log("translate!")}>
           <TitleBox isTranslateFrom={true}>
             <LanguageList
@@ -40,9 +60,9 @@ const TranslateView = (props) => {
             isTranslateFrom={true}
           ></TextBox>
         </form>
-      </div>
+      </TranslationBox>
 
-      <div>
+      <TranslationBox>
         <TitleBox isTranslateFrom={false}>
           <LanguageList
             language={props.toLanguage}
@@ -55,42 +75,43 @@ const TranslateView = (props) => {
           isTranslateFrom={false}
           onChange={(e) => props.setTransPhrase(e.target.value)}
         ></TextBox>
-      </div>
-      {
-        <ButtonContainer>
-          <TranslateButton onClick={() => props.translate()}>Translate!</TranslateButton>
+      </TranslationBox>
 
-          {props.loggedIn ? (
-            <span>
-              <TagInput
-                onChange={(event) => props.setTag(event.target.value)}
-                type="text"
-                name="tag"
-                list="taglist"
-                placeholder="Tag:"
-              ></TagInput>
+      <ButtonContainer>
+        <TranslateButton onClick={() => props.translate()}>
+          Translate!
+        </TranslateButton>
 
-              <DropdownComponent
-                list={props.availableBoards}
-                title={"Save to"}
-                open={props.openSelector}
-                toggle={() => props.toggle()}
-                onSelectionDone={(board) => props.saveToBoard(board)}
-                keyExtractor={(item) => { return item.id }}
+        {props.loggedIn ? (
+          <>
+            <TagInput
+              onChange={(event) => props.setTag(event.target.value)}
+              type="text"
+              name="tag"
+              list="taglist"
+              placeholder="Choose or write a tag"
+            ></TagInput>
 
-              />
-            </span>
-          ) : (
-            ""
-          )}
-          <datalist onChange={() => console.log("set a tag")} id="taglist">
-            {props.tags.map((tag) => (
-              <option key={Number(tag.id)}>{tag.name}</option>
-            ))}
-          </datalist>
-        </ButtonContainer>
-      }
-
+            <DropdownComponent
+              list={props.availableBoards}
+              title={"Save to"}
+              open={props.openSelector}
+              toggle={() => props.toggle()}
+              onSelectionDone={(board) => props.saveToBoard(board)}
+              keyExtractor={(item) => {
+                return item.id;
+              }}
+            />
+          </>
+        ) : (
+          ""
+        )}
+        <datalist onChange={() => console.log("set a tag")} id="taglist">
+          {props.tags.map((tag) => (
+            <option key={Number(tag.id)}>{tag.name}</option>
+          ))}
+        </datalist>
+      </ButtonContainer>
     </TranslateWrapper>
   );
 };

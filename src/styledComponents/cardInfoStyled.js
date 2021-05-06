@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-
-
 /*
 
 Styled closed buttons
@@ -16,7 +14,6 @@ OBS will aply style to children which need to be the following:
 
 */
 
-
 export const StyledCloseButton = styled.button`
   background-color: transparent;
   border: none;
@@ -29,7 +26,6 @@ export const StyledCloseButton = styled.button`
     cursor: pointer;
     background-color: transparent;
     transition: all 0.3s ease-in;
-
 
     &:hover {
       transform: scale(1.2);
@@ -47,7 +43,6 @@ export const StyledCloseButton = styled.button`
       background-color: ${(props) => props.theme.queenblue};
       border-radius: 2px;
 
-
       :first-child {
         transform: rotate(45deg);
         transition: all 0.3s ease-in;
@@ -60,8 +55,6 @@ export const StyledCloseButton = styled.button`
     }
   }
 `;
-
-
 
 export const StyledEditButton = styled.button`
   background-color: transparent;
@@ -76,7 +69,6 @@ export const StyledEditButton = styled.button`
     background-color: transparent;
     transition: all 0.3s ease-in;
 
-
     &:hover {
       transform: scale(1.2);
 
@@ -92,8 +84,6 @@ export const StyledEditButton = styled.button`
       margin-top: 18px;
       background-color: ${(props) => props.theme.queenblue};
       border-radius: 2px;
-      
-
 
       :first-child {
         transform: rotate(45deg);
@@ -107,7 +97,6 @@ export const StyledEditButton = styled.button`
     }
   }
 `;
-
 
 export const EditButton = styled.button`
   width: 60px;
@@ -144,7 +133,6 @@ export const EditButton = styled.button`
   }
 `;
 
-
 export const ModelHeader = styled.div`
   width: 100%;
   display: flex;
@@ -163,10 +151,22 @@ export const CardBarWrapper = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
 
-  div {
+  button {
   }
 
-  button {
+  @media (max-width: ${(props) => props.theme.mobile}) {
+    flex-direction: column;
+
+    div {
+      margin: 0;
+      padding: 5px;
+      border-radius: 0;
+      flex-direction: column;
+      min-width: 150px;
+      align-items: center;
+    }
+
+
   }
 `;
 
@@ -185,4 +185,3 @@ export const InputTitle = styled.div`
   margin-top: 5px;
   // margin: 5px 0px;
 `;
-

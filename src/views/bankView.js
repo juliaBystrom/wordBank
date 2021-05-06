@@ -9,6 +9,7 @@ const BankWrapper = styled.div`
   border: 2px ${props => (props.theme.showTestBorders ? "solid" : "hidden")} ${props => props.theme.testBorder};
   height: 400px;
   overflow-x: scroll;
+  overflow-y: scroll;
   margin: 10px;
 `;
 

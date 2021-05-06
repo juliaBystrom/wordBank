@@ -1,5 +1,5 @@
 import React from "react";
-import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper,BoardTitle } from "./components"
+import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper,BoardTitle } from "../styledComponents"
 
 export default function BoardView(props) {
 
