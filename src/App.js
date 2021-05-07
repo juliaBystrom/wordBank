@@ -48,7 +48,7 @@ function App() {
         <Route
           exact
           path="/"
-          component={() => <AuthPresenter model={model}} />}
+          component={() => <AuthPresenter model={model} />}
         />
         <Route
           exact
