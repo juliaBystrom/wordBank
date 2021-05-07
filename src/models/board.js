@@ -1,5 +1,3 @@
-import Card from "./card";
-
 export default class Board {
   constructor(title, id) {
     this.id = id;

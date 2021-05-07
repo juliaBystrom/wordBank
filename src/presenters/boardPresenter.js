@@ -31,7 +31,11 @@ export default function BoardPresenter(props) {
   });
 
   return (
-    <BoardView title={props.title} key={props.id}>
+    <BoardView 
+      title={props.title} 
+      key={props.id}
+      onEditBoardTitle={(title) => {
+          props.model.editBoardTitle(title); }}>
       {cardPresenterList}
     </BoardView>
   );

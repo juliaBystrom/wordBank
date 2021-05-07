@@ -15,7 +15,6 @@ export default class Bank {
     this.getIdCards = this.getIdCards.bind(this);
     // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
     this.getIdTags = this.getIdTags.bind(this);
-
     this.observers = [];
   }
 
@@ -213,6 +212,20 @@ export default class Bank {
 
 
     this.notifyObservers();
+  }
+
+  // Edit board title
+  editBoardTitle(title){
+    this.getBoard(this.getBoardId(title)).editTitle(title);
+    this.notifyObservers();
+  }
+
+  getBoard(id){
+    return this.boards.find((board) => board.id === id);
+  }
+
+  getBoardId(title){
+    return this.boards.find((board) => board.title === title);
   }
 
   addObserver(callback) {
