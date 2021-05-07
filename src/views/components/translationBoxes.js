@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 
-
 /*
  Styled componens for wraping and boxing translations
 */
@@ -23,16 +22,17 @@ export const TranslateWrapper = styled.div`
   */
 `;
 
-
 export const TitleBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 260px;
-  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  border-radius: ${(props) =>
+    props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px"};
   height: 10px;
   text-align: center;
-  background-color: ${props => (props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain)};
+  background-color: ${(props) =>
+    props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain};
   font-family: serif, Times;
   font-size: 20px;
   padding: 20px;
@@ -43,7 +43,8 @@ export const TextBox = styled.textarea`
   justify-content: center;
   align-items: center;
   width: 256px;
-  border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  border-radius: ${(props) =>
+    props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px"};
   height: 100px;
   padding: 20px;
   resize: none;
@@ -54,7 +55,8 @@ export const TextBoxDynamic = styled.textarea`
   justify-content: center;
   align-items: center; */
   // width: 256px;
-  // border-radius: ${props => (props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px")};
+  // border-radius: ${(props) =>
+    props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px"};
   box-sizing: border-box;
   display: inline-block;
   border-radius: "5px 5px 5px 5px";
@@ -86,6 +88,12 @@ export const TranslateButton = styled.button`
   height: 40px;
   width: 200px;
   margin: 2px;
+  :active {
+    background: lightblue;
+  }
+  :hover {
+    cursor: pointer;
+  }
   color: white;
   ${(props) =>
     props.primary &&

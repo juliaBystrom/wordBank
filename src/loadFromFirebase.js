@@ -12,6 +12,8 @@ export async function loadFromFirebase(model, uid) {
     }
   });
 
+  console.log("LOAD FROM FIREBASE...");
+
   // Restore banks from db
   await usr
     .collection("banks")
@@ -21,7 +23,7 @@ export async function loadFromFirebase(model, uid) {
         querySnapshot.forEach((bank) => {
           let bankFromDb = bank.data();
 
-          model.banks[0].reset();
+          //model.banks[0].reset();
           model.activeBankId = Number(bank.id);
           model.banks[0].activeBankId = bank.id;
           model.banks[0].languageFrom = bankFromDb.languageFrom;
@@ -33,33 +35,44 @@ export async function loadFromFirebase(model, uid) {
 
           usr
             .collection("banks")
-            .doc(bank.id)
+            .doc(String(0))
             .collection("boards")
             .get()
             .then((querySnapshot) => {
-              let maxBoardId = 0;
               querySnapshot.forEach((board) => {
                 var boardFromDb = board.data();
 
-                if (Number(board.id) > Number(maxBoardId)) {
-                  model.boardId = board.id;
-                  maxBoardId = board.id;
+                if (Number(board.id) > Number(model.boardId)) {
+                  model.boardId = Number(board.id);
                 }
                 model.addBoardFromFirebase(boardFromDb.title, board.id);
                 usr
                   .collection("banks")
-                  .doc(bank.id)
+                  .doc("0")
                   .collection("boards")
                   .doc(board.id)
                   .collection("cards")
                   .get()
                   .then((querySnapshot) => {
-                    let maxCardId = 0;
                     querySnapshot.forEach((card) => {
-                      if (Number(card.id) > Number(maxCardId)) {
-                        model.cardId = card.id;
-                        maxCardId = card.id;
+                      /*                       console.log("WHEN IS IT RESET? ", model.cardId);
+                      console.log("WHEN IS IT NEW BOARD? ", board.id); */
+                      if (Number(card.id) > Number(model.cardId)) {
+                        /* console.log(
+                          "CardId: ",
+                          Number(card.id),
+                          " Model.cardId: ",
+                          Number(model.cardId)
+                        ); */
+                        model.cardId = Number(card.id);
                       }
+                      /* console.log(
+                        "max cardID=",
+                        model.cardId,
+                        " board: ",
+                        boardFromDb.title
+                      ); */
+
                       var cardFromDb = card.data();
                       model.createCardFromFirebase(
                         cardFromDb.leftSentence,

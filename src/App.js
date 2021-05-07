@@ -10,6 +10,7 @@ import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 import { useEffect, useState } from "react";
 import { loadFromFirebase } from "./loadFromFirebase";
+import { saveToFirebase } from "./saveToFirebase";
 
 function App() {
   require("dotenv").config();
@@ -19,12 +20,14 @@ function App() {
   firebaseApp.firebase_
     .auth()
     .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
+
   firebaseApp.auth().onAuthStateChanged(async function (user) {
+    console.log("VAD STÅR DET?", firebaseApp.firebase_.auth.Auth.Persistence);
     if (user) {
       model.loggedIn = false;
       await loadFromFirebase(model, user.uid);
       model.setCurrentUser(user.uid);
-      console.log("Model: ", model);
+      await saveToFirebase(model);
       model.loggedIn = true;
     }
   });

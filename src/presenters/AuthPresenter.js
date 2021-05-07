@@ -14,20 +14,20 @@ import { AuthContext } from "./AuthProvider.js";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
-export const AuthPresenter = (props) => {
+export const AuthPresenter = ({ model }) => {
   let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   //const { currentUser } = useContext(AuthContext);
-  let model;
+  /* let model;
   if (false) {
     console.log("USER found: ");
     loadFromFirebase(model);
   } else {
     model = props.model;
-  }
+  } */
 
   const loginHandler = async () => {
     /* quickStart(); */
@@ -42,11 +42,11 @@ export const AuthPresenter = (props) => {
         setPasswordError("");
       })
       .then(async () => {
-        await loadFromFirebase(model);
+        //await loadFromFirebase(model);
         history.push("/bank");
       })
       .then(() => {
-        saveToFirebase(model);
+        // saveToFirebase(model);
       })
       .catch((err) => {
         if (

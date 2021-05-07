@@ -54,16 +54,16 @@ export default class Board {
   }
 
   setCardNewTag(newTag, cardId) {
-        // Checks that the board got a card array
-        if (this.cards) {
-          const cardIndex = this.cards.findIndex((card) => {
-            return card.id === cardId;
-          });
-          // Checks that the card was found
-          if (cardIndex !== -1) {
-            this.cards[cardIndex].setNewTag(newTag);
-          }
-        }
+    // Checks that the board got a card array
+    if (this.cards) {
+      const cardIndex = this.cards.findIndex((card) => {
+        return card.id === cardId;
+      });
+      // Checks that the card was found
+      if (cardIndex !== -1) {
+        this.cards[cardIndex].setNewTag(newTag);
+      }
+    }
   }
 
   filterCards(bankIsFiltered, tags) {

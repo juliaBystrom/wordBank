@@ -16,14 +16,23 @@ export default function SidebarView(props) {
           <div />
         </Burger>
         <Menu open={props.open}>
-          <Dropdown onClick={() => props.setDropBanks(!props.dropBanks)} dropBank={props.dropBank}>
+          <button onClick={() => props.logout()}>Log out</button>
+
+          <Dropdown
+            onClick={() => props.setDropBanks(!props.dropBanks)}
+            dropBank={props.dropBank}
+          >
             <span aria-label="Select bank"></span>
             Select bank {props.dropBanks ? "Ʌ" : "V"}
           </Dropdown>
           {banks.map((bank, key) => (
             <label key={key}>
               <DropdownItem drop={props.dropBanks}>
-                <input type="radio" name="bank" onClick={() => props.onSelectBank(bank.id)} />
+                <input
+                  type="radio"
+                  name="bank"
+                  onClick={() => props.onSelectBank(bank.id)}
+                />
                 {bank.languageFrom} - {bank.languageTo}
               </DropdownItem>
             </label>
@@ -36,7 +45,11 @@ export default function SidebarView(props) {
           {props.tags.map((tag, key) => (
             <label key={key}>
               <DropdownItem drop={props.dropFilter}>
-                <input type="checkbox" name={tag.name} onClick={() => props.onFilter(tag.name)} />
+                <input
+                  type="checkbox"
+                  name={tag.name}
+                  onClick={() => props.onFilter(tag.name)}
+                />
                 {tag.name}
               </DropdownItem>
             </label>
@@ -49,7 +62,11 @@ export default function SidebarView(props) {
           {props.sortings.map((sorting, key) => (
             <label key={key}>
               <DropdownItem drop={props.dropSort}>
-                <input type="radio" name="sort" onClick={() => props.onSort(sorting.name)} />
+                <input
+                  type="radio"
+                  name="sort"
+                  onClick={() => props.onSort(sorting.name)}
+                />
                 {sorting.name}
               </DropdownItem>
             </label>
