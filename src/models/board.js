@@ -7,6 +7,10 @@ export default class Board {
     this.title = title;
   }
 
+  editTitle(title) {
+    this.title = title;
+  }
+
   /*
       Will add card object to this board
     */
