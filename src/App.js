@@ -26,7 +26,7 @@ function App() {
 
   firebaseApp.firebase_
     .auth()
-    .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
+    .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.NONE);
   firebaseApp.auth().onAuthStateChanged(async function (user) {
     if (user) {
       model.loggedIn = false;
@@ -59,6 +59,7 @@ function App() {
             return <BankPresenter model={model} />;
           }}
         />
+        
       </BottomContainer>
 
       {/* <Route exact path="/test" component={boardView} /> */}

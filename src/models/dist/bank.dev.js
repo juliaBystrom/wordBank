@@ -183,7 +183,26 @@ function () {
       });
       this.boards[boardIndex].addCard(new _card["default"](true, this.getIdCards(), "Kommentar Holder", phrase, translation, tag));
     }
-  }]);
+  }, {
+    key:"getBoard",
+    value: function getBoard(id){
+      return this.boards.filter((board) => {
+        return board.id === id;
+      });
+    }
+  }, {
+    key:"getBoardId",
+    value: function getBoardId(title){
+      console.log("Boards: ", this.boards);
+      console.log("BoardId, getBoardId: ", this.boards.filter((board) => {
+        return board.title === title;
+      }).id);
+      return this.boards.filter((board) => {
+        return board.title === title;
+      }).id;
+    }
+  }
+  ]);
 
   return Bank;
 }();

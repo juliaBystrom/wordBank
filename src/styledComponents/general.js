@@ -6,9 +6,32 @@ export const BoardTitle = styled.h2`
   text-align: center;
 `;
 
+export const EditableBoardTitle= styled.input`
+  background: transparent;
+  display: block;
+  margin-top: 0.7rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  box-shadow: inset 0 0 5px #c4c2c2;
+  border-radius: 7px;
+  width: 80%;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  border: 1px solid transparent;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 1.2em;
+  color: ${(props) => props.theme.darkText};
+  text-align: center;
+`;
+
 export const BoardNameInput = styled.input`
   border: none;
   background-color: transparent;
+  margin-top: 0.7rem;
   font-size: 1em;
   color: ${(props) => props.theme.darkText};
   text-align: center;
@@ -71,7 +94,7 @@ export const AppWrapper = styled.div`
 
 export const HeaderContainer = styled.div`
   background-color: transparent;
-  padding: 1.8em 0em;
+  padding: 1.8em;
  
 `;
 
