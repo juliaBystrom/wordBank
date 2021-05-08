@@ -203,8 +203,8 @@ export class WordBankModel {
   }
 
   // Edit board
-  editBoardTitle(title){
-    this.banks[this.activeBankId].editBoardTitle(title);
+  editBoardTitle(title, newTitle){
+    this.banks[this.activeBankId].editBoardTitle(title, newTitle);
     this.notifyObservers();
   }
 

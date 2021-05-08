@@ -215,18 +215,32 @@ export default class Bank {
   }
 
   // Edit board title
-  editBoardTitle(title){
-    this.getBoard(this.getBoardId(title)).editTitle(title);
-    this.notifyObservers();
-  }
 
   getBoard(id){
-    return this.boards.find((board) => board.id === id);
+    return this.boards.filter((board) => {
+      return board.id === id;
+    });
   }
 
   getBoardId(title){
-    return this.boards.find((board) => board.title === title);
+    console.log("Boards: ", this.boards);
+    console.log("BoardId, getBoardId: ", this.boards.filter((board) => {
+      return board.title === title;
+    }).id);
+    return this.boards.filter((board) => {
+      return board.title === title;
+    }).id;
   }
+
+  editBoardTitle(title, newTitle){
+    console.log("Title: ", title);
+    console.log("Board: ", this.getBoard(this.getBoardId(title)));
+    let board = this.getBoard("1");
+    this.boards[0].editBoardTitle(newTitle);
+    this.notifyObservers();
+  }
+
+
 
   addObserver(callback) {
     this.observers = [...this.observers, callback];

@@ -5,8 +5,8 @@ export default class Board {
     this.title = title;
   }
 
-  editTitle(title) {
-    this.title = title;
+  editBoardTitle(newTitle) {
+    this.title = newTitle;
   }
 
   /*
