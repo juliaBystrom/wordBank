@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { CardInfoView } from "../views";
+import { CardModalView } from "../views";
 import useCardProp from "./useCardProp";
 import Modal from "react-modal";
 import useBankProp from "./useBankProp";
 
 /*
-    Card Info Presenter 
+    CardModalPresenter
     Presents the information to the popup
 
 */
 
-export default function CardInfoPresenter(props) {
+export default function CardModalPresenter(props) {
 
 
   // Used to controll the tags of the card
@@ -41,7 +41,7 @@ export default function CardInfoPresenter(props) {
 
   return (
     <>
-      <CardInfoView
+      <CardModalView
         modalIsOpen={props.modalIsOpen}
         closeModal={props.closeModal}
 
