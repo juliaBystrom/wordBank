@@ -55,7 +55,6 @@ export const RoundButton = styled.button`
   height: 60px;
   border-radius: 100%;
   background: transparent;
-  // box-shadow: 0 2px 6px ;
   transition: box-shadow 0.2s;
   overflow: hidden;
   font-size: 4em;
@@ -104,4 +103,29 @@ export const TopContainer = styled.div`
 
 export const BottomContainer = styled.div`
   // width: 100%;
+`;
+
+export const DeleteBoard = styled.button`
+  background: ${(props) => props.theme.fieryrose};
+  display: block;
+  margin-top: 0.7rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2px;
+  ${'' /* border-radius: 30px;
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: ${(props) => props.theme.fieryrose} ; */}
+  border: 0px solid transparent;
+  border-radius: 30px;
+  width: 80%;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 0.8em;
+  color: ${(props) => props.theme.darkText};
+  text-align: center;
 `;

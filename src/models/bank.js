@@ -241,6 +241,11 @@ export default class Bank {
     this.notifyObservers();
   }
 
+  // Delete board
+  deleteBoard(id){
+    this.boards = this.boards.splice(this.getBoardIndex(id), 1);
+    this.notifyObservers();
+  }
 
 
   addObserver(callback) {
