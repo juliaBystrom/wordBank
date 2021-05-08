@@ -7,7 +7,7 @@ export const BoardTitle = styled.h2`
 `;
 
 export const EditableBoardTitle= styled.input`
-  background: transparent;
+  background: #fff;
   display: block;
   margin-top: 0.7rem;
   margin-left: auto;
