@@ -13,13 +13,13 @@ export const EditableBoardTitle= styled.input`
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  box-shadow: inset 0 0 5px #c4c2c2;
-  border-radius: 7px;
+  box-shadow: 0 0 2px #c4c2c2;
+  border-radius: 30px;
   width: 80%;
   outline: none;
   resize: none;
   overflow: hidden;
-  border: 1px solid transparent;
+  border: 0px solid transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
