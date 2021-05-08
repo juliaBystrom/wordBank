@@ -219,24 +219,30 @@ export default class Bank {
   getBoard(id){
     return this.boards.filter((board) => {
       return board.id === id;
-    });
+    })[0];
   }
 
   getBoardId(title){
-    console.log("Boards: ", this.boards);
-    console.log("BoardId, getBoardId: ", this.boards.filter((board) => {
-      return board.title === title;
-    }).id);
     return this.boards.filter((board) => {
       return board.title === title;
-    }).id;
+    })[0].id;
+  }
+
+  getBoardIndex(id){
+    console.log("------> ", this.boards.findIndex((board) => {
+      return board.id === id;
+    }));
+    return this.boards.findIndex((board) => {
+      return board.id === id;
+    });
   }
 
   editBoardTitle(title, newTitle){
-    console.log("Title: ", title);
-    console.log("Board: ", this.getBoard(this.getBoardId(title)));
-    let board = this.getBoard("1");
-    this.boards[0].editBoardTitle(newTitle);
+    console.log("------> id: ", this.getBoardId(title));
+    console.log("------> board: ", this.getBoard(this.getBoardId(title)));
+    let id = this.getBoardId(title);
+    this.boards[this.getBoardIndex(id)].title = newTitle;
+    this.getBoard(id).editBoardTitle(newTitle);
     this.notifyObservers();
   }
 

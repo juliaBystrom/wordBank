@@ -6,7 +6,7 @@ export const BoardTitle = styled.h2`
   text-align: center;
 `;
 
-export const EditableBoardTitle= styled.textarea`
+export const EditableBoardTitle= styled.input`
   background: transparent;
   display: block;
   margin-top: 0.7rem;
