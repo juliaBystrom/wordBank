@@ -1,10 +1,7 @@
 import React from "react";
-
-import { useEffect, useState } from "react";
-import { CardView, BoardView } from "../views";
+import { BoardView } from "../views";
 
 import useBoardProp from "./useBoardProp";
-import useCardProp from "./useCardProp";
 
 import CardPresenter from "./cardPresenter";
 

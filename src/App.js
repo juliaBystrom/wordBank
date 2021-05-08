@@ -9,11 +9,15 @@ import { AuthProvider } from "./presenters/AuthProvider";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 
-import { AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./styledComponents";
+import {
+  AppWrapper,
+  HeaderContainer,
+  BottomContainer,
+  TopContainer,
+} from "./styledComponents";
 
 import { useEffect, useState } from "react";
 import { loadFromFirebase } from "./loadFromFirebase";
-
 
 function App() {
   require("dotenv").config();
@@ -34,9 +38,7 @@ function App() {
   });
 
   return (
-
     <AppWrapper>
-    
       <HeaderContainer>
         <SidebarPresenter model={model} />
       </HeaderContainer>
@@ -60,9 +62,8 @@ function App() {
         
       </BottomContainer>
 
-        {/* <Route exact path="/test" component={boardView} /> */}
+      {/* <Route exact path="/test" component={boardView} /> */}
     </AppWrapper>
-
   );
 }
 

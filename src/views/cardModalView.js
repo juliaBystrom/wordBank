@@ -4,7 +4,7 @@ import styled from "styled-components";
 import editSymbolPath from "../images/editSymbol.svg";
 
 /*
-    CardInfoView
+    CardModalView
     Popup with edidable info about card
     Uses react-modal, read more about it: http://reactcommunity.org/react-modal/
 
@@ -28,7 +28,7 @@ import {} from "../styledComponents";
 
 Modal.setAppElement(document.getElementById("root"));
 
-export default function CardInfoView(props) {
+export default function CardModalView(props) {
 
   return (
     <Modal

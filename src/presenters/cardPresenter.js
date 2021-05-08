@@ -1,12 +1,15 @@
 import React from "react";
-import { CardView, CardInfoView } from "../views";
 import useCardProp from "./useCardProp";
-import CardInfoPresenter from "./cardInfoPresenter";
-import Modal from "react-modal";
-
+import CardModalPresenter from "./cardModalPresenter";
+import TranslationCardPresenter from "./translationCardPresenter";
 
 /*
-    CardPresenter 
+   Card Presenter
+
+  If the card´s field show is true then this Presenter will render:
+  - TranslationCardPresenter: Displays the card
+  - CardModalPresenter: If the user presses the card this Presenter will display an popup with its info
+
 
 */
 
@@ -31,29 +34,25 @@ export default function CardPresenter(props) {
   return (
     <>
       {showCard ? (
-        <CardView
-          leftSentence={props.card.leftSentence}
-          rightSentence={props.card.rightSentence}
-          id={props.card.cardID}
-          key={props.card.cardID}
-          /*  onCardPress={(idOfCard) => {
-                     console.log(`Pressed card: ${idOfCard}`);
-                     openModal();
-                 }} */
-          onCardPress={openModal}
-        />
-      ) : (
-        <div>
+        <>
+          <TranslationCardPresenter
+            model={props.model}
+            cardId={props.cardId}
+            card={props.card}
+            openModal={openModal}
+          />
 
-        </div>
+          <CardModalPresenter
+            modalIsOpen={modalIsOpen}
+            closeModal={closeModal}
+            card={props.card}
+            model={props.model}
+            boardId={props.boardId}
+          />
+        </>
+      ) : (
+        <></>
       )}
-      <CardInfoPresenter
-        modalIsOpen={modalIsOpen}
-        closeModal={closeModal}
-        card={props.card}
-        model={props.model}
-        boardId={props.boardId}
-      />
     </>
   );
 }
