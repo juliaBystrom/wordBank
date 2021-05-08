@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { loadBankFromFirebase } from "../loadFromFirebase";
+import React from "react";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 import useModelProp from "./useModelProp";
@@ -34,11 +33,11 @@ export default function BankPresenter(props) {
     }
   });
 
-  return loggedIn ? (
+  return props.loading ? (
+    <img className="spinner" alt="loading spinner" src={"http://www.csc.kth.se/~cristi/loading.gif"}></img>
+  ) : (
     <BoardsWrapperPresenter model={props.model}>
       {boardPresenters}
     </BoardsWrapperPresenter>
-  ) : (
-    <div>jahaja</div>
   );
 }
