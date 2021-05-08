@@ -4,7 +4,7 @@ import { CardView, BoardView } from "../views";
 import useBoardProp from "./useBoardProp";
 import useCardProp from "./useCardProp";
 
-import CardPresenter from "./cardPresenter";
+import CardPresenter from "./translationCardPresenter";
 
 /*
     BoardPresenter 

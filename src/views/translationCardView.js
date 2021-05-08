@@ -13,7 +13,7 @@ import {
   PhraseText,
 } from "../styledComponents";
 
-export default function CardView(props) {
+export default function TranslationCardView(props) {
   return (
     <Card>
       <span

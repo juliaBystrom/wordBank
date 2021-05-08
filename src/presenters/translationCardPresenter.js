@@ -1,16 +1,16 @@
 import React from "react";
-import { CardView, CardInfoView } from "../views";
+import { TranslationCardView, CardInfoView } from "../views";
 import useCardProp from "./useCardProp";
-import CardInfoPresenter from "./cardInfoPresenter";
+import CardInfoPresenter from "./cardModalPresenter";
 import Modal from "react-modal";
 
 
 /*
-    CardPresenter 
+    TranslationCardPresenter 
 
 */
 
-export default function CardPresenter(props) {
+export default function TranslationCardPresenter(props) {
   const showCard = useCardProp(
     props.model,
     props.boardId,
@@ -31,7 +31,7 @@ export default function CardPresenter(props) {
   return (
     <>
       {showCard ? (
-        <CardView
+        <TranslationCardView
           leftSentence={props.card.leftSentence}
           rightSentence={props.card.rightSentence}
           id={props.card.cardID}
