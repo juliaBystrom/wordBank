@@ -1,6 +1,7 @@
 import Bank from "./bank";
 import * as dbf from "../deleteFromFirebase" ;
 
+
 export class WordBankModel {
   constructor() {
     this.activeBankId = 0;
@@ -211,9 +212,8 @@ export class WordBankModel {
 
   // Delete board
   deleteBoard(id){
-    this.banks[this.activeBankId].deleteBoard(id);
-    this.notifyObservers();
-    dbf.deleteBoard(this.userId, id);
+    console.log("----> model id: ", id);
+    this.banks[this.activeBankId].deleteBoard(this.userId, id);
   }
 
   /* 

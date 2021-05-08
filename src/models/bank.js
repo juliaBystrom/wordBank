@@ -1,5 +1,7 @@
 import Board from "./board";
 import Card from "./card";
+import * as dbf from "../deleteFromFirebase" ;
+
 
 export default class Bank {
   constructor(id) {
@@ -242,16 +244,17 @@ export default class Bank {
   }
 
   // Delete board
-  deleteBoard(id){
+  deleteBoard(userId, id){
+    console.log("Board to be deleted: ", this.boards[this.getBoardIndex(id).title]);
+    dbf.deleteBoard(userId, id);
     this.boards = this.boards.splice(this.getBoardIndex(id), 1);
-    this.notifyObservers();
   }
 
 
   addObserver(callback) {
     this.observers = [...this.observers, callback];
   }
-
+ 
   removeObserver(callback) {
     this.observers = this.observers.filter((cb) => {
       return cb !== callback;
