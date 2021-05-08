@@ -29,7 +29,7 @@ export const Translation = styled.div`
   margin: ${(props) =>
     props.isTranslateFrom ? "0px 0px 0px 10px" : "0px 10px 0px 0px"};
   color: ${(props) => props.theme.darkText};
-  box-shadow: 0.5px 0.5px 7px #c4c2c2;
+  box-shadow: 0px 0px 7px #c4c2c2;
 
   width: 50%;
   max-height: 100px;

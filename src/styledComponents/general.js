@@ -12,7 +12,10 @@ export const EditableBoardTitle= styled.input`
   margin-top: 0.7rem;
   margin-left: auto;
   margin-right: auto;
-  padding: 14px 0 0 0;
+  padding: 10px;
+  box-shadow: inset 0 0 5px #c4c2c2;
+  border-radius: 7px;
+  width: 80%;
   outline: none;
   resize: none;
   overflow: hidden;
@@ -91,7 +94,7 @@ export const AppWrapper = styled.div`
 
 export const HeaderContainer = styled.div`
   background-color: transparent;
-  padding: 1.8em 0em;
+  padding: 1.8em;
  
 `;
 

@@ -229,17 +229,12 @@ export default class Bank {
   }
 
   getBoardIndex(id){
-    console.log("------> ", this.boards.findIndex((board) => {
-      return board.id === id;
-    }));
     return this.boards.findIndex((board) => {
       return board.id === id;
     });
   }
 
   editBoardTitle(title, newTitle){
-    console.log("------> id: ", this.getBoardId(title));
-    console.log("------> board: ", this.getBoard(this.getBoardId(title)));
     let id = this.getBoardId(title);
     this.boards[this.getBoardIndex(id)].title = newTitle;
     this.getBoard(id).editBoardTitle(newTitle);

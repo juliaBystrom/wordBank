@@ -10,8 +10,14 @@ export default function BoardView(props) {
         {/* <BoardTitle>
           {props.title}
         </BoardTitle> */}
-          <EditableBoardTitle defaultValue={props.title} type="text" onChange={e => props.onEditBoardTitle(props.title, e.target.value)}>
-          </EditableBoardTitle>
+        <EditableBoardTitle 
+          type="text" 
+          defaultValue={props.title}
+          onInput={e => {
+            props.onEditBoardTitle(e.target.value);
+            }}>
+        </EditableBoardTitle>
+        {props.displayMessage}
       </BoardTitleWrapper>
 
       <BoardCardWrapper>
