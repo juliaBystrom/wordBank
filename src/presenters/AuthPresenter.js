@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  createContext,
-  useLocalStorage,
-} from "react";
+import React, { useState, useContext, createContext, useLocalStorage } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { saveToFirebase } from "../saveToFirebase";
 
@@ -74,11 +69,11 @@ export const AuthPresenter = (props) => {
         setPasswordError("");
         history.push("/bank");
       })
+      .then(() => {
+        saveToFirebase(model);
+      })
       .catch((err) => {
-        if (
-          err.code === "auth/email-already-in-use" ||
-          err.code === "auth/invalid-email"
-        ) {
+        if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
           setEmailError(err.message);
         } else setEmailError("");
         if (err.code === "auth/weak-password") {
