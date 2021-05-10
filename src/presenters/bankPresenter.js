@@ -1,6 +1,8 @@
+
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { loadBankFromFirebase } from "../loadFromFirebase";
+
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 import useModelProp from "./useModelProp";
@@ -43,30 +45,28 @@ const ButtonContainer = styled.div`
 
 export default function BankPresenter(props) {
   const boards = useBankProp(props.model, "boards");
-  let loggedIn = useModelProp(props.model, "loggedIn");
+
   // Index is used because baords are stored as an array in the model.
-  // TODO: When index changing oimplementation is done test that reredering is correct
   const boardPresenters = boards.map((board, index) => {
-    if (!loggedIn) return <div>nothing</div>;
-    else {
-      return (
-        <BoardPresenter
-          model={props.model}
-          boardIndex={index}
-          key={board.id}
-          id={board.id}
-          title={board.title}
-        />
-      );
-    }
+    return (
+      <BoardPresenter
+        model={props.model}
+        boardIndex={index}
+        key={board.id}
+        id={board.id}
+        title={board.title}
+      />
+    );
   });
 
+
   return loggedIn ? (
-    <BoardsWrapperPresenter model={props.model}>{boardPresenters}</BoardsWrapperPresenter>
+    <BoardsWrapperPresenter model={props.model} loading={props.loading}>{boardPresenters}</BoardsWrapperPresenter>
   ) : (
     <BackButtonContainer>
       You cannot access your WordBank before you are logged in.
       <TranslateButton onClick={() => window.history.back()}>Go to login</TranslateButton>
     </BackButtonContainer>
+
   );
 }

@@ -19,7 +19,11 @@ function App() {
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
 
+
+  const [loading, setLoading] = useState(true);
+
   firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.NONE);
+
   firebaseApp.auth().onAuthStateChanged(async function (user) {
     if (user) {
       model.loggedIn = false;
@@ -27,9 +31,11 @@ function App() {
       model.setCurrentUser(user.uid);
       console.log("Model: ", model);
       model.loggedIn = true;
+      setLoading(false)
     }
   });
 
+ 
   return (
     <AppWrapper>
       <HeaderContainer>
@@ -45,7 +51,7 @@ function App() {
           exact
           path="/bank"
           component={() => {
-            return <BankPresenter model={model} />;
+            return <BankPresenter model={model} loading={loading} />;
           }}
         />
       </BottomContainer>

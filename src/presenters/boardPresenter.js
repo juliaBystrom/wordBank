@@ -12,11 +12,13 @@ import CardPresenter from "./cardPresenter";
 */
 
 export default function BoardPresenter(props) {
+
   // Using boardIndex to accses the right board element in the model
   // const board = useModelSubSubclassProperty(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
   // const board = useBoardProp(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
   const cards = useBoardProp(props.model, props.id, "cards");
   const title = useBoardProp(props.model, props.id, "title");
+
 
   var cardPresenterList = cards.map(function (card, key) {
     return (

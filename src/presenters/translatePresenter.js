@@ -22,10 +22,10 @@ const TranslatePresenter = ({ model }) => {
   let tags = useModelProp(model.banks[0], "tags");
 
   useEffect(() => {
-    console.log("tags = ", tags);
-    console.log("boards = ", boards);
-    console.log("model = ", model);
-    console.log("banks = ", model.banks);
+    // console.log("tags = ", tags);
+    // console.log("boards = ", boards);
+    // console.log("model = ", model);
+    // console.log("banks = ", model.banks);
   }, [loggedIn, boards, tags, model]);
 
   const [open, setOpen] = useState(false);
