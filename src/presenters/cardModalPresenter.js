@@ -11,10 +11,11 @@ import useBankProp from "./useBankProp";
 */
 
 export default function CardModalPresenter(props) {
-
-
   // Used to controll the tags of the card
-  const tags = useBankProp(props.model, "tags");
+  // const tags = useBankProp(props.model, "tags");
+  const tags = props.model.banks[props.model.activeBankId].tags;
+  /*   console.log("Tags in card modal presenter:")
+  console.log(tags) */
 
   const [editTranslation, setEditTranslation] = React.useState(false);
 
@@ -44,7 +45,6 @@ export default function CardModalPresenter(props) {
       <CardModalView
         modalIsOpen={props.modalIsOpen}
         closeModal={props.closeModal}
-
         phrase={phrase}
         translation={translation}
         tags={tags}
@@ -52,7 +52,6 @@ export default function CardModalPresenter(props) {
         setTag={(newTag) => {
           setTagText(newTag);
           props.model.setCardNewTag(newTag, props.card.id, props.boardId);
-
         }}
         comment={comment}
         setComment={(newComment) => {
