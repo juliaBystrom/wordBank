@@ -69,6 +69,9 @@ export const AuthPresenter = ({ model }) => {
         setPasswordError("");
         history.push("/bank");
       })
+      .then(() => {
+        saveToFirebase(model);
+      })
       .catch((err) => {
         if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
           setEmailError(err.message);

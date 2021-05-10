@@ -1,9 +1,13 @@
+
 import React, { useEffect } from "react";
+import styled from "styled-components";
 import { loadBankFromFirebase } from "../loadFromFirebase";
+
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 import useModelProp from "./useModelProp";
 import useBankProp from "./useBankProp";
+import { TranslateButton } from "../styledComponents";
 
 /*
 BankPresenter manages:
@@ -14,31 +18,56 @@ BankPresenter manages:
 
 */
 
+const BackButtonContainer = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 0 10px;
+  & > * {
+    margin-bottom: 5px;
+  }
+
+  @media (max-width: 650px) {
+    width: 100%;
+    align-items: stretch;
+  }
+`;
+
 export default function BankPresenter(props) {
   const boards = useBankProp(props.model, "boards");
-  let loggedIn = useModelProp(props.model, "loggedIn");
+  const loggedIn = useModelProp(props.model, "loggedIn");
+
   // Index is used because baords are stored as an array in the model.
-  // TODO: When index changing oimplementation is done test that reredering is correct
   const boardPresenters = boards.map((board, index) => {
-    if (!loggedIn) return <div>nothing</div>;
-    else {
-      return (
-        <BoardPresenter
-          model={props.model}
-          boardIndex={index}
-          key={board.id}
-          id={board.id}
-          title={board.title}
-        />
-      );
-    }
+    return (
+      <BoardPresenter
+        model={props.model}
+        boardIndex={index}
+        key={board.id}
+        id={board.id}
+        title={board.title}
+      />
+    );
   });
 
+
   return loggedIn ? (
-    <BoardsWrapperPresenter model={props.model}>
-      {boardPresenters}
-    </BoardsWrapperPresenter>
+    <BoardsWrapperPresenter model={props.model} loading={props.loading}>{boardPresenters}</BoardsWrapperPresenter>
   ) : (
-    <div>jahaja</div>
+    <BackButtonContainer>
+      You cannot access your WordBank before you are logged in.
+      <TranslateButton onClick={() => window.history.back()}>Go to login</TranslateButton>
+    </BackButtonContainer>
+
   );
 }

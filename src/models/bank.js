@@ -7,7 +7,7 @@ export default class Bank {
     this.boards = [];
     this.languageFrom = "Swedish";
     this.languageTo = "English";
-    this.tags = [];
+    this.tags = [{ id: this.getIdTags(), name: "no tag", checked: false }];
     // Keeps track if no tags is choosed for filter
     this.bankIsFiltered = true;
     this.idCountCards = 0;
@@ -15,7 +15,6 @@ export default class Bank {
     this.getIdCards = this.getIdCards.bind(this);
     // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
     this.getIdTags = this.getIdTags.bind(this);
-
     this.observers = [];
   }
 
@@ -214,6 +213,35 @@ export default class Bank {
 
     this.notifyObservers();
   }
+
+  // Edit board title
+
+  getBoard(id){
+    return this.boards.filter((board) => {
+      return board.id === id;
+    })[0];
+  }
+
+  getBoardId(title){
+    return this.boards.filter((board) => {
+      return board.title === title;
+    })[0].id;
+  }
+
+  getBoardIndex(id){
+    return this.boards.findIndex((board) => {
+      return board.id === id;
+    });
+  }
+
+  editBoardTitle(title, newTitle){
+    let id = this.getBoardId(title);
+    this.boards[this.getBoardIndex(id)].title = newTitle;
+    this.getBoard(id).editBoardTitle(newTitle);
+    this.notifyObservers();
+  }
+
+
 
   addObserver(callback) {
     this.observers = [...this.observers, callback];

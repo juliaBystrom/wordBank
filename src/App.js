@@ -8,6 +8,9 @@ import { AuthPresenter } from "./presenters/AuthPresenter";
 import { AuthProvider } from "./presenters/AuthProvider";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
+
+import { AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./styledComponents";
+
 import { useEffect, useState } from "react";
 import { loadFromFirebase } from "./loadFromFirebase";
 import { saveToFirebase } from "./saveToFirebase";
@@ -16,6 +19,8 @@ function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
+
+  const [loading, setLoading] = useState(true);
 
   firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
 
@@ -27,17 +32,33 @@ function App() {
         .then(() => {
           saveToFirebase(model);
           model.loggedIn = true;
+          setLoading(false);
         });
     }
   });
 
   return (
-    <>
-      <TranslatePresenter model={model} />
-      <SidebarPresenter model={model} />
-      <Route exact path="/" component={() => <AuthPresenter model={model} />} />
-      <Route exact path="/bank" component={() => <BankPresenter model={model} />} />
-    </>
+    <AppWrapper>
+      <HeaderContainer>
+        <SidebarPresenter model={model} />
+      </HeaderContainer>
+      <TopContainer>
+        <TranslatePresenter model={model} />
+      </TopContainer>
+
+      <BottomContainer>
+        <Route exact path="/" component={() => <AuthPresenter model={model} />} />
+        <Route
+          exact
+          path="/bank"
+          component={() => {
+            return <BankPresenter model={model} loading={loading} />;
+          }}
+        />
+      </BottomContainer>
+
+      {/* <Route exact path="/test" component={boardView} /> */}
+    </AppWrapper>
   );
 }
 

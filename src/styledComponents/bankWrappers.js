@@ -12,7 +12,9 @@ export const BoardWrapper = styled.div`
   border: 2px ${props => (props.theme.showTestBorders ? "solid" : "hidden")} ${props => props.theme.testBorder};
   border-radius: 10px;
   // flex growFactor shrinkFactor basisWidth 
-  flex: 0.2 0.2 200px; 
+  flex: 0.2 0.2 300px;
+  min-width: 250px;
+  // min-width: 200px;
 `;
 
 export const BoardTitleWrapper = styled.div`

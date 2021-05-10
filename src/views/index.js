@@ -1,11 +1,17 @@
-import BankView from "./bankView.js"
-import BoardView from "./boardView.js"
-import CardView from "./cardView"
-import AddBoardView from "./addBoardView"
-import SidebarView from "./sidebarView"
-import CardInfoView from "./cardInfoView"
+import BankView from "./bankView.js";
+import BoardView from "./boardView.js";
+import TranslationCardView from "./translationCardView";
+import AddBoardView from "./addBoardView";
+import SidebarView from "./sidebarView";
+import CardModalView from "./cardModalView";
+import isLoading from "./isLoading";
 
 export {
-        BankView, BoardView, CardView, AddBoardView,
-        SidebarView, CardInfoView
-}
+  BankView,
+  BoardView,
+  TranslationCardView,
+  AddBoardView,
+  SidebarView,
+  CardModalView,
+  isLoading,
+};

@@ -18,8 +18,20 @@ const TranslatePresenter = ({ model }) => {
   let fromLanguage = useModelProp(model, "fromLanguage");
   let loggedIn = useModelProp(model, "loggedIn");
   let placeholder = useModelProp(model, "placeholder");
+<<<<<<< HEAD
   let boards = useBankProp(model, "boards");
   let tags = useBankProp(model, "tags");
+=======
+  let boards = useModelProp(model.banks[0], "boards");
+  let tags = useModelProp(model.banks[0], "tags");
+
+  useEffect(() => {
+    // console.log("tags = ", tags);
+    // console.log("boards = ", boards);
+    // console.log("model = ", model);
+    // console.log("banks = ", model.banks);
+  }, [loggedIn, boards, tags, model]);
+>>>>>>> e1d153aeef5b5b4358ee8022e36307692598b2e0
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.

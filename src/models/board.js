@@ -1,10 +1,12 @@
-import Card from "./card";
-
 export default class Board {
   constructor(title, id) {
     this.id = id;
     this.cards = [];
     this.title = title;
+  }
+
+  editBoardTitle(newTitle) {
+    this.title = newTitle;
   }
 
   /*

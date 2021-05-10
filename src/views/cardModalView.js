@@ -4,13 +4,12 @@ import styled from "styled-components";
 import editSymbolPath from "../images/editSymbol.svg";
 
 /*
-    CardInfoView
+    CardModalView
     Popup with edidable info about card
     Uses react-modal, read more about it: http://reactcommunity.org/react-modal/
 
 */
 
-import { DropdownComponent } from "./components";
 
 import {
   TagInput,
@@ -24,12 +23,12 @@ import {
   CardBarWrapper,
   InputTitle,
   PhraseText,
-} from "./components";
-import {} from "./components";
+} from "../styledComponents";
+import {} from "../styledComponents";
 
 Modal.setAppElement(document.getElementById("root"));
 
-export default function CardInfoView(props) {
+export default function CardModalView(props) {
 
   return (
     <Modal
@@ -158,5 +157,6 @@ function getStyle(darkBorder, bgColor) {
 export const ModalWrapper = styled.div`
 
   width: 60vw;
-  min-width: ${props => props.theme.mobile};
+  min-width: 250px;
+  // min-width: ${props => props.theme.mobile};
 `;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DropdownComponentWrapper, DropdownButton, DropdownComponentItem } from '.';
+import { DropdownComponentWrapper, DropdownButton, DropdownComponentItem } from '../../styledComponents';
 
 /*
 Just a Dropdown view
@@ -45,7 +45,7 @@ const DropdownComponent = ({ list, title, open, toggle, onSelectionDone, keyExtr
                                 onSelectionDone(item);
 
                             }}>
-                                <span>{item.title}</span>
+                                <p>{item.title}</p>
                             </button>
                         </li>
                     ))}

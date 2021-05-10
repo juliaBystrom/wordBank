@@ -1,8 +1,7 @@
 import React from "react";
-import { CardView, BoardView } from "../views";
+import { BoardView } from "../views";
 
 import useBoardProp from "./useBoardProp";
-import useCardProp from "./useCardProp";
 
 import CardPresenter from "./cardPresenter";
 
@@ -13,10 +12,13 @@ import CardPresenter from "./cardPresenter";
 */
 
 export default function BoardPresenter(props) {
+
   // Using boardIndex to accses the right board element in the model
   // const board = useModelSubSubclassProperty(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
   // const board = useBoardProp(props.model, "banks", props.model.activeBankId, "boards", props.boardIndex);
   const cards = useBoardProp(props.model, props.id, "cards");
+  const title = useBoardProp(props.model, props.id, "title");
+
 
   var cardPresenterList = cards.map(function (card, key) {
     return (
@@ -31,7 +33,11 @@ export default function BoardPresenter(props) {
   });
 
   return (
-    <BoardView title={props.title} key={props.id}>
+    <BoardView 
+      title={title} 
+      key={props.id}
+      onEditBoardTitle={(newTitle) => {
+          props.model.editBoardTitle(title, newTitle); }}>
       {cardPresenterList}
     </BoardView>
   );

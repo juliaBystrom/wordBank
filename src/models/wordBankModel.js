@@ -97,9 +97,7 @@ export class WordBankModel {
   }
 
   getCurrentBank() {
-    return this.banks.filter((bank) => {
-      return bank.id === this.activeBankId;
-    })[0];
+    return this.banks[0];
   }
 
   sortLatestEdited() {
@@ -219,6 +217,12 @@ export class WordBankModel {
 
   setCardNewTag(newTagName, cardId, boardId) {
     this.banks[this.activeBankId].setCardNewTag(newTagName, cardId, boardId);
+    this.notifyObservers();
+  }
+
+  // Edit board
+  editBoardTitle(title, newTitle){
+    this.banks[this.activeBankId].editBoardTitle(title, newTitle);
     this.notifyObservers();
   }
 

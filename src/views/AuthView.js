@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const AuthContainer = styled.div`
   width: 100%;
-  height: 70%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,8 +10,12 @@ const AuthContainer = styled.div`
 `;
 
 const Title = styled.h1`
+  padding-top: 1.5rem;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+`;
+
+const Intro = styled.h3`
+  text-align: center;
 `;
 
 const LoginContainer = styled.form`
@@ -23,17 +27,19 @@ const LoginContainer = styled.form`
 
 const Credentials = styled.input`
   margin-bottom: 10px;
-  width: 275px;
-  padding: 5px;
+  padding: 0.3em;
   line-height: 20px;
   font-weight: bold;
   font-size: 16px;
   text-align: center;
   border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+
 `;
 
 const AuthButton = styled.input`
-  background: ${props => props.theme.queenblue};
+  background: ${(props) => props.theme.queenblue};
   font-size: 20px;
   margin: 5px 0px;
   padding: 10px 0px;
@@ -46,17 +52,18 @@ const AuthButton = styled.input`
   border-radius: 10px;
 `;
 
-const Text = styled.div`
+const StyledLabel = styled.label`
   width: 100%;
   display: flex;
   align-items: flex-start;
-  margin: 5px;
+  margin: 5px 0px;
   font-weight: 700px;
+
 `;
 
 const Error = styled.span`
   margin-bottom: 10px;
-  color: ${props => props.theme.fieryrose};
+  color: ${(props) => props.theme.fieryrose};
   font-weight: 800px;
 `;
 
@@ -70,7 +77,13 @@ export const AuthView = ({
 }) => {
   return (
     <AuthContainer>
-      <Title>Authenticate</Title>
+      <Title>
+        Welcome to WordBank!
+      </Title>
+      <Intro>
+        Log in or register to access your WordBank.
+      </Intro>
+
       <div className="signInStatus"></div>
 
       <LoginContainer
@@ -79,7 +92,7 @@ export const AuthView = ({
           handleLogIn();
         }}
       >
-        <Text>Email:</Text>
+        <StyledLabel>Email:</StyledLabel>
         <Credentials
           onChange={(e) => setEmail(e.target.value)}
           type="text"
@@ -89,7 +102,7 @@ export const AuthView = ({
           pattern="^.{8,75}$"
         />
         <Error>{emailError}</Error>
-        <Text>Password:</Text>
+        <StyledLabel>Password:</StyledLabel>
         <Credentials
           onChange={(e) => setPassword(e.target.value)}
           type="password"
@@ -99,15 +112,14 @@ export const AuthView = ({
         />
         <Error>{passwordError}</Error>
         <AuthButton type="submit" defaultValue="Login" />
+        <AuthButton
+          type="button"
+          defaultValue="Register"
+          onClick={() => {
+            handleRegister();
+          }}
+        />
       </LoginContainer>
-
-      <AuthButton
-        type="button"
-        defaultValue="Register"
-        onClick={() => {
-          handleRegister();
-        }}
-      />
     </AuthContainer>
   );
 };

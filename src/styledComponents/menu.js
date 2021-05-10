@@ -17,11 +17,17 @@ const Menu = styled.nav`
   position: absolute;
   top: 0;
   left: 0;
+
+  
+  
   transition: transform 0.2s ease-in-out;
   transform: ${props => !props.open ? 'translateX(-100%)' : 'translateX(0)'};
 
   @media (max-width: ${props => props.theme.mobile}) {
     width: 100%;
+
+    
+    
   }
 
   a {
