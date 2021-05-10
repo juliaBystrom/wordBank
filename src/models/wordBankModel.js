@@ -28,7 +28,6 @@ export class WordBankModel {
   logout() {
     this.activeBankId = 0;
     this.banks = [new Bank(0)];
-    this.observers = [];
 
     this.sortings = [
       { name: "Latest edited", func: () => this.sortLatestEdited() },
@@ -49,17 +48,12 @@ export class WordBankModel {
     this.cardId = Number(0);
     console.log("model reset");
     this.notifyObservers();
+    // this.observers = [];
   }
 
   toString() {
     return (
-      this.currentBank +
-      ", " +
-      this.userId +
-      ", " +
-      this.languageFrom +
-      ", " +
-      this.languageTo
+      this.currentBank + ", " + this.userId + ", " + this.languageFrom + ", " + this.languageTo
     );
     // + this.observers + ', '
     //  + ', '
@@ -133,13 +127,7 @@ export class WordBankModel {
   }
 
   createCardFromFirebase(phrase, translation, boardId, tag, id) {
-    this.banks[this.activeBankId].createCard(
-      phrase,
-      translation,
-      Number(boardId),
-      tag,
-      id
-    );
+    this.banks[this.activeBankId].createCard(phrase, translation, Number(boardId), tag, id);
     this.notifyObservers();
   }
 
@@ -221,19 +209,11 @@ export class WordBankModel {
   }
 
   setCardLeftSentence(newSentence, cardId, boardId) {
-    this.banks[this.activeBankId].setCardLeftSentence(
-      newSentence,
-      cardId,
-      boardId
-    );
+    this.banks[this.activeBankId].setCardLeftSentence(newSentence, cardId, boardId);
     this.notifyObservers();
   }
   setCardRightSentence(newSentence, cardId, boardId) {
-    this.banks[this.activeBankId].setCardRightSentence(
-      newSentence,
-      cardId,
-      boardId
-    );
+    this.banks[this.activeBankId].setCardRightSentence(newSentence, cardId, boardId);
     this.notifyObservers();
   }
 

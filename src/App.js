@@ -17,32 +17,26 @@ function App() {
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
 
-  firebaseApp.firebase_
-    .auth()
-    .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
+  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
 
-  firebaseApp.auth().onAuthStateChanged(async function (user) {
-    console.log("VAD STÅR DET?", firebaseApp.firebase_.auth.Auth.Persistence);
+  firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
       model.loggedIn = false;
-      await loadFromFirebase(model, user.uid);
-      model.setCurrentUser(user.uid);
-      await saveToFirebase(model);
-      model.loggedIn = true;
+      loadFromFirebase(model, user.uid)
+        .then(() => model.setCurrentUser(user.uid))
+        .then(() => {
+          saveToFirebase(model);
+          model.loggedIn = true;
+        });
     }
   });
 
   return (
     <>
       <TranslatePresenter model={model} />
-
       <SidebarPresenter model={model} />
       <Route exact path="/" component={() => <AuthPresenter model={model} />} />
-      <Route
-        exact
-        path="/bank"
-        component={() => <BankPresenter model={model} />}
-      />
+      <Route exact path="/bank" component={() => <BankPresenter model={model} />} />
     </>
   );
 }

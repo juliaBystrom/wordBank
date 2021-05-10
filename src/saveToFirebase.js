@@ -5,12 +5,12 @@
 
 export function saveToFirebase(model) {
   let loadingFromFirebase = true;
-  var usr = window.db.collection("users").doc(String(model.userId));
 
   // Save to Firestore
   model.addObserver(() => {
-    if (true) {
+    if (false) {
       setTimeout(() => {
+        const usr = window.db.collection("users").doc(String(model.userId));
         usr
           .set({
             activeBankID: model.activeBankId,
