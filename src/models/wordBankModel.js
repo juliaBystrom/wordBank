@@ -22,7 +22,33 @@ export class WordBankModel {
     this.getKeyBanks = this.getKeyBanks.bind(this);
 
     this.boardId = 0;
-    this.cardId = 0;
+    this.cardId = Number(0);
+  }
+
+  logout() {
+    this.activeBankId = 0;
+    this.banks = [new Bank(0)];
+
+    this.sortings = [
+      { name: "Latest edited", func: () => this.sortLatestEdited() },
+      { name: "Most used", func: () => this.sortMostUsed() },
+    ];
+    this.transPhrase = "";
+    this.toLanguage = "en";
+    this.fromLanguage = "sv";
+    this.loggedIn = false;
+    this.userId = "";
+    this.placeholder = "Skriv här";
+    // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
+    this.boardId = 0;
+    this.keyCountBanks = 0;
+    this.getKeyBanks = this.getKeyBanks.bind(this);
+
+    this.boardId = 0;
+    this.cardId = Number(0);
+    console.log("model reset");
+    this.notifyObservers();
+    // this.observers = [];
   }
 
   toString() {
@@ -41,7 +67,7 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  setLoggedIn(bool){
+  setLoggedIn(bool) {
     this.loggedIn = bool;
     this.notifyObservers();
   }
@@ -86,12 +112,14 @@ export class WordBankModel {
   }
 
   createCard(phrase, translation, boardId, tag) {
+    this.cardId = Number(this.cardId) + 1;
+    console.log("CardID BEFORE CREATING CARD: ", this.cardId);
     this.banks[this.activeBankId].createCard(
       phrase,
       translation,
       Number(boardId),
       tag,
-      ++this.cardId
+      this.cardId
     );
     this.notifyObservers();
   }
@@ -179,27 +207,17 @@ export class WordBankModel {
   }
 
   setCardLeftSentence(newSentence, cardId, boardId) {
-    this.banks[this.activeBankId].setCardLeftSentence(
-      newSentence,
-      cardId,
-      boardId
-    );
+    this.banks[this.activeBankId].setCardLeftSentence(newSentence, cardId, boardId);
     this.notifyObservers();
   }
   setCardRightSentence(newSentence, cardId, boardId) {
-    this.banks[this.activeBankId].setCardRightSentence(
-      newSentence,
-      cardId,
-      boardId
-    );
+    this.banks[this.activeBankId].setCardRightSentence(newSentence, cardId, boardId);
     this.notifyObservers();
-
   }
 
   setCardNewTag(newTagName, cardId, boardId) {
     this.banks[this.activeBankId].setCardNewTag(newTagName, cardId, boardId);
     this.notifyObservers();
-
   }
 
   // Edit board

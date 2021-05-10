@@ -13,29 +13,30 @@ import { AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./st
 
 import { useEffect, useState } from "react";
 import { loadFromFirebase } from "./loadFromFirebase";
+import { saveToFirebase } from "./saveToFirebase";
 
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
 
-
   const [loading, setLoading] = useState(true);
 
-  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.NONE);
+  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
 
-  firebaseApp.auth().onAuthStateChanged(async function (user) {
+  firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
       model.loggedIn = false;
-      await loadFromFirebase(model, user.uid);
-      model.setCurrentUser(user.uid);
-      console.log("Model: ", model);
-      model.loggedIn = true;
-      setLoading(false)
+      loadFromFirebase(model, user.uid)
+        .then(() => model.setCurrentUser(user.uid))
+        .then(() => {
+          saveToFirebase(model);
+          model.loggedIn = true;
+          setLoading(false);
+        });
     }
   });
 
- 
   return (
     <AppWrapper>
       <HeaderContainer>

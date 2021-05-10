@@ -16,6 +16,8 @@ export default function SidebarView(props) {
           <div />
         </Burger>
         <Menu open={props.open}>
+          <button onClick={() => props.logout()}>Log out</button>
+
           {props.open ? (
             <>
               <Dropdown
@@ -28,11 +30,7 @@ export default function SidebarView(props) {
               {banks.map((bank, key) => (
                 <label key={key}>
                   <DropdownItem drop={props.dropBanks}>
-                    <input
-                      type="radio"
-                      name="bank"
-                      onClick={() => props.onSelectBank(bank.id)}
-                    />
+                    <input type="radio" name="bank" onClick={() => props.onSelectBank(bank.id)} />
                     {bank.languageFrom} - {bank.languageTo}
                   </DropdownItem>
                 </label>
@@ -62,11 +60,7 @@ export default function SidebarView(props) {
               {props.sortings.map((sorting, key) => (
                 <label key={key}>
                   <DropdownItem drop={props.dropSort}>
-                    <input
-                      type="radio"
-                      name="sort"
-                      onClick={() => props.onSort(sorting.name)}
-                    />
+                    <input type="radio" name="sort" onClick={() => props.onSort(sorting.name)} />
                     {sorting.name}
                   </DropdownItem>
                 </label>
