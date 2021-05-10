@@ -45,6 +45,7 @@ const ButtonContainer = styled.div`
 
 export default function BankPresenter(props) {
   const boards = useBankProp(props.model, "boards");
+  const loggedIn = useModelProp(props.model, "loggedIn");
 
   // Index is used because baords are stored as an array in the model.
   const boardPresenters = boards.map((board, index) => {
