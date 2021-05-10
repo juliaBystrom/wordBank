@@ -26,8 +26,6 @@ function App() {
 
   const [loading, setLoading] = useState(true);
 
-
-
   firebaseApp.firebase_
     .auth()
     .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
