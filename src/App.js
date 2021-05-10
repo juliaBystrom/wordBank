@@ -9,12 +9,7 @@ import { AuthProvider } from "./presenters/AuthProvider";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 
-import {
-  AppWrapper,
-  HeaderContainer,
-  BottomContainer,
-  TopContainer,
-} from "./styledComponents";
+import { AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./styledComponents";
 
 import { useEffect, useState } from "react";
 import { loadFromFirebase } from "./loadFromFirebase";
@@ -24,11 +19,10 @@ function App() {
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
 
+
   const [loading, setLoading] = useState(true);
 
-  firebaseApp.firebase_
-    .auth()
-    .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
+  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.NONE);
 
   firebaseApp.auth().onAuthStateChanged(async function (user) {
     if (user) {
@@ -52,11 +46,7 @@ function App() {
       </TopContainer>
 
       <BottomContainer>
-        <Route
-          exact
-          path="/"
-          component={() => <AuthPresenter model={model} />}
-        />
+        <Route exact path="/" component={() => <AuthPresenter model={model} />} />
         <Route
           exact
           path="/bank"

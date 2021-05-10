@@ -10,6 +10,11 @@ const AuthContainer = styled.div`
 `;
 
 const Title = styled.h1`
+  padding-top: 1.5rem;
+  text-align: center;
+`;
+
+const Intro = styled.h3`
   text-align: center;
 `;
 
@@ -72,7 +77,13 @@ export const AuthView = ({
 }) => {
   return (
     <AuthContainer>
-      <Title>Authenticate</Title>
+      <Title>
+        Welcome to WordBank!
+      </Title>
+      <Intro>
+        Log in or register to access your WordBank.
+      </Intro>
+
       <div className="signInStatus"></div>
 
       <LoginContainer
