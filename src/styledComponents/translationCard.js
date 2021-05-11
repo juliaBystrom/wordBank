@@ -14,6 +14,7 @@ export const Card = styled.div`
   margin: 2px;
   padding: 2px;
   width: 95%;
+  cursor: pointer;
 `;
 
 export const TranslationWrapper = styled.div`
@@ -42,5 +43,4 @@ export const Translation = styled.div`
 export const PhraseText = styled.p`
   text-align: center;
   font-size: 1em;
-  
 `;

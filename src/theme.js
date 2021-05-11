@@ -28,6 +28,6 @@ export const theme = {
   coral: "#F78764",
   purplerain: "#C0B9DD",
   cambridgeblue: "#8FC0A9",
-
+  dodgerblue: "#1e90ff",
   showTestBorders: false,
 };
