@@ -243,8 +243,9 @@ export default class Bank {
 
   // Delete board
   deleteBoard(id){
-    this.boards = this.boards.splice(this.getBoardIndex(id), 1);
-    this.notifyObservers();
+    console.log("Bank Boards PRE: ", this.boards);
+    this.boards.splice(this.getBoardIndex(id), 1);
+    console.log("Bank Boards POST: ", this.boards);
   }
 
 
