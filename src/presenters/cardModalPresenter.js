@@ -106,7 +106,7 @@ export default function CardModalPresenter(props) {
           // Will close when selected
           
           setOpenBoard(!openBoard);
-          props.moveCard(props.card.id, props.boardId, board.id)
+          props.model.moveCard(props.card.id, props.boardId, board.id)
   
   
         }}
