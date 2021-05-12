@@ -1,15 +1,12 @@
 import React from "react";
 import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper,BoardTitle } from "../styledComponents"
-import { EditableBoardTitle } from "../styledComponents/general";
+import { EditableBoardTitle, DeleteBoard } from "../styledComponents/general";
 
 export default function BoardView(props) {
 
   return (
     <BoardWrapper>
       <BoardTitleWrapper>
-        {/* <BoardTitle>
-          {props.title}
-        </BoardTitle> */}
         <EditableBoardTitle 
           type="text" 
           defaultValue={props.title}
@@ -21,7 +18,15 @@ export default function BoardView(props) {
       </BoardTitleWrapper>
 
       <BoardCardWrapper>
+
         {props.children}
+        <DeleteBoard
+          onClick={(e)=>{
+            console.log("-----> id: ", props.id);
+            props.onDeleteBoard(props.id);
+          }}>
+          Delete
+        </DeleteBoard>
       </BoardCardWrapper>
     </BoardWrapper>
   );
