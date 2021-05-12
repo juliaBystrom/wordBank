@@ -221,6 +221,17 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
+  moveCard(cardId, oldBoardId, newBoardId){
+    this.banks[this.activeBankId].moveCard(cardId, oldBoardId, newBoardId);
+    this.notifyObservers();
+  }
+
+  deleteCard(cardId, boardId){
+    this.banks[this.activeBankId].deleteCard(cardId, boardId);
+    df.deleteCardFromBoard(this.userId, this.activeBankId, boardId, cardId);
+    this.notifyObservers();
+  }
+
   // Edit board
   editBoardTitle(title, newTitle){
     this.banks[this.activeBankId].editBoardTitle(title, newTitle);
@@ -229,18 +240,8 @@ export class WordBankModel {
 
   // Delete board
   deleteBoard(id){
-    this.banks[this.activeBankId].boards.forEach(element => {
-      console.log("Model Boards PRE: ", element);
-    });
-    
     this.banks[this.activeBankId].deleteBoard(id);
-
-    this.banks[this.activeBankId].boards.forEach(element => {
-      console.log("Model Boards POST: ", element);
-    });
-
-    df.deleteBoard(this.userId, id);
-    // setTimeout(() => {this.notifyObservers();}, 3000)
+    df.deleteBoard(this.userId, this.activeBankId, id);
     this.notifyObservers();
   }
 

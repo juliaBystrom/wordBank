@@ -1,7 +1,7 @@
-export function deleteCardFromBoard(userId, cardId, boardId){  
+export function deleteCardFromBoard(userId, bankId, cardId, boardId){  
     window.db
     .collection("users").doc(String(userId))
-    .collection("banks").doc("0")
+    .collection("banks").doc(String(bankId))
     .collection("boards").doc(String(boardId))
     .collection("cards").doc(String(cardId))
     .delete().then(() => {
@@ -11,10 +11,10 @@ export function deleteCardFromBoard(userId, cardId, boardId){
     });
 }
 
-export function deleteBoard(userId, boardId){  
+export function deleteBoard(userId, bankId, boardId){  
     window.db
     .collection("users").doc(String(userId))
-    .collection("banks").doc("0")
+    .collection("banks").doc(String(bankId))
     .collection("boards").doc(String(boardId))
     .delete().then(() => {
         console.log("Board successfully deleted!");

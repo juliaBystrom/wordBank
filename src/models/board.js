@@ -12,8 +12,14 @@ export default class Board {
   /*
       Will add card object to this board
     */
-  addCard(cardToAdd) {
-    this.cards = [...this.cards, cardToAdd];
+  addCard(card) {
+    this.cards = [...this.cards, card];
+  }
+
+  deleteCard(id) {
+    this.cards = this.cards.filter((card)=>{
+      return card.id !== id;
+    })
   }
 
   setCardComment(newComment, cardId) {
@@ -78,4 +84,6 @@ export default class Board {
       }
     }
   }
+
+
 }
