@@ -26,12 +26,16 @@ import {
   PhraseText,
 } from "../styledComponents";
 import {} from "../styledComponents";
+import { DeleteButton } from "../styledComponents/general";
 
 Modal.setAppElement(document.getElementById("root"));
 
 export default function CardModalView(props) {
+<<<<<<< HEAD
   console.log("In view modal card: ");
   console.log(props.availableBoards);
+=======
+>>>>>>> deleteBoards
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -121,6 +125,7 @@ export default function CardModalView(props) {
               placeholder={props.tagText}
             ></TagInput>
           </label>
+<<<<<<< HEAD
           <BoardInput>
             <DropdownComponent
               list={props.availableBoards}
@@ -133,6 +138,16 @@ export default function CardModalView(props) {
               }}
             />
           </BoardInput>
+=======
+
+          <DeleteButton
+            onClick={() => {
+              props.onDeleteCard(props.id);
+            }}
+          >
+            Delete
+          </DeleteButton>
+>>>>>>> deleteBoards
         </form>
 
         <datalist id="taglist">
@@ -175,6 +190,7 @@ export const ModalWrapper = styled.div`
   width: 60vw;
   min-width: 250px;
   // min-width: ${(props) => props.theme.mobile};
+<<<<<<< HEAD
 `;
 
 const BoardInput = styled.div`
@@ -185,4 +201,6 @@ const BoardInput = styled.div`
     overflow-y: auto;
     width: 100%;
   }
+=======
+>>>>>>> deleteBoards
 `;
