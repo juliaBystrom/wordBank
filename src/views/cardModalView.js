@@ -2,6 +2,8 @@ import Modal from "react-modal";
 import React from "react";
 import styled from "styled-components";
 import editSymbolPath from "../images/editSymbol.svg";
+import { DropdownComponent } from "./components";
+import { DropdownComponentItem } from "./../styledComponents";
 
 /*
     CardModalView
@@ -9,7 +11,6 @@ import editSymbolPath from "../images/editSymbol.svg";
     Uses react-modal, read more about it: http://reactcommunity.org/react-modal/
 
 */
-
 
 import {
   TagInput,
@@ -29,7 +30,8 @@ import {} from "../styledComponents";
 Modal.setAppElement(document.getElementById("root"));
 
 export default function CardModalView(props) {
-
+  console.log("In view modal card: ");
+  console.log(props.availableBoards);
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -105,7 +107,6 @@ export default function CardModalView(props) {
             <InputTitle>Comment</InputTitle>
 
             <TextBoxDynamic
-
               value={props.comment}
               onChange={(event) => props.setComment(event.target.value)}
             />
@@ -120,11 +121,27 @@ export default function CardModalView(props) {
               placeholder={props.tagText}
             ></TagInput>
           </label>
+          <BoardInput>
+            <DropdownComponent
+              list={props.availableBoards}
+              title={"move "}
+              open={props.openSelector}
+              toggle={() => props.toggle()}
+              onSelectionDone={(board) => props.moveToBoard(board)}
+              keyExtractor={(item) => {
+                return item.id;
+              }}
+            />
+          </BoardInput>
         </form>
 
         <datalist id="taglist">
           {props.tags.map((opt) => (
-            <option value={Number(opt.id)} label={opt.tag} key={opt.id}></option>
+            <option
+              value={Number(opt.id)}
+              label={opt.tag}
+              key={opt.id}
+            ></option>
           ))}
         </datalist>
       </ModalWrapper>
@@ -155,8 +172,17 @@ function getStyle(darkBorder, bgColor) {
 }
 
 export const ModalWrapper = styled.div`
-
   width: 60vw;
   min-width: 250px;
-  // min-width: ${props => props.theme.mobile};
+  // min-width: ${(props) => props.theme.mobile};
+`;
+
+const BoardInput = styled.div`
+  box-sizing: border-box;
+
+  ${DropdownComponentItem} {
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+  }
 `;
