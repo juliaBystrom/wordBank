@@ -1,6 +1,6 @@
 export default class Board {
   constructor(title, id) {
-    this.id = id;
+    this.id = Number(id);
     this.cards = [];
     this.title = title;
   }

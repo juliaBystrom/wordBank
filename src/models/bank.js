@@ -15,7 +15,6 @@ export default class Bank {
     this.getIdCards = this.getIdCards.bind(this);
     // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
     this.getIdTags = this.getIdTags.bind(this);
-    this.observers = [];
   }
 
   reset() {
@@ -54,7 +53,6 @@ export default class Bank {
     // Obs only testing version. Outerwise if not testing the last is not needed
     this.boards = [...this.boards, new Board(name, id)];
     // console.log("boards inside bank:", this.boards);
-    this.notifyObservers();
   }
 
   /* 
@@ -83,7 +81,6 @@ export default class Bank {
       console.log("Tag exists.");
     }
     console.log("tags inside bank:", this.tags);
-    this.notifyObservers();
   }
 
   editTag(name, newTagName) {
@@ -209,9 +206,6 @@ export default class Bank {
     this.boards[boardIndex].addCard(
       new Card(id, "Kommentar Holder", phrase, translation, tag)
     );
-
-
-    this.notifyObservers();
   }
 
   // Edit board title
@@ -238,9 +232,19 @@ export default class Bank {
     let id = this.getBoardId(title);
     this.boards[this.getBoardIndex(id)].title = newTitle;
     this.getBoard(id).editBoardTitle(newTitle);
-    this.notifyObservers();
   }
 
+  // Delete board
+  deleteBoard(id){
+    console.log("Bank Boards PRE: ", this.boards);
+    //this.boards.splice(this.getBoardIndex(id), 1);
+   
+    this.boards = this.boards.filter((board)=>{
+      return board.id !== id;
+    })
+    
+    console.log("Bank Boards POST: ", this.boards);
+  }
 
 
   addObserver(callback) {

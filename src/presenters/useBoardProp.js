@@ -11,7 +11,7 @@ export default function useBoardProp(model, id, property) {
 
   const boards = bank.boards;
   var board = boards.filter((board) => {
-    return board.id === id;
+    return Number(board.id) === Number(id);
   })[0];
 
   const [value, setValue] = React.useState(board[property]);

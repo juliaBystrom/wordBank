@@ -1,4 +1,5 @@
 import Bank from "./bank";
+import * as df from "../deleteFromFirebase" ;
 
 export class WordBankModel {
   constructor() {
@@ -223,6 +224,23 @@ export class WordBankModel {
   // Edit board
   editBoardTitle(title, newTitle){
     this.banks[this.activeBankId].editBoardTitle(title, newTitle);
+    this.notifyObservers();
+  }
+
+  // Delete board
+  deleteBoard(id){
+    this.banks[this.activeBankId].boards.forEach(element => {
+      console.log("Model Boards PRE: ", element);
+    });
+    
+    this.banks[this.activeBankId].deleteBoard(id);
+
+    this.banks[this.activeBankId].boards.forEach(element => {
+      console.log("Model Boards POST: ", element);
+    });
+
+    df.deleteBoard(this.userId, id);
+    // setTimeout(() => {this.notifyObservers();}, 3000)
     this.notifyObservers();
   }
 
