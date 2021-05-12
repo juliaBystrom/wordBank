@@ -208,6 +208,22 @@ export default class Bank {
     );
   }
 
+  getCardInBoard(cardId, boardId){
+    return this.getBoard(boardId).cards.filter((card)=>{
+      return card.id = cardId;
+    })
+  }
+
+  moveCard(cardId, oldBoardId, newBoardId){
+    let card = this.getCardInBoard(cardId, oldBoardId);
+    this.getBoard(oldBoardId).deleteCard(cardId);
+    this.getBoard(newBoardId).addCard(card);
+  }
+
+  deleteCard(cardId, boardId){
+    this.getBoard(boardId).deleteCard(cardId);
+  }
+
   // Edit board title
 
   getBoard(id){
@@ -236,14 +252,9 @@ export default class Bank {
 
   // Delete board
   deleteBoard(id){
-    console.log("Bank Boards PRE: ", this.boards);
-    //this.boards.splice(this.getBoardIndex(id), 1);
-   
     this.boards = this.boards.filter((board)=>{
       return board.id !== id;
     })
-    
-    console.log("Bank Boards POST: ", this.boards);
   }
 
 

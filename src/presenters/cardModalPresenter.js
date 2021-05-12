@@ -49,6 +49,9 @@ export default function CardModalPresenter(props) {
         translation={translation}
         tags={tags}
         tagText={tagText}
+        onMoveCard={(cardId, newBoardId) => {
+          props.model.moveCard(cardId, props.boardId, newBoardId);
+        }}
         setTag={(newTag) => {
           setTagText(newTag);
           props.model.setCardNewTag(newTag, props.card.id, props.boardId);
