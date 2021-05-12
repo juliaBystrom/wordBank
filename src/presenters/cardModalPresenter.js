@@ -14,6 +14,8 @@ export default function CardModalPresenter(props) {
   // Used to controll the tags of the card
   // const tags = useBankProp(props.model, "tags");
   const tags = props.model.banks[props.model.activeBankId].tags;
+  const boards = props.model.banks[props.model.activeBankId].boards;
+
   /*   console.log("Tags in card modal presenter:")
   console.log(tags) */
 
@@ -39,6 +41,8 @@ export default function CardModalPresenter(props) {
   );
 
   const [comment, setComment] = React.useState(prevComment);
+
+  const [openBoard, setOpenBoard] = useState(false);
 
   return (
     <>
@@ -95,6 +99,17 @@ export default function CardModalPresenter(props) {
           setEditTranslation(false);
         }}
         editTranslationMode={editTranslation}
+        availableBoards={boards}
+        toggle={() => setOpenBoard(!openBoard)}
+        openSelector={openBoard}
+        moveToBoard={(board) => {
+          // Will close when selected
+          
+          setOpenBoard(!openBoard);
+          props.moveCard(props.card.id, props.boardId, board.id)
+  
+  
+        }}
       />
     </>
   );
