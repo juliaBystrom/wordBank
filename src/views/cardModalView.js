@@ -2,14 +2,12 @@ import Modal from "react-modal";
 import React from "react";
 import styled from "styled-components";
 import editSymbolPath from "../images/editSymbol.svg";
-
 /*
     CardModalView
     Popup with edidable info about card
     Uses react-modal, read more about it: http://reactcommunity.org/react-modal/
 
 */
-
 
 import {
   TagInput,
@@ -25,11 +23,11 @@ import {
   PhraseText,
 } from "../styledComponents";
 import {} from "../styledComponents";
+import { DeleteButton } from "../styledComponents/general";
 
 Modal.setAppElement(document.getElementById("root"));
 
 export default function CardModalView(props) {
-
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -105,7 +103,6 @@ export default function CardModalView(props) {
             <InputTitle>Comment</InputTitle>
 
             <TextBoxDynamic
-
               value={props.comment}
               onChange={(event) => props.setComment(event.target.value)}
             />
@@ -120,11 +117,23 @@ export default function CardModalView(props) {
               placeholder={props.tagText}
             ></TagInput>
           </label>
+
+          <DeleteButton
+            onClick={() => {
+              props.onDeleteCard(props.id);
+            }}
+          >
+            Delete
+          </DeleteButton>
         </form>
 
         <datalist id="taglist">
           {props.tags.map((opt) => (
-            <option value={Number(opt.id)} label={opt.tag} key={opt.id}></option>
+            <option
+              value={Number(opt.id)}
+              label={opt.tag}
+              key={opt.id}
+            ></option>
           ))}
         </datalist>
       </ModalWrapper>
@@ -155,8 +164,7 @@ function getStyle(darkBorder, bgColor) {
 }
 
 export const ModalWrapper = styled.div`
-
   width: 60vw;
   min-width: 250px;
-  // min-width: ${props => props.theme.mobile};
+  // min-width: ${(props) => props.theme.mobile};
 `;

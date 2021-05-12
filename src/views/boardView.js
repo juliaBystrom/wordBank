@@ -1,6 +1,6 @@
 import React from "react";
 import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper,BoardTitle } from "../styledComponents"
-import { EditableBoardTitle, DeleteBoard } from "../styledComponents/general";
+import { EditableBoardTitle, DeleteButton } from "../styledComponents/general";
 
 export default function BoardView(props) {
 
@@ -20,13 +20,12 @@ export default function BoardView(props) {
       <BoardCardWrapper>
 
         {props.children}
-        <DeleteBoard
-          onClick={(e)=>{
-            console.log("-----> id: ", props.id);
-            props.onDeleteBoard(props.id);
+        <DeleteButton
+          onClick={()=>{
+            props.onDeleteBoard();
           }}>
           Delete
-        </DeleteBoard>
+        </DeleteButton>
       </BoardCardWrapper>
     </BoardWrapper>
   );

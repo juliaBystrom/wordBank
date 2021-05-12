@@ -105,7 +105,7 @@ export const BottomContainer = styled.div`
   // width: 100%;
 `;
 
-export const DeleteBoard = styled.button`
+export const DeleteButton= styled.button`
   background: ${(props) => props.theme.fieryrose};
   display: block;
   margin-top: 0.7rem;
