@@ -1,4 +1,4 @@
-export function deleteCardFromBoard(userId, bankId, cardId, boardId){  
+export function deleteCardFromBoard(userId, bankId, boardId, cardId){  
     window.db
     .collection("users").doc(String(userId))
     .collection("banks").doc(String(bankId))

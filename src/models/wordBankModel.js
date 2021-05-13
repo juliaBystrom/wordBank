@@ -223,7 +223,8 @@ export class WordBankModel {
 
   moveCard(cardId, oldBoardId, newBoardId){
     this.banks[this.activeBankId].moveCard(cardId, oldBoardId, newBoardId);
-    this.notifyObservers();
+    this.deleteCard(cardId, oldBoardId);
+    this.notifyObservers();    
   }
 
   deleteCard(cardId, boardId){

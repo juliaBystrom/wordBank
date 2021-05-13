@@ -128,10 +128,12 @@ export default function CardModalView(props) {
           <BoardInput>
             <DropdownComponent
               list={props.availableBoards}
-              title={"move "}
+              title={"Move card to: "}
               open={props.openSelector}
               toggle={() => props.toggle()}
-              onSelectionDone={(board) => props.moveToBoard(board)}
+              onSelectionDone={(board) => {
+                props.onMoveCard(board.id);
+                }}
               keyExtractor={(item) => {
                 return item.id;
               }}
