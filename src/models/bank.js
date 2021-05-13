@@ -216,6 +216,7 @@ export default class Bank {
 
   moveCard(cardId, oldBoardId, newBoardId){
     let card = this.getCardInBoard(cardId, oldBoardId);
+    this.getBoard(oldBoardId).deleteCard(cardId, oldBoardId);
     this.getBoard(newBoardId).addCard(card[0]);
   }
 
