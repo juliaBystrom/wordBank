@@ -13,7 +13,6 @@ export default class Board {
       Will add card object to this board
     */
   addCard(card) {
-    console.log("AddCard: ", card);
     this.cards = [...this.cards, card];
   }
 

@@ -54,9 +54,6 @@ export default function CardModalPresenter(props) {
         tags={tags}
         tagText={tagText}
         onMoveCard={(newBoardId) => {
-          console.log("cardModalPresenter newBoardId: ", newBoardId);
-          console.log("cardModalPresenter cardId: ", props.card.id);
-          console.log("cardModalPresenter card: ", props.card);
           props.model.moveCard(props.card, props.boardId, newBoardId);
         }}
         onDeleteCard={()=>{
