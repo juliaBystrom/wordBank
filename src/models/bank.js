@@ -7,7 +7,7 @@ export default class Bank {
     this.boards = [];
     this.fromLanguage = "";
     this.toLanguage = "";
-    this.tags = [{ id: this.getIdTags(), name: "no tag", checked: false }];
+    this.tags = [{ id: this.getIdTags(), name: "", checked: false }];
     // Keeps track if no tags is choosed for filter
     this.bankIsFiltered = true;
     this.idCountCards = 0;
@@ -30,7 +30,6 @@ export default class Bank {
   }
 
   sortAlphabetically() {
-    console.log("Boards PRE: ", this.boards);
     this.boards = this.boards.sort(function (a, b) {
       if (a.title < b.title) {
         return -1;
@@ -40,7 +39,6 @@ export default class Bank {
       }
       return 0;
     });
-    console.log("Boards POST: ", this.boards);
     return;
   }
 

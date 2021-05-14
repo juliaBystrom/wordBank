@@ -24,16 +24,15 @@ export class WordBankModel {
 
     this.boardId = 0;
     this.cardId = Number(0);
+    this.sortings = [
+      { name: "Alphabetically" },
+      { name: "Most used" },
+    ];
   }
 
   logout() {
     this.activeBankId = 0;
     this.banks = [new Bank(0)];
-
-    this.sortings = [
-      { name: "Latest edited", func: () => this.sortLatestEdited() },
-      { name: "Most used", func: () => this.sortMostUsed() },
-    ];
     this.transPhrase = "";
     this.toLanguage = "en";
     this.fromLanguage = "sv";

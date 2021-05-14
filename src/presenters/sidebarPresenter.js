@@ -30,13 +30,7 @@ export default function SidebarPresenter({ model }) {
       dropSort={dropSort}
       setDropSort={setDropSort}
       onFilter={(tag) => model.filterOnTag(tag)}
-      onSort={(chosenSorting) =>
-        sortings
-          .filter((sorting) => {
-            return sorting.name === chosenSorting;
-          })[0]
-          .func()
-      }
+      onSort={() => model.sortAlphabetically()}
       sortings={sortings}
       banks={banks}
       tags={tags}

@@ -45,7 +45,7 @@ export default function SidebarView(props) {
               {props.sortings.map((sorting, key) => (
                 <label key={key}>
                   <DropdownItem drop={props.dropSort}>
-                    <input type="radio" name="sort" onClick={() => props.onSort(sorting.name)} />
+                    <input type="radio" name="sort" onClick={() => props.onSort()} />
                     {sorting.name}
                   </DropdownItem>
                 </label>
