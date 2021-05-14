@@ -223,10 +223,18 @@ export default class Bank {
     });
   }
 
-  moveCard(cardId, oldBoardId, newBoardId) {
-    let card = this.getCardInBoard(cardId, oldBoardId);
-    this.getBoard(oldBoardId).deleteCard(cardId, oldBoardId);
-    this.getBoard(newBoardId).addCard(card[0]);
+  moveCard(card, oldBoardId, newBoardId) {
+    console.log("bank newBoardId: ", newBoardId);
+    console.log("bank cardId: ", card);
+    console.log("bank oldBoard PRE: ", this.getBoard(oldBoardId));
+    console.log("bank newBoard PRE: ", this.getBoard(newBoardId));
+    // let card = this.getCardInBoard(cardId, oldBoardId);
+
+    console.log("bank card: ", card);
+    this.getBoard(newBoardId).addCard(card);
+    this.getBoard(oldBoardId).deleteCard(card.id, oldBoardId);
+    console.log("bank oldBoard POST: ", this.getBoard(oldBoardId));
+    console.log("bank newBoard POST: ", this.getBoard(newBoardId));
   }
 
   deleteCard(cardId, boardId) {

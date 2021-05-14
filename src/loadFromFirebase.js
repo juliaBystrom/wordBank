@@ -83,7 +83,6 @@ export async function loadFromFirebase(model, uid) {
                       );
 
                       model.notifyObservers();
-                      model.banks[0].notifyObservers();
                     });
                   });
               });

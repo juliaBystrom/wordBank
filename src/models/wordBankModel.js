@@ -220,9 +220,9 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  moveCard(cardId, oldBoardId, newBoardId){
-    this.banks[this.activeBankId].moveCard(cardId, oldBoardId, newBoardId);
-    df.deleteCardFromBoard(this.userId, this.activeBankId, oldBoardId, cardId);
+  moveCard(card, oldBoardId, newBoardId){
+    this.banks[this.activeBankId].moveCard(card, oldBoardId, newBoardId);
+    df.deleteCardFromBoard(this.userId, this.activeBankId, oldBoardId, card.id);
     this.notifyObservers();    
   }
 
