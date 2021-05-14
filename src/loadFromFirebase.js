@@ -26,8 +26,8 @@ export async function loadFromFirebase(model, uid) {
           //model.banks[0].reset();
           model.activeBankId = Number(bank.id);
           model.banks[0].activeBankId = bank.id;
-          model.banks[0].languageFrom = bankFromDb.languageFrom;
-          model.banks[0].languageTo = bankFromDb.languageTo;
+          model.banks[0].fromLanguage = bankFromDb.fromLanguage;
+          model.banks[0].toLanguage = bankFromDb.toLanguage;
 
           bankFromDb.tags.forEach((tag) => {
             model.addTag(tag);

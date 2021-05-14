@@ -22,8 +22,8 @@ export function saveToFirebase(model) {
                 .collection("banks")
                 .doc(String(bank.id))
                 .set({
-                  languageFrom: bank.languageFrom,
-                  languageTo: bank.languageTo,
+                  fromLanguage: bank.fromLanguage,
+                  toLanguage: bank.toLanguage,
                   tags: bank.tags.map((tag) => {
                     return tag.name;
                   }),

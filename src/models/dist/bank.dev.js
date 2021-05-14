@@ -47,8 +47,8 @@ function () {
       1: this.getIdCards(),
       2: this.getIdCards()
     })];
-    this.languageFrom = "Swedish";
-    this.languageTo = "English";
+    this.fromLanguage = "Swedish";
+    this.toLanguage = "English";
     this.tags = [{
       id: 0,
       name: "Verb",
@@ -59,8 +59,8 @@ function () {
   }
 
   _createClass(Bank, [{
-    key: "sortLatestEdited",
-    value: function sortLatestEdited() {
+    key: "sortAlphabetically",
+    value: function sortAlphabetically() {
       // TODO: order boards from left to right on last edit
       console.log("Sort Latest Edited");
       return;

@@ -20,21 +20,6 @@ export default function SidebarView(props) {
 
           {props.open ? (
             <>
-              <Dropdown
-                onClick={() => props.setDropBanks(!props.dropBanks)}
-                dropBank={props.dropBank}
-              >
-                <span aria-label="Select bank"></span>
-                Select bank {props.dropBanks ? "Ʌ" : "V"}
-              </Dropdown>
-              {banks.map((bank, key) => (
-                <label key={key}>
-                  <DropdownItem drop={props.dropBanks}>
-                    <input type="radio" name="bank" onClick={() => props.onSelectBank(bank.id)} />
-                    {bank.languageFrom} - {bank.languageTo}
-                  </DropdownItem>
-                </label>
-              ))}
 
               <Dropdown onClick={() => props.setDropFilter(!props.dropFilter)}>
                 <span aria-label="Filter on tags"></span>

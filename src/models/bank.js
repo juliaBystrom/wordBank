@@ -5,8 +5,8 @@ export default class Bank {
   constructor(id) {
     this.id = id;
     this.boards = [];
-    this.languageFrom = "Swedish";
-    this.languageTo = "English";
+    this.fromLanguage = "";
+    this.toLanguage = "";
     this.tags = [{ id: this.getIdTags(), name: "no tag", checked: false }];
     // Keeps track if no tags is choosed for filter
     this.bankIsFiltered = true;
@@ -19,8 +19,8 @@ export default class Bank {
 
   reset() {
     this.boards = [];
-    this.languageFrom = "Swedish";
-    this.languageTo = "English";
+    this.fromLanguage = "";
+    this.toLanguage = "";
     this.tags = [];
     this.bankIsFiltered = true;
     this.idCountCards = 0;
@@ -29,9 +29,18 @@ export default class Bank {
     this.getIdTags = this.getIdTags.bind(this);
   }
 
-  sortLatestEdited() {
-    // TODO: order boards from left to right on last edit
-    console.log("Sort Latest Edited");
+  sortAlphabetically() {
+    console.log("Boards PRE: ", this.boards);
+    this.boards = this.boards.sort(function (a, b) {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+      return 0;
+    });
+    console.log("Boards POST: ", this.boards);
     return;
   }
 
@@ -208,55 +217,54 @@ export default class Bank {
     );
   }
 
-  getCardInBoard(cardId, boardId){
-    return this.getBoard(boardId).cards.filter((card)=>{
-      return card.id = cardId;
-    })
+  getCardInBoard(cardId, boardId) {
+    return this.getBoard(boardId).cards.filter((card) => {
+      return (card.id = cardId);
+    });
   }
 
-  moveCard(cardId, oldBoardId, newBoardId){
+  moveCard(cardId, oldBoardId, newBoardId) {
     let card = this.getCardInBoard(cardId, oldBoardId);
     this.getBoard(oldBoardId).deleteCard(cardId, oldBoardId);
     this.getBoard(newBoardId).addCard(card[0]);
   }
 
-  deleteCard(cardId, boardId){
+  deleteCard(cardId, boardId) {
     this.getBoard(boardId).deleteCard(cardId);
   }
 
   // Edit board title
 
-  getBoard(id){
+  getBoard(id) {
     return this.boards.filter((board) => {
       return board.id === id;
     })[0];
   }
 
-  getBoardId(title){
+  getBoardId(title) {
     return this.boards.filter((board) => {
       return board.title === title;
     })[0].id;
   }
 
-  getBoardIndex(id){
+  getBoardIndex(id) {
     return this.boards.findIndex((board) => {
       return board.id === id;
     });
   }
 
-  editBoardTitle(title, newTitle){
+  editBoardTitle(title, newTitle) {
     let id = this.getBoardId(title);
     this.boards[this.getBoardIndex(id)].title = newTitle;
     this.getBoard(id).editBoardTitle(newTitle);
   }
 
   // Delete board
-  deleteBoard(id){
-    this.boards = this.boards.filter((board)=>{
+  deleteBoard(id) {
+    this.boards = this.boards.filter((board) => {
       return board.id !== id;
-    })
+    });
   }
-
 
   addObserver(callback) {
     this.observers = [...this.observers, callback];
@@ -278,6 +286,5 @@ export default class Bank {
         }
       });
     }
-
   }
 }

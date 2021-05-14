@@ -40,7 +40,6 @@ export default function SidebarPresenter({ model }) {
       sortings={sortings}
       banks={banks}
       tags={tags}
-      onSelectBank={(id) => model.setCurrentBank(id)}
       logout={() => {
         firebaseApp
           .auth()

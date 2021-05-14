@@ -8,7 +8,7 @@ export class WordBankModel {
     this.observers = [];
 
     this.sortings = [
-      { name: "Latest edited", func: () => this.sortLatestEdited() },
+      { name: "Alphabetically", func: () => this.sortAlphabetically() },
       { name: "Most used", func: () => this.sortMostUsed() },
     ];
     this.transPhrase = "";
@@ -54,7 +54,7 @@ export class WordBankModel {
 
   toString() {
     return (
-      this.currentBank + ", " + this.userId + ", " + this.languageFrom + ", " + this.languageTo
+      this.currentBank + ", " + this.userId + ", " + this.fromLanguage + ", " + this.toLanguage
     );
     // + this.observers + ', '
     //  + ', '
@@ -85,8 +85,8 @@ export class WordBankModel {
     this.currentBank = bankID;
     return  this.activeBankId + ', '
           + this.userId + ', '
-          + this.languageFrom + ', '
-          + this.languageTo;
+          + this.fromLanguage + ', '
+          + this.toLanguage;
   } */
   setCurrentBank(id) {
     this.activeBankId = id;
@@ -101,9 +101,8 @@ export class WordBankModel {
     return this.banks[0];
   }
 
-  sortLatestEdited() {
-    console.log("SORTING LATEST EDITED: ", this);
-    this.getCurrentBank().sortLatestEdited();
+  sortAlphabetically() {
+    this.getCurrentBank().sortAlphabetically();
     this.notifyObservers();
   }
 
