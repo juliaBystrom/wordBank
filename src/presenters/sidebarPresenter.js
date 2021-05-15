@@ -3,7 +3,7 @@ import { SidebarView } from "../views";
 import useModelProp from "./useModelProp.js";
 import useBankProp from "./useBankProp.js";
 import { firebaseApp } from "../firebase";
-import { Route, Switch, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function SidebarPresenter({ model }) {
   const [open, setOpen] = useState(0);
@@ -39,10 +39,11 @@ export default function SidebarPresenter({ model }) {
           .auth()
           .signOut()
           .then(() => {
-            model.loggedIn = false;
+            console.log("model = ", model);
+            history.push("/");
             model.logout();
             /* model = null; */
-            history.push("/");
+
             console.log("looged ouuuut!");
           })
           .catch((err) => {

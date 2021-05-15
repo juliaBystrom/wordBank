@@ -19,6 +19,7 @@ export default function BoardsWrapperPresenter(props) {
           addBoard={() => {
             props.model.addBoard(newBoardName);
             setNewBoardName("");
+            console.log("Model after adding board: ", props.model);
           }}
           onBoardnameChange={(name) => {
             setNewBoardName(name);

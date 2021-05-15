@@ -1,17 +1,20 @@
-import { Route, Switch, useHistory } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./App.css";
 import { WordBankModel } from "./models/wordBankModel";
 import { firebaseApp } from "./firebase";
 import BankPresenter from "./presenters/bankPresenter";
-import useModelProp from "./presenters/useModelProp";
 import { AuthPresenter } from "./presenters/AuthPresenter";
-import { AuthProvider } from "./presenters/AuthProvider";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 
-import { AppWrapper, HeaderContainer, BottomContainer, TopContainer } from "./styledComponents";
+import {
+  AppWrapper,
+  HeaderContainer,
+  BottomContainer,
+  TopContainer,
+} from "./styledComponents";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { loadFromFirebase } from "./loadFromFirebase";
 import { saveToFirebase } from "./saveToFirebase";
 
@@ -22,10 +25,13 @@ function App() {
 
   const [loading, setLoading] = useState(true);
 
-  firebaseApp.firebase_.auth().setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
+  firebaseApp.firebase_
+    .auth()
+    .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
 
   firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
+      console.log("TEST");
       model.loggedIn = false;
       loadFromFirebase(model, user.uid)
         .then(() => model.setCurrentUser(user.uid))
@@ -47,7 +53,11 @@ function App() {
       </TopContainer>
 
       <BottomContainer>
-        <Route exact path="/" component={() => <AuthPresenter model={model} />} />
+        <Route
+          exact
+          path="/"
+          component={() => <AuthPresenter model={model} />}
+        />
         <Route
           exact
           path="/bank"

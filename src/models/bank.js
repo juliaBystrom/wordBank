@@ -85,9 +85,7 @@ export default class Bank {
         { id: this.getIdTags(), name: name, checked: false },
       ];
     } else {
-      console.log("Tag exists.");
     }
-    console.log("tags inside bank:", this.tags);
   }
 
   editTag(name, newTagName) {
@@ -101,7 +99,7 @@ export default class Bank {
   filterOnTag(name) {
     this.checkedTags = 0;
     // Check or uncheck tag.
-    this.tags.map((tag) => {
+    this.tags.forEach((tag) => {
       if (tag.name === name) {
         if (!tag.checked) {
           tag.checked = true;
@@ -222,7 +220,6 @@ export default class Bank {
   }
 
   moveCard(card, oldBoardId, newBoardId) {
-  
     this.getBoard(newBoardId).addCard(card);
     this.getBoard(oldBoardId).deleteCard(card.id, oldBoardId);
   }

@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import TranslateView from "../views/translateView";
 import useBankProp from "./useBankProp";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
-import { AuthContext } from "./AuthProvider.js";
 
 const TranslatePresenter = ({ model }) => {
   /* const { currentUser } = useContext(AuthContext);
@@ -23,7 +22,7 @@ const TranslatePresenter = ({ model }) => {
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
-  const [selected, setSelectd] = useState(0);
+  // const [selected, setSelectd] = useState(0);
 
   const createTranslationCard = (boardID) => {
     if (!tag) {
@@ -116,7 +115,7 @@ const TranslatePresenter = ({ model }) => {
         setOpen(!open);
 
         // Use state resets to 0 no use
-        setSelectd(board.id);
+        // setSelectd(board.id);
 
         createTranslationCard(board.id);
         // Should remove text etc now

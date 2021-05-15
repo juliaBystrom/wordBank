@@ -18,16 +18,17 @@ export default function useBoardProp(model, id, property) {
 
   React.useEffect(
     function () {
-      function obs() {
+      function useBoardObs() {
+        if (!board || !property) return;
         setValue(board[property]);
       }
-      model.addObserver(obs);
+      model.addObserver(useBoardObs);
       return function () {
-        model.removeObserver(obs);
+        model.removeObserver(useBoardObs);
       };
     },
     [board, model, property]
   );
-  // though model never changes
+
   return value;
 }
