@@ -37,15 +37,13 @@ export const TranslationBox = styled.div`
   @media (max-width: ${(props) => props.theme.mobile}) {
     padding: 0;
   }
-
-
 `;
 
 const TranslateView = (props) => {
   return (
     <TranslateWrapper>
       <TranslationBox>
-        <form onSubmit={() => console.log("translate!")}>
+        <form>
           <TitleBox isTranslateFrom={true}>
             <LanguageList
               language={props.fromLanguage}
@@ -85,19 +83,25 @@ const TranslateView = (props) => {
         {props.loggedIn ? (
           <>
             <TagInput
-              onChange={(event) => props.setTag(event.target.value)}
+              onChange={(event) => {
+                props.setTag(event.target.value);
+              }}
               type="text"
               name="tag"
               list="taglist"
-              placeholder="Choose or write a tag"
+              placeholder="Tag your translation"
             ></TagInput>
 
             <DropdownComponent
               list={props.availableBoards}
-              title={"Save to"}
+              title={"Select board & save"}
               open={props.openSelector}
-              toggle={() => props.toggle()}
-              onSelectionDone={(board) => props.saveToBoard(board)}
+              toggle={() => {
+                props.toggle();
+              }}
+              onSelectionDone={(board) => {
+                props.saveToBoard(board);
+              }}
               keyExtractor={(item) => {
                 return item.id;
               }}

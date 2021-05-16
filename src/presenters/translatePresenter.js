@@ -23,18 +23,20 @@ const TranslatePresenter = ({ model }) => {
 
   const [open, setOpen] = useState(false);
   // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
-  const [selected, setSelectd] = useState(0);
+  const [selected, setSelected] = useState(0);
 
-  const createTranslationCard = (boardID) => {
+  const createTranslationCard = (boardId) => {
     if (!tag) {
-      console.log("choose a tag");
+      alert("Tag your translation to save it.")
     } else if (!transPhrase) {
-      console.log("translate first");
+      alert("Oops! Looks like you haven't clicked on 'Translate!' yet.");
     } else {
       model.addTag(tag);
-      model.createCard(phrase, transPhrase, boardID, tag);
+      model.createCard(phrase, transPhrase, boardId, tag);
     }
   };
+
+
 
   const [languageCodes, setLanguageCodes] = useState([]);
 
@@ -103,26 +105,29 @@ const TranslatePresenter = ({ model }) => {
       setTransPhrase={(phrase) => {
         model.setTransPhrase(phrase);
       }}
-      createCard={() => {
-        // Moved this code to createTranslationCard
-        // This prop is unecesarry but keept to not breaking anything
-        createTranslationCard();
-      }}
       setTag={(newTagName) => {
         setTag(newTagName);
       }}
       saveToBoard={(board) => {
+
         // Will close when selected
         setOpen(!open);
 
         // Use state resets to 0 no use
-        setSelectd(board.id);
+        setSelected(board.id);
 
         createTranslationCard(board.id);
         // Should remove text etc now
+
       }}
       availableBoards={boards}
-      toggle={() => setOpen(!open)}
+      toggle={() => {
+        if(model.userHasBoards()){
+          setOpen(!open);
+        } else {
+          alert("Create a board to save your translation to.");
+        }
+        }}
       openSelector={open}
     />
   );

@@ -9,12 +9,10 @@ export default function SidebarPresenter({ model }) {
   const [open, setOpen] = useState(0);
   const [dropBanks, setDropBanks] = useState(0);
   const [dropFilter, setDropFilter] = useState(0);
-  const [dropSort, setDropSort] = useState(0);
 
   let history = useHistory();
 
   const banks = useModelProp(model, "banks");
-  const sortings = useModelProp(model, "sortings");
   const tags = useBankProp(model, "tags");
   let loggedIn = useModelProp(model, "loggedIn");
 
@@ -27,11 +25,7 @@ export default function SidebarPresenter({ model }) {
       setDropBanks={setDropBanks}
       dropFilter={dropFilter}
       setDropFilter={setDropFilter}
-      dropSort={dropSort}
-      setDropSort={setDropSort}
       onFilter={(tag) => model.filterOnTag(tag)}
-      onSort={() => model.sortAlphabetically()}
-      sortings={sortings}
       banks={banks}
       tags={tags}
       logout={() => {
