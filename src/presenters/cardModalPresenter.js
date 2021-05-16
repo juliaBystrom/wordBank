@@ -60,13 +60,10 @@ export default function CardModalPresenter(props) {
         }}
         setTag={(newTag) => {
           setTagText(newTag);
-          props.model.setCardNewTag(newTag, props.card.id, props.boardId);
         }}
         comment={comment}
         setComment={(newComment) => {
           setComment(newComment);
-          // TO DO update comment in model
-          props.model.setCardComment(newComment, props.card.id, props.boardId);
         }}
         changePhrase={(newPhrase) => {
           console.log("change phrase");
@@ -97,8 +94,11 @@ export default function CardModalPresenter(props) {
           setEditTranslation(true);
         }}
         closeEditTranslation={() => {
-          console.log("close edit translation");
+          console.log("close edit translation", props.model);
           setEditTranslation(false);
+          props.model.setCardNewTag(tagText, props.card.id, props.boardId);
+          props.model.setCardComment(comment, props.card.id, props.boardId);
+          console.log("after edit translation", props.model);
         }}
         editTranslationMode={editTranslation}
         availableBoards={boards}

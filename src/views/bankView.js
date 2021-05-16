@@ -6,18 +6,15 @@ const BankWrapper = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   background-color: white;
-  border: 2px ${props => (props.theme.showTestBorders ? "solid" : "hidden")} ${props => props.theme.testBorder};
+  border: 2px ${(props) => (props.theme.showTestBorders ? "solid" : "hidden")}
+    ${(props) => props.theme.testBorder};
   height: 400px;
-  overflow-x: scroll;
-  overflow-y: scroll;
-  margin: 10px;
+  width: 88%;
+  overflow-x: auto;
+  overflow-y: auto;
+  margin: 10px 5px;
 `;
 
 export default function BankView(props) {
-  
-  return (
-    <BankWrapper>
-      {props.children}
-    </BankWrapper>
-  );
+  return <BankWrapper>{props.children}</BankWrapper>;
 }

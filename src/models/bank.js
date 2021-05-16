@@ -7,7 +7,6 @@ export default class Bank {
     this.boards = [];
     this.fromLanguage = "";
     this.toLanguage = "";
-    this.tags = [{ id: this.getIdTags(), name: "", checked: false }];
     // Keeps track if no tags is choosed for filter
     this.bankIsFiltered = true;
     this.idCountCards = 0;
@@ -15,6 +14,8 @@ export default class Bank {
     this.getIdCards = this.getIdCards.bind(this);
     // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
     this.getIdTags = this.getIdTags.bind(this);
+
+    this.tags = [{ id: Number(this.getIdTags()), name: "", checked: false }];
   }
 
   reset() {
@@ -32,7 +33,8 @@ export default class Bank {
 
 
   getIdTags() {
-    return this.idCountTags++;
+    this.idCountTags = this.idCountTags + 1;
+    return Number(this.idCountTags);
   }
 
   getIdCards() {

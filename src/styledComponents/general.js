@@ -6,7 +6,7 @@ export const BoardTitle = styled.h2`
   text-align: center;
 `;
 
-export const EditableBoardTitle= styled.input`
+export const EditableBoardTitle = styled.input`
   background: #fff;
   display: block;
   margin-top: 0.7rem;
@@ -94,7 +94,6 @@ export const AppWrapper = styled.div`
 export const HeaderContainer = styled.div`
   background-color: transparent;
   padding: 1.8em;
- 
 `;
 
 export const TopContainer = styled.div`
@@ -105,17 +104,19 @@ export const BottomContainer = styled.div`
   // width: 100%;
 `;
 
-export const DeleteButton= styled.button`
+export const DeleteButton = styled.button`
   background: ${(props) => props.theme.fieryrose};
   display: block;
   margin-top: 0.7rem;
   margin-left: auto;
   margin-right: auto;
   padding: 2px;
-  ${'' /* border-radius: 30px;
+  ${
+    "" /* border-radius: 30px;
   border-width: 0.5px;
   border-style: solid;
-  border-color: ${(props) => props.theme.fieryrose} ; */}
+  border-color: ${(props) => props.theme.fieryrose} ; */
+  }
   border: 0px solid transparent;
   border-radius: 30px;
   width: 80%;
