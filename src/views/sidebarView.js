@@ -34,23 +34,6 @@ export default function SidebarView(props) {
                   </DropdownItem>
                 </label>
               ))}
-
-              <Dropdown onClick={() => props.setDropSort(!props.dropSort)}>
-                <span aria-label="Sort boards"></span>
-                Sort boards {props.dropSort ? "Ʌ" : "V"}
-              </Dropdown>
-              {props.sortings.map((sorting, key) => (
-                <label key={key}>
-                  <DropdownItem drop={props.dropSort}>
-                    <input
-                      type="radio"
-                      name="sort"
-                      onClick={() => props.onSort()}
-                    />
-                    {sorting.name}
-                  </DropdownItem>
-                </label>
-              ))}
             </>
           ) : (
             <div></div>

@@ -21,19 +21,19 @@ const TranslatePresenter = ({ model }) => {
   let tags = useBankProp(model, "tags");
 
   const [open, setOpen] = useState(false);
-  // Might be unecesarry now but usefull if we want to not wipe translate and instead be able to change board after save.
-  // const [selected, setSelectd] = useState(0);
 
-  const createTranslationCard = (boardID) => {
+  const createTranslationCard = (boardId) => {
     if (!tag) {
-      console.log("choose a tag");
+      alert("Tag your translation to save it.")
     } else if (!transPhrase) {
-      console.log("translate first");
+      alert("Oops! Looks like you haven't clicked on 'Translate!' yet.");
     } else {
       model.addTag(tag);
-      model.createCard(phrase, transPhrase, boardID, tag);
+      model.createCard(phrase, transPhrase, boardId, tag);
     }
   };
+
+
 
   const [languageCodes, setLanguageCodes] = useState([]);
 
@@ -111,7 +111,13 @@ const TranslatePresenter = ({ model }) => {
         createTranslationCard(board.id);
       }}
       availableBoards={boards}
-      toggle={() => setOpen(!open)}
+      toggle={() => {
+        if(model.userHasBoards()){
+          setOpen(!open);
+        } else {
+          alert("Create a board to save your translation to.");
+        }
+        }}
       openSelector={open}
     />
   );

@@ -1,16 +1,15 @@
 import React from "react";
 
-export default function useCardProp(model, boardID, cardID, property) {
-  // custom hook
-  const banks = model.banks;
-  const activeBankId = model.activeBankId;
+
+export default function useCardProp(model, boardId, cardID, property) {  // custom hook
+    const banks = model.banks;
+    const activeBankId = model.activeBankId;
 
   var bank = banks.filter((bank) => {
     return bank.id === activeBankId;
   })[0];
 
   const boards = bank.boards;
-
   var board = boards.filter((board) => {
     return board.id === boardID;
   })[0];

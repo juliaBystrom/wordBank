@@ -30,24 +30,7 @@ export default class Bank {
     this.getIdTags = this.getIdTags.bind(this);
   }
 
-  sortAlphabetically() {
-    this.boards = this.boards.sort(function (a, b) {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
-      return 0;
-    });
-    return;
-  }
 
-  sortMostUsed() {
-    // TODO: order boards from left to right on most clicked
-    console.log("Sort Most Used");
-    return;
-  }
 
   getIdTags() {
     this.idCountTags = this.idCountTags + 1;
