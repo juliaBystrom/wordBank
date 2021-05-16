@@ -31,8 +31,6 @@ import { DeleteButton } from "../styledComponents/general";
 Modal.setAppElement(document.getElementById("root"));
 
 export default function CardModalView(props) {
-
-  console.log("In view modal card: ");
   console.log(props.availableBoards);
 
   return (
@@ -133,13 +131,12 @@ export default function CardModalView(props) {
               toggle={() => props.toggle()}
               onSelectionDone={(board) => {
                 props.onMoveCard(board.id);
-                }}
+              }}
               keyExtractor={(item) => {
                 return item.id;
               }}
             />
           </BoardInput>
-
 
           <DeleteButton
             onClick={() => {
@@ -148,7 +145,6 @@ export default function CardModalView(props) {
           >
             Delete
           </DeleteButton>
-
         </form>
 
         <datalist id="taglist">
@@ -201,5 +197,4 @@ const BoardInput = styled.div`
     overflow-y: auto;
     width: 100%;
   }
-
 `;

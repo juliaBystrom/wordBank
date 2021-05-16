@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CardModalView } from "../views";
 import useCardProp from "./useCardProp";
-import Modal from "react-modal";
-import useBankProp from "./useBankProp";
 
 /*
     CardModalPresenter
@@ -56,7 +54,7 @@ export default function CardModalPresenter(props) {
         onMoveCard={(newBoardId) => {
           props.model.moveCard(props.card, props.boardId, newBoardId);
         }}
-        onDeleteCard={()=>{
+        onDeleteCard={() => {
           props.model.deleteCard(props.card.id, props.boardId);
         }}
         setTag={(newTag) => {
@@ -107,11 +105,9 @@ export default function CardModalPresenter(props) {
         openSelector={openBoard}
         moveToBoard={(board) => {
           // Will close when selected
-          
+
           setOpenBoard(!openBoard);
-          props.model.moveCard(props.card.id, props.boardId, board.id)
-  
-  
+          props.model.moveCard(props.card.id, props.boardId, board.id);
         }}
       />
     </>

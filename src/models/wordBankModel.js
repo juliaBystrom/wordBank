@@ -1,5 +1,5 @@
 import Bank from "./bank";
-import * as df from "../deleteFromFirebase" ;
+import * as df from "../deleteFromFirebase";
 
 export class WordBankModel {
   constructor() {
@@ -14,41 +14,28 @@ export class WordBankModel {
     this.placeholder = "Skriv här";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.boardId = 0;
-    this.keyCountBanks = 0;
-    this.getKeyBanks = this.getKeyBanks.bind(this);
 
     this.boardId = 0;
     this.cardId = Number(0);
-    this.loading = true;
+
   }
 
   logout() {
-    this.activeBankId = 0;
-    this.banks = [new Bank(0)];
-    this.transPhrase = "";
-    this.toLanguage = "en";
-    this.fromLanguage = "sv";
-    this.loggedIn = false;
-    this.userId = "";
-    this.placeholder = "Skriv här";
-    // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
-    this.boardId = 0;
-    this.keyCountBanks = 0;
-    this.getKeyBanks = this.getKeyBanks.bind(this);
-
-    this.boardId = 0;
-    this.cardId = Number(0);
-    console.log("model reset");
     this.loading = true;
-    this.notifyObservers();
-    // this.observers = [];
+    window.location.reload();
   }
 
 
 
   toString() {
     return (
-      this.currentBank + ", " + this.userId + ", " + this.fromLanguage + ", " + this.toLanguage
+      this.currentBank +
+      ", " +
+      this.userId +
+      ", " +
+      this.fromLanguage +
+      ", " +
+      this.toLanguage
     );
   }
 
@@ -104,7 +91,13 @@ export class WordBankModel {
   }
 
   createCardFromFirebase(phrase, translation, boardId, tag, id) {
-    this.banks[this.activeBankId].createCard(phrase, translation, Number(boardId), tag, id);
+    this.banks[this.activeBankId].createCard(
+      phrase,
+      translation,
+      Number(boardId),
+      tag,
+      id
+    );
     this.notifyObservers();
   }
 
@@ -131,10 +124,6 @@ export class WordBankModel {
   setPlaceholder(newText) {
     this.placeholder = newText;
     this.notifyObservers();
-  }
-
-  getKeyBanks() {
-    return this.keyCountBanks++;
   }
 
   addBoard(name) {
@@ -187,11 +176,19 @@ export class WordBankModel {
   }
 
   setCardLeftSentence(newSentence, cardId, boardId) {
-    this.banks[this.activeBankId].setCardLeftSentence(newSentence, cardId, boardId);
+    this.banks[this.activeBankId].setCardLeftSentence(
+      newSentence,
+      cardId,
+      boardId
+    );
     this.notifyObservers();
   }
   setCardRightSentence(newSentence, cardId, boardId) {
-    this.banks[this.activeBankId].setCardRightSentence(newSentence, cardId, boardId);
+    this.banks[this.activeBankId].setCardRightSentence(
+      newSentence,
+      cardId,
+      boardId
+    );
     this.notifyObservers();
   }
 
@@ -200,26 +197,26 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  moveCard(card, oldBoardId, newBoardId){
+  moveCard(card, oldBoardId, newBoardId) {
     this.banks[this.activeBankId].moveCard(card, oldBoardId, newBoardId);
     df.deleteCardFromBoard(this.userId, this.activeBankId, oldBoardId, card.id);
-    this.notifyObservers();    
+    this.notifyObservers();
   }
 
-  deleteCard(cardId, boardId){
+  deleteCard(cardId, boardId) {
     this.banks[this.activeBankId].deleteCard(cardId, boardId);
     df.deleteCardFromBoard(this.userId, this.activeBankId, boardId, cardId);
     this.notifyObservers();
   }
 
   // Edit board
-  editBoardTitle(title, newTitle){
+  editBoardTitle(title, newTitle) {
     this.banks[this.activeBankId].editBoardTitle(title, newTitle);
     this.notifyObservers();
   }
 
   // Delete board
-  deleteBoard(id){
+  deleteBoard(id) {
     this.banks[this.activeBankId].deleteBoard(id);
     df.deleteBoard(this.userId, this.activeBankId, id);
     this.notifyObservers();

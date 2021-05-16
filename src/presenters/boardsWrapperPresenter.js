@@ -13,6 +13,7 @@ export default function BoardsWrapperPresenter(props) {
   const loadingData = useModelProp(props.model, "loading");
 
   return (
+
     <BankView>
       {isLoading(loadingData) || props.children}
       <AddBoardView

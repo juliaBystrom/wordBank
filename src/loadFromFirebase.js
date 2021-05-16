@@ -5,8 +5,6 @@ export async function loadFromFirebase(model, uid) {
     var a = x.data();
     if (a) {
       model.activeBankId = Number(a.activeBankID);
-      model.keyCountBanks = a.keyCountBanks;
-      model.keyCountBoards = a.keyCountBoards;
     } else {
       model.activeBankId = 0;
     }
