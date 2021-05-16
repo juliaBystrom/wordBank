@@ -4,8 +4,6 @@ import { theme } from "../theme";
 import { Burger, Menu, Dropdown, DropdownItem } from "../styledComponents";
 
 export default function SidebarView(props) {
-  const banks = props.banks;
-
   return (
     <ThemeProvider theme={theme}>
       <style />
@@ -20,7 +18,6 @@ export default function SidebarView(props) {
 
           {props.open ? (
             <>
-
               <Dropdown onClick={() => props.setDropFilter(!props.dropFilter)}>
                 <span aria-label="Filter on tags"></span>
                 Filter on tags {props.dropFilter ? "Ʌ" : "V"}

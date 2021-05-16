@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { CardModalView } from "../views";
 import useCardProp from "./useCardProp";
-import Modal from "react-modal";
-import useBankProp from "./useBankProp";
 
 /*
     CardModalPresenter

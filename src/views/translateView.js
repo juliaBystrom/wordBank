@@ -1,6 +1,6 @@
 import React from "react";
 
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { DropdownComponent } from "./components/";
 import LanguageList from "./components/languageList";
 import {

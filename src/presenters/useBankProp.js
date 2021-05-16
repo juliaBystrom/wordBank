@@ -8,12 +8,13 @@ export default function useBankProp(model, property) {
 
   React.useEffect(
     function () {
-      function obs() {
+      function useBankObs() {
+        if (!bank || !property) return;
         setValue(bank[property]);
       }
-      model.addObserver(obs);
+      model.addObserver(useBankObs);
       return function () {
-        model.removeObserver(obs);
+        model.removeObserver(useBankObs);
       };
     },
     [model, bank, property]

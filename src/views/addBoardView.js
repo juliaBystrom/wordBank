@@ -1,43 +1,44 @@
 import React from "react";
 import styled from "styled-components";
-import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper, BoardTitle, BoardNameInput, RoundButton, EditableBoardTitle } from "../styledComponents"
-
+import {
+  BoardWrapper,
+  BoardTitleWrapper,
+  BoardCardWrapper,
+  BoardTitle,
+  BoardNameInput,
+  RoundButton,
+} from "../styledComponents";
 
 const ButtonWrapper = styled.div`
-    display: flex;
-    height: 100%;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    border: 2px ${props => (props.theme.showTestBorders ? "solid" : "hidden")} ${props => props.theme.testBorder};
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 2px ${(props) => (props.theme.showTestBorders ? "solid" : "hidden")}
+    ${(props) => props.theme.testBorder};
 `;
 
-
-
-
-
 export default function AddBoardView(props) {
+  return (
+    <BoardWrapper>
+      <BoardTitleWrapper>
+        <BoardTitle>
+          <BoardNameInput
+            value={props.value}
+            placeholder="Board name"
+            type="text"
+            onChange={(e) => props.onBoardnameChange(e.target.value)}
+          />
+        </BoardTitle>
+      </BoardTitleWrapper>
 
-    return (
-        <BoardWrapper>
-            <BoardTitleWrapper>
-                <EditableBoardTitle value={props.value} placeholder="Enter board title" type="text" onChange={e => props.onBoardnameChange(e.target.value)}>
-                </EditableBoardTitle>
-            </BoardTitleWrapper>
+      <BoardCardWrapper>
+        <ButtonWrapper>
+          <RoundButton onClick={() => props.addBoard()}>+</RoundButton>
+        </ButtonWrapper>
+      </BoardCardWrapper>
+    </BoardWrapper>
+  );
 
-            <BoardCardWrapper>
-                <ButtonWrapper>
-                    <RoundButton onClick={() => props.addBoard()}>
-                        +
-                    </RoundButton>
-
-                </ButtonWrapper>
-
-            </BoardCardWrapper>
-
-
-
-
-        </BoardWrapper>
-    );
 }

@@ -1,11 +1,9 @@
-import React, { useState, useContext, createContext, useLocalStorage } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { saveToFirebase } from "../saveToFirebase";
 
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
-import { loadFromFirebase } from "../loadFromFirebase";
-import { AuthContext } from "./AuthProvider.js";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
@@ -73,7 +71,10 @@ export const AuthPresenter = ({ model }) => {
         saveToFirebase(model);
       })
       .catch((err) => {
-        if (err.code === "auth/email-already-in-use" || err.code === "auth/invalid-email") {
+        if (
+          err.code === "auth/email-already-in-use" ||
+          err.code === "auth/invalid-email"
+        ) {
           setEmailError(err.message);
         } else setEmailError("");
         if (err.code === "auth/weak-password") {

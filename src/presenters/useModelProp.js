@@ -6,12 +6,13 @@ export default function useModelProp(model, propertyName) {
 
   React.useEffect(
     function () {
-      function obs() {
+      function useModelObs() {
+        if (!model || !propertyName) return;
         setValue(model[propertyName]);
       }
-      model.addObserver(obs);
+      model.addObserver(useModelObs);
       return function () {
-        model.removeObserver(obs);
+        model.removeObserver(useModelObs);
       };
     },
     [model, propertyName, value]
