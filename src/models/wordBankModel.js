@@ -165,13 +165,6 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  userHasTaggedCard(card, board){
-    if(this.banks[this.activeBankId].boards.find(board).find(card).tag){
-      return true;
-    } else {
-      return false;
-    }
-  }
 
   /* 
    ----------------------------------------------------------
