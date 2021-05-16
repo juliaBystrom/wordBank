@@ -31,8 +31,6 @@ import { DeleteButton } from "../styledComponents/general";
 Modal.setAppElement(document.getElementById("root"));
 
 export default function CardModalView(props) {
-  console.log(props.availableBoards);
-
   return (
     <Modal
       isOpen={props.modalIsOpen}
@@ -74,7 +72,7 @@ export default function CardModalView(props) {
 
             {props.editTranslationMode ? (
               <EditButton onClick={props.closeEditTranslation}>
-                Close
+                Save
                 <img
                   src={editSymbolPath}
                   alt="Edit button"
@@ -84,7 +82,7 @@ export default function CardModalView(props) {
               </EditButton>
             ) : (
               <EditButton onClick={props.startEditTranslation}>
-                Open
+                Edit
                 <img
                   src={editSymbolPath}
                   alt="Edit button"
@@ -108,6 +106,7 @@ export default function CardModalView(props) {
             <InputTitle>Comment</InputTitle>
 
             <TextBoxDynamic
+              disabled={props.editTranslationMode === false}
               value={props.comment}
               onChange={(event) => props.setComment(event.target.value)}
             />
@@ -115,6 +114,7 @@ export default function CardModalView(props) {
           <label>
             <InputTitle>Tag</InputTitle>
             <TagInput
+              disabled={props.editTranslationMode === false}
               onChange={(event) => props.setTag(event.target.value)}
               type="text"
               name="tag"

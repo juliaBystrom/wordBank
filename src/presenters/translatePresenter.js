@@ -102,23 +102,13 @@ const TranslatePresenter = ({ model }) => {
       setTransPhrase={(phrase) => {
         model.setTransPhrase(phrase);
       }}
-      createCard={() => {
-        // Moved this code to createTranslationCard
-        // This prop is unecesarry but keept to not breaking anything
-        createTranslationCard();
-      }}
       setTag={(newTagName) => {
         setTag(newTagName);
       }}
       saveToBoard={(board) => {
         // Will close when selected
         setOpen(!open);
-
-        // Use state resets to 0 no use
-        // setSelectd(board.id);
-
         createTranslationCard(board.id);
-        // Should remove text etc now
       }}
       availableBoards={boards}
       toggle={() => setOpen(!open)}

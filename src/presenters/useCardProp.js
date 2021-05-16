@@ -24,6 +24,7 @@ export default function useCardProp(model, boardID, cardID, property) {
   React.useEffect(
     function () {
       function useCardObs() {
+        if (!card || !property) return;
         setValue(card[property]);
       }
       model.addObserver(useCardObs);

@@ -35,7 +35,6 @@ const Credentials = styled.input`
   border-radius: 5px;
   width: 100%;
   box-sizing: border-box;
-
 `;
 
 const AuthButton = styled.input`
@@ -58,7 +57,6 @@ const StyledLabel = styled.label`
   align-items: flex-start;
   margin: 5px 0px;
   font-weight: 700px;
-
 `;
 
 const Error = styled.span`
@@ -77,12 +75,8 @@ export const AuthView = ({
 }) => {
   return (
     <AuthContainer>
-      <Title>
-        Welcome to WordBank!
-      </Title>
-      <Intro>
-        Log in or register to access your WordBank.
-      </Intro>
+      <Title>Welcome to WordBank!</Title>
+      <Intro>Log in or register to access your WordBank.</Intro>
 
       <div className="signInStatus"></div>
 
@@ -99,7 +93,7 @@ export const AuthView = ({
           required
           autoFocus
           placeholder="Email"
-          pattern="^.{8,75}$"
+          pattern="^.{4,75}$"
         />
         <Error>{emailError}</Error>
         <StyledLabel>Password:</StyledLabel>

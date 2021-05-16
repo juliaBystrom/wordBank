@@ -17,7 +17,7 @@ export const TitleBox = styled.div`
   justify-content: flex-start;
   align-items: center;
   border-radius: ${(props) =>
-    props.isTranslateFrom ? "5px 0px 0px 0px" : "0px 5px 0px 0px"};
+    props.isTranslateFrom ? "5px 5px 0px 0px" : "5px 5px 0px 0px"};
   text-align: center;
   background-color: ${(props) =>
     props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain};
@@ -28,7 +28,7 @@ export const TitleBox = styled.div`
 
 export const TextBox = styled.textarea`
   border-radius: ${(props) =>
-    props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px"};
+    props.isTranslateFrom ? "0px 0px 5px 5px" : "0px 0px 5px 5px"};
   min-height: 100px;
   max-height: 200px;
   width: auto;
@@ -37,11 +37,15 @@ export const TextBox = styled.textarea`
   overflow: auto;
   box-sizing: border-box;
   width: 100%;
+  font-size: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 `;
 
 export const TextBoxDynamic = styled.textarea`
   border-radius: ${(props) =>
-    props.isTranslateFrom ? "5px 0px 0px 5px" : "0px 5px 5px 0px"};
+    props.isTranslateFrom ? "0px 0px 5x 5px" : "0px 0px 5px 5px"};
   box-sizing: border-box;
   display: inline-block;
   border-radius: "5px 5px 5px 5px";

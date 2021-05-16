@@ -29,7 +29,7 @@ export const AuthPresenter = ({ model }) => {
       .signInWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
         console.log("LogIn successful ", userCredentials.user.email);
-        console.log("User id: ", userCredentials.user.uid);
+        // console.log("User id: ", userCredentials.user.uid);
         model.setCurrentUser(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
@@ -61,7 +61,7 @@ export const AuthPresenter = ({ model }) => {
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
         console.log("Register successful ", userCredentials.user.email);
-        console.log("User id: ", userCredentials.user.uid);
+        // console.log("User id: ", userCredentials.user.uid);
         model.createUserModel(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");

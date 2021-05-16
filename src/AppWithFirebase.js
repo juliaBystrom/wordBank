@@ -14,7 +14,6 @@ export const AppWithFirebase = () => {
   window.db = firebaseApp.firestore();
 
   const model = React.useMemo(() => new WordBankModel(), []);
-  console.log("TEST");
   const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -25,7 +24,6 @@ export const AppWithFirebase = () => {
       if (user) {
         model.setCurrentUser(user.uid);
         await loadFromFirebase(model);
-        console.log("Model: ", model);
         model.loggedIn = true;
         model.notifyObservers();
         setLoading(false);

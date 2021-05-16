@@ -31,7 +31,6 @@ function App() {
 
   firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log("TEST");
       model.loggedIn = false;
       loadFromFirebase(model, user.uid)
         .then(() => model.setCurrentUser(user.uid))

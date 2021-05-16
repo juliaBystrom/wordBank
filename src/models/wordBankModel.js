@@ -96,7 +96,7 @@ export class WordBankModel {
 
   createCard(phrase, translation, boardId, tag) {
     this.cardId = Number(this.cardId) + 1;
-    console.log("CardID BEFORE CREATING CARD: ", this.cardId);
+    // console.log("CardID BEFORE CREATING CARD: ", this.cardId);
     this.banks[this.activeBankId].createCard(
       phrase,
       translation,
@@ -145,7 +145,6 @@ export class WordBankModel {
 
   addBoard(name) {
     // TODO Networking to add newboard
-    console.log("activeBankId", this.activeBankId);
     this.banks[this.activeBankId].addBoard(name, ++this.boardId);
     console.log("id of board: ", this.boardId);
     this.notifyObservers();
