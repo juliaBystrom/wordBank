@@ -225,11 +225,6 @@ export class WordBankModel {
     }
   }
 
-
-  alert(msg){
-    alert(msg);
-  }
-
   /* 
         Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
          :) 

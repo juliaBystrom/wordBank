@@ -53,10 +53,11 @@ export default function CardModalPresenter(props) {
         translation={translation}
         tags={tags}
         tagText={tagText}
+        boardId={props.boardId}
         onMoveCard={(newBoardId) => {
           props.model.moveCard(props.card, props.boardId, newBoardId);
         }}
-        onDeleteCard={()=>{
+        onDeleteCard={() => {
           props.model.deleteCard(props.card.id, props.boardId);
         }}
         setTag={(newTag) => {
@@ -103,15 +104,20 @@ export default function CardModalPresenter(props) {
         }}
         editTranslationMode={editTranslation}
         availableBoards={boards}
-        toggle={() => setOpenBoard(!openBoard)}
+        toggle={() => {
+          if(boards.length > 1){
+            setOpenBoard(!openBoard);
+          } else {
+            alert("You only have one board so far. Create more to move cards!");
+          }
+        }}
+
         openSelector={openBoard}
         moveToBoard={(board) => {
           // Will close when selected
-          
+
           setOpenBoard(!openBoard);
-          props.model.moveCard(props.card.id, props.boardId, board.id)
-  
-  
+          props.model.moveCard(props.card.id, props.boardId, board.id);
         }}
       />
     </>
