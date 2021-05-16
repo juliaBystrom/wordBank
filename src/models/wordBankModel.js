@@ -19,6 +19,7 @@ export class WordBankModel {
 
     this.boardId = 0;
     this.cardId = Number(0);
+    this.loading = true;
   }
 
   logout() {
@@ -38,9 +39,12 @@ export class WordBankModel {
     this.boardId = 0;
     this.cardId = Number(0);
     console.log("model reset");
+    this.loading = true;
     this.notifyObservers();
     // this.observers = [];
   }
+
+
 
   toString() {
     return (
@@ -66,6 +70,10 @@ export class WordBankModel {
     this.loggedIn = true;
     console.log(this.userId);
     this.notifyObservers();
+  }
+
+  loadingData(status) {
+    this.loading = status;
   }
 
   setCurrentBank(id) {

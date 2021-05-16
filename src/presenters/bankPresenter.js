@@ -45,7 +45,6 @@ const ButtonContainer = styled.div`
 export default function BankPresenter(props) {
 
   const boards = useBankProp(props.model, "boards");
-  const loggedIn = useModelProp(props.model, "loggedIn");
 
   // Index is used because boards are stored as an array in the model.
   const boardPresenters = boards.map((board, index) => {
@@ -62,7 +61,7 @@ export default function BankPresenter(props) {
   });
 
   return (
-    <BoardsWrapperPresenter model={props.model} loading={props.loading}>
+    <BoardsWrapperPresenter model={props.model}>
       {boardPresenters}
     </BoardsWrapperPresenter>
   );

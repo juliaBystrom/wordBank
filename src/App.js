@@ -27,12 +27,13 @@ function App() {
   firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
       model.loggedIn = false;
+      model.loadingData(true)
       loadFromFirebase(model, user.uid)
         .then(() => model.setCurrentUser(user.uid))
         .then(() => {
           saveToFirebase(model);
           model.loggedIn = true;
-          setLoading(false);
+          model.loadingData(false)
         });
     }
   });
@@ -52,7 +53,7 @@ function App() {
           exact
           path="/bank"
           component={() => {
-            return <BankPresenter model={model} loading={loading} />;
+            return <BankPresenter model={model} />;
           }}
         />
       </BottomContainer>
