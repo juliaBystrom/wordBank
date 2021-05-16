@@ -145,7 +145,7 @@ export default function CardModalView(props) {
               props.onDeleteCard();
             }}
           >
-            Delete
+            Delete card
           </DeleteButton>
         </form>
 
