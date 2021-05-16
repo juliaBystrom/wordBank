@@ -6,11 +6,6 @@ export class WordBankModel {
     this.activeBankId = 0;
     this.banks = [new Bank(0)];
     this.observers = [];
-
-    this.sortings = [
-      { name: "Alphabetically", func: () => this.sortAlphabetically() },
-      { name: "Most used", func: () => this.sortMostUsed() },
-    ];
     this.transPhrase = "";
     this.toLanguage = "en";
     this.fromLanguage = "sv";
@@ -22,12 +17,15 @@ export class WordBankModel {
 
     this.boardId = 0;
     this.cardId = Number(0);
-    this.sortings = [{ name: "Alphabetically" }, { name: "Most used" }];
+
   }
 
   logout() {
+    this.loading = true;
     window.location.reload();
   }
+
+
 
   toString() {
     return (
@@ -39,9 +37,6 @@ export class WordBankModel {
       ", " +
       this.toLanguage
     );
-    // + this.observers + ', '
-    //  + ', '
-    // + this.sorts;
   }
 
   // SignUp action
@@ -64,13 +59,10 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
-  /* setCurrentBank(bankID) {
-    this.currentBank = bankID;
-    return  this.activeBankId + ', '
-          + this.userId + ', '
-          + this.fromLanguage + ', '
-          + this.toLanguage;
-  } */
+  loadingData(status) {
+    this.loading = status;
+  }
+
   setCurrentBank(id) {
     this.activeBankId = id;
     this.notifyObservers();
@@ -84,15 +76,6 @@ export class WordBankModel {
     return this.banks[0];
   }
 
-  sortAlphabetically() {
-    this.getCurrentBank().sortAlphabetically();
-    this.notifyObservers();
-  }
-
-  sortMostUsed() {
-    this.getCurrentBank().sortMostUsed();
-    this.notifyObservers();
-  }
 
   createCard(phrase, translation, boardId, tag) {
     this.cardId = Number(this.cardId) + 1;
@@ -179,6 +162,7 @@ export class WordBankModel {
     this.notifyObservers();
   }
 
+
   /* 
    ----------------------------------------------------------
                  CARD FUNCIONALITY WordBankModel
@@ -236,6 +220,19 @@ export class WordBankModel {
     this.banks[this.activeBankId].deleteBoard(id);
     df.deleteBoard(this.userId, this.activeBankId, id);
     this.notifyObservers();
+  }
+
+  userHasBoards(){
+    if(this.banks[this.activeBankId].boards.length > 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  alert(msg){
+    alert(msg);
   }
 
   /* 

@@ -26,12 +26,11 @@ export const TranslationWrapper = styled.div`
 export const Translation = styled.div`
   background-color: ${(props) =>
     props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain};
-  padding: 10px;
+  padding: 2px;
   margin: ${(props) =>
     props.isTranslateFrom ? "0px 0px 0px 10px" : "0px 10px 0px 0px"};
   color: ${(props) => props.theme.darkText};
   box-shadow: 0px 0px 7px #c4c2c2;
-
   width: 50%;
   max-height: 100px;
   overflow: auto;

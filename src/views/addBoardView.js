@@ -40,4 +40,5 @@ export default function AddBoardView(props) {
       </BoardCardWrapper>
     </BoardWrapper>
   );
+
 }

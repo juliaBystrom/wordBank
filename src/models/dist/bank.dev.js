@@ -194,7 +194,7 @@ function () {
     key:"getBoardId",
     value: function getBoardId(title){
       console.log("Boards: ", this.boards);
-      console.log("BoardId, getBoardId: ", this.boards.filter((board) => {
+      console.log("boardId, getBoardId: ", this.boards.filter((board) => {
         return board.title === title;
       }).id);
       return this.boards.filter((board) => {

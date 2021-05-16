@@ -114,7 +114,7 @@ export const AuthView = ({
         <AuthButton type="submit" defaultValue="Login" />
         <AuthButton
           type="button"
-          defaultValue="Register"
+          defaultValue="Register account"
           onClick={() => {
             handleRegister();
           }}

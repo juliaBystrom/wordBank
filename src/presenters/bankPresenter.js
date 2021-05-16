@@ -30,7 +30,7 @@ export default function BankPresenter(props) {
   });
 
   return (
-    <BoardsWrapperPresenter model={props.model} loading={props.loading}>
+    <BoardsWrapperPresenter model={props.model}>
       {boardPresenters}
     </BoardsWrapperPresenter>
   );
