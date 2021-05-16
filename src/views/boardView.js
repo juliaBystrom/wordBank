@@ -27,7 +27,7 @@ export default function BoardView(props) {
             props.onDeleteBoard();
           }}
         >
-          Delete
+          Delete board
         </DeleteButton>
       </BoardCardWrapper>
     </BoardWrapper>
