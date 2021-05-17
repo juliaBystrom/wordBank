@@ -11,7 +11,7 @@ Link to current website: https://wordbank.netlify.app/
 
 - Front-end: React.js
 
-- Persistence: Google’s service Firestore
+- Persistence: Google’s service Firebase Firestore
 
 - Hosting: Netlify
 
@@ -32,21 +32,17 @@ These features have been implemented so far:
 - Trello-like boards to save translations
 - Save user-specific data to Firestore
 - Card info is given by a pop up when a card is pressed.
+- Can move cards between boards
+- Change any information related to a Card
+- Better styling
 
 
 ### Planning to do:
 
 Features that are planned to be implemented:
-- Persist model by retrieving saved data from Firestore at signin
-- Drag & drop functionality
-- Ranking of most used / latest used boards to sort on
-- Translate by pressing 'enter'
-- Add comment on creation of card
-- Choose language to translate FROM
-- Edit board and tag names
-- Not necessary to input tag - it is as of now necessary 
 - Overall styling and UX
 - Adding code to make our website more accessible 
+- Flashcards
 
 ### File structure
 
@@ -59,4 +55,12 @@ tags, text.
 * src/index.js = entry point for the application
 * src/App.js = routing, modal creation, etc.
 * src/theme.js & src/style.js = shared styling and colors for the application
-* src/firebase.js = firebase connection established
+* src/firebase/firebaseConfig = firebase connection established
+
+### How to setup
+1. Clone repo
+2. npm install in main folder
+3. npm start
+4. Register user
+5. Create and store your own translations
+6. Good luck!
