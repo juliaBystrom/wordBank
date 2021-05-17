@@ -1,6 +1,13 @@
 import Board from "./board";
 import Card from "./card";
 
+
+/*
+ Bank Class keep state information about a Bank
+ A Bank is a set of boards with translation cards
+ 
+*/
+
 export default class Bank {
   constructor(id) {
     this.id = id;

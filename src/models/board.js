@@ -1,3 +1,10 @@
+
+/*
+ Board Class keep state information about a Board
+ A board contains translation cards
+ 
+*/
+
 export default class Board {
   constructor(title, id) {
     this.id = Number(id);

@@ -1,6 +1,12 @@
 import Bank from "./bank";
 import * as df from "../deleteFromFirebase";
 
+
+/*
+ Word Bank Model 
+ Keep state values for application
+*/
+
 export class WordBankModel {
   constructor() {
     this.activeBankId = 0;
