@@ -7,7 +7,7 @@ import { AuthView } from "../views/authView";
 
 
 /*
-  AuthPresenter handles user autentication for login of existing user and register of a new user.
+  authPresenter handles user autentication for login of existing user and register of a new user.
 
 */
 export const AuthPresenter = ({ model }) => {
