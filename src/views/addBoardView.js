@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { BoardWrapper, BoardTitleWrapper, BoardCardWrapper, BoardTitle, BoardNameInput, RoundButton, EditableBoardTitle } from "../styledComponents"
+
 import {
   BoardWrapper,
   BoardTitleWrapper,
@@ -23,14 +25,10 @@ export default function AddBoardView(props) {
   return (
     <BoardWrapper>
       <BoardTitleWrapper>
-        <BoardTitle>
-          <BoardNameInput
-            value={props.value}
-            placeholder="Board name"
-            type="text"
-            onChange={(e) => props.onBoardnameChange(e.target.value)}
-          />
-        </BoardTitle>
+            <BoardTitleWrapper>
+                <EditableBoardTitle value={props.value} placeholder="Enter board title" type="text" onChange={e => props.onBoardnameChange(e.target.value)}>
+                </EditableBoardTitle>
+            </BoardTitleWrapper>
       </BoardTitleWrapper>
 
       <BoardCardWrapper>
