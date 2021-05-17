@@ -1,6 +1,6 @@
 ## WordBank (Group 7):
 
-<img src="landingPage.png"/>
+![bild](https://user-images.githubusercontent.com/42782387/118537443-3c7b2400-b74d-11eb-8dbd-410e4ba30f07.png)
 
 ### Project description
 
