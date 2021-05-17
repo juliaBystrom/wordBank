@@ -8,6 +8,8 @@ import {
   EditableBoardTitle,
 } from "../styledComponents";
 
+import styled from "styled-components";
+
 const ButtonWrapper = styled.div`
   display: flex;
   height: 100%;
@@ -22,10 +24,8 @@ export default function AddBoardView(props) {
   return (
     <BoardWrapper>
       <BoardTitleWrapper>
-            <BoardTitleWrapper>
-                <EditableBoardTitle value={props.value} placeholder="Enter board title" type="text" onChange={e => props.onBoardnameChange(e.target.value)}>
-                </EditableBoardTitle>
-            </BoardTitleWrapper>
+          <EditableBoardTitle value={props.value} placeholder="Enter board title" type="text" onChange={e => props.onBoardnameChange(e.target.value)}>
+          </EditableBoardTitle>
       </BoardTitleWrapper>
 
       <BoardCardWrapper>
