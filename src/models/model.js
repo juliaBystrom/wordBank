@@ -7,7 +7,7 @@ import * as df from "../firebase/deleteFromFirebase";
  Keep state values for application
 */
 
-export class WordBankModel {
+export class Model {
   constructor() {
     this.activeBankId = 0;
     this.banks = [new Bank(0)];
@@ -146,7 +146,7 @@ export class WordBankModel {
 
   /* 
    ----------------------------------------------------------
-                 TAG FUNCIONALITY WordBankModel
+                 TAG FUNCIONALITY Model
    ----------------------------------------------------------
 
   */
@@ -170,7 +170,7 @@ export class WordBankModel {
 
   /* 
    ----------------------------------------------------------
-                 CARD FUNCIONALITY WordBankModel
+                 CARD FUNCIONALITY Model
    ----------------------------------------------------------
 
   */

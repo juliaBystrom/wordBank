@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import "./App.css";
-import { WordBankModel } from "./models/wordBankModel";
+import { Model } from "./models/model";
 import { firebaseApp } from "./firebase/firebaseConfig";
 import BankPresenter from "./presenters/bankPresenter";
 import { AuthPresenter } from "./presenters/authPresenter";
@@ -21,8 +21,8 @@ import { saveToFirebase } from "./firebase/saveToFirebase";
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
-  let model = new WordBankModel();
-  
+  let model = new Model();
+
   firebaseApp.firebase_
     .auth()
     .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);

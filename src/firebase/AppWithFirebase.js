@@ -6,14 +6,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import * as theme from "../theme";
 import { firebaseApp } from "./firebaseConfig";
-import { WordBankModel } from "../models/wordBankModel";
+import { Model } from "../models/model";
 import { loadFromFirebase } from "./loadFromFirebase";
 
 export const AppWithFirebase = () => {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
 
-  const model = React.useMemo(() => new WordBankModel(), []);
+  const model = React.useMemo(() => new Model(), []);
   const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
