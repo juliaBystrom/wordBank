@@ -86,7 +86,7 @@ export const DropdownButton = styled.div`
   }
   div {
     &:first-child {
-      border-right: 1px solid ${(props) => props.theme.light};
+      // border-right: 1px solid ${(props) => props.theme.light};
     }
   }
 
