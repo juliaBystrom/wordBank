@@ -2,7 +2,7 @@ import React from "react";
 
 
 /*
- Custom hook handeling properties from the Card class of the model.
+ Custom hook handling properties from the Card class of the model.
 
 */
 
@@ -11,7 +11,7 @@ export default function useCardProp(model, boardId, cardID, property) {
   const banks = model.banks;
   const activeBankId = model.activeBankId;
 
-  var bank = banks.filter((bank) => {
+  const bank = banks.filter((bank) => {
     return bank.id === activeBankId;
   })[0];
 
@@ -22,7 +22,7 @@ export default function useCardProp(model, boardId, cardID, property) {
 
   const card = board.cards.filter((card) => {
     return card.id === cardID;
-  })[0];
+  })[0];        
 
   const [value, setValue] = React.useState(card[property]);
 

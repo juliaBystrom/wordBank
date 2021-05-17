@@ -4,9 +4,7 @@
  */
 
 export function saveToFirebase(model) {
-  let loadingFromFirebase = true;
 
-  // Save to Firestore
   model.addObserver(function saveToFirestore() {
     if (model.userId) {
       setTimeout(() => {
