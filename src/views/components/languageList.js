@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-//Väldigt simpel view så den får vara en component istället
+// Language list componet. Displays languages to translate from
 
 const StyledSelect = styled.select`
   width: 180px;
