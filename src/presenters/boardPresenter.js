@@ -5,6 +5,10 @@ import useBoardProp from "./useBoardProp";
 
 import CardPresenter from "./cardPresenter";
 
+/*
+  BoardPresenter handles informaiton from the board class in model
+*/
+
 export default function BoardPresenter(props) {
   const cards = useBoardProp(props.model, props.id, "cards");
   const title = useBoardProp(props.model, props.id, "title");

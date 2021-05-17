@@ -1,6 +1,12 @@
 import React from "react";
 import { TranslationCardView } from "../views";
 
+
+/*
+  Presents TranslationCardView
+
+*/
+
 export default function TranslationCardPresenter(props) {
   return (
     <TranslationCardView
@@ -9,10 +15,7 @@ export default function TranslationCardPresenter(props) {
       id={props.card.cardID}
       key={props.card.cardID}
       onCardPress={props.openModal}
-      /*  onCardPress={(idOfCard) => {
-                     
-                     openModal();
-                 }} */
+
     />
   );
 }

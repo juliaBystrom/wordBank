@@ -1,5 +1,11 @@
 import React from "react";
 
+
+/*
+ Custom hook handeling properties from the Bank class of the model.
+
+*/
+
 export default function useBankProp(model, property) {
   // custom hook
 

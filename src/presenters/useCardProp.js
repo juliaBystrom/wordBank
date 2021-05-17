@@ -1,5 +1,11 @@
 import React from "react";
 
+
+/*
+ Custom hook handeling properties from the Card class of the model.
+
+*/
+
 export default function useCardProp(model, boardId, cardID, property) {
   // custom hook
   const banks = model.banks;

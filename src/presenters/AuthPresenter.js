@@ -5,22 +5,17 @@ import { saveToFirebase } from "../saveToFirebase";
 import { firebaseApp } from "../firebase";
 import { AuthView } from "../views/AuthView";
 
-// TODO: https://firebase.google.com/docs/auth/web/google-signin
 
+/*
+  AuthPresenter handles user autentication for login of existing user and register of a new user.
+
+*/
 export const AuthPresenter = ({ model }) => {
   let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  //const { currentUser } = useContext(AuthContext);
-  /* let model;
-  if (false) {
-    
-    loadFromFirebase(model);
-  } else {
-    model = props.model;
-  } */
 
   const loginHandler = async () => {
     /* quickStart(); */
