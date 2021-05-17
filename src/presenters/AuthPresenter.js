@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { saveToFirebase } from "../firebase/saveToFirebase";
 
 import { firebaseApp } from "../firebase/firebaseConfig";
-import { AuthView } from "../views/AuthView";
+import { AuthView } from "../views/authView";
 
 
 /*
