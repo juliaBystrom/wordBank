@@ -57,12 +57,14 @@ export async function loadFromFirebase(model, uid) {
                         model.cardId = Number(card.id);
                       }
                       var cardFromDb = card.data();
+                      console.log(cardFromDb.comment);
                       model.createCardFromFirebase(
                         cardFromDb.leftSentence,
                         cardFromDb.rightSentence,
                         Number(board.id),
                         cardFromDb.tag,
-                        Number(card.id)
+                        Number(card.id),
+                        cardFromDb.comment
                       );
 
                       model.notifyObservers();
