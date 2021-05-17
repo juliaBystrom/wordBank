@@ -127,7 +127,7 @@ export default function CardModalView(props) {
             list={props.availableBoards.filter((board) => {
               return board.id !== props.boardId;
             })}
-            title={"Move card to board: "}
+            title={"Move card to board"}
             open={props.openSelector}
             toggle={() => {
               props.toggle();
