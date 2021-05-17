@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 /* 
-  Will return false if loading is false outherwise an div with a spinner. Inicating loading of data
+  Will return false if loading is false otherwise an div with a spinner. Indicating loading of data
 */
 
 export default function isLoading(loading) {

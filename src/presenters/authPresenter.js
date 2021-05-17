@@ -5,9 +5,8 @@ import { saveToFirebase } from "../firebase/saveToFirebase";
 import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/authView";
 
-
 /*
-  authPresenter handles user autentication for login of existing user and register of a new user.
+  authPresenter handles user authentication for login of existing user and register of a new user.
 
 */
 export const AuthPresenter = ({ model }) => {
@@ -55,8 +54,6 @@ export const AuthPresenter = ({ model }) => {
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
-        
-        // 
         model.createUserModel(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");

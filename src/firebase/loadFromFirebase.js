@@ -33,7 +33,7 @@ export async function loadFromFirebase(model, uid) {
           // Load boards from Firestore
           usr
             .collection("banks")
-            .doc(String(model.activeBankId))
+            .doc("0") // Model only supports one bank right now, but can easily be extended.
             .collection("boards")
             .get()
             .then((querySnapshot) => {
@@ -46,7 +46,7 @@ export async function loadFromFirebase(model, uid) {
                 model.addBoardFromFirebase(boardFromDb.title, board.id);
                 usr
                   .collection("banks")
-                  .doc(String(model.activeBankId))
+                  .doc("0") // Model only supports one bank right now, but can easily be extended.
                   .collection("boards")
                   .doc(board.id)
                   .collection("cards")
