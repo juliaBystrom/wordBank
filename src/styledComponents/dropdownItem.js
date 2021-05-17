@@ -43,6 +43,7 @@ export const DropdownComponentItem = styled.ul`
   padding: 0;
   margin: 0;
   width: 200px;
+  width: 100%;
 
 
 

@@ -70,7 +70,7 @@ export const DropdownButton = styled.div`
   border-radius: 4px;
   flex-direction: row;
   ${"" /* // When :onHover changes background it will be wioth a transition */}
-  background-color: ${(props) => props.theme.midnightgreen};
+  background-color: ${(props) => props.theme.queenblue};
   transition: background 0.3s linear;
   text-align: left;
   z-index: 0;
@@ -78,7 +78,7 @@ export const DropdownButton = styled.div`
   font-weight: bold;
 
   :hover {
-    background: ${(props) => props.theme.medium};
+    background: ${(props) => props.theme.dodgerblue};
   }
 
   ${

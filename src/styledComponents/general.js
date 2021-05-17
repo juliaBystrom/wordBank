@@ -7,25 +7,30 @@ export const BoardTitle = styled.h2`
 `;
 
 export const EditableBoardTitle = styled.input`
-  background: #fff;
   display: block;
   margin-top: 0.7rem;
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  box-shadow: 0 0 2px #c4c2c2;
-  border-radius: 30px;
+  border-radius: 5px;
   width: 80%;
   outline: none;
   resize: none;
   overflow: hidden;
-  border: 0px solid transparent;
+  border: none;
+  border: 1px solid transparent;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: 1.2em;
   color: ${(props) => props.theme.darkText};
   text-align: center;
+  background-color: ${(props) => props.theme.darkAlabaster};
+  font-weight: bold;
+
+  :hover {
+    border: 1px solid ${(props) => props.theme.darkestAlabaster};
+  }
 `;
 
 export const BoardNameInput = styled.input`
@@ -105,21 +110,20 @@ export const BottomContainer = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-  background: ${(props) => props.theme.fieryrose};
-  display: block;
+  //background-color: ${(props) => props.theme.fieryrose};
+  // background-color: rgb(244, 91, 105, 0.1);
+  background-color: ${(props) => props.theme.darkAlabaster};
+  // display: block;
+  // box-sizing: border-box;
   margin-top: 0.7rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2px;
-  ${
-    "" /* border-radius: 30px;
-  border-width: 0.5px;
-  border-style: solid;
-  border-color: ${(props) => props.theme.fieryrose} ; */
-  }
-  border: 0px solid transparent;
-  border-radius: 30px;
-  width: 80%;
+  margin-left: 12px;
+  margin-right: 12px;
+  padding: 3px;
+  // box-sizing: border-box;
+  border: 1px solid rgb(244, 91, 105, 0.2);
+  border-radius: 5px;
+  width: 87%;
+  align-self: center;
   outline: none;
   resize: none;
   overflow: hidden;
@@ -129,4 +133,8 @@ export const DeleteButton = styled.button`
   font-size: 0.8em;
   color: ${(props) => props.theme.darkText};
   text-align: center;
+
+  :hover, :focus {
+    background-color: rgb(244, 91, 105, 0.5);
+  }
 `;
