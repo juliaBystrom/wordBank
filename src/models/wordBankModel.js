@@ -11,7 +11,7 @@ export class WordBankModel {
     this.fromLanguage = "sv";
     this.loggedIn = false;
     this.userId = "";
-    this.placeholder = "Skriv här";
+    this.placeholder = "Write here";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.boardId = 0;
 
