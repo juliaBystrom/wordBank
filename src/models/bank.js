@@ -194,7 +194,7 @@ export default class Bank {
     });
 
     this.boards[boardIndex].addCard(
-      new Card(id, "Kommentar Holder", phrase, translation, tag)
+      new Card(id, "", phrase, translation, tag)
     );
   }
 
