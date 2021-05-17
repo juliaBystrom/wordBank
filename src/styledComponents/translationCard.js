@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 /*
-    Styled componets for translation card
+    Styled components for a translation card.
 */
 
 /*
 Usage notes:
-    The Card component gives the style of the component. It can be combinated with the Translation component
-    however if span is the other component then the margin area of Translation will also be preasable. So dont do that. 
+    The Card component gives the style of the component. It can be combined with the Translation component
+    however if span is the other component then the margin area of Translation will also be pressable. So don't do that. 
 */
 
 export const Card = styled.div`
@@ -24,7 +24,8 @@ export const TranslationWrapper = styled.div`
 `;
 
 export const Translation = styled.div`
-  background-color: ${(props) => props.isTranslateFrom ? props.theme.from : props.theme.to};
+  background-color: ${(props) =>
+    props.isTranslateFrom ? props.theme.from : props.theme.to};
   padding: 1px;
   margin: ${(props) =>
     props.isTranslateFrom ? "2px 1.5px 0px 10px" : "2px 10px 0px 1.5px"};

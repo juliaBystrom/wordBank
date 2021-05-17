@@ -1,19 +1,5 @@
 import styled from "styled-components";
 
-/*
-
-Styled closed buttons
-
-OBS will apply style to children which need to be the following:
-
-<div>
-    <div />
-    <div />
-</div>
-
-
-*/
-
 export const StyledCloseButton = styled.button`
   background-color: transparent;
   border: none;
@@ -162,8 +148,6 @@ export const CardBarWrapper = styled.div`
       min-width: 150px;
       align-items: center;
     }
-
-
   }
 `;
 

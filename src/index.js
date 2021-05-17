@@ -9,7 +9,6 @@ import { ThemeProvider } from "styled-components";
 import * as theme from "./theme";
 
 ReactDOM.render(
-  
   <Router>
     <React.StrictMode>
       <ThemeProvider theme={theme.theme}>
@@ -18,8 +17,6 @@ ReactDOM.render(
     </React.StrictMode>
   </Router>,
   document.getElementById("root")
-  
-
 );
 
 reportWebVitals();

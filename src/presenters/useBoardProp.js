@@ -1,22 +1,16 @@
 import React from "react";
 
 /*
- Custom hook handeling properties from the Board class of the model.
+ Custom hook handling properties from the Board class of the model.
 
 */
 export default function useBoardProp(model, id, property) {
-  // custom hook
-  const banks = model.banks;
-  const activeBankId = model.activeBankId;
-
-  var bank = banks.filter((bank) => {
-    return bank.id === activeBankId;
-  })[0];
+  const bank = model.getActiveBank();
 
   const boards = bank.boards;
   var board = boards.filter((board) => {
     return Number(board.id) === Number(id);
-  })[0];
+  })[0]; // [0] to eliminate array wrap
 
   const [value, setValue] = React.useState(board[property]);
 

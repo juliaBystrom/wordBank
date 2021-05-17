@@ -1,6 +1,5 @@
-
 /*
- Board Class keep state information about a Board
+ Board class keeps state information about a Board
  A board contains translation cards
  
 */
@@ -24,9 +23,9 @@ export default class Board {
   }
 
   deleteCard(id) {
-    this.cards = this.cards.filter((card)=>{
+    this.cards = this.cards.filter((card) => {
       return card.id !== id;
-    })
+    });
   }
 
   setCardComment(newComment, cardId) {
@@ -91,6 +90,4 @@ export default class Board {
       }
     }
   }
-
-
 }

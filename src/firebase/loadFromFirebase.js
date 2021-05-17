@@ -1,4 +1,4 @@
-// Observable that continuously saves the entire model in Firestore.
+// Loads the users previously saved information on log-in.
 
 export async function loadFromFirebase(model, uid) {
   var usr = window.db.collection("users").doc(String(uid));
@@ -45,9 +45,12 @@ export async function loadFromFirebase(model, uid) {
                 }
                 model.addBoardFromFirebase(boardFromDb.title, board.id);
                 usr
-                  .collection("banks").doc(String(model.activeBankId))
-                  .collection("boards").doc(board.id)
-                  .collection("cards").get()
+                  .collection("banks")
+                  .doc(String(model.activeBankId))
+                  .collection("boards")
+                  .doc(board.id)
+                  .collection("cards")
+                  .get()
                   .then((querySnapshot) => {
                     querySnapshot.forEach((card) => {
                       if (Number(card.id) > Number(model.cardId)) {

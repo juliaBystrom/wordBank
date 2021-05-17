@@ -6,7 +6,7 @@ import { firebaseApp } from "../firebase/firebaseConfig";
 import { useHistory } from "react-router-dom";
 
 /* 
-SidebarPresenter handles sidebar actions sush as logout and filter on tags
+SidebarPresenter handles sidebar actions such as logout and filter on tags
 
 */
 

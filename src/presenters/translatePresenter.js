@@ -11,11 +11,6 @@ TranslatePresenter handles translation of phrases. If user is loggedIn it will a
 */
 
 const TranslatePresenter = ({ model }) => {
-  /* const { currentUser } = useContext(AuthContext);
-  let model;
-  if (currentUser) await loadFromFirebase(props.model);
-  else model = props.model; */
-
   const [phrase, setPhrase] = React.useState("");
   const [tag, setTag] = React.useState("");
   let transPhrase = useModelProp(model, "transPhrase");
@@ -30,7 +25,9 @@ const TranslatePresenter = ({ model }) => {
 
   const createTranslationCard = (boardId) => {
     if (!tag) {
-      alert("Tag your translation to save it.\n Tags are a great way to find the translations you’re looking for by filtering on them in the sidebar.\n Suggestions for tags:\n 'Swedish English' - what languages are used \n 'Verb' / 'Past tense' - what grammar is used");
+      alert(
+        "Tag your translation to save it.\n \nTags are a great way to find the translations you’re looking for by filtering on them in the sidebar.\n \n Suggestions for tags:\n 'Swedish English' - what languages are used \n 'Verb' / 'Past tense' - what grammar is used"
+      );
     } else if (!transPhrase) {
       alert("Oops! Looks like you haven't clicked on 'Translate!' yet.");
     } else {
@@ -50,7 +47,6 @@ const TranslatePresenter = ({ model }) => {
     });
   }, []);
 
-  //Vill egentligen göra denna mer generell för att översätta andra grejer också
   const translate = () => {
     googleTranslate.translate(
       phrase,
@@ -61,7 +57,7 @@ const TranslatePresenter = ({ model }) => {
       }
     );
   };
-  //Den här borde tex i framtiden gå att göra med funktionen ovan
+
   const translatePlaceholder = (newLanguage) => {
     googleTranslate.translate(
       placeholder,
@@ -98,7 +94,6 @@ const TranslatePresenter = ({ model }) => {
       setPhrase={(phrase) => {
         setPhrase(phrase);
       }}
-      //använder model state för coherence med andra användningar av transphrase
       setTransPhrase={(phrase) => {
         model.setTransPhrase(phrase);
       }}

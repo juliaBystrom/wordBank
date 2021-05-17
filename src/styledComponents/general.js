@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+/*
+  General styled components, such as delete buttons, title boxes etc.
+*/
+
 export const BoardTitle = styled.h2`
   font-size: 1.2em;
   color: ${(props) => props.theme.darkText};
@@ -13,7 +17,8 @@ export const EditableBoardTitle = styled.input`
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  box-shadow: rgba(27, 31, 35, 0.04) 0px 2.5px 0px, rgba(255, 255, 255, 0.25) 0px 2.5px 0px inset;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 2.5px 0px,
+    rgba(255, 255, 255, 0.25) 0px 2.5px 0px inset;
   width: 80%;
   outline: none;
   resize: none;
@@ -97,14 +102,11 @@ export const HeaderContainer = styled.div`
   padding: 1.8em;
 `;
 
-export const TopContainer = styled.div`
-`;
+export const TopContainer = styled.div``;
 
-export const BottomContainer = styled.div`
-`;
+export const BottomContainer = styled.div``;
 
 export const DeleteButton = styled.button`
-
   background: ${(props) => props.theme.delete};
   display: block;
   margin-top: 0.7rem;
@@ -124,7 +126,8 @@ export const DeleteButton = styled.button`
   color: ${(props) => props.theme.white};
   text-align: center;
 
-  :hover, :focus {
+  :hover,
+  :focus {
     background-color: ${(props) => props.theme.deleteFocus};
   }
 `;

@@ -1,9 +1,8 @@
 import Board from "./board";
 import Card from "./card";
 
-
 /*
- Bank Class keep state information about a Bank
+ Bank class keeps state information about a Bank
  A Bank is a set of boards with translation cards
  
 */
@@ -14,12 +13,13 @@ export default class Bank {
     this.boards = [];
     this.fromLanguage = "";
     this.toLanguage = "";
-    // Keeps track if no tags is choosed for filter
+    // Keeps track if no tags are chosen in the filter,
+    // to display all cards in that case.
     this.bankIsFiltered = true;
     this.idCountCards = 0;
     this.idCountTags = 2;
     this.getIdCards = this.getIdCards.bind(this);
-    // Binding is done to be able to pass theese funcitons to other classes but having the same this reference.
+    // Binding is done to be able to pass these functions to other classes but having the same this reference.
     this.getIdTags = this.getIdTags.bind(this);
 
     this.tags = [{ id: Number(this.getIdTags()), name: "", checked: false }];
@@ -37,8 +37,6 @@ export default class Bank {
     this.getIdTags = this.getIdTags.bind(this);
   }
 
-
-
   getIdTags() {
     this.idCountTags = this.idCountTags + 1;
     return Number(this.idCountTags);
@@ -51,7 +49,7 @@ export default class Bank {
   addBoard(name, id) {
     // Obs only testing version. Outerwise if not testing the last is not needed
     this.boards = [...this.boards, new Board(name, id)];
-    // 
+    //
   }
 
   /* 
@@ -184,9 +182,6 @@ export default class Bank {
           this.boards[boardIndex].setCardNewTag(tag.name, cardId);
         } else {
           this.addTag(newTagName);
-          
-          
-          
 
           // Will take the first tag whitch should be the new one
           this.boards[boardIndex].setCardNewTag(newTagName, cardId);
@@ -200,9 +195,7 @@ export default class Bank {
       return Number(board.id) === Number(saveToBoardId);
     });
 
-    this.boards[boardIndex].addCard(
-      new Card(id, "", phrase, translation, tag)
-    );
+    this.boards[boardIndex].addCard(new Card(id, "", phrase, translation, tag));
   }
 
   getCardInBoard(cardId, boardId) {
@@ -225,13 +218,13 @@ export default class Bank {
   getBoard(id) {
     return this.boards.filter((board) => {
       return board.id === id;
-    })[0];
+    })[0]; // [0] to eliminate array wrap
   }
 
   getBoardId(title) {
     return this.boards.filter((board) => {
       return board.title === title;
-    })[0].id;
+    })[0].id; // [0] to eliminate array wrap
   }
 
   getBoardIndex(id) {

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-// Language list componet. Displays languages to translate from
+// Language list component. Displays languages to translate from
 
 const StyledSelect = styled.select`
   width: 180px;

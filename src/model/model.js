@@ -1,9 +1,8 @@
 import Bank from "./bank";
 import * as df from "../firebase/deleteFromFirebase";
 
-
 /*
- Word Bank Model 
+ Model for the app logic
  Keep state values for application
 */
 
@@ -23,15 +22,12 @@ export class Model {
 
     this.boardId = 0;
     this.cardId = Number(0);
-
   }
 
   logout() {
     this.loading = true;
     window.location.reload();
   }
-
-
 
   toString() {
     return (
@@ -48,7 +44,7 @@ export class Model {
   // SignUp action
   createUserModel(userId) {
     this.userId = userId;
-    
+
     this.notifyObservers();
   }
 
@@ -61,7 +57,7 @@ export class Model {
   setCurrentUser(userId) {
     this.userId = userId;
     this.loggedIn = true;
-    
+
     this.notifyObservers();
   }
 
@@ -82,10 +78,9 @@ export class Model {
     return this.banks[this.activeBankId];
   }
 
-
   createCard(phrase, translation, boardId, tag) {
     this.cardId = Number(this.cardId) + 1;
-    // 
+    //
     this.banks[this.activeBankId].createCard(
       phrase,
       translation,
@@ -133,9 +128,7 @@ export class Model {
   }
 
   addBoard(name) {
-    // TODO Networking to add newboard
     this.banks[this.activeBankId].addBoard(name, ++this.boardId);
-    
     this.notifyObservers();
   }
 
@@ -146,7 +139,7 @@ export class Model {
 
   /* 
    ----------------------------------------------------------
-                 TAG FUNCIONALITY Model
+                 TAG FUNCTIONALITY Model
    ----------------------------------------------------------
 
   */
@@ -167,10 +160,9 @@ export class Model {
     this.notifyObservers();
   }
 
-
   /* 
    ----------------------------------------------------------
-                 CARD FUNCIONALITY Model
+                 CARD FUNCTIONALITY Model
    ----------------------------------------------------------
 
   */
@@ -214,21 +206,26 @@ export class Model {
     this.notifyObservers();
   }
 
-  // Edit board
+  /* 
+   ----------------------------------------------------------
+                 BOARD FUNCTIONALITY Model
+   ----------------------------------------------------------
+
+  */
+
   editBoardTitle(title, newTitle) {
     this.banks[this.activeBankId].editBoardTitle(title, newTitle);
     this.notifyObservers();
   }
 
-  // Delete board
   deleteBoard(id) {
     this.banks[this.activeBankId].deleteBoard(id);
     df.deleteBoard(this.userId, this.activeBankId, id);
     this.notifyObservers();
   }
 
-  userHasBoards(){
-    if(this.banks[this.activeBankId].boards.length > 0){
+  userHasBoards() {
+    if (this.banks[this.activeBankId].boards.length > 0) {
       return true;
     } else {
       return false;
@@ -236,9 +233,8 @@ export class Model {
   }
 
   /* 
-        Observer code taken from the awesome repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
-         :) 
-    */
+      Observer code taken from the tutorial repo: fannyev-juliabys-TW2_TW3/js/DinnerModel.js
+  */
 
   addObserver(callback) {
     this.observers = [...this.observers, callback];

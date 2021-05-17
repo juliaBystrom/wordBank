@@ -24,7 +24,6 @@ function App() {
 
   let model = new Model();
 
-
   firebaseApp.firebase_
     .auth()
     .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
@@ -32,13 +31,13 @@ function App() {
   firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
       model.loggedIn = false;
-      model.loadingData(true)
+      model.loadingData(true);
       loadFromFirebase(model, user.uid)
         .then(() => model.setCurrentUser(user.uid))
         .then(() => {
           saveToFirebase(model);
           model.loggedIn = true;
-          model.loadingData(false)
+          model.loadingData(false);
         });
     }
   });
@@ -66,7 +65,6 @@ function App() {
           }}
         />
       </BottomContainer>
-
     </AppWrapper>
   );
 }

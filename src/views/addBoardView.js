@@ -22,8 +22,12 @@ export default function AddBoardView(props) {
   return (
     <BoardWrapper>
       <BoardTitleWrapper>
-          <EditableBoardTitle value={props.value} placeholder="Enter board title" type="text" onChange={e => props.onBoardnameChange(e.target.value)}>
-          </EditableBoardTitle>
+        <EditableBoardTitle
+          value={props.value}
+          placeholder="Enter board title"
+          type="text"
+          onChange={(e) => props.onBoardnameChange(e.target.value)}
+        ></EditableBoardTitle>
       </BoardTitleWrapper>
 
       <BoardCardWrapper>
@@ -33,5 +37,4 @@ export default function AddBoardView(props) {
       </BoardCardWrapper>
     </BoardWrapper>
   );
-
 }

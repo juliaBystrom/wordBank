@@ -1,7 +1,7 @@
 import React from "react";
 
 /*
-    CardView
+    The translation, including the expression from and the resulting translated expression.
     Used in boards
 
 */
@@ -14,12 +14,13 @@ import {
 } from "../styledComponents";
 
 export default function TranslationCardView(props) {
-
   return (
     <Card>
       <span
         key={props.id}
-        onClick={() => { props.onCardPress() }}
+        onClick={() => {
+          props.onCardPress();
+        }}
       >
         <TranslationWrapper>
           <Translation isTranslateFrom={true}>

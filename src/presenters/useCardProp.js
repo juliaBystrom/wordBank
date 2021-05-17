@@ -1,28 +1,20 @@
 import React from "react";
 
-
 /*
  Custom hook handling properties from the Card class of the model.
-
 */
 
 export default function useCardProp(model, boardId, cardId, property) {
-  // custom hook
-  const banks = model.banks;
-  const activeBankId = model.activeBankId;
-
-  const bank = banks.filter((bank) => {
-    return bank.id === activeBankId;
-  })[0];
+  const bank = model.getActiveBank();
 
   const boards = bank.boards;
   var board = boards.filter((board) => {
     return board.id === boardId;
-  })[0];
+  })[0]; // [0] to eliminate array wrap
 
   const card = board.cards.filter((card) => {
     return card.id === cardId;
-  })[0];        
+  })[0]; // [0] to eliminate array wrap
 
   const [value, setValue] = React.useState(card[property]);
 
@@ -39,6 +31,5 @@ export default function useCardProp(model, boardId, cardId, property) {
     },
     [card[property]]
   );
-  // though model never changes
   return value;
 }

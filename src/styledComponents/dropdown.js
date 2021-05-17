@@ -22,7 +22,6 @@ export const Dropdown = styled.nav`
 
   @media (max-width: ${(props) => props.theme.mobile}) {
     width: 90%;
-    
   }
 
   a {
@@ -57,7 +56,7 @@ export const DropdownButton = styled.div`
   ${"" /* // Create more rounded corners */}
   border-radius: 5px;
   flex-direction: row;
-  ${"" /* // When :onHover changes background it will be wioth a transition */}
+  ${"" /* // When :onHover changes background it will be with a transition */}
   background-color: ${(props) => props.theme.button};
   transition: background 0.3s linear;
   text-align: left;
@@ -71,7 +70,6 @@ export const DropdownButton = styled.div`
 
   div {
     &:first-child {
-     
     }
   }
 

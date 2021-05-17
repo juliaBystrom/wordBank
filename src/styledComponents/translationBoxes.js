@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 /*
- Styled componens for wraping and boxing translations
+ Styled components for wrapping and boxing translations
 */
 
 export const TranslateWrapper = styled.div`

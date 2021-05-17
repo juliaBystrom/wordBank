@@ -1,10 +1,8 @@
 /**
- * Lägger till Observers till modellen som uppdaterar databasen när modellens state ändras.
- * Kan behövas separata implementationer för olika delar av modellen.
+ * Observable that continuously saves the entire model in Firestore.
  */
 
 export function saveToFirebase(model) {
-
   model.addObserver(function saveToFirestore() {
     if (model.userId) {
       setTimeout(() => {

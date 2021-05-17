@@ -1,6 +1,5 @@
-
 /*
- Card Class keep state information about a card
+ Card class keeps state information about a card
  A Card contains information about a translation
  
 */

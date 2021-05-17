@@ -1,15 +1,11 @@
 import React from "react";
 
-
 /*
- Custom hook handeling properties from the Bank class of the model.
-
+ Custom hook handling properties from the Bank class of the model.
 */
 
 export default function useBankProp(model, property) {
-  // custom hook
-
-  const bank = model.banks[0];
+  const bank = model.getActiveBank();
   const [value, setValue] = React.useState(bank[property]);
 
   React.useEffect(

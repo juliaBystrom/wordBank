@@ -77,8 +77,10 @@ export const AuthView = ({
     <AuthContainer>
       <Title>Welcome to WordBank!</Title>
       <Intro>
-        Create an account or log in to access your WordBank! <br></br><br></br>
-        WordBank enables you to:<br></br><br></br>
+        Create an account or log in to access your WordBank! <br></br>
+        <br></br>
+        WordBank enables you to:<br></br>
+        <br></br>
         1. save your translations in boards<br></br>
         2. tag translations to navigate through the bank<br></br>
         3. add comments to translations

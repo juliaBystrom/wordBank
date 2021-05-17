@@ -13,7 +13,6 @@ export default function BoardsWrapperPresenter(props) {
   const loadingData = useModelProp(props.model, "loading");
 
   return (
-
     <BankView>
       {/* If isLoading return true because the model is not loaded from firestore the children will not render */}
       {isLoading(loadingData) || props.children}
