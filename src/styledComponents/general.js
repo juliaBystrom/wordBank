@@ -84,14 +84,12 @@ export const RoundButton = styled.button`
 `;
 
 export const AppWrapper = styled.div`
-  background-color: ${(props) => props.theme.appbackground};
   display: flex;
   flex-direction: column;
   align-items: stretch;
   max-width: 1400px;
   padding: 0 auto;
   margin: 0 auto;
-  min-height: 2000px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -127,6 +125,6 @@ export const DeleteButton = styled.button`
   text-align: center;
 
   :hover, :focus {
-    background-color: rgb(244, 91, 105, 0.5);
+    background-color: ${(props) => props.theme.deleteFocus};
   }
 `;

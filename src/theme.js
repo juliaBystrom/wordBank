@@ -15,6 +15,7 @@ export const theme = {
   to: "#d8e2dc",
   button: "#3d405b",
   delete: "#fcb0b3",
+  deleteFocus: "#f45b69",
   appbackground: "#efd3d7",
   showTestBorders: false,
 };
