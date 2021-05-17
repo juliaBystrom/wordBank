@@ -37,7 +37,6 @@ const Credentials = styled.input`
   box-sizing: border-box;
 `;
 
-
 const AuthicationButton = styled.button`
   background: ${(props) => props.theme.queenblue};
   font-size: 20px;
@@ -77,7 +76,13 @@ export const AuthView = ({
   return (
     <AuthContainer>
       <Title>Welcome to WordBank!</Title>
-      <Intro>Log in or register to access your WordBank.</Intro>
+      <Intro>
+        Create an account or log in to access your WordBank! <br></br>
+        WordBank enables you to:<br></br><br></br>
+        1. save your translations in boards<br></br>
+        2. tag translations to navigate through the bank<br></br>
+        3. add comments to translations
+      </Intro>
 
       <div className="signInStatus"></div>
 

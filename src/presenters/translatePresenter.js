@@ -30,15 +30,7 @@ const TranslatePresenter = ({ model }) => {
 
   const createTranslationCard = (boardId) => {
     if (!tag) {
-      alert("
-        Tag your translation to save it.\n
-        
-        Tags are a great way to find the translations you’re looking for by filtering on them in the sidebar.\n 
-
-        Suggestions for tags:\n
-        'Swedish English' - what languages are used
-        'Verb' / 'Past tense' - what grammar is used
-      ");
+      alert("Tag your translation to save it.\n Tags are a great way to find the translations you’re looking for by filtering on them in the sidebar.\n Suggestions for tags:\n 'Swedish English' - what languages are used \n 'Verb' / 'Past tense' - what grammar is used");
     } else if (!transPhrase) {
       alert("Oops! Looks like you haven't clicked on 'Translate!' yet.");
     } else {
