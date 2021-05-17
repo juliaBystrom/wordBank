@@ -16,7 +16,7 @@ export class Model {
     this.fromLanguage = "sv";
     this.loggedIn = false;
     this.userId = "";
-    this.placeholder = "Write here";
+    this.placeholder = "Skriv här";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.boardId = 0;
     this.loading = true;
