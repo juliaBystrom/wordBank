@@ -1,7 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function isLoading(loading, color) {
+/* 
+  Will return false if loading is false outherwise an div with a spinner. Inicating loading of data
+*/
+
+export default function isLoading(loading) {
   if (!loading) {
     return false;
   } else {
@@ -9,7 +13,7 @@ export default function isLoading(loading, color) {
       <LoadingImgDiv>
         <img
           /* className="spinner" */
-          alt="loading data sspinner"
+          alt="loading data spinner"
           src={"http://www.csc.kth.se/~cristi/loading.gif"}
         />
       </LoadingImgDiv>
@@ -19,10 +23,7 @@ export default function isLoading(loading, color) {
 
 const LoadingImgDiv = styled.div`
   width: 100%;
-  // background-color: ${(props) => props.col};
-
   img {
     margin: 0px 40%;
   }
-  // margin: 50px 40%;
 `;

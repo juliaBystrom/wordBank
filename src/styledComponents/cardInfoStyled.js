@@ -118,8 +118,8 @@ export const EditButton = styled.button`
 
   :hover {
     transform: translateY(2px);
-    -webkit-box-shadow: 2px 2px 2px 2px ${(props) => props.theme.hover} inner;
-    box-shadow: 2px 2px 5px 5px ${(props) => props.theme.hover} inner;
+    -webkit-box-shadow: 2px 2px 2px 2px ${(props) => props.theme.darkText} inner;
+    box-shadow: 2px 2px 5px 5px ${(props) => props.theme.darkText} inner;
   }
 
   :focus {

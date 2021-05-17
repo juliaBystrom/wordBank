@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const DropdownItem = styled.nav`
-  ${'' /* display: flex; */}
   box-sizing: border-box;
   flex-direction: row;
   justify-content: center;
@@ -43,6 +42,7 @@ export const DropdownComponentItem = styled.ul`
   padding: 0;
   margin: 0;
   width: 200px;
+  width: 100%;
 
 
 
@@ -51,8 +51,6 @@ export const DropdownComponentItem = styled.ul`
     font-size: 1em;
     transition: color 0.3s linear;
     width: 100%;
-
-     
 
     &:hover {
       color: ${props => props.theme.hover};

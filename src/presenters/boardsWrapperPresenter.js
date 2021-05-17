@@ -15,6 +15,7 @@ export default function BoardsWrapperPresenter(props) {
   return (
 
     <BankView>
+      {/* If isLoading return true because the model is not loaded from firestore the children will not render */}
       {isLoading(loadingData) || props.children}
       <AddBoardView
         value={newBoardName}
