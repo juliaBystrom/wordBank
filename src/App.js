@@ -21,7 +21,9 @@ import { saveToFirebase } from "./firebase/saveToFirebase";
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
+
   let model = new Model();
+
 
   firebaseApp.firebase_
     .auth()
@@ -65,7 +67,6 @@ function App() {
         />
       </BottomContainer>
 
-      {/* <Route exact path="/test" component={boardView} /> */}
     </AppWrapper>
   );
 }

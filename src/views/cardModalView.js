@@ -179,7 +179,7 @@ function getStyle(darkBorder, bgColor) {
       backgroundColor: `${bgColor}`,
     },
     overlay: {
-      // TO DO: Do we want another bluring background colour?
+      // Controlls the background of the pop up
     },
   };
   return customModalStyle;
@@ -188,7 +188,6 @@ function getStyle(darkBorder, bgColor) {
 export const ModalWrapper = styled.div`
   width: 60vw;
   min-width: 250px;
-  // min-width: ${(props) => props.theme.mobile};
 `;
 
 const BoardInput = styled.div`
