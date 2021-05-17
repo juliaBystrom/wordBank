@@ -15,7 +15,7 @@ export const BoardWrapper = styled.div`
   // flex growFactor shrinkFactor basisWidth
   flex: 0.2 0.2 300px;
   min-width: 250px;
-  // min-width: 200px;
+ 
 `;
 
 export const BoardTitleWrapper = styled.div`
