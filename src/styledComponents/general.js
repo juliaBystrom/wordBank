@@ -77,7 +77,7 @@ export const RoundButton = styled.button`
 
   :active {
     background-color: ${(props) => props.theme.link};
-    box-shadow: 0 5px #666;
+    box-shadow: 0 5px #665;
     transform: translateY(1px);
   }
 `;
