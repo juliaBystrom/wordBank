@@ -7,8 +7,8 @@ const Menu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: ${(props) => props.theme.alabaster};
-  box-shadow: 0.5px 0.5px 15px #c4c2c2;
+  background-color: ${(props) => props.theme.white};
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   height: 100vh;
   text-align: left;
   padding: 1rem;

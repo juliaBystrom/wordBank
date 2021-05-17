@@ -30,7 +30,7 @@ export default function CardModalPresenter(props) {
     setTagText("no tag");
   }
 
-  // TO DO get comment without using this
+
   const prevComment = useCardProp(
     props.model,
     props.boardId,

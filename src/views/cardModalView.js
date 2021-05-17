@@ -36,7 +36,7 @@ export default function CardModalView(props) {
       isOpen={props.modalIsOpen}
       onRequestClose={props.closeModal}
       contentLabel="Card info"
-      style={getStyle("#36333b", "#F7F4EA")}
+      style={getStyle("#36333b", "#FFFFFF")}
     >
       <ModalWrapper>
         <ModelHeader>

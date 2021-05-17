@@ -25,7 +25,7 @@ const Burger = styled.button`
   div {
     width: 1.5rem;
     height: 0.2rem;
-    background: ${(props) => props.theme.queenblue};
+    background: ${(props) => props.theme.button};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

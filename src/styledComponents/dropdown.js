@@ -5,10 +5,10 @@ export const Dropdown = styled.nav`
 /*   display: flex;
   flex-direction: row;
   justify-content: center; */
-  background-color: ${(props) => props.theme.queenblue};
+  background-color: ${(props) => props.theme.button};
   text-align: center;
   padding: 1rem 1.5rem 1rem 1.5rem;
-  box-shadow: 0.5px 0.5px 15px #c4c2c2;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   width: 250px;
   flex: 0 0;
   top: 0;
@@ -56,7 +56,6 @@ export const Dropdown = styled.nav`
 
 export const DropdownComponentWrapper = styled.div`
   box-sizing: border-box;
-
   flex: 0 0;
 `;
 
@@ -70,7 +69,8 @@ export const DropdownButton = styled.div`
   border-radius: 4px;
   flex-direction: row;
   ${"" /* // When :onHover changes background it will be wioth a transition */}
-  background-color: ${(props) => props.theme.midnightgreen};
+  background-color: ${(props) => props.theme.button};
+
   transition: background 0.3s linear;
   text-align: left;
   z-index: 0;
@@ -78,21 +78,18 @@ export const DropdownButton = styled.div`
   font-weight: bold;
 
   :hover {
-    background: ${(props) => props.theme.medium};
+    background: ${(props) => props.theme.hover};
   }
 
-  ${
-    "" /* // This will create a one-line border between the first and second div */
-  }
   div {
     &:first-child {
-      // border-right: 1px solid ${(props) => props.theme.light};
+     
     }
   }
 
   p {
     font-size: 1em;
-    color: ${(props) => props.theme.lightText};
+    color: ${(props) => props.theme.white};
     padding: 0em 1em;
 
     @media (max-width: ${(props) => props.theme.mobile}) {
@@ -100,7 +97,6 @@ export const DropdownButton = styled.div`
       text-align: center;
     }
 
-    // When the p is hovered
     &:hover {
       // color: ${(props) => props.theme.hover};
     }

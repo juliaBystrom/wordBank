@@ -38,7 +38,7 @@ const Credentials = styled.input`
 `;
 
 const AuthicationButton = styled.button`
-  background: ${(props) => props.theme.queenblue};
+  background: ${(props) => props.theme.button};
   font-size: 20px;
   margin: 5px 0px;
   padding: 10px 0px;
@@ -61,7 +61,7 @@ const StyledLabel = styled.label`
 
 const Error = styled.span`
   margin-bottom: 10px;
-  color: ${(props) => props.theme.fieryrose};
+  color: ${(props) => props.theme.to};
   font-weight: 800px;
 `;
 

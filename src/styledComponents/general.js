@@ -7,14 +7,14 @@ export const BoardTitle = styled.h2`
 `;
 
 export const EditableBoardTitle = styled.input`
-  background: #fff;
+  background: ${(props) => props.theme.white};
   display: block;
   margin-top: 0.7rem;
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  box-shadow: 0 0 2px #c4c2c2;
-  border-radius: 30px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 2.5px 0px, rgba(255, 255, 255, 0.25) 0px 2.5px 0px inset;
+  ${'' /* border-radius: 30px; */}
   width: 80%;
   outline: none;
   resize: none;
@@ -82,13 +82,14 @@ export const RoundButton = styled.button`
 `;
 
 export const AppWrapper = styled.div`
-  // min-height: 100vh;
+  background-color: ${(props) => props.theme.appbackground};
   display: flex;
   flex-direction: column;
   align-items: stretch;
   max-width: 1400px;
   padding: 0 auto;
   margin: 0 auto;
+  min-height: 2000px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -105,18 +106,12 @@ export const BottomContainer = styled.div`
 `;
 
 export const DeleteButton = styled.button`
-  background: ${(props) => props.theme.fieryrose};
+  background: ${(props) => props.theme.delete};
   display: block;
   margin-top: 0.7rem;
   margin-left: auto;
   margin-right: auto;
   padding: 2px;
-  ${
-    "" /* border-radius: 30px;
-  border-width: 0.5px;
-  border-style: solid;
-  border-color: ${(props) => props.theme.fieryrose} ; */
-  }
   border: 0px solid transparent;
   border-radius: 30px;
   width: 80%;
@@ -127,6 +122,6 @@ export const DeleteButton = styled.button`
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: 0.8em;
-  color: ${(props) => props.theme.darkText};
+  color: ${(props) => props.theme.white};
   text-align: center;
 `;
