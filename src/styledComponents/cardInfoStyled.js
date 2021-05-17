@@ -120,8 +120,7 @@ export const EditButton = styled.button`
     transform: translateY(2px);
     -webkit-box-shadow: 2px 2px 2px 2px ${(props) => props.theme.darkText} inner;
     box-shadow: 2px 2px 5px 5px ${(props) => props.theme.darkText} inner;
-    // Fun thing transform: rotate(45deg);
-    // background:  ${(props) => props.theme.hover};
+
   }
 
   :focus {
@@ -139,7 +138,6 @@ export const ModelHeader = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  // background-color: ${(props) => props.theme.blanchedalmond};
   border-radius: 10px;
   padding: 5px;
 `;
@@ -174,14 +172,11 @@ export const InputTitle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 260px;
   border-radius: 5px 5px 0px 0px;
-  // height: 1em;
   text-align: center;
   background-color: ${(props) => props.theme.queenblue};
   font-family: serif, Times;
   font-size: 1em;
   padding: 5px;
   margin-top: 5px;
-  // margin: 5px 0px;
 `;

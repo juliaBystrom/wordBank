@@ -44,8 +44,6 @@ export const BoardNameInput = styled.input`
   width: 100%;
 
   ::placeholder {
-    /*  font-size: 1.2em;
-        text-align: center; */
     border: none;
   }
 
@@ -71,8 +69,6 @@ export const RoundButton = styled.button`
 
   :hover {
     box-shadow: 0 2px 8px;
-    // Fun thing transform: rotate(45deg);
-    // background:  ${(props) => props.theme.hover};
   }
 
   :focus {
@@ -87,7 +83,6 @@ export const RoundButton = styled.button`
 `;
 
 export const AppWrapper = styled.div`
-  // min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -102,24 +97,19 @@ export const HeaderContainer = styled.div`
 `;
 
 export const TopContainer = styled.div`
-  // width: 100%;
 `;
 
 export const BottomContainer = styled.div`
-  // width: 100%;
 `;
 
 export const DeleteButton = styled.button`
-  //background-color: ${(props) => props.theme.fieryrose};
-  // background-color: rgb(244, 91, 105, 0.1);
+
   background-color: ${(props) => props.theme.darkAlabaster};
-  // display: block;
-  // box-sizing: border-box;
+
   margin-top: 0.7rem;
   margin-left: 12px;
   margin-right: 12px;
   padding: 3px;
-  // box-sizing: border-box;
   border: 1px solid rgb(244, 91, 105, 0.2);
   border-radius: 5px;
   width: 87%;

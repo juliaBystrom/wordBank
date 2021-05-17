@@ -40,7 +40,6 @@ export default function SidebarPresenter({ model }) {
           .then(() => {
             history.push("/");
             model.logout();
-            /* model = null; */
           })
           .catch((err) => {});
       }}

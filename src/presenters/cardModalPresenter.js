@@ -4,18 +4,13 @@ import useCardProp from "./useCardProp";
 
 /*
     CardModalPresenter
-    Presents the information to the popup
+    Presents the information about a card to the popup
 
 */
 
 export default function CardModalPresenter(props) {
-  // Used to controll the tags of the card
-  // const tags = useBankProp(props.model, "tags");
   const tags = props.model.banks[props.model.activeBankId].tags;
   const boards = props.model.banks[props.model.activeBankId].boards;
-
-  /*   console.log("Tags in card modal presenter:")
-  console.log(tags) */
 
   const [editTranslation, setEditTranslation] = React.useState(false);
 
@@ -26,11 +21,9 @@ export default function CardModalPresenter(props) {
 
   const [tagText, setTagText] = React.useState(props.card.tag);
   if (!tagText) {
-    
     setTagText("no tag");
   }
 
-  // TO DO get comment without using this
   const prevComment = useCardProp(
     props.model,
     props.boardId,
@@ -66,10 +59,6 @@ export default function CardModalPresenter(props) {
           setComment(newComment);
         }}
         changePhrase={(newPhrase) => {
-          
-          
-          
-          
           setPhrase(newPhrase);
           props.model.setCardLeftSentence(
             newPhrase,
@@ -78,10 +67,6 @@ export default function CardModalPresenter(props) {
           );
         }}
         changeTranslation={(newPhrase) => {
-          
-          
-          
-          
           setTranslation(newPhrase);
           props.model.setCardRightSentence(
             newPhrase,
@@ -90,30 +75,25 @@ export default function CardModalPresenter(props) {
           );
         }}
         startEditTranslation={() => {
-          
           setEditTranslation(true);
         }}
         closeEditTranslation={() => {
-          
           setEditTranslation(false);
           props.model.setCardNewTag(tagText, props.card.id, props.boardId);
           props.model.setCardComment(comment, props.card.id, props.boardId);
-          
         }}
         editTranslationMode={editTranslation}
         availableBoards={boards}
         toggle={() => {
-          if(boards.length > 1){
+          if (boards.length > 1) {
             setOpenBoard(!openBoard);
           } else {
             alert("You only have one board so far. Create more to move cards!");
           }
         }}
-
         openSelector={openBoard}
         moveToBoard={(board) => {
           // Will close when selected
-
           setOpenBoard(!openBoard);
           props.model.moveCard(props.card.id, props.boardId, board.id);
         }}

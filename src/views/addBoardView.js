@@ -2,8 +2,6 @@ import {
   BoardWrapper,
   BoardTitleWrapper,
   BoardCardWrapper,
-  BoardTitle,
-  BoardNameInput,
   RoundButton,
   EditableBoardTitle,
 } from "../styledComponents";

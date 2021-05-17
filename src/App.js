@@ -23,7 +23,6 @@ function App() {
   window.db = firebaseApp.firestore();
   let model = new WordBankModel();
 
-  const [loading, setLoading] = useState(true);
 
   firebaseApp.firebase_
     .auth()
@@ -67,7 +66,6 @@ function App() {
         />
       </BottomContainer>
 
-      {/* <Route exact path="/test" component={boardView} /> */}
     </AppWrapper>
   );
 }
