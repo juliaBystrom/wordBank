@@ -8,18 +8,16 @@ export const BoardWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   margin: 5px;
-  background-color: ${(props) => props.theme.alabaster};
-  border: 2px ${(props) => (props.theme.showTestBorders ? "solid" : "hidden")}
-    ${(props) => props.theme.testBorder};
+  background-color: ${(props) => props.theme.white};
+  border-width: 6px;
+  border-color: ${(props) => props.theme.darkblue};
   border-radius: 10px;
-  // flex growFactor shrinkFactor basisWidth
   flex: 0.2 0.2 300px;
   min-width: 250px;
- 
 `;
 
 export const BoardTitleWrapper = styled.div`
-  background-color: ${(props) => props.theme.alabaster};
+  background-color: ${(props) => props.theme.white};
   margin-bottom: 10px;
   border: 2px ${(props) => (props.theme.showTestBorders ? "solid" : "hidden")}
     ${(props) => props.theme.testBorder};
@@ -27,7 +25,7 @@ export const BoardTitleWrapper = styled.div`
 `;
 
 export const BoardCardWrapper = styled.div`
-  background-color: ${(props) => props.theme.alabaster};
+  background-color: ${(props) => props.theme.white};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

@@ -19,16 +19,18 @@ export const TitleBox = styled.div`
   border-radius: ${(props) =>
     props.isTranslateFrom ? "5px 5px 0px 0px" : "5px 5px 0px 0px"};
   text-align: center;
-  background-color: ${(props) =>
-    props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain};
+  border-width: 3px;
+  background-color: ${(props) => props.theme.darkblue};
   font-size: 2em;
   padding: 10px 10px;
   box-sizing: border-box;
+  border-color: ${(props) => props.theme.darkblue};
 `;
 
 export const TextBox = styled.textarea`
   border-radius: ${(props) =>
     props.isTranslateFrom ? "0px 0px 5px 5px" : "0px 0px 5px 5px"};
+  border-color: ${(props) => props.theme.darkblue};
   min-height: 100px;
   max-height: 200px;
   width: auto;
@@ -73,16 +75,16 @@ export const TranslateButton = styled.button`
   font-size: 16px;
   font-weight: 600;
   padding: 0.25em 1em;
-  background-color: ${(props) => props.theme.queenblue};
+  background-color: ${(props) => props.theme.button};
   border-radius: 8px;
   padding: 10px 20px;
   height: 40px;
   color: white;
   :hover {
-    background-color: ${(props) => props.theme.dodgerblue};
+    background-color: ${(props) => props.theme.hover};
   }
   :active {
-    background-color: ${(props) => props.theme.dodgerblue};
+    background-color: ${(props) => props.theme.hover};
     box-shadow: 0px 0px 2px 2px gray;
     transform: translateY(2px);
   }

@@ -51,13 +51,14 @@ export const DropdownComponentItem = styled.ul`
     font-size: 1em;
     transition: color 0.3s linear;
     width: 100%;
+
     &:hover {
       color: ${props => props.theme.hover};
     }
     
     &:first-of-type {
         > button {
-          border-top: 1px solid ${props => props.theme.light};
+          border-top: 1px solid ${props => props.theme.white};
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
         }
@@ -70,23 +71,22 @@ export const DropdownComponentItem = styled.ul`
   
   
   button {
-
         flex: 1 0;
         background-color: white;
         font-size: 1em;
         padding: 15px 20px 15px 20px;
         border: 0;
-        border-bottom: 1px solid ${props => props.theme.light};
+        border-bottom: 1px solid ${props => props.theme.white};
        
         width: 100%;
         text-align: left;
-        border-left: 1px solid ${props => props.theme.light};
-        border-right: 1px solid ${props => props.theme.light};
+        border-left: 1px solid ${props => props.theme.white};
+        border-right: 1px solid ${props => props.theme.white};
 
         &:hover, &:focus {
           cursor: pointer;
           font-weight: bold;
-          background-color: ${props => props.theme.light};
+          background-color: ${props => props.theme.white};
         }
 
 

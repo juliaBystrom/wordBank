@@ -7,12 +7,13 @@ export const BoardTitle = styled.h2`
 `;
 
 export const EditableBoardTitle = styled.input`
+  background: ${(props) => props.theme.white};
   display: block;
   margin-top: 0.7rem;
   margin-left: auto;
   margin-right: auto;
   padding: 10px;
-  border-radius: 5px;
+  box-shadow: rgba(27, 31, 35, 0.04) 0px 2.5px 0px, rgba(255, 255, 255, 0.25) 0px 2.5px 0px inset;
   width: 80%;
   outline: none;
   resize: none;
@@ -83,12 +84,14 @@ export const RoundButton = styled.button`
 `;
 
 export const AppWrapper = styled.div`
+  background-color: ${(props) => props.theme.appbackground};
   display: flex;
   flex-direction: column;
   align-items: stretch;
   max-width: 1400px;
   padding: 0 auto;
   margin: 0 auto;
+  min-height: 2000px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -104,16 +107,15 @@ export const BottomContainer = styled.div`
 
 export const DeleteButton = styled.button`
 
-  background-color: ${(props) => props.theme.darkAlabaster};
-
+  background: ${(props) => props.theme.delete};
+  display: block;
   margin-top: 0.7rem;
-  margin-left: 12px;
-  margin-right: 12px;
-  padding: 3px;
-  border: 1px solid rgb(244, 91, 105, 0.2);
-  border-radius: 5px;
-  width: 87%;
-  align-self: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2px;
+  border: 0px solid transparent;
+  border-radius: 30px;
+  width: 80%;
   outline: none;
   resize: none;
   overflow: hidden;
@@ -121,7 +123,7 @@ export const DeleteButton = styled.button`
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: 0.8em;
-  color: ${(props) => props.theme.darkText};
+  color: ${(props) => props.theme.white};
   text-align: center;
 
   :hover, :focus {

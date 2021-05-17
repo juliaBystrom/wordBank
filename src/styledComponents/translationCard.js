@@ -24,13 +24,12 @@ export const TranslationWrapper = styled.div`
 `;
 
 export const Translation = styled.div`
-  background-color: ${(props) =>
-    props.isTranslateFrom ? props.theme.cambridgeblue : props.theme.purplerain};
-  padding: 2px;
+  background-color: ${(props) => props.isTranslateFrom ? props.theme.from : props.theme.to};
+  padding: 1px;
   margin: ${(props) =>
-    props.isTranslateFrom ? "0px 0px 0px 10px" : "0px 10px 0px 0px"};
+    props.isTranslateFrom ? "2px 1.5px 0px 10px" : "2px 10px 0px 1.5px"};
   color: ${(props) => props.theme.darkText};
-  box-shadow: 0px 0px 7px #c4c2c2;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   width: 50%;
   max-height: 100px;
   overflow: auto;
