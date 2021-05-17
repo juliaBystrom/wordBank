@@ -28,7 +28,7 @@ export const AppWithFirebase = () => {
         model.notifyObservers();
         setLoading(false);
       } else {
-        alert("YOU HAVE NO ACCOUNT");
+        alert("Oops! Looks like you don't have an account yet.");
       }
     });
   }, [model]);
