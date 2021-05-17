@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./index.css";
-import App from "./App";
+import App from "../App";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import * as theme from "./theme";
-import { firebaseApp } from "./firebase";
-import { WordBankModel } from "./models/wordBankModel";
+import * as theme from "../theme";
+import { firebaseApp } from "./firebaseConfig";
+import { WordBankModel } from "../models/wordBankModel";
 import { loadFromFirebase } from "./loadFromFirebase";
 
 export const AppWithFirebase = () => {

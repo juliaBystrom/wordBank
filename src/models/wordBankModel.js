@@ -1,5 +1,5 @@
 import Bank from "./bank";
-import * as df from "../deleteFromFirebase";
+import * as df from "../firebase/deleteFromFirebase";
 
 
 /*

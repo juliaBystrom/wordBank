@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { saveToFirebase } from "../saveToFirebase";
+import { saveToFirebase } from "../firebase/saveToFirebase";
 
-import { firebaseApp } from "../firebase";
+import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/AuthView";
 
 
