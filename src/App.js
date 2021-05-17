@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import "./App.css";
-import { Model } from "./models/model";
+import { Model } from "./model/model";
 import { firebaseApp } from "./firebase/firebaseConfig";
 import BankPresenter from "./presenters/bankPresenter";
 import { AuthPresenter } from "./presenters/authPresenter";

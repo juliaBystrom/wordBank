@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import * as theme from "../theme";
 import { firebaseApp } from "./firebaseConfig";
-import { Model } from "../models/model";
+import { Model } from "../model/model";
 import { loadFromFirebase } from "./loadFromFirebase";
 
 export const AppWithFirebase = () => {
