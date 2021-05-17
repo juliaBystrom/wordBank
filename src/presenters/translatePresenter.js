@@ -53,7 +53,7 @@ const TranslatePresenter = ({ model }) => {
       fromLanguage,
       toLanguage,
       function (err, translation) {
-        console.log(phrase);
+        
         model.setTransPhrase(translation.translatedText);
       }
     );
@@ -65,7 +65,7 @@ const TranslatePresenter = ({ model }) => {
       fromLanguage,
       newLanguage,
       function (err, translation) {
-        console.log(placeholder);
+        
         model.setPlaceholder(translation.translatedText);
       }
     );
@@ -82,13 +82,13 @@ const TranslatePresenter = ({ model }) => {
       toLanguage={toLanguage}
       setToLanguage={(newLanguage) => {
         model.setToLanguage(newLanguage);
-        console.log(toLanguage);
+        
       }}
       setFromLanguage={(newLanguage) => {
         translatePlaceholder(newLanguage);
         model.setFromLanguage(newLanguage);
         model.setTransPhrase("");
-        console.log(fromLanguage);
+        
       }}
       translate={() => {
         model.setTransPhrase("");

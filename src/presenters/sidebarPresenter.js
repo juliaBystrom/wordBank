@@ -33,15 +33,15 @@ export default function SidebarPresenter({ model }) {
           .auth()
           .signOut()
           .then(() => {
-            console.log("model = ", model);
+            
             history.push("/");
             model.logout();
             /* model = null; */
 
-            console.log("looged ouuuut!");
+            
           })
           .catch((err) => {
-            console.log("Log out error: ", err);
+            
           });
       }}
     />

@@ -10,7 +10,7 @@ export default function TranslationCardPresenter(props) {
       key={props.card.cardID}
       onCardPress={props.openModal}
       /*  onCardPress={(idOfCard) => {
-                     console.log(`Pressed card: ${idOfCard}`);
+                     
                      openModal();
                  }} */
     />

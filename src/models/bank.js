@@ -44,7 +44,7 @@ export default class Bank {
   addBoard(name, id) {
     // Obs only testing version. Outerwise if not testing the last is not needed
     this.boards = [...this.boards, new Board(name, id)];
-    // console.log("boards inside bank:", this.boards);
+    // 
   }
 
   /* 
@@ -177,9 +177,9 @@ export default class Bank {
           this.boards[boardIndex].setCardNewTag(tag.name, cardId);
         } else {
           this.addTag(newTagName);
-          console.log("New tag ");
-          console.log(newTagName);
-          console.log(this.tags[0]);
+          
+          
+          
 
           // Will take the first tag whitch should be the new one
           this.boards[boardIndex].setCardNewTag(newTagName, cardId);

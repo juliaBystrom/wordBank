@@ -26,7 +26,7 @@ export default function CardModalPresenter(props) {
 
   const [tagText, setTagText] = React.useState(props.card.tag);
   if (!tagText) {
-    console.log("Sets tag text to no tag");
+    
     setTagText("no tag");
   }
 
@@ -66,10 +66,10 @@ export default function CardModalPresenter(props) {
           setComment(newComment);
         }}
         changePhrase={(newPhrase) => {
-          console.log("change phrase");
-          console.log(newPhrase);
-          console.log("editTranslation");
-          console.log(editTranslation);
+          
+          
+          
+          
           setPhrase(newPhrase);
           props.model.setCardLeftSentence(
             newPhrase,
@@ -78,10 +78,10 @@ export default function CardModalPresenter(props) {
           );
         }}
         changeTranslation={(newPhrase) => {
-          console.log("change translation");
-          console.log(newPhrase);
-          console.log("editTranslation");
-          console.log(editTranslation);
+          
+          
+          
+          
           setTranslation(newPhrase);
           props.model.setCardRightSentence(
             newPhrase,
@@ -90,15 +90,15 @@ export default function CardModalPresenter(props) {
           );
         }}
         startEditTranslation={() => {
-          console.log("edit translation");
+          
           setEditTranslation(true);
         }}
         closeEditTranslation={() => {
-          console.log("close edit translation", props.model);
+          
           setEditTranslation(false);
           props.model.setCardNewTag(tagText, props.card.id, props.boardId);
           props.model.setCardComment(comment, props.card.id, props.boardId);
-          console.log("after edit translation", props.model);
+          
         }}
         editTranslationMode={editTranslation}
         availableBoards={boards}

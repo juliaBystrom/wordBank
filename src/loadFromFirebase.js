@@ -10,7 +10,7 @@ export async function loadFromFirebase(model, uid) {
     }
   });
 
-  console.log("LOAD FROM FIREBASE...");
+  
 
   // Restore banks from db
   await usr
@@ -53,8 +53,8 @@ export async function loadFromFirebase(model, uid) {
                   .get()
                   .then((querySnapshot) => {
                     querySnapshot.forEach((card) => {
-                      /*                       console.log("WHEN IS IT RESET? ", model.cardId);
-                      console.log("WHEN IS IT NEW BOARD? ", board.id); */
+                      /*                       
+                       */
                       if (Number(card.id) > Number(model.cardId)) {
                         /* console.log(
                           "CardId: ",
