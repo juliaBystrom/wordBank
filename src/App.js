@@ -1,9 +1,9 @@
 import { Route } from "react-router-dom";
 import "./App.css";
-import { WordBankModel } from "./models/wordBankModel";
-import { firebaseApp } from "./firebase";
+import { Model } from "./model/model";
+import { firebaseApp } from "./firebase/firebaseConfig";
 import BankPresenter from "./presenters/bankPresenter";
-import { AuthPresenter } from "./presenters/AuthPresenter";
+import { AuthPresenter } from "./presenters/authPresenter";
 import TranslatePresenter from "./presenters/translatePresenter";
 import SidebarPresenter from "./presenters/sidebarPresenter";
 
@@ -15,13 +15,14 @@ import {
 } from "./styledComponents";
 
 import { useState } from "react";
-import { loadFromFirebase } from "./loadFromFirebase";
-import { saveToFirebase } from "./saveToFirebase";
+import { loadFromFirebase } from "./firebase/loadFromFirebase";
+import { saveToFirebase } from "./firebase/saveToFirebase";
 
 function App() {
   require("dotenv").config();
   window.db = firebaseApp.firestore();
-  let model = new WordBankModel();
+
+  let model = new Model();
 
 
   firebaseApp.firebase_

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { SidebarView } from "../views";
 import useModelProp from "./useModelProp.js";
 import useBankProp from "./useBankProp.js";
-import { firebaseApp } from "../firebase";
+import { firebaseApp } from "../firebase/firebaseConfig";
 import { useHistory } from "react-router-dom";
 
 /* 

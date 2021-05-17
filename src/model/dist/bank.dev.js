@@ -97,7 +97,7 @@ function () {
                    TAG FUNCIONALITY Bank
      ----------------------------------------------------------
      
-      addTag, editTag and filterOnTag is used by being called in the WordBankModel
+      addTag, editTag and filterOnTag is used by being called in the Model
     
       Theese functions add tags, edit tagnames and update the checked value of tags by interacting with this.tags of this Bank objects. 
     
