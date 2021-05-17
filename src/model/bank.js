@@ -190,12 +190,14 @@ export default class Bank {
     }
   }
 
-  createCard(phrase, translation, saveToBoardId, tag, id) {
+  createCard(phrase, translation, saveToBoardId, tag, id, comment = "") {
     var boardIndex = this.boards.findIndex((board) => {
       return Number(board.id) === Number(saveToBoardId);
     });
 
-    this.boards[boardIndex].addCard(new Card(id, "", phrase, translation, tag));
+    this.boards[boardIndex].addCard(
+      new Card(id, comment, phrase, translation, tag)
+    );
   }
 
   getCardInBoard(cardId, boardId) {

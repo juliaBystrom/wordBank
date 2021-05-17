@@ -5,16 +5,22 @@ import { saveToFirebase } from "../firebase/saveToFirebase";
 import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/authView";
 
-/*
-  authPresenter handles user authentication for login of existing user and register of a new user.
+// TODO: https://firebase.google.com/docs/auth/web/google-signin
 
-*/
 export const AuthPresenter = ({ model }) => {
   let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  //const { currentUser } = useContext(AuthContext);
+  /* let model;
+  if (false) {
+    console.log("USER found: ");
+    loadFromFirebase(model);
+  } else {
+    model = props.model;
+  } */
 
   const loginHandler = async () => {
     /* quickStart(); */
@@ -22,8 +28,8 @@ export const AuthPresenter = ({ model }) => {
       .auth()
       .signInWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
-        
-        // 
+        console.log("LogIn successful ", userCredentials.user.email);
+        // console.log("User id: ", userCredentials.user.uid);
         model.setCurrentUser(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
@@ -54,9 +60,11 @@ export const AuthPresenter = ({ model }) => {
       .auth()
       .createUserWithEmailAndPassword(user.email, user.password)
       .then((userCredentials) => {
+        console.log("Register successful ", userCredentials.user.email);
         model.createUserModel(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
+        model.loadingData(false);
         history.push("/bank");
       })
       .then(() => {
@@ -80,11 +88,11 @@ export const AuthPresenter = ({ model }) => {
       setEmail={(input) => setUser({ ...user, email: input })}
       setPassword={(input) => setUser({ ...user, password: input })}
       handleLogIn={() => {
-        
+        console.log("LogIn: ", user.email, " ", user.password);
         loginHandler();
       }}
       handleRegister={async () => {
-        
+        console.log("Register: ", user.email, " ", user.password);
         registerHandler();
       }}
       emailError={emailError}

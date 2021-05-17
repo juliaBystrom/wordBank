@@ -19,7 +19,7 @@ export class Model {
     this.placeholder = "Write here";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.boardId = 0;
-
+    this.loading = true;
     this.boardId = 0;
     this.cardId = Number(0);
   }
@@ -63,6 +63,7 @@ export class Model {
 
   loadingData(status) {
     this.loading = status;
+    this.notifyObservers();
   }
 
   setCurrentBank(id) {
@@ -86,18 +87,20 @@ export class Model {
       translation,
       Number(boardId),
       tag,
-      this.cardId
+      this.cardId,
+      ""
     );
     this.notifyObservers();
   }
 
-  createCardFromFirebase(phrase, translation, boardId, tag, id) {
+  createCardFromFirebase(phrase, translation, boardId, tag, id, comment) {
     this.banks[this.activeBankId].createCard(
       phrase,
       translation,
       Number(boardId),
       tag,
-      id
+      id,
+      comment
     );
     this.notifyObservers();
   }

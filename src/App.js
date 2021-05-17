@@ -14,7 +14,6 @@ import {
   TopContainer,
 } from "./styledComponents";
 
-import { useState } from "react";
 import { loadFromFirebase } from "./firebase/loadFromFirebase";
 import { saveToFirebase } from "./firebase/saveToFirebase";
 
@@ -31,7 +30,6 @@ function App() {
   firebaseApp.auth().onAuthStateChanged(function (user) {
     if (user) {
       model.loggedIn = false;
-      model.loadingData(true);
       loadFromFirebase(model, user.uid)
         .then(() => model.setCurrentUser(user.uid))
         .then(() => {

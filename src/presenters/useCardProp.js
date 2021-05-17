@@ -29,7 +29,7 @@ export default function useCardProp(model, boardId, cardId, property) {
         model.removeObserver(useCardObs);
       };
     },
-    [card[property]]
+    [card, model, property]
   );
   return value;
 }
