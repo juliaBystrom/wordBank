@@ -1,6 +1,7 @@
 ## WordBank (Group 7):
 
 ![bild](https://user-images.githubusercontent.com/42782387/118537443-3c7b2400-b74d-11eb-8dbd-410e4ba30f07.png)
+![bild](https://user-images.githubusercontent.com/42782387/118538754-e60ee500-b74e-11eb-9859-f987d23801eb.png)
 
 ### Project description
 
@@ -8,7 +9,7 @@ The project's target group will be people who aim to learn a new language. The u
 
 Link to current website: https://wordbank.netlify.app/
 
-### SET UP
+### SETUP
 
 #### Clone this repo
 ```
