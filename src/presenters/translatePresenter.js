@@ -4,6 +4,12 @@ import useBankProp from "./useBankProp";
 import { googleTranslate } from "../utils/googleTranslate";
 import useModelProp from "./useModelProp";
 
+/* 
+
+TranslatePresenter handles translation of phrases. If user is loggedIn it will also handle tagging and saving of translation
+
+*/
+
 const TranslatePresenter = ({ model }) => {
   /* const { currentUser } = useContext(AuthContext);
   let model;
@@ -24,7 +30,7 @@ const TranslatePresenter = ({ model }) => {
 
   const createTranslationCard = (boardId) => {
     if (!tag) {
-      alert("Tag your translation to save it.")
+      alert("Tag your translation to save it.");
     } else if (!transPhrase) {
       alert("Oops! Looks like you haven't clicked on 'Translate!' yet.");
     } else {
@@ -32,8 +38,6 @@ const TranslatePresenter = ({ model }) => {
       model.createCard(phrase, transPhrase, boardId, tag);
     }
   };
-
-
 
   const [languageCodes, setLanguageCodes] = useState([]);
 
@@ -53,7 +57,6 @@ const TranslatePresenter = ({ model }) => {
       fromLanguage,
       toLanguage,
       function (err, translation) {
-        console.log(phrase);
         model.setTransPhrase(translation.translatedText);
       }
     );
@@ -65,7 +68,6 @@ const TranslatePresenter = ({ model }) => {
       fromLanguage,
       newLanguage,
       function (err, translation) {
-        console.log(placeholder);
         model.setPlaceholder(translation.translatedText);
       }
     );
@@ -82,13 +84,11 @@ const TranslatePresenter = ({ model }) => {
       toLanguage={toLanguage}
       setToLanguage={(newLanguage) => {
         model.setToLanguage(newLanguage);
-        console.log(toLanguage);
       }}
       setFromLanguage={(newLanguage) => {
         translatePlaceholder(newLanguage);
         model.setFromLanguage(newLanguage);
         model.setTransPhrase("");
-        console.log(fromLanguage);
       }}
       translate={() => {
         model.setTransPhrase("");
@@ -112,12 +112,12 @@ const TranslatePresenter = ({ model }) => {
       }}
       availableBoards={boards}
       toggle={() => {
-        if(model.userHasBoards()){
+        if (model.userHasBoards()) {
           setOpen(!open);
         } else {
           alert("Create a board to save your translation to.");
         }
-        }}
+      }}
       openSelector={open}
     />
   );

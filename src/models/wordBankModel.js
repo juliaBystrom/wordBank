@@ -1,6 +1,12 @@
 import Bank from "./bank";
 import * as df from "../deleteFromFirebase";
 
+
+/*
+ Word Bank Model 
+ Keep state values for application
+*/
+
 export class WordBankModel {
   constructor() {
     this.activeBankId = 0;
@@ -11,7 +17,7 @@ export class WordBankModel {
     this.fromLanguage = "sv";
     this.loggedIn = false;
     this.userId = "";
-    this.placeholder = "Skriv här";
+    this.placeholder = "Write here";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.boardId = 0;
 
@@ -42,7 +48,7 @@ export class WordBankModel {
   // SignUp action
   createUserModel(userId) {
     this.userId = userId;
-    console.log(this.userId);
+    
     this.notifyObservers();
   }
 
@@ -55,7 +61,7 @@ export class WordBankModel {
   setCurrentUser(userId) {
     this.userId = userId;
     this.loggedIn = true;
-    console.log(this.userId);
+    
     this.notifyObservers();
   }
 
@@ -79,7 +85,7 @@ export class WordBankModel {
 
   createCard(phrase, translation, boardId, tag) {
     this.cardId = Number(this.cardId) + 1;
-    // console.log("CardID BEFORE CREATING CARD: ", this.cardId);
+    // 
     this.banks[this.activeBankId].createCard(
       phrase,
       translation,
@@ -129,7 +135,7 @@ export class WordBankModel {
   addBoard(name) {
     // TODO Networking to add newboard
     this.banks[this.activeBankId].addBoard(name, ++this.boardId);
-    console.log("id of board: ", this.boardId);
+    
     this.notifyObservers();
   }
 

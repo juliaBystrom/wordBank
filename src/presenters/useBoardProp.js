@@ -1,5 +1,9 @@
 import React from "react";
 
+/*
+ Custom hook handeling properties from the Board class of the model.
+
+*/
 export default function useBoardProp(model, id, property) {
   // custom hook
   const banks = model.banks;

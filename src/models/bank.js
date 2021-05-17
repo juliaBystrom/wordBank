@@ -1,6 +1,13 @@
 import Board from "./board";
 import Card from "./card";
 
+
+/*
+ Bank Class keep state information about a Bank
+ A Bank is a set of boards with translation cards
+ 
+*/
+
 export default class Bank {
   constructor(id) {
     this.id = id;
@@ -44,7 +51,7 @@ export default class Bank {
   addBoard(name, id) {
     // Obs only testing version. Outerwise if not testing the last is not needed
     this.boards = [...this.boards, new Board(name, id)];
-    // console.log("boards inside bank:", this.boards);
+    // 
   }
 
   /* 
@@ -177,9 +184,9 @@ export default class Bank {
           this.boards[boardIndex].setCardNewTag(tag.name, cardId);
         } else {
           this.addTag(newTagName);
-          console.log("New tag ");
-          console.log(newTagName);
-          console.log(this.tags[0]);
+          
+          
+          
 
           // Will take the first tag whitch should be the new one
           this.boards[boardIndex].setCardNewTag(newTagName, cardId);
@@ -194,7 +201,7 @@ export default class Bank {
     });
 
     this.boards[boardIndex].addCard(
-      new Card(id, "Kommentar Holder", phrase, translation, tag)
+      new Card(id, "", phrase, translation, tag)
     );
   }
 

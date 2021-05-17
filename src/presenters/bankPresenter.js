@@ -9,7 +9,6 @@ BankPresenter manages:
   - boardWrapperPresenter
   - boardpresenters (one presenter for every board)
 
-  Note: Might be moved to an presenter also managing login. 
 
 */
 

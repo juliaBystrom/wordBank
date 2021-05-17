@@ -62,14 +62,14 @@ function () {
     key: "sortAlphabetically",
     value: function sortAlphabetically() {
       // TODO: order boards from left to right on last edit
-      console.log("Sort Latest Edited");
+      
       return;
     }
   }, {
     key: "sortMostUsed",
     value: function sortMostUsed() {
       // TODO: order boards from left to right on most clicked
-      console.log("Sort Most Used");
+      
       return;
     }
   }, {
@@ -114,7 +114,7 @@ function () {
           name: name,
           checked: false
         }]);
-      } else {// console.log("[Info from model]: Tag already exist. No new tag created");
+      } else {// 
       }
     }
   }, {
@@ -168,8 +168,8 @@ function () {
       } // this.bankIsFiltered = this.checkedTags === 0;
 
 
-      console.log("checkedTags", this.checkedTags);
-      console.log("Equality assignment:", this.checkedTags === 0);
+      
+      
 
       for (var i = 0; i < this.boards.length; i++) {
         this.boards[i].filterCards(this.bankIsFiltered, this.tags);
@@ -193,7 +193,7 @@ function () {
   }, {
     key:"getBoardId",
     value: function getBoardId(title){
-      console.log("Boards: ", this.boards);
+      
       console.log("boardId, getBoardId: ", this.boards.filter((board) => {
         return board.title === title;
       }).id);

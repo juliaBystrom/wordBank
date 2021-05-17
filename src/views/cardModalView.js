@@ -101,53 +101,53 @@ export default function CardModalView(props) {
           </StyledCloseButton>
         </ModelHeader>
 
-        <form>
-          <label>
-            <InputTitle>Comment</InputTitle>
+        <label>
+          <InputTitle>Comment</InputTitle>
 
-            <TextBoxDynamic
-              disabled={props.editTranslationMode === false}
-              value={props.comment}
-              onChange={(event) => props.setComment(event.target.value)}
-            />
-          </label>
-          <label>
-            <InputTitle>Tag</InputTitle>
-            <TagInput
-              disabled={props.editTranslationMode === false}
-              onChange={(event) => props.setTag(event.target.value)}
-              type="text"
-              name="tag"
-              list="taglist"
-              placeholder={props.tagText}
-            ></TagInput>
-          </label>
+          <TextBoxDynamic
+            disabled={props.editTranslationMode === false}
+            value={props.comment}
+            onChange={(event) => props.setComment(event.target.value)}
+          />
+        </label>
+        <label>
+          <InputTitle>Tag</InputTitle>
+          <TagInput
+            disabled={props.editTranslationMode === false}
+            onChange={(event) => props.setTag(event.target.value)}
+            type="text"
+            name="tag"
+            list="taglist"
+            placeholder={props.tagText}
+          ></TagInput>
+        </label>
 
-          <BoardInput>
-            <DropdownComponent
-              list={props.availableBoards.filter((board)=>{
-                return board.id !== props.boardId;
-              })}
-              title={"Move card to board: "}
-              open={props.openSelector}
-              toggle={() => {props.toggle()}}
-              onSelectionDone={(board) => {
-                props.onMoveCard(board.id);
-              }}
-              keyExtractor={(item) => {
-                return item.id;
-              }}
-            />
-          </BoardInput>
-
-          <DeleteButton
-            onClick={() => {
-              props.onDeleteCard();
+        <BoardInput>
+          <DropdownComponent
+            list={props.availableBoards.filter((board) => {
+              return board.id !== props.boardId;
+            })}
+            title={"Move card to board: "}
+            open={props.openSelector}
+            toggle={() => {
+              props.toggle();
             }}
-          >
-            Delete card
-          </DeleteButton>
-        </form>
+            onSelectionDone={(board) => {
+              props.onMoveCard(board.id);
+            }}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+          />
+        </BoardInput>
+
+        <DeleteButton
+          onClick={() => {
+            props.onDeleteCard();
+          }}
+        >
+          Delete card
+        </DeleteButton>
 
         <datalist id="taglist">
           {props.tags.map((opt) => (

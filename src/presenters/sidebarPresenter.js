@@ -5,6 +5,11 @@ import useBankProp from "./useBankProp.js";
 import { firebaseApp } from "../firebase";
 import { useHistory } from "react-router-dom";
 
+/* 
+SidebarPresenter handles sidebar actions sush as logout and filter on tags
+
+*/
+
 export default function SidebarPresenter({ model }) {
   const [open, setOpen] = useState(0);
   const [dropBanks, setDropBanks] = useState(0);
@@ -33,16 +38,11 @@ export default function SidebarPresenter({ model }) {
           .auth()
           .signOut()
           .then(() => {
-            console.log("model = ", model);
             history.push("/");
             model.logout();
             /* model = null; */
-
-            console.log("looged ouuuut!");
           })
-          .catch((err) => {
-            console.log("Log out error: ", err);
-          });
+          .catch((err) => {});
       }}
     />
   );
