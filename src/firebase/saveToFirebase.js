@@ -11,7 +11,7 @@ export function saveToFirebase(model) {
         const usr = window.db.collection("users").doc(String(model.userId));
         usr
           .set({
-            activeBankID: model.activeBankId,
+            activeBankId: model.activeBankId,
           })
 
           .then(

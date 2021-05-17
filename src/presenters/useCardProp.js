@@ -6,7 +6,7 @@ import React from "react";
 
 */
 
-export default function useCardProp(model, boardId, cardID, property) {
+export default function useCardProp(model, boardId, cardId, property) {
   // custom hook
   const banks = model.banks;
   const activeBankId = model.activeBankId;
@@ -21,7 +21,7 @@ export default function useCardProp(model, boardId, cardID, property) {
   })[0];
 
   const card = board.cards.filter((card) => {
-    return card.id === cardID;
+    return card.id === cardId;
   })[0];        
 
   const [value, setValue] = React.useState(card[property]);

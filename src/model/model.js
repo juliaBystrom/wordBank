@@ -78,8 +78,8 @@ export class Model {
     this.banks = [new Bank(id), ...this.banks];
   }
 
-  getCurrentBank() {
-    return this.banks[0];
+  getActiveBank() {
+    return this.banks[this.activeBankId];
   }
 
 

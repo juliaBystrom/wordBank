@@ -12,8 +12,8 @@ export default function TranslationCardPresenter(props) {
     <TranslationCardView
       leftSentence={props.card.leftSentence}
       rightSentence={props.card.rightSentence}
-      id={props.card.cardID}
-      key={props.card.cardID}
+      id={props.card.cardId}
+      key={props.card.cardId}
       onCardPress={props.openModal}
 
     />
