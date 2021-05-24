@@ -34,7 +34,11 @@ export default function BoardPresenter(props) {
       onEditBoardTitle={(newTitle) => {
         props.model.editBoardTitle(title, newTitle);
       }}
-      onDeleteBoard={() => props.model.deleteBoard(props.id)}
+      onDeleteBoard={() => {
+        if (window.confirm("Are you sure you want to delete this board?")) {
+          props.model.deleteBoard(props.id);
+        }
+      }}
     >
       {cardPresenterList}
     </BoardView>
