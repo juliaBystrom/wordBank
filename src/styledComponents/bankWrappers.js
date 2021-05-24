@@ -8,6 +8,7 @@ export const BoardWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   margin: 5px;
+  padding: 9px 0 16px 0;
   background-color: ${(props) => props.theme.white};
   border-width: 6px;
   border-color: ${(props) => props.theme.darkblue};

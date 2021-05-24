@@ -22,14 +22,15 @@ export default function BoardView(props) {
 
       <BoardCardWrapper>
         {props.children}
-        <DeleteButton
+
+      </BoardCardWrapper>
+      <DeleteButton
           onClick={() => {
             props.onDeleteBoard();
           }}
         >
           Delete board
         </DeleteButton>
-      </BoardCardWrapper>
     </BoardWrapper>
   );
 }

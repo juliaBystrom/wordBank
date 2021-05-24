@@ -109,22 +109,22 @@ export const BottomContainer = styled.div``;
 export const DeleteButton = styled.button`
   background: ${(props) => props.theme.delete};
   display: block;
-  margin-top: 0.7rem;
-  margin-left: auto;
-  margin-right: auto;
+  align-self: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-top: 2px;
   padding: 2px;
   border: 0px solid transparent;
   border-radius: 30px;
-  width: 80%;
-  outline: none;
-  resize: none;
-  overflow: hidden;
+  min-width: 246px;
+  width: 98%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   font-size: 0.8em;
   color: ${(props) => props.theme.white};
   text-align: center;
+
 
   :hover,
   :focus {
