@@ -28,6 +28,7 @@ export default function BankPresenter(props) {
         title={board.title}
       />
     ) : null;
+
   });
 
   return (
