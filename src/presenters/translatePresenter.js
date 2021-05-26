@@ -22,7 +22,7 @@ const TranslatePresenter = ({ model }) => {
   let tags = useBankProp(model, "tags");
 
   const [open, setOpen] = useState(false);
-
+  const [loadingText, setLoadingText] = useState("Hämtar översättning...");
   const createTranslationCard = (boardId) => {
     if (!tag) {
       alert(
@@ -47,27 +47,26 @@ const TranslatePresenter = ({ model }) => {
     });
   }, []);
 
-  const translate = () => {
+  //newLanguage is toLanguage by default, if not stated by caller
+  const translate = (text, translateCallback, newLanguage = toLanguage) => {
     googleTranslate.translate(
-      phrase,
+      text,
       fromLanguage,
-      toLanguage,
+      newLanguage,
       function (err, translation) {
-        model.setTransPhrase(translation.translatedText);
+        translateCallback(translation.translatedText);
       }
     );
   };
 
-  const translatePlaceholder = (newLanguage) => {
-    googleTranslate.translate(
-      placeholder,
-      fromLanguage,
-      newLanguage,
-      function (err, translation) {
-        model.setPlaceholder(translation.translatedText);
-      }
-    );
-  };
+  //Functions to enable callback in translate()
+  function setPlaceholder(newPlaceholder) {
+    model.setPlaceholder(newPlaceholder);
+  }
+
+  function setTransPhrase(newTransPhrase) {
+    model.setTransPhrase(newTransPhrase);
+  }
 
   return (
     <TranslateView
@@ -82,13 +81,18 @@ const TranslatePresenter = ({ model }) => {
         model.setToLanguage(newLanguage);
       }}
       setFromLanguage={(newLanguage) => {
-        translatePlaceholder(newLanguage);
         model.setFromLanguage(newLanguage);
-        model.setTransPhrase("");
+        translate(placeholder, setPlaceholder, newLanguage);
+        translate(loadingText, setLoadingText, newLanguage);
+        model.setPhrase("");
       }}
       translate={() => {
-        model.setTransPhrase("");
-        translate();
+        model.setTransPhrase(loadingText);
+        if (fromLanguage === toLanguage) {
+          model.setTransPhrase(phrase);
+          return;
+        }
+        translate(phrase, setTransPhrase);
       }}
       tags={tags}
       setPhrase={(phrase) => {

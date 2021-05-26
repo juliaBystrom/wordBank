@@ -1,4 +1,3 @@
-import { Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import "./App.css";
 import { Model } from "./model/model";
@@ -17,7 +16,6 @@ import {
 
 import { loadFromFirebase } from "./firebase/loadFromFirebase";
 import { saveToFirebase } from "./firebase/saveToFirebase";
-import useModelProp from "./presenters/useModelProp";
 
 function App() {
   require("dotenv").config();
@@ -31,9 +29,7 @@ function App() {
 
   useEffect(() => {
     return firebaseApp.auth().onAuthStateChanged(function (user) {
-      console.log("auth state changed");
       if (user) {
-        console.log("user logged in");
         loadFromFirebase(model, user.uid)
           .then(() => model.setCurrentUser(user.uid))
           .then(() => {
@@ -56,7 +52,6 @@ function App() {
       <BottomContainer>
         <AuthPresenter model={model} />
         <BankPresenter model={model} />
-
       </BottomContainer>
     </AppWrapper>
   );
