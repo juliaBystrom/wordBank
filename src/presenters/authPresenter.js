@@ -4,6 +4,7 @@ import { saveToFirebase } from "../firebase/saveToFirebase";
 
 import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/authView";
+import useModelProp from "./useModelProp";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
@@ -12,6 +13,7 @@ export const AuthPresenter = ({ model }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const loggedIn = useModelProp(model, "loggedIn");
 
   const loginHandler = async () => {
     /* quickStart(); */
@@ -22,13 +24,6 @@ export const AuthPresenter = ({ model }) => {
         model.setCurrentUser(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
-      })
-      .then(async () => {
-        // await loadFromFirebase(model, model.userId);
-        history.push("/bank");
-      })
-      .then(() => {
-        // saveToFirebase(model);
       })
       .catch((err) => {
         if (
@@ -71,7 +66,7 @@ export const AuthPresenter = ({ model }) => {
       });
   };
 
-  return (
+  return !loggedIn ? (
     <AuthView
       setEmail={(input) => setUser({ ...user, email: input })}
       setPassword={(input) => setUser({ ...user, password: input })}
@@ -84,5 +79,5 @@ export const AuthPresenter = ({ model }) => {
       emailError={emailError}
       passwordError={passwordError}
     />
-  );
+  ) : null;
 };

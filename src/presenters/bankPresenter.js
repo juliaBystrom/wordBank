@@ -3,6 +3,7 @@ import React from "react";
 import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 import useBankProp from "./useBankProp";
+import useModelProp from "./useModelProp";
 
 /*
 BankPresenter manages:
@@ -14,10 +15,11 @@ BankPresenter manages:
 
 export default function BankPresenter(props) {
   const boards = useBankProp(props.model, "boards");
+  const loggedIn = useModelProp(props.model, "loggedIn");
 
   // Index is used because boards are stored as an array in the model.
   const boardPresenters = boards.map((board, index) => {
-    return (
+    return loggedIn ? (
       <BoardPresenter
         model={props.model}
         boardIndex={index}
@@ -25,12 +27,14 @@ export default function BankPresenter(props) {
         id={board.id}
         title={board.title}
       />
-    );
+    ) : null;
   });
 
   return (
-    <BoardsWrapperPresenter model={props.model}>
-      {boardPresenters}
-    </BoardsWrapperPresenter>
+    loggedIn && (
+      <BoardsWrapperPresenter model={props.model}>
+        {boardPresenters}
+      </BoardsWrapperPresenter>
+    )
   );
 }
