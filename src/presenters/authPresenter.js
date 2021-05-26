@@ -4,6 +4,7 @@ import { saveToFirebase } from "../firebase/saveToFirebase";
 
 import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/authView";
+import useModelProp from "./useModelProp";
 
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
@@ -71,18 +72,22 @@ export const AuthPresenter = ({ model }) => {
       });
   };
 
+  const loggedIn = useModelProp(model, "loggedIn");
+
   return (
-    <AuthView
-      setEmail={(input) => setUser({ ...user, email: input })}
-      setPassword={(input) => setUser({ ...user, password: input })}
-      handleLogIn={() => {
-        loginHandler();
-      }}
-      handleRegister={async () => {
-        registerHandler();
-      }}
-      emailError={emailError}
-      passwordError={passwordError}
-    />
+    !loggedIn && (
+      <AuthView
+        setEmail={(input) => setUser({ ...user, email: input })}
+        setPassword={(input) => setUser({ ...user, password: input })}
+        handleLogIn={() => {
+          loginHandler();
+        }}
+        handleRegister={async () => {
+          registerHandler();
+        }}
+        emailError={emailError}
+        passwordError={passwordError}
+      />
+    )
   );
 };

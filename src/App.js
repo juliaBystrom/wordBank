@@ -1,4 +1,5 @@
 import { Route } from "react-router-dom";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Model } from "./model/model";
 import { firebaseApp } from "./firebase/firebaseConfig";
@@ -16,6 +17,7 @@ import {
 
 import { loadFromFirebase } from "./firebase/loadFromFirebase";
 import { saveToFirebase } from "./firebase/saveToFirebase";
+import useModelProp from "./presenters/useModelProp";
 
 function App() {
   require("dotenv").config();
@@ -27,18 +29,20 @@ function App() {
     .auth()
     .setPersistence(firebaseApp.firebase_.auth.Auth.Persistence.SESSION);
 
-  firebaseApp.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      model.loggedIn = false;
-      loadFromFirebase(model, user.uid)
-        .then(() => model.setCurrentUser(user.uid))
-        .then(() => {
-          saveToFirebase(model);
-          model.loggedIn = true;
-          model.loadingData(false);
-        });
-    }
-  });
+  useEffect(() => {
+    return firebaseApp.auth().onAuthStateChanged(function (user) {
+      console.log("auth state changed");
+      if (user) {
+        console.log("user logged in");
+        loadFromFirebase(model, user.uid)
+          .then(() => model.setCurrentUser(user.uid))
+          .then(() => {
+            saveToFirebase(model);
+            model.loadingData(false);
+          });
+      }
+    });
+  }, []);
 
   return (
     <AppWrapper>
@@ -50,7 +54,11 @@ function App() {
       </TopContainer>
 
       <BottomContainer>
-        <Route
+        <BankPresenter model={model} />
+
+        <AuthPresenter model={model} />
+
+        {/* <Route
           exact
           path="/"
           component={() => <AuthPresenter model={model} />}
@@ -61,7 +69,7 @@ function App() {
           component={() => {
             return <BankPresenter model={model} />;
           }}
-        />
+        /> */}
       </BottomContainer>
     </AppWrapper>
   );
