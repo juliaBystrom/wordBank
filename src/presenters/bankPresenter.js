@@ -19,17 +19,16 @@ export default function BankPresenter(props) {
 
   // Index is used because boards are stored as an array in the model.
   const boardPresenters = boards.map((board, index) => {
-    return (
-      loggedIn && (
-        <BoardPresenter
-          model={props.model}
-          boardIndex={index}
-          key={board.id}
-          id={board.id}
-          title={board.title}
-        />
-      )
-    );
+    return loggedIn ? (
+      <BoardPresenter
+        model={props.model}
+        boardIndex={index}
+        key={board.id}
+        id={board.id}
+        title={board.title}
+      />
+    ) : null;
+
   });
 
   return (

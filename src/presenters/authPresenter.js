@@ -13,6 +13,7 @@ export const AuthPresenter = ({ model }) => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const loggedIn = useModelProp(model, "loggedIn");
 
   const loginHandler = async () => {
     /* quickStart(); */
@@ -23,13 +24,6 @@ export const AuthPresenter = ({ model }) => {
         model.setCurrentUser(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
-      })
-      .then(async () => {
-        // await loadFromFirebase(model, model.userId);
-        history.push("/bank");
-      })
-      .then(() => {
-        // saveToFirebase(model);
       })
       .catch((err) => {
         if (
@@ -72,22 +66,19 @@ export const AuthPresenter = ({ model }) => {
       });
   };
 
-  const loggedIn = useModelProp(model, "loggedIn");
+  return !loggedIn ? (
+    <AuthView
+      setEmail={(input) => setUser({ ...user, email: input })}
+      setPassword={(input) => setUser({ ...user, password: input })}
+      handleLogIn={() => {
+        loginHandler();
+      }}
+      handleRegister={async () => {
+        registerHandler();
+      }}
+      emailError={emailError}
+      passwordError={passwordError}
+    />
+  ) : null;
 
-  return (
-    !loggedIn && (
-      <AuthView
-        setEmail={(input) => setUser({ ...user, email: input })}
-        setPassword={(input) => setUser({ ...user, password: input })}
-        handleLogIn={() => {
-          loginHandler();
-        }}
-        handleRegister={async () => {
-          registerHandler();
-        }}
-        emailError={emailError}
-        passwordError={passwordError}
-      />
-    )
-  );
 };

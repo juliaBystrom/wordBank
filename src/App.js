@@ -54,22 +54,9 @@ function App() {
       </TopContainer>
 
       <BottomContainer>
+        <AuthPresenter model={model} />
         <BankPresenter model={model} />
 
-        <AuthPresenter model={model} />
-
-        {/* <Route
-          exact
-          path="/"
-          component={() => <AuthPresenter model={model} />}
-        />
-        <Route
-          exact
-          path="/bank"
-          component={() => {
-            return <BankPresenter model={model} />;
-          }}
-        /> */}
       </BottomContainer>
     </AppWrapper>
   );
