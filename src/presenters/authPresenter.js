@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { saveToFirebase } from "../firebase/saveToFirebase";
 
 import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/authView";
 import useModelProp from "./useModelProp";
 
+
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
 export const AuthPresenter = ({ model }) => {
-  let history = useHistory();
   const [user, setUser] = useState({ email: "", password: "" });
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const loggedIn = useModelProp(model, "loggedIn");
+  const loadingData = useModelProp(model, "loading");
+  const refresh = useModelProp(model, "refresh");
 
   const loginHandler = async () => {
     /* quickStart(); */
@@ -48,7 +49,6 @@ export const AuthPresenter = ({ model }) => {
         setEmailError("");
         setPasswordError("");
         model.loadingData(false);
-        history.push("/bank");
       })
       .then(() => {
         saveToFirebase(model);
@@ -66,7 +66,7 @@ export const AuthPresenter = ({ model }) => {
       });
   };
 
-  return !loggedIn ? (
+  return (!loggedIn && !loadingData && !refresh )? (
     <AuthView
       setEmail={(input) => setUser({ ...user, email: input })}
       setPassword={(input) => setUser({ ...user, password: input })}

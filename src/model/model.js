@@ -19,9 +19,10 @@ export class Model {
     this.placeholder = "Skriv här";
     // Binding is done to be able to pass these funcitons to other classes but having the same this reference.
     this.boardId = 0;
-    this.loading = true;
+    this.loading = false;
     this.boardId = 0;
     this.cardId = Number(0);
+    this.refresh = true;
   }
 
   logout() {
@@ -50,6 +51,11 @@ export class Model {
 
   setLoggedIn(bool) {
     this.loggedIn = bool;
+    this.notifyObservers();
+  }
+
+  setRefresh(isRefreshing) {
+    this.refresh = isRefreshing;
     this.notifyObservers();
   }
 

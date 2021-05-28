@@ -30,15 +30,25 @@ function App() {
   useEffect(() => {
     return firebaseApp.auth().onAuthStateChanged(function (user) {
       if (user) {
+        model.loadingData(true);
+        model.setRefresh(true);
         loadFromFirebase(model, user.uid)
-          .then(() => model.setCurrentUser(user.uid))
+          .then(() => {
+            model.setCurrentUser(user.uid);
+            model.loadingData(false);
+          })
           .then(() => {
             saveToFirebase(model);
-            model.loadingData(false);
+          })
+          .finally(() => {
+            model.setRefresh(false);
           });
-      }
+      } else {
+        model.setRefresh(false)
+      } 
     });
   }, []);
+
 
   return (
     <AppWrapper>
