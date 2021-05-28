@@ -22,6 +22,7 @@ export class Model {
     this.loading = false;
     this.boardId = 0;
     this.cardId = Number(0);
+    this.refresh = true;
   }
 
   logout() {
@@ -50,6 +51,11 @@ export class Model {
 
   setLoggedIn(bool) {
     this.loggedIn = bool;
+    this.notifyObservers();
+  }
+
+  setRefresh(isRefreshing) {
+    this.refresh = isRefreshing;
     this.notifyObservers();
   }
 
