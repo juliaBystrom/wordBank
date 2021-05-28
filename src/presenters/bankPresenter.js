@@ -4,6 +4,7 @@ import BoardPresenter from "./boardPresenter";
 import BoardsWrapperPresenter from "./boardsWrapperPresenter";
 import useBankProp from "./useBankProp";
 import useModelProp from "./useModelProp";
+import { isLoading } from "../views";
 
 /*
 BankPresenter manages:
@@ -16,6 +17,8 @@ BankPresenter manages:
 export default function BankPresenter(props) {
   const boards = useBankProp(props.model, "boards");
   const loggedIn = useModelProp(props.model, "loggedIn");
+  const loadingData = useModelProp(props.model, "loading");
+  // console.log("loading bank PRES: ", loadingData);
 
   // Index is used because boards are stored as an array in the model.
   const boardPresenters = boards.map((board, index) => {
@@ -28,14 +31,14 @@ export default function BankPresenter(props) {
         title={board.title}
       />
     ) : null;
-
   });
 
   return (
-    loggedIn && (
+    isLoading(loadingData) ||
+    (loggedIn && (
       <BoardsWrapperPresenter model={props.model}>
         {boardPresenters}
       </BoardsWrapperPresenter>
-    )
+    ))
   );
 }

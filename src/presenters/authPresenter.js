@@ -6,6 +6,7 @@ import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/authView";
 import useModelProp from "./useModelProp";
 
+
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
 export const AuthPresenter = ({ model }) => {
@@ -14,6 +15,7 @@ export const AuthPresenter = ({ model }) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const loggedIn = useModelProp(model, "loggedIn");
+  const loadingData = useModelProp(model, "loading");
 
   const loginHandler = async () => {
     /* quickStart(); */
@@ -66,7 +68,7 @@ export const AuthPresenter = ({ model }) => {
       });
   };
 
-  return !loggedIn ? (
+  return !loggedIn && !loadingData ? (
     <AuthView
       setEmail={(input) => setUser({ ...user, email: input })}
       setPassword={(input) => setUser({ ...user, password: input })}

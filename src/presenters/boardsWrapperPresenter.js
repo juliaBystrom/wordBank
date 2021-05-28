@@ -10,7 +10,11 @@ import useModelProp from "./useModelProp";
 */
 export default function BoardsWrapperPresenter(props) {
   const [newBoardName, setNewBoardName] = React.useState("");
+  // onst loadingData = useModelProp(props.model, "loading");
+  // console.log("loading boardW: ", loadingData);
   const loadingData = useModelProp(props.model, "loading");
+
+  console.log("bwrapperPres laoding props: ", loadingData);
 
   return (
     <BankView>
