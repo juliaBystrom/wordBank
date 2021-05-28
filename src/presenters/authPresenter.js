@@ -5,7 +5,6 @@ import { firebaseApp } from "../firebase/firebaseConfig";
 import { AuthView } from "../views/authView";
 import useModelProp from "./useModelProp";
 
-
 // TODO: https://firebase.google.com/docs/auth/web/google-signin
 
 export const AuthPresenter = ({ model }) => {
@@ -48,7 +47,7 @@ export const AuthPresenter = ({ model }) => {
         model.createUserModel(userCredentials.user.uid);
         setEmailError("");
         setPasswordError("");
-        model.loadingData(false);
+        // model.loadingData(false);
       })
       .then(() => {
         saveToFirebase(model);
@@ -62,11 +61,13 @@ export const AuthPresenter = ({ model }) => {
         } else setEmailError("");
         if (err.code === "auth/weak-password") {
           setPasswordError(err.message);
-        } else setPasswordError("");
+        } else {
+          setPasswordError("");
+        }
       });
   };
 
-  return (!loggedIn && !loadingData && !refresh )? (
+  return !loggedIn && !loadingData && !refresh ? (
     <AuthView
       setEmail={(input) => setUser({ ...user, email: input })}
       setPassword={(input) => setUser({ ...user, password: input })}
@@ -80,5 +81,4 @@ export const AuthPresenter = ({ model }) => {
       passwordError={passwordError}
     />
   ) : null;
-
 };

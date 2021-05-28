@@ -37,7 +37,7 @@ const Credentials = styled.input`
   box-sizing: border-box;
 `;
 
-const AuthicationButton = styled.button`
+const AuthicationButton = styled.input`
   background: ${(props) => props.theme.button};
   font-size: 20px;
   margin: 5px 0px;
@@ -113,20 +113,14 @@ export const AuthView = ({
           pattern="^[a-zA-Z0-9]{3,24}$"
         />
         <Error>{passwordError}</Error>
+        <AuthicationButton type="submit" defaultValue="Login" />
         <AuthicationButton
-          onClick={() => {
-            handleLogIn();
-          }}
-        >
-          Log in
-        </AuthicationButton>
-        <AuthicationButton
+          type="button"
+          defaultValue="Register account"
           onClick={() => {
             handleRegister();
           }}
-        >
-          Register
-        </AuthicationButton>
+        />
       </LoginContainer>
     </AuthContainer>
   );
