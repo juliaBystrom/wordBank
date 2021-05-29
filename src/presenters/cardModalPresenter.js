@@ -49,11 +49,16 @@ export default function CardModalPresenter(props) {
           props.model.moveCard(props.card, props.boardId, newBoardId);
         }}
         onDeleteCard={() => {
-          if (window.confirm("Are you sure you want to delete this card?")) {
-            props.model.deleteCard(props.card.id, props.boardId);
+          if(props.card.comment){
+            if (window.confirm("Are you sure you want to delete this card?")) {
+              props.model.deleteCard(props.card.id, props.boardId);
+            } else {
+              return;
+            }
           } else {
-            return;
+            props.model.deleteCard(props.card.id, props.boardId);
           }
+
         }}
         setTag={(newTag) => {
           setTagText(newTag);
